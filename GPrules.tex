@@ -77,7 +77,7 @@ classification rules; seen as a novel BYOD security rules extraction
 technique for detecting abnormal access. The simulation results and a
 comparison with the results achieved by other techniques confirm the
 viability, effectiveness and applicability of the GP approach to the
-BYOD security context. 
+BYOD security context.
 \end{abstract}
 
 
@@ -90,80 +90,22 @@ BYOD security context.
 \section{Related Work}
 \label{sec:SotA}
 
-% (Paloma) To be extended
-
-In \cite{DeFalco2002257}, a system which discovers rules for the PROBEN1 databases via GP is described. From the six databases inside PROBEN1 and analised by these authors, none is related to security.
-In \cite{Tsakonas2004195} the authors also extract rules with \textit{if-then} structure through GP, for medical purposes.
-
 \section{Problem Description}
 \label{sec:problem}
+As previously highlighted, the BYOD paradigm has several advantages in the corporate world as it plays a leading role in increasing the companies benefits. This is achieved by allowing employees working with their own personal devices in and out of corporate environments. The benefits of BYOD are several; despite of that this paradigm calls for a crucial need for securing the BYOD context. It is clear that the uncontrolled access to internal networks by the personal owned devices, for which companies have limitations in controlling, exposes the companies to security risks such as data leakage, improper decommissioning, phishing, surveillance and many others \cite{lennon2012changing}. These threats have become the companies security concerns and for companies it is a challenge to assure a compromise between pushing personal devices towards professional use and coping with their own stringent and complex security requirements. This trend is inevitable as enterprises are faced with questions of whether and how to manage this situation; and thus every department must be involved in establishing security policies and procedures to minimize the company's risks. In the corporate world environment, the Corporate Security Policies (CSPs), defined by the company's Chief Security Officer (CSO), are the core at identifying and building a set of security rules aiming at protecting company assets by defining permissions to be considered for every different action to be performed inside or outside the company's work space; using eventually the employees personal devices. The main idea behind these CSPs is to build a basic, fixed and well defined set of rules by which the company system allows or denies access to the company assets. In this sense and while facing a pending from a BYOD system, the set of rules will be tested looking for a matching between the access' characteristics and the rules' premises (the If variables parts). If a matching is found then the decision can be made either by allowing or denying employees' access to non-confident or non-certified data for example. Yet, it is important to mention that the rule set defined by the CSO, in companies, is based on known accesses and thus it cannot cover the whole possibly safe and risky search spaces.
 
-\subsection{Available Data}
-\label{subsec:data}
+The aim of this paper is going beyond this traditional and simple decision making process where a novel  BYOD security rules extraction technique is proposed. The main idea is to create a reliable rule set which is able to cover every new situation that may be a threat; allowing the system to go beyond the limited set of known pre-defined rules. This is achieved via the use of Genetic Programming (GP) which has been emerged as a promising approach to deal with the problem of discovering novel and interesting knowledge and rules from large amount of data. Our proposed genetic programming framework dedicated for the BYOD context is capable of performing an automatic discovery of classification rules. More precisely, the GP based framework will, first, extract all the possible values of every attribute in the data at hand and then make the ``ruleGeneticAlgorithm" evolving. Specifically, in this context, each individual is seen as a set of rules. The best individual is the set which rules covers the maximum patterns. The last step would be to present the rules to the CSO of the company and tune the algorithm according to the decision.
 
-\subsection{Proposed Solution}
-\label{subsec:solution}
+% We have to talk about the data!
 
-The proposed method uses GP to create a tree to model the different rules. The generated tree
-is a binary tree of expressions formed by two different types of nodes:
+%\subsection{Available Data}
+%\label{subsec:data}
 
-\begin{itemize}
-\item {\em Variable}: a logical expression formed by a name, and operator, and a value. It is the equivalent to a ``primitive'' in the field of GP. Examples:\texttt{password_length<5} or \texttt{event_level=>COMPLEX_EVENT}.
-\item {\em Action}: a leave of the the tree (therefore, a ``terminal''). Each decision is the result of applying the rule, so it is limite to \texttt{GRANTED} or \textt{STRONGDENY}.
-\end{itemize}
-
-The different variables have been used:
-
-\begin{itemize}
-\item {\em Binary Variable}: %TODO
-\item {\em Categorical Variable}: 
-\item {\em Numerical Variable}: 
-
-\end{itemize}
-
-The tree is translated to a set of rules starting from the leafs reading the ancestors to for each rule:
-
-Example of a rule: %TODO Show this more fancy :P (Pablo)
-
-\begin{verbatim}
-device_has_accessibility=false AND wifiEnabled=false AND password_length<5 AND wifiConnected=false AND event_level=>COMPLEX_EVENT AND user_role=>Administration AND device_is_rooted=true THEN=STRONGDENY 
-\end{verbatim}
+%\subsection{Proposed Solution}
+%\label{subsec:solution}
 
 \section{Experiments Description}
 \label{sec:experiments}
-
-Sub-tree crossover and 1-node mutation evolutionary operators have been used, following our previous works that have used these operators obtaining good results \cite{CITAR_AQUI_EVOSTAR14GPBOT}. In this case, the mutation randomly changes the complete variable of a node or mutate the complete value. Each configuration is executed 30 times, with a population of 32 individuals and a 2-tournament selector for a pool of 16 parents.
-
-
-Table \ref{tab:parameters} summarizes all the parameters used.
-
-\begin{table}
-\begin{center}
-\begin{tabular}{|c|c|}
-\hline
-{\em Parameter Name} & {\em Value} \\\hline
-Population size & 32 \\\hline
-Crossover type & Sub-tree crossover \\ \hline
-Crossover rate & 0.5\\ \hline
-Mutation  & 1-node mutation\\ \hline
-Mutation step-size & 0.25 \\ \hline
-Selection & 2-tournament \\ \hline
-Replacement & Generational with elitism\\ \hline
-Stop criterion & 50 generations \\ \hline
-Maximum Tree Depth & 10 \\ \hline %PABLO: CONFIRM THIS!
-Runs per configuration & 30 \\ \hline
-\end{tabular}
-\caption{Parameters used in the experiments.}
-\label{tab:parameters}
-\end{center}
-\end{table}
-
-
-
-The used framework is OSGiLiath, a service-oriented evolutionary framework \cite{Garcia13Service}. The generated tree is converted to...  All the source code used in this work is available under a LGPL V3 License in \url{http://www.osgiliath.org}.
-
-
-% Don't forget to mention constraint when generating the rules -> there should not be contradictory rules
 
 %\subsection{Results from Classifiers}
 %\label{subsec:classifiers}
@@ -190,7 +132,7 @@ The used framework is OSGiLiath, a service-oriented evolutionary framework \cite
 
 This work has been supported in part by TIN2014-56494-C4-3-P (Spanish
 Ministry of Economy and Competitivity), PROY-PP2015-06 (Plan Propio
-2015 UGR). 
+2015 UGR).
 
 \bibliographystyle{splncs}
 \bibliography{GPrules}
