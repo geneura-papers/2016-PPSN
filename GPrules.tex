@@ -104,8 +104,64 @@ In \cite{Tsakonas2004195} the authors also extract rules with \textit{if-then} s
 \subsection{Proposed Solution}
 \label{subsec:solution}
 
+The proposed method uses GP to create a tree to model the different rules. The generated tree
+is a binary tree of expressions formed by two different types of nodes:
+
+\begin{itemize}
+\item {\em Variable}: a logical expression formed by a name, and operator, and a value. It is the equivalent to a ``primitive'' in the field of GP. Examples:\texttt{password_length<5} or \texttt{event_level=>COMPLEX_EVENT}.
+\item {\em Action}: a leave of the the tree (therefore, a ``terminal''). Each decision is the result of applying the rule, so it is limite to \texttt{GRANTED} or \textt{STRONGDENY}.
+\end{itemize}
+
+The different variables have been used:
+
+\begin{itemize}
+\item {\em Binary Variable}: %TODO
+\item {\em Categorical Variable}: 
+\item {\em Numerical Variable}: 
+
+\end{itemize}
+
+The tree is translated to a set of rules starting from the leafs reading the ancestors to for each rule:
+
+Example of a rule: %TODO Show this more fancy :P (Pablo)
+
+\begin{verbatim}
+device_has_accessibility=false AND wifiEnabled=false AND password_length<5 AND wifiConnected=false AND event_level=>COMPLEX_EVENT AND user_role=>Administration AND device_is_rooted=true THEN=STRONGDENY 
+\end{verbatim}
+
 \section{Experiments Description}
 \label{sec:experiments}
+
+Sub-tree crossover and 1-node mutation evolutionary operators have been used, following our previous works that have used these operators obtaining good results \cite{CITAR_AQUI_EVOSTAR14GPBOT}. In this case, the mutation randomly changes the complete variable of a node or mutate the complete value. Each configuration is executed 30 times, with a population of 32 individuals and a 2-tournament selector for a pool of 16 parents.
+
+
+Table \ref{tab:parameters} summarizes all the parameters used.
+
+\begin{table}
+\begin{center}
+\begin{tabular}{|c|c|}
+\hline
+{\em Parameter Name} & {\em Value} \\\hline
+Population size & 32 \\\hline
+Crossover type & Sub-tree crossover \\ \hline
+Crossover rate & 0.5\\ \hline
+Mutation  & 1-node mutation\\ \hline
+Mutation step-size & 0.25 \\ \hline
+Selection & 2-tournament \\ \hline
+Replacement & Generational with elitism\\ \hline
+Stop criterion & 50 generations \\ \hline
+Maximum Tree Depth & 10 \\ \hline %PABLO: CONFIRM THIS!
+Runs per configuration & 30 \\ \hline
+\end{tabular}
+\caption{Parameters used in the experiments.}
+\label{tab:parameters}
+\end{center}
+\end{table}
+
+
+
+The used framework is OSGiLiath, a service-oriented evolutionary framework \cite{Garcia13Service}. The generated tree is converted to...  All the source code used in this work is available under a LGPL V3 License in \url{http://www.osgiliath.org}.
+
 
 % Don't forget to mention constraint when generating the rules -> there should not be contradictory rules
 
