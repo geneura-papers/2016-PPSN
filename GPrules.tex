@@ -163,10 +163,10 @@ CSO of the company and tune the algorithm according to the decision.
 The proposed method uses GP to create a tree to model the different rules. The generated tree
 is a binary tree of expressions formed by two different types of nodes:
 
-% \begin{itemize}
-% \item {\em Variable}: a logical expression formed by a name, and operator, and a value. It is the equivalent to a ``primitive'' in the field of GP. Examples:\texttt{password\_length<5} or \texttt{event\_level=>COMPLEX\_EVENT}.
-% \item {\em Action}: a leave of the the tree (therefore, a ``terminal''). Each decision is the result of applying the rule, so it is limite to \texttt{GRANTED} or \textt{STRONGDENY}.
-% \end{itemize}
+\begin{itemize}
+\item {\em Variable}: a logical expression formed by a name, and operator, and a value. It is the equivalent to a ``primitive'' in the field of GP. Examples:\texttt{password\_length<5} or \texttt{event\_level=>COMPLEX\_EVENT}.
+\item {\em Action}: a leave of the the tree (therefore, a ``terminal''). Each decision is the result of applying the rule, so it is limite to \texttt{GRANTED} or \texttt{STRONGDENY}.
+\end{itemize}
 
 The different variables have been used:
 
@@ -182,7 +182,10 @@ The tree is translated to a set of rules starting from the leafs reading the anc
 Example of a rule: %TODO Show this more fancy :P (Pablo)
 
 \begin{verbatim}
-device_has_accessibility=false AND wifiEnabled=false AND password_length<5 AND wifiConnected=false AND event_level=>COMPLEX_EVENT AND user_role=>Administration AND device_is_rooted=true THEN=STRONGDENY 
+device_has_accessibility=false AND wifiEnabled=false AND 
+password_length<5 AND wifiConnected=false AND
+event_level=>COMPLEX_EVENT AND user_role=>Administration AND
+device_is_rooted=true THEN=STRONGDENY 
 \end{verbatim}
 
 \section{Experiments Description}
@@ -215,9 +218,6 @@ Runs per configuration & 30 \\ \hline
 \end{table}
 
 The used framework is OSGiLiath, a service-oriented evolutionary framework \cite{Garcia13Service}. The generated tree is converted to...  All the source code used in this work is available under a LGPL V3 License in \url{http://www.osgiliath.org}.
-
-\section{Experiments Description}
-\label{sec:experiments}
 
 %\subsection{Results from Classifiers}
 %\label{subsec:classifiers}
