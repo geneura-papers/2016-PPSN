@@ -87,17 +87,6 @@ BYOD security context.
 % BYOD % adaptation by companies
 % BYOD at schools
 
-\section{Related Work}
-\label{sec:SotA}
-
-% (Paloma) To be extended
-
-In \cite{DeFalco2002257}, a system which discovers rules for the PROBEN1 databases via GP is described. From the six databases inside PROBEN1 and analised by these authors, none is related to security.
-In \cite{Tsakonas2004195} the authors also extract rules with \textit{if-then} structure through GP, for medical purposes.
-
-\section{Problem Description}
-\label{sec:problem}
-
 As previously highlighted, the BYOD paradigm has several advantages in
 the corporate world as it plays a leading role in increasing the
 companies benefits. This is achieved by allowing employees working
@@ -122,19 +111,6 @@ identifying and building a set of security rules. These aim at protecting
 company assets by defining permissions to be considered for every
 different action to be performed inside or outside the company's work
 space. %using eventually the employees personal devices.
-The main idea
-behind these CSPs is to build a basic, fixed and well defined set of
-rules by which the company system allows or denies access to the
-company assets. In this sense and while facing a pending % (Paloma) I've never heard about this expression, what does it mean?
-from a BYOD 
-system, the set of rules will be tested looking for a matching between
-the access' characteristics and the rules' premises (the If variables
-parts). If a matching is found then the decision can be made either by
-allowing or denying employees' access to non-confident or
-non-certified data for example. Yet, it is important to mention that
-the companies' security rule set defined by the CSO is based on known, previously recognised,
-accesses and thus it cannot cover the whole possibly safe and risky
-search spaces. 
 
 The aim of this paper is going beyond this traditional and simple
 decision making process where a novel  BYOD security rules extraction
@@ -153,6 +129,32 @@ evolving. Specifically, in this context, each individual is seen as a
 set of rules. The best individual is the set which rules covers the
 maximum patterns. The last step would be to present the rules to the
 CSO of the company and tune the algorithm according to the decision. 
+
+\section{Related Work}
+\label{sec:SotA}
+
+% (Paloma) To be extended
+
+In \cite{DeFalco2002257}, a system which discovers rules for the PROBEN1 databases via GP is described. From the six databases inside PROBEN1 and analised by these authors, none is related to security.
+In \cite{Tsakonas2004195} the authors also extract rules with \textit{if-then} structure through GP, for medical purposes.
+
+\section{Problem Description}
+\label{sec:problem}
+
+
+The main idea
+behind these CSPs is to build a basic, fixed and well defined set of
+rules by which the company system allows or denies access to the
+company assets. In this sense and while facing a pending % (Paloma) I've never heard about this expression, what does it mean?
+from a BYOD 
+system, the set of rules will be tested looking for a matching between
+the access' characteristics and the rules' premises (the If variables
+parts). If a matching is found then the decision can be made either by
+allowing or denying employees' access to non-confident or
+non-certified data for example. Yet, it is important to mention that
+the companies' security rule set defined by the CSO is based on known, previously recognised,
+accesses and thus it cannot cover the whole possibly safe and risky
+search spaces. 
 
 % We have to talk about the data!
 
