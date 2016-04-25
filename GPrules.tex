@@ -162,6 +162,13 @@ search spaces.
 
 Anonymised user data has been used to perform the experiments for this work. The set of data has been gathered from the trials that were performed during the development of an FP7 European Project, called MUSES \cite{DBLP:conf/sac/MoraCGZJEBAH14}. In these trials, a group of users tested an application meant for securing a BYOD environment by warning them when they were acting in a dangerous way. These warnings were triggered by a set of initial and pre-defined rules, so that when certain conditions were met in an ``event'', the corresponding action could be allowed - nothing happened - or denied - a warning appeared -.
 
+The dataset contains, thus, a set of these ``events'' from which a number of attributes have been extracted or are given by the application itself. Therefore, the attributes can be classified in different ways, and one of them is:
+
+\begin{itemize}
+  \item Attributes given by the ``event detector''. These are related to the type of the event (action), its timestamp, or origin.
+  \item Attributes inferred from the information in the database. They are extracted from the information in the general database of the application that is related to the previous, main attributes. These are, for instance: all information related to the origin, like the user position in the company or the device Operating System; the configuration of the device, such as WiFi or Bluetooth being enabled; and even lexical properties of the user password, to avoid storing the password itself or using it for classification or rule generation.
+\end{itemize}
+
 
 
 \subsection{Proposed Solution}
