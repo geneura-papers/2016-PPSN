@@ -22,7 +22,7 @@
 \usepackage{amssymb}
 \setcounter{tocdepth}{3}
 \usepackage{graphicx}
-
+\usepackage{amsmath}
 \usepackage{url}
 \newcommand{\keywords}[1]{\par\addvspace\baselineskip
 \noindent\keywordname\enspace\ignorespaces#1}
@@ -48,16 +48,17 @@
 % the affiliations are given next; don't give your e-mail address
 % unless you accept that it will be published
 \institute{Dept. of Computer Architecture and Technology, University
-of Granada, Spain \and LARODEC, Institut Sup\'erieur de Gestion de Tunis, Tunisia.}
+of Granada, Spain \and LARODEC, Institut Sup\'erieur de Gestion de Tunis, Tunisia}
 
 \maketitle
 
 
 \begin{abstract}
 The growth in the number of personal devices in terms of variety and computational
-abilities has given birth to a new concept in the corporate world
+abilities has given birth to a recent concept in the corporate world
 known as ``Bring Your Own Device'' (BYOD).
 % (Paloma) I don't think it is "new" anymore.
+% (zeineb) changed the word to "recent".
 Within this concept,
 employees are allowed to bring and work with their personal devices at
 offices. Despite the BYOD's significant advantages such as reducing
@@ -65,8 +66,9 @@ business cost and increasing work productivity; the uncontrolled
 access to internal networks by the personal devices, for which
 enterprises have limitations in controlling, exposes the companies to
 security threats such as leak of confidential data and access by
-unauthorized users. To handle these inadequate countermeasures,
+unauthorized users. To handle these kinds of threats,
 % (Paloma) I will look for another word which fits better here than "countermeasures", as by this word we are calling the threats "inadequate responses" (?)
+% (zeineb) changed the expression to "kinds of threats"
  there
 is a need for a means of detecting and controlling abnormal user
 access by establishing a classification rules based policy. Thus, in
@@ -83,15 +85,19 @@ BYOD security context.
 
 \section{Introduction}
 \label{sec:intro}
-
 % BYOD % adaptation by companies
 % BYOD at schools
+% (Zaineb) I added these paragraphs about BYOD in companies and schools
+Today, technology moves fast which led modern computing to undergo several notable transitions in an instant. Modern computing has moved over time to smaller, more reliable and faster high-tech devises such as smartphones, laptops and tablets. The use of these technologies in several forms is progressing, and let to a recent form of use known as the ``Bring Your Own Device'' (BYOD) concept.
 
-As previously highlighted, the BYOD paradigm has several advantages in
-the corporate world as it plays a leading role in increasing the
-companies benefits. This is achieved by allowing employees working
-with their own personal devices in and out of corporate
-environments. The benefits of BYOD are several; despite of that this
+The BYOD concept has been integrated in several environments mainly in the corporate world and schools. In the former environment, the BYOD practice refers to the fact of allowing employees to use their personal laptops, smartphones, tablets and other mobile devices in the workplace. The use of BYOD in the corporate world has many advantages among them we mention saving costs - as the company allows itself to save money on high-priced devices that it would normally be required to purchase for their employees - and increasing flexibility and worker productivity as employees will not be required to haul along multiple devices to satisfy their personal and work needs because they will have everything they need in one device anytime and anywhere. Other advantages are tight to the increase of worker satisfaction,  attracting the best applicants and the increase of engagement in the workplace and after hours.
+
+BYOD in the corporate world has since gained traction in the education sector with an increasing number of schools around the world choosing to implement their own BYOD policies. In such environment, BYOD refers to a technology model that allows students to bring their own devices to school for learning in the classroom. The adoption of BYOD in schools is argued by the fact that technology plays a leading role in pupils/students' everyday lives and should, therefore, be an integral part of their learning. And since, for most schools, it is financially unsustainable to provide every student with the most appropriate up-to-date devise; BYOD is therefore considered an attractive, cost-effective alternative; recognizing that many students already own devices that are superior and more up-to-date than those available in schools. BYOD at schools has several benefits as well such as personalizing learning experiences, encouraging students' independent learning and promoting anytime, anywhere learning opportunities.
+
+Nevertheless and whatever the BYOD environment is, the biggest worry and the main issue is all about security.
+Focusing on the corporate world and as previously highlighted, the BYOD paradigm has several advantages
+as it plays a leading role in increasing the
+companies benefits.  Despite of that this
 paradigm calls for a crucial need for securing the BYOD context. It is
 clear that the uncontrolled access to internal networks by the
 personal owned devices, for which companies have limitations in
@@ -110,7 +116,9 @@ defined by the company's Chief Security Officer (CSO), are the core at
 identifying and building a set of security rules. These aim at protecting
 company assets by defining permissions to be considered for every
 different action to be performed inside or outside the company's work
-space. %using eventually the employees personal devices.
+space using eventually the employees personal devices.
+% using eventually the employees personal devices
+% (zaineb) Paloma I added your sentence
 
 The aim of this paper is going beyond this traditional and simple
 decision making process where a novel  BYOD security rules extraction
@@ -122,13 +130,9 @@ has been emerged as a promising approach to deal with the problem of
 discovering novel and interesting knowledge and rules from large
 amount of data. Our proposed genetic programming framework dedicated
 for the BYOD context is capable of performing an automatic discovery
-of classification rules. More precisely, the GP based framework will,
-first, extract all the possible values of every attribute in the data
-at hand and then make the ``ruleGeneticAlgorithm''
-evolving. Specifically, in this context, each individual is seen as a
-set of rules. The best individual is the set which rules covers the
-maximum patterns. The last step would be to present the rules to the
-CSO of the company and tune the algorithm according to the decision. 
+of classification rules.
+The rest of the paper is organized as follows: In section \ldots
+% (zaineb) to be completed later once all sections are fixed
 
 \section{Related Work}
 \label{sec:SotA}
@@ -141,68 +145,68 @@ In \cite{Tsakonas2004195} the authors also extract rules with \textit{if-then} s
 \section{Problem Description}
 \label{sec:problem}
 
-The main idea
-behind these CSPs is to build a basic, fixed and well defined set of
-rules by which the company system allows or denies access to the
-company assets. In this sense and while facing a pending % (Paloma) I've never heard about this expression, what does it mean?
-from a BYOD 
-system, the set of rules will be tested looking for a matching between
-the access' characteristics and the rules' premises (the If variables
-parts). If a matching is found then the decision can be made either by
-allowing or denying employees' access to non-confident or
-non-certified data for example. Yet, it is important to mention that
-the companies' security rule set defined by the CSO is based on known, previously recognised,
-accesses and thus it cannot cover the whole possibly safe and risky
-search spaces. 
+As previously highlighted, the main idea behind the corporate security policies which are defined by the CSO is to build a basic, fixed and well defined set of rules, in the form of IF \ldots THEN,  by which the company system allows or denies access to the company assets. In this sense and while facing an attack from a BYOD system, the set of rules will be tested looking for a matching between the access' characteristics and the rules' premises (the IF variables part of all rules). If a matching is found then the decision can be made, by checking the conclusion part of the rule set (the THEN part), either by allowing or denying employees' access to non-confident or non-certified data for example. However, it is important to mention that the companies' security rule set defined by the CSO is based on known and previously recognized accesses and thus it cannot cover the whole possibly safe and risky search spaces. Therefore, there is an urgent need to create a more reliable rule set which is able to cover every new situation that may be a threat. Hence, allowing the system to go beyond the limited set of known pre-defined rules.
 
-% We have to talk about the data!
+Our proposed solution is based on a novel genetic programming framework dedicated for the BYOD context capable of performing an automatic and wider discovery of classification rules. More precisely, our GP based framework will, first, extract all the possible values of every attribute in the data at hand and then make the ``RuleGeneticAlgorithm'' evolving. Specifically, in this context, each individual is seen as a set of rules. The best individual is the set which rules covers the maximum patterns. The last step would be to present the rules to the CSO of the company and tune the algorithm according to the decision. The description of the used data and further explicit details about our proposed solution are given in what is next.
 
 \subsection{Available Data}
 \label{subsec:data}
 
-Anonymised user data has been used to perform the experiments for this work. The set of data has been gathered from the trials that were performed during the development of an FP7 European Project, called MUSES \cite{DBLP:conf/sac/MoraCGZJEBAH14}. In these trials, a group of users tested an application meant for securing a BYOD environment by warning them when they were acting in a dangerous way. These warnings were triggered by a set of initial and pre-defined rules, so that when certain conditions were met in an ``event'', the corresponding action could be allowed - nothing happened - or denied - a warning appeared -.
+Anonymised user data has been used to perform the experiments for this work. The set of data has been gathered from the trials that were performed during the development of an FP7 European Project; called MUSES \cite{DBLP:conf/sac/MoraCGZJEBAH14}. In these trials, a group of users tested an application meant for securing a BYOD environment. The application generates warnings when the users acts in a dangerous way. Technically, these warnings were triggered by a set of initial and pre-defined rules, so that when certain conditions were met in an ``event'', the corresponding action could be allowed - nothing happened - or denied where a warning appeared.
+% (Zaineb) reformulated the sentence  "In these trials, ...appeared"
 
-The dataset contains, thus, a set of these ``events'' from which a number of attributes have been extracted or are given by the application itself. Therefore, the attributes can be classified in different ways, and one of them is:
-
+The dataset contains, thus, a set of these ``events'' from which a number of attributes have been extracted or are given by the application itself. Therefore, the attributes can be classified in different ways, and one of them is the following:
 \begin{itemize}
-  \item Attributes given by the ``event detector''. These are related to the type of the event (action), its timestamp, or origin.
-  \item Attributes inferred from the information in the database. They are extracted from the information in the general database of the application that is related to the previous, main attributes. These are, for instance: all information related to the origin, like the user position in the company or the device Operating System; the configuration of the device, such as WiFi or Bluetooth being enabled; and even lexical properties of the user password, to avoid storing the password itself or using it for classification or rule generation.
+  \item Attributes given by the ``event detector'': These attributes are related to the type of the event (action), its timestamp, or origin.
+  \item Attributes inferred from the information in the database: These attributes are extracted from the information in the general database of the application that is related to the previous, main attributes.
+      % (Zaineb) This sentence is weird. Please clarify it Paloma. I did not get what you mean here.
+       These are, for instance: all information related to the origin, like the user position in the company or the device Operating System; the configuration of the device, such as WiFi or Bluetooth being enabled; and even lexical properties of the user password, to avoid storing the password itself or using it for classification or rule generation.
 \end{itemize}
 
 The trials had a duration of roughly a month plus a week, and a total of 153270 events were registered in the database. It is important to note that from all of those events, almost 65\% were not useful for knowledge extraction purposes, as they were events of ``log in'', ``log out'', or ``restart''. The other 35\% were considered as \textit{important} because they contained information about user actions such as opening files or sending emails in a certain connection environment, changing security properties, or installing apps. Altogether, there are 38 attributes plus the class, which can take two possible values: GRANTED or STRONGDENY.
 
-With respect to the balance between the classes, the dataset is unblanced with the following ratio: 45856 instances are labelled as GRANTED and 3350 are labelled as STRONGDENY.
+With respect to the balance between the classes, the dataset is unbalanced with the following ratio: 45856 instances are labelled as GRANTED and 3350 are labelled as STRONGDENY.
 
 \subsection{Proposed Solution}
 \label{subsec:solution}
-
+% (zaineb) I prefer adding a sentence here as an introduction. What do you think Paloma?
 The proposed method uses GP to create a tree to model the different rules. The generated tree
 is a binary tree of expressions formed by two different types of nodes:
 
 \begin{itemize}
-\item {\em Variable}: a logical expression formed by a name, and operator, and a value. It is the equivalent to a ``primitive'' in the field of GP. Examples:\texttt{password\_length<5} or \texttt{event\_level=>COMPLEX\_EVENT}.
-\item {\em Action}: a leave of the the tree (therefore, a ``terminal''). Each decision is the result of applying the rule, so it is limite to \texttt{GRANTED} or \texttt{STRONGDENY}.
+\item {\em Variable}: It is a logical expression formed by a name, an operator and a value. It is the equivalent to a ``primitive'' in the field of GP. \\
+    Examples:
+   \begin{math}
+     \left \{
+   \begin{array}{l}
+     \texttt{password\_length<5} \\
+     or \\
+      \texttt{event\_level=>COMPLEX\_EVENT}
+   \end{array}
+   \right .
+   \end{math}
+\item {\em Action}: It is a leaf of the   tree and therefore, a ``terminal'' state. Each decision is the result of applying the rule; so it is limited to two terms which are \texttt{GRANTED} or \texttt{STRONGDENY}.
 \end{itemize}
 
-The different variables have been used:
+The different variables that have been used are as follows:
 
 \begin{itemize}
 \item {\em Binary Variable}: %TODO
-\item {\em Categorical Variable}: 
-\item {\em Numerical Variable}: 
+\item {\em Categorical Variable}:
+\item {\em Numerical Variable}:
 
 \end{itemize}
 
-The tree is translated to a set of rules starting from the leafs reading the ancestors to for each rule:
-
-Example of a rule: %TODO Show this more fancy :P (Pablo)
+The tree is translated to a set of rules starting from the leafs to the root node passing each time by the ancestors. An example of a rule can be presented as follows:
+%TODO Show this more fancy :P (Pablo)
 
 \begin{verbatim}
-device_has_accessibility=false AND wifiEnabled=false AND 
+device_has_accessibility=false AND wifiEnabled=false AND
 password_length<5 AND wifiConnected=false AND
 event_level=>COMPLEX_EVENT AND user_role=>Administration AND
-device_is_rooted=true THEN=STRONGDENY 
+device_is_rooted=true THEN=STRONGDENY
 \end{verbatim}
+
 
 \section{Experiments Description}
 \label{sec:experiments}
