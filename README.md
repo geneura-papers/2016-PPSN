@@ -1,0 +1,3 @@
+#Finding rules for BYOD devices
+
+Initially intended for PPSN, but, well...
