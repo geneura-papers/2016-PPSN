@@ -1,56 +1,33 @@
-
-%%%%%%%%%%%%%%%%%%%%%%% file typeinst.tex %%%%%%%%%%%%%%%%%%%%%%%%%
-%
-% This is the LaTeX source for the instructions to authors using
-% the LaTeX document class 'llncs.cls' for contributions to
-% the Lecture Notes in Computer Sciences series.
-% http://www.springer.com/lncs       Springer Heidelberg 2006/05/04
-%
-% It may be used as a template for your own input - copy it
-% to a new file with a new name and use it as the basis
-% for your article.
-%
-% NB: the document class 'llncs' has its own and detailed documentation, see
-% ftp://ftp.springer.de/data/pubftp/pub/tex/latex/llncs/latex2e/llncsdoc.pdf
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-\documentclass[runningheads,a4paper]{llncs}
+\documentclass[a4paper,10pt,twocolumn,preprint,3p]{elsarticle}
 
 \usepackage[latin1]{inputenc}
 \usepackage{amssymb}
-\setcounter{tocdepth}{3}
 \usepackage{graphicx}
 \usepackage{amsmath}
 \usepackage{url}
-\newcommand{\keywords}[1]{\par\addvspace\baselineskip
-\noindent\keywordname\enspace\ignorespaces#1}
+
+\journal{Expert Systems with Applications}
 
 \begin{document}
 
-\mainmatter  % start of an individual contribution
+\begin{frontmatter}
 
 % first the title is needed
 \title{A Novel BYOD Security Rules Extraction Technique Based on Genetic Programming}
 
-% a short form should be given in case it is too long for the running head
-%\titlerunning{Lecture Notes in Computer Science: Authors' Instructions}
+\author[ugr]{Paloma De las Cuevas}
+\ead{palomacd@ugr.es}
+\author[isgt]{Zeineb Chelly}
+\ead{zeinebchelly@yahoo.fr}
+\author[ugr]{Pablo Garc\'{\i}a-S\'anchez}
+\ead{pablogarcia@ugr.es}
+\author[ugr]{J.J. Merelo}
+\ead{jmerelo@geneura.ugr.es}
 
-% the name(s) of the author(s) follow(s) next
-%
-\author{Paloma de las Cuevas \inst{1}%
-\and Zeineb Chelly \inst{2}\and Pablo Garc\'ia \inst{1}\and Juan-Juli\'an Merelo \inst{1}}
-%
-\authorrunning{A Novel BYOD Security Rules Extraction Technique Based on Genetic Programming}
-% (feature abused for this document to repeat the title also on left hand pages)
-
-% the affiliations are given next; don't give your e-mail address
-% unless you accept that it will be published
-\institute{Dept. of Computer Architecture and Technology, University
-of Granada, Spain \and LARODEC, Institut Sup\'erieur de Gestion de Tunis, Tunisia}
-
-\maketitle
+\address[ugr]{Department of Computer Architecture and Computer Technology, ETSIIT and CITIC \\
+University of Granada, Granada, Spain. Tel: +34958241778. Fax: +34958248993}
+\address[isgt]{Laboratoire de Recherche Op\'{e}retionnelle de D\'{e}cision et de Contr\^{o}le de Processus. \\
+Institut Sup\'erieur de Gestion de Tunis, Tunisia.}
 
 
 \begin{abstract}
@@ -79,6 +56,13 @@ comparison with the results achieved by other techniques confirm the
 viability, effectiveness, and applicability of the GP approach to the
 BYOD security context.
 \end{abstract}
+
+
+\begin{keyword}
+%TODO: Keywords
+\end{keyword}
+
+\end{frontmatter}
 
 
 \section{Introduction}
@@ -233,9 +217,11 @@ The tree is translated to a set of rules starting from the leafs to the root nod
 %TODO Show this more fancy :P (Pablo)
 
 \begin{verbatim}
-device_has_accessibility=false AND wifiEnabled=false AND
-password_length<5 AND wifiConnected=false AND
-event_level=>COMPLEX_EVENT AND user_role=>Administration AND
+device_has_accessibility=false AND
+wifiEnabled=false AND password_length<5 AND
+wifiConnected=false AND
+event_level=>COMPLEX_EVENT AND
+user_role=>Administration AND
 device_is_rooted=true THEN=STRONGDENY
 \end{verbatim}
 
@@ -298,7 +284,7 @@ This work has been supported in part by TIN2014-56494-C4-3-P (Spanish
 Ministry of Economy and Competitivity), PROY-PP2015-06 (Plan Propio
 2015 UGR).
 
-\bibliographystyle{splncs}
+\bibliographystyle{elsarticle-num}
 \bibliography{GPrules}
 
 \end{document}
