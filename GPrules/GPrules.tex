@@ -97,7 +97,7 @@ sector with an increasing number of schools around the world choosing
 to implement their own BYOD policies. In such environment, BYOD (also
 called Bring Your Own Technology) refers to a technology model that
 allows students to bring their own devices to school for learning in
-the classroom \cite{sangani2013byod}. The adoption of BYOD in schools
+the classroom \cite{sangani2013byod, song2014bring}. The adoption of BYOD in schools
 is argued by the fact that technology plays a leading role in
 pupils/students' everyday lives and should, therefore, be an integral
 part of their learning. However, for most schools it is financially
@@ -145,7 +145,7 @@ amount of data. Our proposed GP framework dedicated
 for the BYOD context is capable of performing an automatic discovery
 of classification rules.
 
-The rest of the paper is organized as follows. In Section \ref{sec:SotA} we give an overview of the advances in GP applied to rule evolution and its applications; then, Section \ref{sec:problem} depicts the problem this work tries to solve, describing the available dataset and the proposed solution. The experimental setting, as well as the different set of experiments that have been carried out are described in Section \ref{sec:experiments}. Section \ref{sec:gp} shows the obtained results from the application of GP to security rules extraction and, finally, the conclusions of this work along with some suggestions about how to continue our research are given in Section \ref{sec:future}. 
+The rest of the paper is organized as follows. In Section \ref{sec:SotA} we give an overview of the advances in GP applied to rule evolution and its applications; then, Section \ref{sec:problem} depicts the problem this work tries to solve, describing the available dataset and the proposed solution. The experimental set-up, as well as the different set of experiments that have been carried out are described in Section \ref{sec:experiments}. Section \ref{sec:gp} shows the obtained results from the application of GP to security rules extraction and, finally, the conclusions of this work along with some suggestions about how to continue our research are given in Section \ref{sec:future}. 
 
 \section{Related Work}
 \label{sec:SotA}
@@ -153,15 +153,14 @@ The rest of the paper is organized as follows. In Section \ref{sec:SotA} we give
 % (Paloma) To be extended
 
 In \cite{DeFalco2002257}, a system which discovers rules for the PROBEN1 databases via GP is described. From the six databases inside PROBEN1 and analised by these authors, none is related to security.
-In \cite{Tsakonas2004195} the authors also extract rules with
-\textit{if-then} structure through GP, for medical purposes. 
+In \cite{Tsakonas2004195} the authors also extract rules with \textsc{IF \ldots THEN} structure through GP, for medical purposes. 
 
 \section{Problem Description}
 \label{sec:problem}
 
-As previously highlighted, the main idea behind the corporate security policies which are defined by the CSO is to build a basic, fixed and well defined set of rules, in the form of IF \ldots THEN,  by which the company system allows or denies access to the company assets. In this sense and while facing an attack from a BYOD system, the set of rules will be tested looking for a matching between the access' characteristics and the rules' premises (the IF variables part of all rules). If a matching is found then the decision can be made, by checking the conclusion part of the rule set (the THEN part), either by allowing or denying employees' access to non-confident or non-certified data for example. However, it is important to mention that the companies' security rule set defined by the CSO is based on known and previously recognized accesses and thus it cannot cover the whole possibly safe and risky search spaces. Therefore, there is an urgent need to create a more reliable rule set which is able to cover every new situation that may be a threat. Hence, allowing the system to go beyond the limited set of known pre-defined rules.
+As previously highlighted, the main idea behind the corporate security policies which are defined by the CSO is to build a basic, fixed and well defined set of rules, in the form of \textsc{IF \ldots THEN} clauses,  by which the company system allows or denies access to the company assets. In this sense and while facing an attack from a BYOD system, the set of rules will be tested looking for a matching between the access' characteristics and the rules' premises (the IF variables part of all rules). If a matching is found then the decision can be made, by checking the conclusion part of the rule set (the THEN part), either by allowing or denying employees' access to non-confident or non-certified data for example. However, it is important to mention that the companies' security rule set defined by the CSO is based on known and previously recognized accesses and thus it cannot cover the whole possibly safe and risky search spaces. Therefore, there is an urgent need to create a more reliable rule set which is able to cover every new situation that may be a threat. Hence, allowing the system to go beyond the limited set of known pre-defined rules.
 
-Our proposed solution is based on a novel genetic programming framework dedicated for the BYOD context capable of performing an automatic and wider discovery of classification rules. More precisely, our GP based framework will, first, extract all the possible values of every attribute in the data at hand and then make the ``RuleGeneticAlgorithm'' evolving. Specifically, in this context, each individual is seen as a set of rules. The best individual is the set which rules covers the maximum patterns. The last step would be to present the rules to the CSO of the company and tune the algorithm according to the decision. The description of the used data and further explicit details about our proposed solution are given in what is next.
+Our proposed solution is based on a novel GP framework dedicated for the BYOD context capable of performing an automatic and wider discovery of classification rules. More precisely, our GP based framework will, first, extract all the possible values of every attribute in the data at hand and then make the ``RuleGeneticAlgorithm'' evolving. Specifically, in this context, each individual is seen as a set of rules. The best individual is the set which rules covers the maximum patterns. The last step would be to present the rules to the CSO of the company and tune the algorithm according to the decision. The description of the used data and further explicit details about our proposed solution are given in what is next.
 
 \subsection{Available Data}
 \label{subsec:data}
