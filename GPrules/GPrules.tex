@@ -154,7 +154,32 @@ discovering novel and interesting knowledge and rules from large
 amount of data. Our proposed GP framework dedicated
 for the BYOD context is capable of performing an automatic discovery
 of classification rules.
-% Once again, there is a huge imbalance in the space and energy devoted to BYOD and the one you devote to GP. Except if you are going to publish in GPEM, which includes GP in the title, you will probably need to say a little bit more about GP. Even if it's GP, there are so many different ways if doing it that you will probably need to be more precise, specififying whether you mean "classic" GP or any other way. 
+% Once again, there is a huge imbalance in the space and energy
+% devoted to BYOD and the one you devote to GP. Except if you are
+% going to publish in GPEM, which includes GP in the title, you will
+% probably need to say a little bit more about GP. Even if it's GP,
+% there are so many different ways if doing it that you will probably
+% need to be more precise, specififying whether you mean "classic" GP
+% or any other way. 
+
+% This intro is very soft and does not have any "hard" claim. It does
+% not really say what is specifically the problem we are dealing
+% with, what we want to do and how it is addressing that
+% problem. There should be a clear argumental line, something like 
+% BYOD is very popular, but it presents security problems when you mix
+% possibly compromised or unsecured devices with protected
+% assets. Protecting that asset is the turf of the CSO, who defines
+% security policies for asset access based on her expertise. However,
+% these policies can't properly address the new threats posed by BYOD
+% devices. That is why we need an automatic way of automatically
+% defining these policies using known user actions and the possible
+% threats they will eventually bring, especially when the action of an
+% user might not result in immediate security danger, but in a
+% possible future danger.
+% I don't know, something like that, with more references, but with a
+% clear argumental line. Without this argumental line, all the
+% structure of the paper falls down in pieces. You can't create a
+% proper state of the art, do the proper tests, and so on. - JJ
 
 The rest of the paper is organized as follows. In Section \ref{sec:SotA} we give an overview of the advances in GP applied to rule evolution and its applications; then, Section \ref{sec:problem} depicts the problem this work tries to solve, describing the available dataset and the proposed solution. The experimental set-up, as well as the different set of experiments that have been carried out are described in Section \ref{sec:experiments}. Section \ref{sec:gp} shows the obtained results from the application of GP to security rules extraction and, finally, the conclusions of this work along with some suggestions about how to continue our research are given in Section \ref{sec:future}. 
 
@@ -163,7 +188,22 @@ The rest of the paper is organized as follows. In Section \ref{sec:SotA} we give
 
 % (Paloma) To be extended
 
-Since BYOD started to appear in companies' day-to-day philosophy a lot of research has been done about the advantages and disadvantages of this approach, as well as how to properly implement it in order to respect privacy while trying to secure the resources. Scarfo differentiates in \cite{scarfo2012new} two main ways to deal with the BYOD paradigm: allowing the device to connect via desktop or application virtualisation, meaning enough control to avoid employee's devices monitorisation; or control via Mobile Device Management (MDM), which has to be legally agreed with the employee. Ali et al. expand Scarfo's study in \cite{ali2015analysis} so that they review both BYOD access control models and BYOD security models. The authors further distinguish between MDM and Kernel Modifications inside the security models, and conclude with the description of a proposed model which combines most of the reviewed solutions, i.e. MDM and Virtual Private Network (VPN) access together with an encrypted container for the accessed information depending on the level of restriction. However, from all the papers in \cite{ali2015analysis} claimed to enforce policies, only in \cite{rhee2013high} the authors actually describe how the policies are enforced by describing which data is monitored. In any case, none of the papers mention the application of GP to the enforcement of the security policies.
+Since BYOD started to appear in companies' day-to-day policies  a lot
+of research has been done about the advantages and disadvantages of
+this approach, as well as how to properly implement it in order to
+respect privacy while trying to secure the resources. % this is a
+                                % completely information-free
+                                % claim. It does not claim anything,
+                                % does not inform of anything. Adding
+                                % a reference to a review would help,
+                                % but in any case it does not help in
+                                % any way your argument to show how
+                                % many people are interested. You have
+                                % to frame the problem in this first
+                                % sentence. What's the BYOD "problem"?
+                                % How has people attempted to nail it?
+                                % - JJ
+ Scarfo differentiates in \cite{scarfo2012new} two main ways to deal with the BYOD paradigm: allowing the device to connect via desktop or application virtualisation, meaning enough control to avoid employee's devices monitorisation; or control via Mobile Device Management (MDM), which has to be legally agreed with the employee. Ali et al. expand Scarfo's study in \cite{ali2015analysis} so that they review both BYOD access control models and BYOD security models. The authors further distinguish between MDM and Kernel Modifications inside the security models, and conclude with the description of a proposed model which combines most of the reviewed solutions, i.e. MDM and Virtual Private Network (VPN) access together with an encrypted container for the accessed information depending on the level of restriction. However, from all the papers in \cite{ali2015analysis} claimed to enforce policies, only in \cite{rhee2013high} the authors actually describe how the policies are enforced by describing which data is monitored. In any case, none of the papers mention the application of GP to the enforcement of the security policies.
 
 From the point of view of market products, a variety of them have been released to help companies speed up the process of adoption of the BYOD concept. In \cite{de2015corporate} there is a description of the market solutions that the main manufacturers have developed to such purpose. The level of security and privacy preservation offered by these applications is different depending on the solution.
 
