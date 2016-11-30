@@ -31,10 +31,7 @@ University of Granada, Granada, Spain. Tel: +34958241778. Fax: +34958248993}
 
 \begin{abstract}
 The growth in the number of personal devices in terms of variety and computational
-abilities has given birth to a 
-% (recent) Paloma - I erased this because I don't think it's recent anymore
-% Zaineb : Agreed
-new concept in the corporate world
+abilities has given birth to a concept in the corporate world
 known as ``Bring Your Own Device'' (BYOD).
 Corporations following this policy allow 
 employees to bring to work and use their personal devices at
@@ -50,8 +47,6 @@ this paper, we propose a Genetic Programming (GP) based framework for
 BYOD security. In this environment, GP is used as a promising approach
 capable of performing an automatic discovery of novel and interesting
 threat classification rules, with the additional feature of presenting the new rules in an easily understandable way.
-% (seen as a novel BYOD security rules extraction technique for detecting abnormal access.) This sentence is kind of redundant with the previous one. Changed for a new one, including more advantages of the GP framework.
-% Zaineb : OK
 The simulation results over real data and a
 comparison with the results achieved by other techniques confirm the
 viability, effectiveness, and applicability of the GP approach to the
@@ -74,11 +69,7 @@ Bring Your Own Device, Security, Genetic Programming, Rules Extraction.
 % BYOD at schools
 % (Zaineb) I added these paragraphs about BYOD in companies and schools
 The fast pace of new technology has led modern computing to undergo
-several outstanding transitions in a short period of time. Modern computing has moved
-over time to smaller, more reliable and faster high-tech devises such% devises is the British way of writing it? - JJ
-as smartphones, laptops and tablets. The use of these technologies in
-several forms is progressing, and has led to a recent form of use known as
-the ``Bring Your Own Device'' (BYOD) concept or philosophy. % add reference here. 
+several outstanding transitions in a short period of time. Modern computing has moved over time to smaller, more reliable and faster high-tech devices such as smartphones, laptops and tablets. The use of these technologies in several forms is progressing, and has led to the form of use known as the ``Bring Your Own Device'' (BYOD) concept or philosophy \cite{ballagas2004byod}. % add reference here. 
 
 A BYOD policy has been integrated in several environments, mainly in % I'm changing some to policy, which is what it is - JJ
 academia and the corporate world, the BYOD
@@ -91,15 +82,15 @@ it would normally be required to purchase for their employees --, and
 increasing flexibility and worker productivity as employees will not
 be asked to haul around multiple devices to satisfy both their personal and
 work needs, having everything they need in one device anytime and
-anywhere.  
-% (Paloma) This sentence was extremely long, sorry that I had to change it :(
-% (Zaineb) Ok :)
-Other advantages are tied to the increase of worker satisfaction,  attracting the best applicants and the increase of engagement in the workplace and after hours. % references too - JJ
+anywhere. 
+Other advantages are tied to the increase of worker satisfaction,  attracting the best applicants, and the increase of engagement in the workplace and after hours \cite{singh2012byod}. % references too - JJ
+% (Paloma) All advantages come from the same paper, so I've repeated the reference.
 
 These advantages have made BYOD policies gain traction in the education
 sector with an increasing number of schools around the world choosing
 to implement their own BYOD policies. % reference!!! - JJ
 % Also I don't see the point. Where do you want to bring this argument to? - JJ
+% Ok, maybe we talk too much about BYOD at schools when we use company BYOD data, but it's true that schools are environments in which policies should be enforced too, right? Or can be applied in another way... So, what can we do? To create a section at the end called "other applications for our framework", for example? Or just mention it, reducing what's written now, and that's all?
 In such environment, BYOD (also
 called Bring Your Own Technology) refers to a technology model that
 allows students to bring their own devices to school for learning in
@@ -140,15 +131,15 @@ company assets by defining permissions to be considered for every
 different action to be performed inside or outside the company's work
 space, and eventually coming from the employees personal devices.
 
-The aim of this paper is going beyond this traditional and simple
-decision making process where a novel  BYOD security rules extraction
-technique is proposed. % The first claim about this paper can't be this imprecise. Say exactly what you want to do, not "going behond". Say that you will be helping define and refine those rules automatically, instead of having the CSO imagining and implementing, by herself, all the needed rules - JJ
+The aim of this paper is to propose a novel  BYOD security rules extraction technique that aids the CSO in the definition and refinement of those rules. % The first claim about this paper can't be this imprecise. Say exactly what you want to do, not "going behond". Say that you will be helping define and refine those rules automatically, instead of having the CSO imagining and implementing, by herself, all the needed rules - JJ
+% (Paloma) I agree, changed it, what do you think?
 The main idea is to create a reliable rule set
 which is able to cover every new situation that may be a threat;
 allowing the system to go beyond the limited set of known pre-defined
-rules. % in order to have the space of possible policy rules be as wide as possible, we will need a techinque that explores the rule space efficiently and with as little structure as possible, that is why we introduce...
+rules. In order to have the space of possible policy rules be as wide as possible, we will need a techinque that explores the rule space efficiently and with as little structure as possible
+% in order to have the space of possible policy rules be as wide as possible, we will need a techinque that explores the rule space efficiently and with as little structure as possible, that is why we introduce...
 % You should say something like this. You need to motivate and justify the use of GP, mentioning previous work on the subject and how you really discovered that it was not enough - JJ
- This is achieved via the use of Genetic Programming (GP) which
+ This is why we introduce the use of Genetic Programming (GP), which
 has been emerged as a promising approach to deal with the problem of
 discovering novel and interesting knowledge and rules from large
 amount of data. Our proposed GP framework dedicated
@@ -190,8 +181,8 @@ The rest of the paper is organized as follows. In Section \ref{sec:SotA} we give
 
 Since BYOD started to appear in companies' day-to-day policies  a lot
 of research has been done about the advantages and disadvantages of
-this approach, as well as how to properly implement it in order to
-respect privacy while trying to secure the resources. % this is a
+this approach \cite{singh2012byod}, as well as how to properly implement it in order to
+respect privacy while trying to secure the resources \cite{scarfo2012new, ali2015analysis, de2015corporate}. % this is a
                                 % completely information-free
                                 % claim. It does not claim anything,
                                 % does not inform of anything. Adding
@@ -203,18 +194,25 @@ respect privacy while trying to secure the resources. % this is a
                                 % sentence. What's the BYOD "problem"?
                                 % How has people attempted to nail it?
                                 % - JJ
- Scarfo differentiates in \cite{scarfo2012new} two main ways to deal with the BYOD paradigm: allowing the device to connect via desktop or application virtualisation, meaning enough control to avoid employee's devices monitorisation; or control via Mobile Device Management (MDM), which has to be legally agreed with the employee. Ali et al. expand Scarfo's study in \cite{ali2015analysis} so that they review both BYOD access control models and BYOD security models. The authors further distinguish between MDM and Kernel Modifications inside the security models, and conclude with the description of a proposed model which combines most of the reviewed solutions, i.e. MDM and Virtual Private Network (VPN) access together with an encrypted container for the accessed information depending on the level of restriction. However, from all the papers in \cite{ali2015analysis} claimed to enforce policies, only in \cite{rhee2013high} the authors actually describe how the policies are enforced by describing which data is monitored. In any case, none of the papers mention the application of GP to the enforcement of the security policies.
+                                % (Paloma) It is an introduction to the works that are going to be presented next... is it so bad? Anyway... references added.
+ Scarfo differentiates in \cite{scarfo2012new} two main ways to deal with the BYOD paradigm: allowing the device to connect via desktop or application virtualisation, meaning enough control to avoid employee's devices monitorisation; or control via Mobile Device Management (MDM), which has to be legally agreed with the employee. Ali et al. expand Scarfo's study in \cite{ali2015analysis} so that they review both BYOD access control models and BYOD security models. The authors further distinguish between MDM and Kernel Modifications inside the security models, and conclude with the description of a proposed model which combines most of the reviewed solutions, i.e. MDM and Virtual Private Network (VPN) access together with an encrypted container for the accessed information depending on the level of restriction. However, from all the papers in \cite{ali2015analysis} claimed to enforce policies, only in \cite{rhee2013high} the authors actually describe how the policies are enforced by describing which data is monitored. In any case, none of the papers mention the application of GP to the enforcement of the security policies, but other techniques such as the implementation of blacklists to avoid the installation of forbidden applications, or whitelists to allow only certain ones. These techniques can be useful with respect to the implementation of already defined security policies, but our method allows to discover new security policies, which in the case of black and white lists, can evolve them to include new and/or malicious applications.
+ %Pablo: If previous papers describe some computational methods I would add to the last paragraph some of the techniques used. "...security policies, but other techniques such as ... These techniques can be useful with respect to... but our method is awesome because...".
+ % (Paloma) I've included more information, please ckeck :D
 
-From the point of view of market products, a variety of them have been released to help companies speed up the process of adoption of the BYOD concept. In \cite{de2015corporate} there is a description of the market solutions that the main manufacturers have developed to such purpose. The level of security and privacy preservation offered by these applications is different depending on the solution.
+From the point of view of market products, a variety of them have been released to help companies speed up the process of adoption of the BYOD concept. In \cite{de2015corporate} there is a description of the market solutions that the main manufacturers have developed to such purpose. The level of security and privacy preservation offered by these applications is different depending on the solution. 
 
-However, and to the best of our knowledge, there is not a tool that helps CSOs in developing new security rules via GP.
+With regard to the extracted data, which quality is necessary to ensure low rates of noise and accurate extracted knowledge, researchers have advanced the state of the art in the precision of the devices. For instance, in \cite{rios2015mobile}, the authors focus on the importance of having an accurate measure of the location of the devices. Although their approach seems to encroach upon employees' privacy, they implemented a mobile information system for BYOD adaptation and tested it in both Android and iOS devices. The authors concluded that the efficiency of their system, along with the possibilities of the hardware in the devices, results in a location error of less than 50 meters with a 95\% confidence level. These promising results allow the companies to use the location of their employees to apply certain security policies.  
 
-On the other hand, GP have been indeed applied to classification, as described by Espejo et al. in \cite{espejo2010survey}. Their work theoretically supports our decision of applying GP to obtain security rules in a BYOD environment. Furthermore, the works they review have applications in all fields but not exactly the one we focus on here. The authors studied three papers which use GP for classification with communications data, but mainly for intrusion detection and e-mail spamming. Also, in \cite{DeFalco2002257}, a system which discovers rules for the PROBEN1 databases via GP is described. As happened in the survey of Espejo et al., from the six databases inside PROBEN1 and analysed by these authors, none is related to security. % (Zaineb) I made s light modification to the sentence as I did not like that (do study)
-In \cite{Tsakonas2004195} the authors also extract rules with \textsc{IF \ldots THEN} structure through GP, although for medical purposes.
+To the best of our knowledge, there is not a tool that helps CSOs in developing new security rules via GP, even as this method has been indeed applied to classification -- from which classification rules can be obtained -- , as described by Espejo et al. in \cite{espejo2010survey}. Their work theoretically supports our decision of applying GP to obtain security rules in a BYOD environment. Furthermore, the works they review have applications in all fields but not exactly the one we focus on here. The authors studied three papers which use GP for classification with communications data, but mainly for intrusion detection and e-mail spamming. Also, in \cite{DeFalco2002257}, a system which discovers rules for the PROBEN1 databases via GP is described. As happened in the survey of Espejo et al., from the six databases inside PROBEN1 and analysed by these authors, none is related to security. In \cite{Tsakonas2004195} the authors also extract rules with \textsc{IF \ldots THEN} structure through GP, although for medical purposes.
+%Pablo: link previous paragraph with next one. Also, I would not use "on the other hand" below as it is not clear which is the "first hand". For example: "... rules via GP, even as this method has been applied to classification..."
+% (Paloma) Done, check please!
 
 The lack of BYOD-related security databases is a hindrance for the proliferation of research in this field. As seen, there actually exist a number of datasets related to malware, e-mail spamming, or URL requests \footnote{http://www.secrepo.com/}, but none about the use that people make of their smartphones. This situation clearly exists due to privacy considerations. Miller et al. \cite{Miller201253} firmly state that the issue of privacy is even more important than the security issue, although it does not receive the same attention. Furthermore, when the MDM solution is described in \cite{ali2015analysis}, the authors mention the privacy concerns the employees may have due to the processing that the company makes over all their behavioural data. And even after anonymising the resulting dataset, one can still, in certain cases, identify a user of the company the data comes from by processing the data. If this principle cannot be guaranteed, the data should not be released \cite{boillat2014handbook}.
+% TODO Pablo: I would explain here again the issue adding "This is the reason we can not release the dataset used in the experimental section, because our data includes..." BUT if we release it (issue #20), we can say that we are awesome and cool researchers by doing it
+% (Paloma) Ok then I leave this as TODO once we decide if we can release it.
 
-With regard to the extracted data, which quality is necessary to ensure low rates of noise and accurate extracted knowledge, researchers have advanced the state of the art in the precision of the devices. For instance, in \cite{rios2015mobile}, the authors focus on the importance of having an accurate measure of the location of the devices. Although their approach seems to encroach upon employees' privacy, they implemented a mobile information system for BYOD adaptation and tested it in both Android and iOS devices. The authors concluded that the efficiency of their system, along with the possibilities of the hardware in the devices, results in a location error of less than 50 meters with a 95\% conficence level. These promising results allow the companies to use the location of their employees to apply certain security policies. 
+%Pablo: move this paragraph after the market product analysis. So, the SOA outline should be: 1) BYOD is a thing 2) There are some stuff done (market product, extracted data...) 3) However, in previous works there are stuff that SHOULD be done (GP and releasing datasets) for some fancy reasons, and 4) In this paper we do this and that to solve it.
+% (Paloma) Re-organised, I think well, but check in case I didn't move it to where you suggested.
 
 \section{Problem Description}
 \label{sec:problem}
@@ -288,7 +286,7 @@ device_is_rooted=true THEN=STRONGDENY
 \section{Experiments Description}
 \label{sec:experiments}
 
-Sub-tree crossover and 1-node mutation evolutionary operators have been used, following our previous works that have used these operators obtaining good results \cite{CITAR_AQUI_EVOSTAR14GPBOT}. In this case, the mutation randomly changes the complete variable of a node or mutate the complete value. Each configuration is executed 30 times, with a population of 32 individuals and a 2-tournament selector for a pool of 16 parents.
+Sub-tree crossover and 1-node mutation evolutionary operators have been used, following our previous works that have used these operators obtaining good results \cite{EvoStar2014:GPBot}. In this case, the mutation randomly changes the complete variable of a node or mutate the complete value. Each configuration is executed 30 times, with a population of 32 individuals and a 2-tournament selector for a pool of 16 parents.
 
 
 Table \ref{tab:parameters} summarizes all the parameters used.
@@ -314,7 +312,7 @@ Runs per configuration & 30 \\ \hline
 \end{center}
 \end{table}
 
-The used framework is OSGiLiath, a service-oriented evolutionary framework \cite{Garcia13Service}. The generated tree is converted to...  All the source code used in this work is available under a LGPL V3 License in \url{http://www.osgiliath.org}.
+The used framework is OSGiLiath, a service-oriented evolutionary framework \cite{DBLP:journals/soco/Garcia-SanchezGCAG13}. The generated tree is converted to...  All the source code used in this work is available under a LGPL V3 License in \url{http://www.osgiliath.org}.
 
 %\subsection{Results from Classifiers}
 %\label{subsec:classifiers}
@@ -344,6 +342,6 @@ Ministry of Economy and Competitivity), PROY-PP2015-06 (Plan Propio
 2015 UGR).
 
 \bibliographystyle{elsarticle-num}
-\bibliography{GPrules}
+\bibliography{GPrules,geneura}
 
 \end{document}
