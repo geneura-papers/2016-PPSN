@@ -75,7 +75,16 @@ Bring Your Own Device, Security, Genetic Programming, Rules Extraction.
 \label{sec:intro}
 
 The fast pace of new technology has led modern computing to undergo
-several outstanding transitions in a short period of time. Modern computing has moved over time to smaller, more reliable and faster high-tech devices such as smartphones, laptops and tablets. The use of these technologies in several forms is progressing, and has led to the form of use known as the ``Bring Your Own Device'' (BYOD) concept or philosophy. Since its first appearance in research \cite{ballagas2004byod} as a way to call the interaction between people's devices and a public display, such as art or advertising, it has become a very popular practise, integrated into companies \cite{thomson2012byod} and even schools \cite{song2014bring}. 
+several outstanding transitions in a short period of time. Modern
+computing has moved over time to smaller, more reliable and faster
+high-tech devices such as smartphones, laptops and tablets. The use of
+these technologies in several forms is progressing, and has led to the
+form of use known as the ``Bring Your Own Device'' (BYOD) concept or
+philosophy. Since its first appearance in research
+\cite{ballagas2004byod} as a way to call the interaction between
+people's devices and a public display, such as art or advertising, it
+has become a very popular practise, integrated into companies
+\cite{thomson2012byod} and even schools \cite{song2014bring}.  
 
 In the corporate world, the BYOD
 practice refers to allowing employees to use their
@@ -88,14 +97,23 @@ increasing flexibility and worker productivity as employees will not
 be asked to haul around multiple devices to satisfy both their personal and
 work needs, having everything they need in one device anytime and
 anywhere. 
-Other advantages are tied to the increase of worker satisfaction,  attracting the best applicants, and the increase of engagement in the workplace and after hours \cite{singh2012byod}. % references too - JJ
-% (Paloma) All advantages come from the same paper, so I've repeated the reference.
+Other advantages are tied to the increase of worker satisfaction, attracting the best candidates, and the increase of engagement in the workplace and after hours \cite{singh2012byod}. % references too - JJ
+% (Paloma) All advantages come from the same paper, so I've repeated
+% the reference.
+% good :-) - JJ
 
 %These advantages have made BYOD policies gain traction in the education
 %sector with an increasing number of schools around the world choosing
 %to implement their own BYOD policies. % reference!!! - JJ
 % Also I don't see the point. Where do you want to bring this argument to? - JJ
-% Ok, maybe we talk too much about BYOD at schools when we use company BYOD data, but it's true that schools are environments in which policies should be enforced too, right? Or can be applied in another way... So, what can we do? To create a section at the end called "other applications for our framework", for example? Or just mention it, reducing what's written now, and that's all?
+% Ok, maybe we talk too much about BYOD at schools when we use company
+% BYOD data, but it's true that schools are environments in which
+% policies should be enforced too, right? Or can be applied in another
+% way... So, what can we do? To create a section at the end called
+% "other applications for our framework", for example? Or just mention
+% it, reducing what's written now, and that's all?
+% I would go for just mentioning it, because issues are much
+% different. What company "assets" are we protecting here? - JJ
 %In such environment, BYOD (also called Bring Your Own Technology) refers to a technology model that
 %allows students to bring their own devices to school for learning in
 %the classroom \cite{sangani2013byod, song2014bring}. The adoption of BYOD in schools
@@ -110,7 +128,16 @@ Other advantages are tied to the increase of worker satisfaction,  attracting th
 %personalising learning experiences, encouraging students' independent
 %learning, and promoting anytime, anywhere learning opportunities. % and this is important to know because... - JJ
 
-However, there exists a big disadvantage concerning security, as potentially unsecured devices from unawared users might interact with important assets. Therefore, the main issue is to obtain a high level of security, while maintining user privacy \cite{miller2012byod}.% if the issues are the same, why mention different environments separately? Besides, what assets of the learning center are you actually accessing? - JJ
+However, there exists a big disadvantage concerning security, as
+potentially unsecured devices from unaware users might interact with
+important assets. Therefore, the main issue is to obtain a high level
+of security, while maintining user privacy \cite{miller2012byod}.% if
+                                % the issues are the same, why mention
+                                % different environments separately?
+                                % Besides, what assets of the learning
+                                % center are you actually accessing? -
+                                % JJ 
+% Is this paragraph related to BYOD in schools? - JJ
 Focusing on the corporate world and as previously highlighted, %my point exactly. Now you say we don't care about schools - JJ
 % the BYOD paradigm has several advantages
 %as it plays a leading role in increasing the
@@ -129,24 +156,49 @@ faced with questions of whether and how to manage this situation \cite{thomson20
 thus every department must be involved in establishing security
 policies and procedures to minimize the company's risks.
 
-To this end, the Corporate Security Policies (CSPs),
+To this end, the Corporate Security Policies (CSPs), % I think a
+                                % reference that defines them or to
+                                % expand knowledge would be convenient
+                                % here - JJ
 defined by the company's Chief Security Officer (CSO), are the core at
 identifying threats and building a set of security rules. The description of these jobs include protecting
 company assets by defining permissions to be considered for every
 different action to be performed inside or outside the company's work
-space, and eventually coming from the employees personal devices. Nonetheless, the CSOs build the set of CSPs based on their expertise, and as such, they have the limitation of not knowing every possible combitation of events that might lead to a dangerous situation.
+space, and eventually coming from the employees personal
+devices. Nonetheless, CSOs build the set of CSPs based on their
+expertise, and as such, they have the limitation of not knowing every
+possible combination of events that might lead to a dangerous
+situation. 
 
-The aim of this paper is to propose a novel  BYOD security rules extraction technique that aids the CSO in the definition and refinement of a set of security rules, that in the end, classify an upcoming event or user action as permitted or not permitted. % The first claim about this paper can't be this imprecise. Say exactly what you want to do, not "going behond". Say that you will be helping define and refine those rules automatically, instead of having the CSO imagining and implementing, by herself, all the needed rules - JJ
+The aim of this paper is to propose a novel technique for extracting
+BYOD security rules that aids the CSO in the definition and refinement
+of a set of security rules, that in the end, classify an upcoming
+event or user action as permitted or not permitted. % The first claim
+                                % about this paper can't be this
+                                % imprecise. Say exactly what you want
+                                % to do, not "going behond". Say that
+                                % you will be helping define and
+                                % refine those rules automatically,
+                                % instead of having the CSO imagining
+                                % and implementing, by herself, all
+                                % the needed rules - JJ 
 % (Paloma) I agree, changed it, what do you think?
+% Looks much better now :-) - JJ
 The main idea is to create a reliable rule set
 which is able to cover every new situation that may be a threat;
 allowing the system to go beyond the limited set of known pre-defined
-rules. In order to have the space of possible policy rules be as wide as possible, we will need a techinque that explores the rule space efficiently and with as little structure as possible.
+rules. In order to have the space of possible policy rules be as wide
+as possible, we will need a technique that explores the rule space
+efficiently and with the least assumptions about rule structure. 
 % in order to have the space of possible policy rules be as wide as possible, we will need a techinque that explores the rule space efficiently and with as little structure as possible, that is why we introduce...
 % You should say something like this. You need to motivate and justify the use of GP, mentioning previous work on the subject and how you really discovered that it was not enough - JJ
  This is why we have decided to use Genetic Programming (GP) for dealing with the problem of
 discovering novel, interesting knowledge and rules from large
-amounts of data. Inside the \emph{Evolutionary Algorithms} \cite{back1996evolutionary}, GP are optimization techniques inspired by natural evolution. By this method, the solutions to a problem are internally encoded as trees, which can be seen as a decision tree classifier \cite{safavian1990survey}. 
+amounts of data. Considered part of the so-called \emph{Evolutionary
+  Algorithms} \cite{back1996evolutionary}, GP are optimization
+techniques inspired by natural evolution. By this method, the
+solutions to a problem are internally encoded as trees, which can be
+seen as a decision tree classifier \cite{safavian1990survey}.  
 Our proposed GP framework dedicated
 for the BYOD context is capable of performing an automatic discovery
 of classification rules.
@@ -176,6 +228,8 @@ of classification rules.
 % clear argumental line. Without this argumental line, all the
 % structure of the paper falls down in pieces. You can't create a
 % proper state of the art, do the proper tests, and so on. - JJ
+% This is pretty much addressed, but maybe we should have another look
+% at it - JJ
 
 The rest of the paper is organized as follows. In Section \ref{sec:SotA} we give an overview of the advances in GP applied to rule evolution and its applications; then, Section \ref{sec:problem} depicts the problem this work tries to solve, describing the available dataset and the proposed solution. The experimental set-up, as well as the different set of experiments that have been carried out are described in Section \ref{sec:experiments}. Section \ref{sec:gp} shows the obtained results from the application of GP to security rules extraction and, finally, the conclusions of this work along with some suggestions about how to continue our research are given in Section \ref{sec:future}. 
 
