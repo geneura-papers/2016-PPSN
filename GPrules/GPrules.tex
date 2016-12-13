@@ -149,10 +149,11 @@ faced with questions of whether and how to manage this situation \cite{thomson20
 thus every department must be involved in establishing security
 policies and procedures to minimize the company's risks.
 
-To this end, the Corporate Security Policies (CSPs), % I think a
+To this end, the Corporate Security Policies (CSPs) \cite{Kaeo:2003:DNS:1201807}, % I think a
                                 % reference that defines them or to
                                 % expand knowledge would be convenient
                                 % here - JJ
+                                % (Paloma) I added a reference but if you think it's not enough I can expand the concept
 defined by the company's Chief Security Officer (CSO), are the core at
 identifying threats and building a set of security rules. The description of these jobs include protecting
 company assets by defining permissions to be considered for every
@@ -186,13 +187,13 @@ as possible, we will need a technique that explores the rule space
 efficiently and with the least assumptions about rule structure. 
 % in order to have the space of possible policy rules be as wide as possible, we will need a techinque that explores the rule space efficiently and with as little structure as possible, that is why we introduce...
 % You should say something like this. You need to motivate and justify the use of GP, mentioning previous work on the subject and how you really discovered that it was not enough - JJ
- This is why we have decided to use Genetic Programming (GP) for dealing with the problem of
+This is why we have decided to use Genetic Programming (GP) for dealing with the problem of
 discovering novel, interesting knowledge and rules from large
 amounts of data. Considered part of the so-called \emph{Evolutionary
   Algorithms} \cite{back1996evolutionary}, GP are optimization
 techniques inspired by natural evolution. By this method, the
 solutions to a problem are internally encoded as trees, which can be
-seen as a decision tree classifier \cite{safavian1990survey}.  
+seen as a decision tree classifier \cite{safavian1990survey}. In our case, the assigned classes, or leaves of the tree, would be ``allow'' or ``deny'', acting over a certain incoming event; whilst the nodes are the conditions that have to be met to apply the action. Taking this into account, GP can be used to generate these classification trees, optimising an objective function called {\em fitness}.
 Our proposed GP framework dedicated
 for the BYOD context is capable of performing an automatic discovery
 of classification rules.
