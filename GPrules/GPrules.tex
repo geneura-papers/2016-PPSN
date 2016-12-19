@@ -189,14 +189,14 @@ efficiently and with the least assumptions about rule structure.
 % You should say something like this. You need to motivate and justify the use of GP, mentioning previous work on the subject and how you really discovered that it was not enough - JJ
 This is why we have decided to use Genetic Programming (GP) for dealing with the problem of
 discovering novel, interesting knowledge and rules from large
-amounts of data. Considered part of the so-called \emph{Evolutionary
+amounts of data \cite{freitas2002data}. Considered part of the so-called \emph{Evolutionary
   Algorithms} \cite{back1996evolutionary}, GP are optimization
 techniques inspired by natural evolution. By this method, the
 solutions to a problem are internally encoded as trees, which can be
-seen as a decision tree classifier \cite{safavian1990survey}. In our case, the assigned classes, or leaves of the tree, would be ``allow'' or ``deny'', acting over a certain incoming event; whilst the nodes are the conditions that have to be met to apply the action. Taking this into account, GP can be used to generate these classification trees, optimising an objective function called {\em fitness}.
+seen as a decision tree classifier \cite{safavian1990survey}. In our case, the assigned classes, or leaves of the tree, would be ``allow'' or ``deny'', acting over a certain incoming event; whilst the nodes are the conditions that have to be met to apply the action. Taking this into account, GP can be used to generate these classification trees, optimising an objective function called {\em fitness}. The fitness can be defined as the accuracy of a rule, being this the most used metric in classification \cite{witten2005data}, along with the classification error. But since there are other metrics that influence ``how good'' a rule or a set of rules is, such as the depth of the created tree or the number of nodes it has \cite{back1996evolutionary}, it would be of convenience to use them in the definition of the fitness.
 Our proposed GP framework dedicated
 for the BYOD context is capable of performing an automatic discovery
-of classification rules.
+of classification rules, maximising the fitness, and presenting the rules in a way that is helpful for a CSO.
 % Once again, there is a huge imbalance in the space and energy
 % devoted to BYOD and the one you devote to GP. Except if you are
 % going to publish in GPEM, which includes GP in the title, you will
