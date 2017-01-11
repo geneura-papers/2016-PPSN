@@ -456,6 +456,23 @@ device_is_rooted=true THEN=STRONGDENY
 Rules presented in this way offer good readability which is key to understand the relation between the attributes and how the described situation may, or may not, be dangerous. In the example, the system would have inferred that an action from a device without antivirus, a short password, and rooted or belonging to an administration employee, should be denied.
 % (Paloma) Shall we explain what a rooted device is?
 
+With regard to the fitness, in the application of GP to classification the most used metric to calculate it is the accuracy \cite{espejo2010survey}. The accuracy is normally obtained as the ratio of the correctly classified instances among the total of instances. To this end, in \cite{witten2005data} the authors use the concepts of true positive/negative and false positive/negative. The first refer to the instances classified correctly, and the latter are those instances that should be negative (positive) but are classified as positive (negative), therefore they are false positives (negatives). % (Paloma) Not sure... is this understandable? 
+
+% Saving this for later \cite{DeFalco2002257}
+
+
+\begin{equation}
+f_{c} = TP + TN - (FP + FN)
+\end{equation}
+
+\begin{equation}
+f_{s} = N_{nodes} + depth
+\end{equation}
+
+\begin{equation}
+Fitness F = (S_{tr} - f_{c}) + \alpha f_{s}
+\end{equation}
+
 \section{Experiments Description}
 \label{sec:experiments}
 
