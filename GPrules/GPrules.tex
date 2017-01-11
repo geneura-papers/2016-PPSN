@@ -416,11 +416,10 @@ With respect to the balance between the classes, the dataset is unbalanced with 
 % (zaineb) I prefer adding a sentence here as an introduction. What do you think Paloma?
 % (Paloma) I agree, but as Pablo didn't finish the section, I prefer to wait :)
 % (Paloma) I added the introduction sentence! What do you think?
-As previously highlighted, in this work we propose a system which is able to process a set of user actions that have been allowed or denied based on initial, simple rules, and discover new one by exploring the whole space of possible combinations among the attribute values. The proposed method uses GP to create a tree to model the different rules, given that the problem can be seen as a classification one and therefore the model can be a decision tree \cite{safavian1990survey}. The generated tree
-is a binary tree of expressions formed by two different types of nodes:
+As previously highlighted, in this work we propose a system which is able to process a set of user actions that have been allowed or denied based on initial, simple rules, and discover new rules by exploring the whole space of possible combinations among the attribute values. The proposed method uses GP to create a tree to model the different rules, given that the problem can be seen as a classification one and therefore the model can be a decision tree \cite{safavian1990survey}. Then, the generated tree is a binary tree of expressions formed by two different types of nodes:
 
 \begin{itemize}
-\item {\em Variable}: It is a logical expression formed by a name, an operator and a value. It is the equivalent to a ``primitive'' in the field of GP. \\
+\item {\em Variable}: it is a logical expression formed by a name, an operator and a value. It is the equivalent to a ``primitive'' in the field of GP \cite{back1996evolutionary}.  \\
     Examples:
    \begin{math}
      \left \{
@@ -431,15 +430,15 @@ is a binary tree of expressions formed by two different types of nodes:
    \end{array}
    \right .
    \end{math}
-\item {\em Action}: It is a leaf of the   tree and therefore, a ``terminal'' state. Each decision is the result of applying the rule; so it is limited to two terms which are \texttt{GRANTED} or \texttt{STRONGDENY}.
+\item {\em Action}: it is a leaf of the   tree and therefore, a ``terminal'' state. Each decision is the result of applying the rule; so it is limited to two terms which are \texttt{GRANTED} or \texttt{STRONGDENY}.
 \end{itemize}
 
-The different variables that have been used are as follows:
+The different variables that have been used are as follows \cite{witten2005data}:
 
 \begin{itemize}
-\item {\em Binary Variable}: %TODO
-\item {\em Categorical Variable}:
-\item {\em Numerical Variable}:
+\item {\em Binary Variable}: those with a boolean value, for instance, variables that are related with the device services switched on or off and important features such as the device having or not an antivirus installed.
+\item {\em Categorical Variable}: the ones with nominal values, where it is defined a list with the possible values it may have, in order to randomly pick up one in the creation of the rules.
+\item {\em Numerical Variable}: those with a numerical value, for which both maximum and minimum values are specified.
 
 \end{itemize}
 
