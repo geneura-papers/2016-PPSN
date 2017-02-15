@@ -232,25 +232,7 @@ The rest of the paper is organised as follows. In Section \ref{sec:SotA} we give
 Since BYOD policies started to appear in companies' day-to-day policies  a lot
 of research has been done about the advantages and disadvantages of
 this approach \cite{singh2012byod}, as well as about how to properly implement it in order to
-respect privacy while trying to secure the resources \cite{scarfo2012new, ali2015analysis, de2015corporate}. % this is a
-                                % completely information-free
-                                % claim. It does not claim anything,
-                                % does not inform of anything. Adding
-                                % a reference to a review would help,
-                                % but in any case it does not help in
-                                % any way your argument to show how
-                                % many people are interested. You have
-                                % to frame the problem in this first
-                                % sentence. What's the BYOD "problem"?
-                                % How has people attempted to nail it?
-                                % - JJ
-                                % (Paloma) It is an introduction to
-                                % the works that are going to be
-                                % presented next... is it so bad?
-                                % Anyway... references added.
-% Looks good. Lays out issues (it makes sense, or not, balance
-% privacy/security) and it's not your claim, since you've added
-% references :-) - JJ
+respect privacy while trying to secure the resources \cite{scarfo2012new, ali2015analysis, de2015corporate}.
 These issues can be approached in different ways; Scarfo
 differentiates in \cite{scarfo2012new} two main ones: allowing the
 device to connect via desktop or application virtualisation, meaning
@@ -297,15 +279,16 @@ these applications is different depending on the solution. % A SOA
                                 % as above, here you would have to say
                                 % what is the disadvantage of these
                                 % approaches and why you are going to
-                                % do it better than them. 
+                                % do it better than them.
+                                % (Paloma) Fixed this with:
+None of the reviewed solutions, but one, seem to offer a dynamic creation of rules in the database used for incident detection. The one called MUSES does implement rule inference and mentions the use of GP to perform this task. In this work we extend the description of the rule inference, as well as the details of its implementation and the results after applying it to the data gathered with the very same MUSES application (see Section \ref{subsec:data}).
 
 %Non sequitur. What do you mean here? Why are you talking about this
 %here? Extracted data from what? Start with something like "Previous
 %papers have commented on the issue of using quality data to extract
 %rules from that that are general and accurate..." - JJ
-With regard to the extracted data, whose quality is necessary to
-ensure low rates of noise  % What is noise in this context? - JJ
-and accurate extracted knowledge,
+% (Paloma) Done
+Previous papers have commented on the issue of using quality data to obtain accurate and valuable extracted knowledge,
 researchers have advanced the state of the art in the precision of the
 devices. For instance, in \cite{rios2015mobile}, the authors focus on
 the importance of having an accurate measure of the location of the
