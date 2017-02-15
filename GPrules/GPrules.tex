@@ -288,8 +288,8 @@ None of the reviewed solutions, but one, seem to offer a dynamic creation of rul
 %papers have commented on the issue of using quality data to extract
 %rules from that that are general and accurate..." - JJ
 % (Paloma) Done
-Previous papers have commented on the issue of using quality data to obtain accurate and valuable extracted knowledge,
-researchers have advanced the state of the art in the precision of the
+Previous papers have commented on the issue of using quality data to obtain accurate and valuable extracted knowledge, which is specially difficult when dealing with datasets taken from real world problems, where the sensors cannot work properly at a certain time or the data can present imbalance.
+With respect to sensors accuracy, researchers have advanced the state of the art in the precision of the
 devices. For instance, in \cite{rios2015mobile}, the authors focus on
 the importance of having an accurate measure of the location of the
 devices. Although their approach seems to encroach upon employees'
@@ -299,7 +299,9 @@ concluded that the efficiency of their system, along with the
 possibilities of the hardware in the devices, results in a location
 error of less than 50 meters with a 95\% confidence level. These
 promising results allow the companies to use the location of their
-employees to apply certain security policies.   
+employees to apply certain security policies.
+
+Another barrier to obtain good quality knowledge discovering are datasets that present imbalance, because they normally bias the elaboration of classification rules or trees towards the majority class - the class with higher representation in the dataset - \cite{japkowicz2002class}. In this sense, solutions can be found in literature in order to reduce the bias while performing classification tasks, such as in \cite{chawla2005data} and \cite{sun2009classification}. However, as we have center our proposal in GP, we have studied Bhowan et al.'s work in \cite{bhowan2012developing}, where they present a comparison between many different types of fitness functions, testing on various unbalanced datasets, with different minority-class/majority-class ratios.
 
 To the best of our knowledge, there is no tool that helps CSOs in
 developing new security rules via GP, % But this is a very hard
