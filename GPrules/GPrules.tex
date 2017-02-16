@@ -236,8 +236,8 @@ respect privacy while trying to secure the resources \cite{scarfo2012new, ali201
 These issues can be approached in different ways; Scarfo
 differentiates in \cite{scarfo2012new} two main ones: allowing the
 device to connect via desktop or application virtualisation, meaning
-enough control to avoid employee's devices monitorisation; or allow
-the company to control
+enough control to avoid employee's devices monitorisation; or allowing
+the company to control devices
 via Mobile Device Management (MDM), which has to be legally agreed
 with the employee. %Mention disadvantages: the company has to provide
                    %a virtualization platform and pay for cloud
@@ -246,8 +246,8 @@ with the employee. %Mention disadvantages: the company has to provide
                    %eventually dispels two of the advantages of BYOD
                    %policies: low overhead cost and preservation of
                    %privacy. (something like that). 
- Ali et al. expand on Scarfo's study in
-\cite{ali2015analysis}  reviewing both BYOD access control
+ Ali et al. expand from Scarfo's study in
+\cite{ali2015analysis} reviewing both BYOD access control
  and security models. The authors further distinguish
 between MDM and Kernel Modifications inside the security models, and
 conclude with the description of a proposed model which combines most
@@ -268,7 +268,7 @@ new and/or malicious applications.
  %Pablo: If previous papers describe some computational methods I would add to the last paragraph some of the techniques used. "...security policies, but other techniques such as ... These techniques can be useful with respect to... but our method is awesome because...".
  % (Paloma) I've included more information, please ckeck :D
 
-This research has been accompanied by innovation in products released
+Research in BYOD has been accompanied by innovation in products released
 to help companies implement or streamline the process of adoption of the BYOD
 concept. In \cite{de2015corporate} there is a description of the
 market solutions that the main manufacturers have developed to such
@@ -281,15 +281,15 @@ these applications is different depending on the solution. % A SOA
                                 % approaches and why you are going to
                                 % do it better than them.
                                 % (Paloma) Fixed this with:
-None of the reviewed solutions, but one, seem to offer a dynamic creation of rules in the database used for incident detection. The one called MUSES does implement rule inference and mentions the use of GP to perform this task. In this work we extend the description of the rule inference, as well as the details of its implementation and the results after applying it to the data gathered with the very same MUSES application (see Section \ref{subsec:data}).
+None of the reviewed solutions, but one, seem to offer a dynamic creation of rules in the database used for incident detection. The one called MUSES does implement rule inference and mentions the use of GP to perform this task. In this work we extend the description of the rule inference process, as well as the details of its implementation and the results after applying it to the data gathered with the very same MUSES application (see Section \ref{subsec:data}).
 
 %Non sequitur. What do you mean here? Why are you talking about this
 %here? Extracted data from what? Start with something like "Previous
 %papers have commented on the issue of using quality data to extract
 %rules from that that are general and accurate..." - JJ
 % (Paloma) Done
-Previous papers have commented on the issue of using quality data to obtain accurate and valuable extracted knowledge, which is specially difficult when dealing with datasets taken from real world problems, where the sensors cannot work properly at a certain time or the data can present imbalance.
-With respect to sensors accuracy, researchers have advanced the state of the art in the precision of the
+Previous papers have commented on the issue of using quality data to obtain accurate and valuable extracted knowledge, which is specially difficult when dealing with datasets taken from real world problems, where the sensors cannot work properly at a certain time. % or the data can present imbalance.
+To avoid this, researchers have advanced the state of the art in the precision of the
 devices. For instance, in \cite{rios2015mobile}, the authors focus on
 the importance of having an accurate measure of the location of the
 devices. Although their approach seems to encroach upon employees'
@@ -301,12 +301,13 @@ error of less than 50 meters with a 95\% confidence level. These
 promising results allow the companies to use the location of their
 employees to apply certain security policies.
 
-Another barrier to obtain good quality knowledge discovering are datasets that present imbalance, because they normally bias the elaboration of classification rules or trees towards the majority class - the class with higher representation in the dataset - \cite{japkowicz2002class}. In this sense, solutions can be found in literature in order to reduce the bias while performing classification tasks, such as in \cite{chawla2005data} and \cite{sun2009classification}. However, as we have center our proposal in GP, we have studied Bhowan et al.'s work in \cite{bhowan2012developing}, where they present a comparison between many different types of fitness functions, testing on various unbalanced datasets, with different minority-class/majority-class ratios.
+%Another barrier to obtain good quality knowledge discovering are datasets that present imbalance, because they normally bias the elaboration of classification rules or trees towards the majority class - the class with higher representation in the dataset - \cite{japkowicz2002class}. In this sense, solutions can be found in literature in order to reduce the bias while performing classification tasks, such as in \cite{chawla2005data} and \cite{sun2009classification}. However, as we have center our proposal in GP, we have studied Bhowan et al.'s work in \cite{bhowan2012developing}, where they present a comparison between many different types of fitness functions, testing on various unbalanced datasets, with different minority-class/majority-class ratios.
 
-To the best of our knowledge, there is no tool that helps CSOs in
+Even when a lot has been advanced in preprocessing techniques in order to work with quality and accurate data \cite{han2011data}, still there is room for research in the discovery of new rules from real world data. To the best of our knowledge, there is no tool that helps CSOs in
 developing new security rules via GP, % But this is a very hard
                                 % claim. It should go to the
                                 % introduction!!! - JJ
+                                % (Paloma) Will study this)
  even as this method has been
 indeed applied to classification -- from which classification rules
 can be obtained -- , as described by Espejo et al. in
