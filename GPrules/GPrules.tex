@@ -291,11 +291,12 @@ cannot be guaranteed, the data should not be released
 As previously highlighted, the main idea behind corporate security
 policies, which are defined by the CSO, is to build a basic, fixed,
 and well defined set of rules, which take the form of \textsc{IF
-  \ldots THEN} clauses. By applying them the company system allows or
-denies access to company assets, % not only company assets. Also other
+  \ldots THEN} clauses. By applying them the company system decides if certain conditions are met in order to allow or
+deny access to an asset, whether is from the company or is accesed from it. % not only company assets. Also other
                                 % assets _while_ on the company VPN or
                                 % network - JJ
-a rule which can be visualized as the actions being classified as
+                                % (Paloma) better? 
+Therefore, these rules can be visualized as the actions, taking place in a precise environment, being classified as
 allowed or denied. In this sense and while facing a security breach
 from a BYOD system, the set of rules will be tested looking for
 matches between the access' characteristics and the rules' premises --
@@ -303,7 +304,7 @@ the conditions expressed in the IF part, also known as the description
 of the rule \cite{DeFalco2002257}. If it matches then the decision can
 be made, by checking the conclusion part of the rule, which comes
 after the THEN and indicates the class \cite{DeFalco2002257}, either
-by allowing or denying employees' access to non-confident % non-confidential? - JJ
+by allowing or denying employees' access to non-confidential
  or non-certified data, for example. However, it is important to
  mention that the companies'  set of security rules defined by the CSO is
  based on known and previously recognised accesses and thus it cannot
@@ -312,6 +313,7 @@ by allowing or denying employees' access to non-confident % non-confidential? - 
  more reliable rule set which should be able to cover every new
  situation that may be a threat. Hence, allowing the company security
  system to go beyond the limited set of known, pre-defined rules.  % This rather belong to the introduction - JJ
+ % (Paloma) The whole paragraph?
 
 Our proposed solution is based on a novel GP framework dedicated for
 the BYOD context and capable of performing an automatic and wider discovery of classification rules. More precisely, our GP based framework will, first, extract all the possible values of every attribute in the data at hand and then make the ``RuleGeneticAlgorithm'' evolving. % (Paloma) Pablo, more fancy way of saying this?
@@ -330,8 +332,9 @@ about our proposed solution are given in what is next. % What is BYOD
 \subsection{Available Data}
 \label{subsec:data}
 
-We have used Anonymised user data to perform the experiments for this
-work. % User data is not specific. What kind of data? - JJ
+We have used user data to perform the experiments for this
+work but Anonymised, in the sense that from all the attributes extracted from the user actions, the username is not included as a variable to build rules with. % User data is not specific. What kind of data? - JJ
+% (Paloma) Tried to extend it
  The set of data has been gathered from the trials that were performed
  during the development of an FP7 European Project, called MUSES
  \cite{DBLP:conf/sac/MoraCGZJEBAH14}. In these trials, a group of
@@ -341,34 +344,35 @@ work. % User data is not specific. What kind of data? - JJ
  a set of initial and pre-defined rules, so that when certain
  conditions are met in an ``event'' (an action performed by a user),
  the corresponding action could be allowed - nothing happened - or
- denied, where a warning appears. % Are you going to validate those
+ denied, where a warning appears explaining the rule that the user did not comply with and how to perform the action in a more secure way or environment.
+								% Are you going to validate those
                                 % warnings? To use them in the
-                                % training set? What is BYOD specific
+                                % training set?
+                                % (Paloma) This I didn't get
+                                % What is BYOD specific?
                                 % about them? - JJ
+                                % (Paloma) Tried to explain this
 
-The dataset contains, thus, a set of these ``events'' from which a number of attributes (variables) have been extracted or are given by the application itself. The attributes can be classified in different ways; one of them is based on whether they are directly read from the application or inferred after processing the read data. Therefore, we distinguish between:
+The dataset contains a set of these ``events'' from which a number of attributes (variables) have been extracted or are given by the application itself. The attributes can be classified in different ways; one of them is based on whether they are directly read from the application or inferred after processing the read data. Therefore, we distinguish between:
 \begin{itemize}
   \item Attributes given by the tested application: these attributes
     are related to the type of the event (action), its timestamp, or
     the application which originated the event, among others. 
-  \item Attributes inferred from the information in the database: the information given by the aforementioned attributes, along with the rest of information already existing in the database, helps inferring other attibutes.
-      % (Zaineb) This sentence is weird. Please clarify it Paloma. I did not get what you mean here.
-      % (Paloma) I hope it's more clear now
-       These are, for instance: all extra information related to the origin, like the user position in the company or the device Operating System; the configuration of the device, such as WiFi or Bluetooth being enabled; and even lexical properties of the user password, in order to avoid storing the password itself or using it for classification or rule generation.
+  \item Attributes inferred from the information in the database: the information given by the aforementioned attributes, along with the rest of information already existing in the database, helps inferring other attibutes. These are, for instance: all extra information related to the origin, like the user position in the company or the device Operating System; the configuration of the device, such as WiFi or Bluetooth being enabled; and even lexical properties of the user password, in order to avoid storing the password itself or using it for classification or rule generation.
 \end{itemize}
 % A more interesting way of classifying them would be the fact that
 % they are BYOD specific or not. All of the examples that you have
 % mentioned do not seem to be BYOD specific. - JJ
+% (Paloma) Agree, will do
 
 The trials had a duration of a month plus a week, and a total of
-153270 events were registered in the database. It is important to note
-that from all of those events, almost 65\% were not useful for
-knowledge extraction purposes, as they were events of \textit{log in},
+153270 events were registered in the database. We filtered those events that did not imply access to assets, meaning that they were not useful for
+knowledge extraction purposes, such as events of \textit{log in},
 \textit{log out}, or \textit{restarting the server}. % alternative
                                 % rephrasing: We filtered those events
                                 % that didn't imply access to assets,
                                 % such as... JJ
-The other 35\% (53296 instances) were considered as \textit{important}
+The remaining was a 35\% (53296 instances) of the total, and were considered as \textit{important}
 because they did contain information about user actions such as
 opening files or sending emails in a certain connection environment,
 changing security properties, or installing apps. Altogether, there
