@@ -368,35 +368,114 @@ cannot be guaranteed, the data should not be released
 \section{Problem Description}
 \label{sec:problem}
 
-As previously highlighted, the main idea behind the corporate security policies, which are defined by the CSO, is to build a basic, fixed, and well defined set of rules. These rules have the form of \textsc{IF \ldots THEN} clauses,  and by them the company system allows or denies access to the company assets, which can be seen as the actions being classified as allowed or denied. In this sense and while facing a security breach from a BYOD system, the set of rules will be tested looking for a matching between the access' characteristics and the rules' premises -- the conditions expressed in the IF part, also known as the description of the rule \cite{DeFalco2002257}. If a matching is found then the decision can be made, by checking the conclusion part of the rule, which comes after the THEN and indicates the class \cite{DeFalco2002257}, either by allowing or denying employees' access to non-confident or non-certified data, for example. However, it is important to mention that the companies' security rule set defined by the CSO is based on known and previously recognised accesses and thus it cannot cover the whole possibly safe and risky search spaces. Therefore, there is an urgent need to develop a system capable of discovering a more reliable rule set which should be able to cover every new situation that may be a threat. Hence, allowing the company security system to go beyond the limited set of known, pre-defined rules.
+As previously highlighted, the main idea behind corporate security
+policies, which are defined by the CSO, is to build a basic, fixed,
+and well defined set of rules, which take the form of \textsc{IF
+  \ldots THEN} clauses. By applying them the company system allows or
+denies access to company assets, % not only company assets. Also other
+                                % assets _while_ on the company VPN or
+                                % network - JJ
+a rule which can be visualized as the actions being classified as
+allowed or denied. In this sense and while facing a security breach
+from a BYOD system, the set of rules will be tested looking for
+matches between the access' characteristics and the rules' premises --
+the conditions expressed in the IF part, also known as the description
+of the rule \cite{DeFalco2002257}. If it matches then the decision can
+be made, by checking the conclusion part of the rule, which comes
+after the THEN and indicates the class \cite{DeFalco2002257}, either
+by allowing or denying employees' access to non-confident % non-confidential? - JJ
+ or non-certified data, for example. However, it is important to
+ mention that the companies'  set of security rules defined by the CSO is
+ based on known and previously recognised accesses and thus it cannot
+ cover the whole, safe and unsafe, search spaces. Therefore,
+ there is an urgent need to develop a system capable of discovering a
+ more reliable rule set which should be able to cover every new
+ situation that may be a threat. Hence, allowing the company security
+ system to go beyond the limited set of known, pre-defined rules.  % This rather belong to the introduction - JJ
 
-Our proposed solution is based on a novel GP framework dedicated for the BYOD context capable of performing an automatic and wider discovery of classification rules. More precisely, our GP based framework will, first, extract all the possible values of every attribute in the data at hand and then make the ``RuleGeneticAlgorithm'' evolving. % (Paloma) Pablo, more fancy way of saying this?
-Specifically, in this context, we have decided to follow the more conventional approach in Genetic Algorithms, the Pittsburgh approach \cite{freitas2002data}, meaning that each individual is seen as a set of rules. The best individual is thus the set which rules covers the maximum patterns. The last step would be to present the rules to the CSO of the company and tune the algorithm according to the decision of finally including or not the set of rules in the main security policy. The description of the used data and further explicit details about our proposed solution are given in what is next.
+Our proposed solution is based on a novel GP framework dedicated for
+the BYOD context and capable of performing an automatic and wider discovery of classification rules. More precisely, our GP based framework will, first, extract all the possible values of every attribute in the data at hand and then make the ``RuleGeneticAlgorithm'' evolving. % (Paloma) Pablo, more fancy way of saying this?
+Specifically, in this context, we have decided to follow the more
+conventional approach in Genetic Algorithms, the Pittsburgh approach
+\cite{freitas2002data}, meaning that each individual is seen as a set
+of rules. The best individual is thus the set which rules covers the
+maximum patterns. The last step would be to present the rules to the
+CSO of the company and tune the algorithm according to the decision of
+finally including or not the set of rules in the main security
+policy. The description of the used data and further explicit details
+about our proposed solution are given in what is next. % What is BYOD
+                                % specific in this approach? What are
+                                % you using from the BYOD context? - JJ
 
 \subsection{Available Data}
 \label{subsec:data}
 
-Anonymised user data has been used to perform the experiments for this work. The set of data has been gathered from the trials that were performed during the development of an FP7 European Project, called MUSES \cite{DBLP:conf/sac/MoraCGZJEBAH14}. In these trials, a group of users tested a smartphone and PC application meant for securing a BYOD environment. The application generates warnings when the users acts in a dangerous way. Technically, these warnings are triggered by a set of initial and pre-defined rules, so that when certain conditions are met in an ``event'' (an action performed by a user), the corresponding action could be allowed - nothing happened - or denied, where a warning appears.
+We have used Anonymised user data to perform the experiments for this
+work. % User data is not specific. What kind of data? - JJ
+ The set of data has been gathered from the trials that were performed
+ during the development of an FP7 European Project, called MUSES
+ \cite{DBLP:conf/sac/MoraCGZJEBAH14}. In these trials, a group of
+ users tested a smartphone and PC application meant for securing a
+ BYOD environment. The application generates warnings when the users
+ acts in a dangerous way. Technically, these warnings are triggered by
+ a set of initial and pre-defined rules, so that when certain
+ conditions are met in an ``event'' (an action performed by a user),
+ the corresponding action could be allowed - nothing happened - or
+ denied, where a warning appears. % Are you going to validate those
+                                % warnings? To use them in the
+                                % training set? What is BYOD specific
+                                % about them? - JJ
 
-The dataset contains, thus, a set of these ``events'' from which a number of attributes (variables) have been extracted or are given by the application itself. The attributes can be classified in different ways, one of them is based on whether they are directly read from the application or inferred after processing the read data. Therefore, we distinguish between:
+The dataset contains, thus, a set of these ``events'' from which a number of attributes (variables) have been extracted or are given by the application itself. The attributes can be classified in different ways; one of them is based on whether they are directly read from the application or inferred after processing the read data. Therefore, we distinguish between:
 \begin{itemize}
-  \item Attributes given by the tested application: these attributes are related to the type of the event (action), its timestamp, or the application which originated the event, among others.
+  \item Attributes given by the tested application: these attributes
+    are related to the type of the event (action), its timestamp, or
+    the application which originated the event, among others. 
   \item Attributes inferred from the information in the database: the information given by the aforementioned attributes, along with the rest of information already existing in the database, helps inferring other attibutes.
       % (Zaineb) This sentence is weird. Please clarify it Paloma. I did not get what you mean here.
       % (Paloma) I hope it's more clear now
        These are, for instance: all extra information related to the origin, like the user position in the company or the device Operating System; the configuration of the device, such as WiFi or Bluetooth being enabled; and even lexical properties of the user password, in order to avoid storing the password itself or using it for classification or rule generation.
 \end{itemize}
+% A more interesting way of classifying them would be the fact that
+% they are BYOD specific or not. All of the examples that you have
+% mentioned do not seem to be BYOD specific. - JJ
 
-The trials had a duration of a month plus a week, and a total of 153270 events were registered in the database. It is important to note that from all of those events, almost 65\% were not useful for knowledge extraction purposes, as they were events of \textit{log in}, \textit{log out}, or \textit{restarting the server}. The other 35\% (53296 instances) were considered as \textit{important} because they did contain information about user actions such as opening files or sending emails in a certain connection environment, changing security properties, or installing apps. Altogether, there are 38 attributes plus the class, which can take two possible values: GRANTED or STRONGDENY.
+The trials had a duration of a month plus a week, and a total of
+153270 events were registered in the database. It is important to note
+that from all of those events, almost 65\% were not useful for
+knowledge extraction purposes, as they were events of \textit{log in},
+\textit{log out}, or \textit{restarting the server}. % alternative
+                                % rephrasing: We filtered those events
+                                % that didn't imply access to assets,
+                                % such as... JJ
+The other 35\% (53296 instances) were considered as \textit{important}
+because they did contain information about user actions such as
+opening files or sending emails in a certain connection environment,
+changing security properties, or installing apps. Altogether, there
+are 38 attributes plus the class, which can take two possible values:
+GRANTED or STRONGDENY. 
 
-With respect to the balance between the classes, the dataset is unbalanced with the following ratio: 49289 instances are labelled as GRANTED and 4007 are labelled as STRONGDENY.
+With respect to the balance between the classes, the dataset is
+unbalanced with the following ratio: 49289 instances are labelled as
+GRANTED and 4007 are labelled as STRONGDENY. 
 
 \subsection{Proposed Solution}
 \label{subsec:solution}
 % (zaineb) I prefer adding a sentence here as an introduction. What do you think Paloma?
 % (Paloma) I agree, but as Pablo didn't finish the section, I prefer to wait :)
 % (Paloma) I added the introduction sentence! What do you think?
-As previously highlighted, in this work we propose a system which is able to process a set of user actions that have been allowed or denied based on initial, simple rules, and discover new rules by exploring the whole space of possible combinations among the attribute values. The proposed method uses GP to create a tree to model the different rules, given that the problem can be seen as a classification one and therefore the model can be a decision tree \cite{safavian1990survey}. Then, the generated tree is a binary tree of expressions formed by two different types of nodes:
+As previously highlighted, in this work we propose a system which is
+able to process a set of user actions that have been allowed or denied
+based on initial, simple rules, and discover new rules by exploring
+the whole space of possible combinations among the attribute
+values. The proposed method uses GP to create a tree to model the
+different rules, given that the problem can be seen as a
+classification one and therefore the model can be a decision tree
+\cite{safavian1990survey}. Then, the generated tree is a binary tree
+of expressions formed by two different types of nodes:
+% What you are _actually_ doing is re-discovering the original simple
+% rules. You have to justify in what way you are _generalizing_ from
+% those simple rules - JJ
 
 \begin{itemize}
 \item {\em Variable}: it is a logical expression formed by a name, an operator and a value. It is the equivalent to a ``primitive'' in the field of GP \cite{back1996evolutionary}.  \\
@@ -435,8 +514,20 @@ device_is_rooted=true THEN=STRONGDENY
 
 Rules presented in this way offer good readability which is key to understand the relation between the attributes and how the described situation may, or may not, be dangerous. In the example, the system would have inferred that an action from a device without antivirus, a short password, and rooted or belonging to an administration employee, should be denied.
 % (Paloma) Shall we explain what a rooted device is?
+% You should rather say what is the relationship between these rules
+% and the original rules - JJ
 
-With regard to the fitness, in the application of GP to classification the most used metric to calculate it is the accuracy \cite{espejo2010survey}. The accuracy is normally obtained as the ratio of the correctly classified instances among the total of instances. To this end, in \cite{witten2005data} the authors use the concepts of true positive/negative and false positive/negative. The first refer to the instances classified correctly, and the latter are those instances that should be negative (positive) but are classified as positive (negative), therefore they are false positives (negatives). Using this nomenclature, a Fitness defined as the accuracy or \textit{coverage} would be expressed as follows:
+With regard to the fitness, in the application of GP to classification
+the most used metric to calculate it is the accuracy
+\cite{espejo2010survey}. The accuracy is normally obtained as the
+ratio of the correctly classified instances among the total of
+instances. To this end, in \cite{witten2005data} the authors use the
+concepts of true positive/negative and false positive/negative. The
+first refer to the instances classified correctly, and the latter are
+those instances that should be negative (positive) but are classified
+as positive (negative), therefore they are false positives
+(negatives). Using this nomenclature, a Fitness defined as the
+accuracy or \textit{coverage} would be expressed as follows: 
 
 % Saving this for later \cite{DeFalco2002257}
 
@@ -461,7 +552,15 @@ Fitness F = (S_{tr} - f_{c}) + \alpha f_{s}
 \section{Experiments Description}
 \label{sec:experiments}
 
-Sub-tree crossover and 1-node mutation evolutionary operators have been used, following our previous works that have used these operators obtaining good results \cite{EvoStar2014:GPBot}. In this case, the mutation randomly changes the complete variable of a node or mutate the complete value. Each configuration is executed 30 times, with a population of 32 individuals and a 2-tournament selector for a pool of 16 parents.
+% This is not a description of the experiment. The experiment
+% description is the set of steps needed to reproduce them - JJ
+Sub-tree crossover and 1-node mutation evolutionary operators have
+been used, following our previous works that have used these operators
+obtaining good results \cite{EvoStar2014:GPBot}. In this case, the
+mutation randomly changes the complete variable of a node or mutate
+the complete value. Each configuration is executed 30 times, with a
+population of 32 individuals and a 2-tournament selector for a pool of
+16 parents.
 
 
 Table \ref{tab:parameters} summarizes all the parameters used.
@@ -491,6 +590,7 @@ The used framework is OSGiLiath, a service-oriented evolutionary
 framework \cite{DBLP:journals/soco/Garcia-SanchezGCAG13}. The
 generated tree is converted to...
 %Please remenber to finish this - JJ
+% Still have to finish it - JJ
 
 All the source code used in this
 work is available under a LGPL V3 License in
