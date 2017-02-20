@@ -131,18 +131,8 @@ Other advantages are tied to the increase of worker satisfaction, attracting the
 However, there exists a big disadvantage concerning security, as
 potentially unsecured devices from unaware users might interact with
 important assets. Therefore, the main issue is to obtain a high level
-of security, while maintining user privacy \cite{miller2012byod}.% if
-                                % the issues are the same, why mention
-                                % different environments separately?
-                                % Besides, what assets of the learning
-                                % center are you actually accessing? -
-                                % JJ 
-% Is this paragraph related to BYOD in schools? - JJ
-Focusing on the corporate world and as previously highlighted, %my point exactly. Now you say we don't care about schools - JJ
-% the BYOD paradigm has several advantages
-%as it plays a leading role in increasing the
-%companies benefits.  Despite of that this
-%paradigm calls for a crucial need for securing company assets in the BYOD context. It is
+of security, while maintaining user privacy \cite{miller2012byod}.
+Focusing on the corporate world and as previously highlighted,
 it is clear that the uncontrolled access to internal networks by the
 personal devices, for which companies have limitations in
 controlling due to privacy preservation \cite{miller2012byod}, exposes the companies to security risks such as data
@@ -156,11 +146,7 @@ faced with questions of whether and how to manage this situation \cite{thomson20
 thus every department must be involved in establishing security
 policies and procedures to minimize the company's risks.
 
-To this end, the Corporate Security Policies (CSPs) \cite{Kaeo:2003:DNS:1201807}, % I think a
-                                % reference that defines them or to
-                                % expand knowledge would be convenient
-                                % here - JJ
-                                % (Paloma) I added a reference but if you think it's not enough I can expand the concept
+To this end, the Corporate Security Policies (CSPs) \cite{Kaeo:2003:DNS:1201807}, 
 defined by the company's Chief Security Officer (CSO) are the core at the
 identification of threats and the construction of a set of security rules. The description of these jobs include protecting
 company assets by defining permissions to be considered for every
@@ -191,43 +177,11 @@ seen as a decision tree classifier \cite{safavian1990survey}. In our case, the a
 Our proposed GP framework dedicated
 for the BYOD context is capable of performing an automatic discovery
 of classification rules, maximising the fitness, and presenting the rules in a way that is helpful for a CSO.
-% Once again, there is a huge imbalance in the space and energy
-% devoted to BYOD and the one you devote to GP. Except if you are
-% going to publish in GPEM, which includes GP in the title, you will
-% probably need to say a little bit more about GP. Even if it's GP,
-% there are so many different ways of doing it that you will probably
-% need to be more precise, specififying whether you mean "classic" GP
-% or any other way. 
-% JJ Approves this. You should say why you are using this technique as
-% opposed to others - JJ
-
-% This intro is very soft and does not have any "hard" claim. It does
-% not really say what is specifically the problem we are dealing
-% with, what we want to do and how it is addressing that
-% problem. There should be a clear argumental line, something like 
-% BYOD is very popular, but it presents security problems when you mix
-% possibly compromised or unsecured devices with protected
-% assets. Protecting that asset is the turf of the CSO, who defines
-% security policies for asset access based on her expertise. However,
-% these policies can't properly address the new threats posed by BYOD
-% devices. That is why we need an automatic way of automatically
-% defining these policies using known user actions and the possible
-% threats they will eventually bring, especially when the action of an
-% user might not result in immediate security danger, but in a
-% possible future danger.
-% I don't know, something like that, with more references, but with a
-% clear argumental line. Without this argumental line, all the
-% structure of the paper falls down in pieces. You can't create a
-% proper state of the art, do the proper tests, and so on. - JJ
-% This is pretty much addressed, but maybe we should have another look
-% at it - JJ
 
 The rest of the paper is organised as follows. In Section \ref{sec:SotA} we give an overview of the advances in GP applied to rule evolution and its applications; then, Section \ref{sec:problem} depicts the problem this work tries to solve, describing the available dataset and the proposed GP framework. The experimental set-up, as well as the different set of experiments that have been carried out are described in Section \ref{sec:experiments}. Section \ref{sec:gp} shows the obtained results from the application of GP to security rules extraction and, finally, the conclusions of this work along with some suggestions about how to continue our research are given in Section \ref{sec:future}.  
 
 \section{Related Work}
 \label{sec:SotA}
-
-% (Paloma) To be extended
 
 Since BYOD policies started to appear in companies' day-to-day policies  a lot
 of research has been done about the advantages and disadvantages of
@@ -265,29 +219,16 @@ with respect to the implementation of already defined security
 policies, but our method allows to discover new security policies,
 which in the case of black and white lists, can evolve them to include
 new and/or malicious applications. 
- %Pablo: If previous papers describe some computational methods I would add to the last paragraph some of the techniques used. "...security policies, but other techniques such as ... These techniques can be useful with respect to... but our method is awesome because...".
- % (Paloma) I've included more information, please ckeck :D
 
 Research in BYOD has been accompanied by innovation in products released
 to help companies implement or streamline the process of adoption of the BYOD
 concept. In \cite{de2015corporate} there is a description of the
 market solutions that the main manufacturers have developed to such
 purpose. The level of security and privacy preservation offered by
-these applications is different depending on the solution. % A SOA
-                                % section establishes the state of the
-                                % art, it's not a catalogue. As well
-                                % as above, here you would have to say
-                                % what is the disadvantage of these
-                                % approaches and why you are going to
-                                % do it better than them.
-                                % (Paloma) Fixed this with:
+these applications is different depending on the solution.
 None of the reviewed solutions, but one, seem to offer a dynamic creation of rules in the database used for incident detection. The one called MUSES does implement rule inference and mentions the use of GP to perform this task. In this work we extend the description of the rule inference process, as well as the details of its implementation and the results after applying it to the data gathered with the very same MUSES application (see Section \ref{subsec:data}).
 
-%Non sequitur. What do you mean here? Why are you talking about this
-%here? Extracted data from what? Start with something like "Previous
-%papers have commented on the issue of using quality data to extract
-%rules from that that are general and accurate..." - JJ
-% (Paloma) Done
+
 Previous papers have commented on the issue of using quality data to obtain accurate and valuable extracted knowledge, which is specially difficult when dealing with datasets taken from real world problems, where the sensors cannot work properly at a certain time. % or the data can present imbalance.
 To avoid this, researchers have advanced the state of the art in the precision of the
 devices. For instance, in \cite{rios2015mobile}, the authors focus on
@@ -323,8 +264,6 @@ the survey of Espejo et al., from the six databases inside PROBEN1 and
 analysed by these authors, none is related to security. In
 \cite{Tsakonas2004195} the authors also extract rules with \textsc{IF
   \ldots THEN} structure through GP, although for medical purposes. Futhermore, Alex A. Freitas deeply studied the application of GP to Data Mining (DM) in \cite{freitas2002data}, providing the necessary knowledge and guidelines to design a GP framework for DM applications. Section \ref{subsec:solution} will describe in detail which solution has been built from what has been found in the work of Freitas.
-%Pablo: link previous paragraph with next one. Also, I would not use "on the other hand" below as it is not clear which is the "first hand". For example: "... rules via GP, even as this method has been applied to classification..."
-% (Paloma) Done, check please!
 
 %Once again, this paragraph does not follow the previous one. Maybe
 %move it one paragraph up, where you are talking about proper training
@@ -345,25 +284,6 @@ dataset, one can still, in certain cases, identify a user of the
 company the data comes from by processing the data. If this principle
 cannot be guaranteed, the data should not be released
 \cite{boillat2014handbook}. 
-% TODO Pablo: I would explain here again the issue adding "This is the
-% reason we can not release the dataset used in the experimental
-% section, because our data includes..." BUT if we release it (issue
-% #20), we can say that we are awesome and cool researchers by doing
-% it 
-% (Paloma) Ok then I leave this as TODO once we decide if we can
-% release it.
-% I think there's no problem with releasing it, but maybe you should
-% ask Anna. - JJ
-
-%Pablo: move this paragraph after the market product analysis. So, the
-%SOA outline should be: 1) BYOD is a thing 2) There are some stuff
-%done (market product, extracted data...) 3) However, in previous
-%works there are stuff that SHOULD be done (GP and releasing datasets)
-%for some fancy reasons, and 4) In this paper we do this and that to
-%solve it. 
-% Missing is "there is some trouble on finding data", but if we are
-% not releasing this, maybe we should just be quiet about this - JJ
-% (Paloma) Re-organised, I think well, but check in case I didn't move it to where you suggested.
 
 \section{Problem Description}
 \label{sec:problem}
@@ -461,9 +381,6 @@ GRANTED and 4007 are labelled as STRONGDENY.
 
 \subsection{Proposed Solution}
 \label{subsec:solution}
-% (zaineb) I prefer adding a sentence here as an introduction. What do you think Paloma?
-% (Paloma) I agree, but as Pablo didn't finish the section, I prefer to wait :)
-% (Paloma) I added the introduction sentence! What do you think?
 As previously highlighted, in this work we propose a system which is
 able to process a set of user actions that have been allowed or denied
 based on initial, simple rules, and discover new rules by exploring
@@ -503,7 +420,6 @@ At the same time, the variables can be differentiated into three types, describe
 
 The tree is translated to a set of rules starting from the leafs to the root node passing each time by the ancestors. An example of a rule can be presented as follows:
 %TODO Show this more fancy :P (Pablo)
-% (Paloma) I've shortened the rule a bit for the sake of clarity 
 
 \begin{verbatim}
 device_has_antivirus=false AND

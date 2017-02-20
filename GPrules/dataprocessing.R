@@ -73,6 +73,7 @@ FlistdenyCov <- ggplot(listIndCovDenyData, aes(x = listIndCovDenyData$IT, y = li
   xlab("Iterations (class = STRONGDENY)") +
   ylab("Best Fitness (Accuracy)") + theme(legend.position = "none")
 
+grid.arrange(FlistallowCov, FlistdenyCov, ncol = 2)
 grid.arrange(FlistallowCov, FlistdenyCov, theLegend, ncol = 2, nrow = 2, layout_matrix = cbind(c(1, 3), c(2, 3)))
 
 FlistallowAlpha0 <- ggplot(listIndAlpha0AllowData, aes(x = listIndAlpha0AllowData$IT, y = listIndAlpha0AllowData$BEST_F/47966)) +
