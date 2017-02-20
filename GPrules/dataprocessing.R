@@ -35,20 +35,20 @@ listIndAlpha1AllowData <- read_data("./lanzar8/150gen GRANTED/CSVs")
 listIndAlpha1DenyData <- read_data("./lanzar8/150gen STRONGDENY/CSVs")
 
 Ftreea0 <- ggplot(treeIndAlpha0Data, aes(x = treeIndAlpha0Data$IT, y =BEST_F/47966)) +
-  geom_point(aes(colour = factor(FOLD))) + geom_line(aes(colour = factor(FOLD))) +
-  stat_summary() + scale_y_continuous(limits = c(0,0.5)) +
+  geom_line(aes(colour = factor(FOLD))) +
+  stat_summary(geom = "line") + scale_y_continuous(limits = c(0.1,0.5)) +
   xlab("Iterations (α = 0)") +
   ylab("Best Fitness") + theme(legend.position = "bottom")
-#theLegend <- get_legend(Fa0)
+#theLegend <- get_legend(Ftreea0)
 Ftreea0 <- Fa0 + theme(legend.position = "none")
 Ftreea05 <- ggplot(treeIndAlpha05Data, aes(x = treeIndAlpha05Data$IT, y = treeIndAlpha05Data$BEST_F/47966)) +
-  geom_point(aes(colour = factor(FOLD))) + geom_line(aes(colour = factor(FOLD))) +
-  stat_summary() + scale_y_continuous(limits = c(0,0.5)) +
+  geom_line(aes(colour = factor(FOLD))) +
+  stat_summary(geom = "line") + scale_y_continuous(limits = c(0.1,0.5)) +
   xlab("Iterations (α = 0.5)") +
   ylab("Best Fitness") + theme(legend.position = "none")
 Ftreea1 <- ggplot(treeIndAlpha1Data, aes(x = treeIndAlpha1Data$IT, y = treeIndAlpha1Data$BEST_F/47966)) +
-  geom_point(aes(colour = factor(FOLD))) + geom_line(aes(colour = factor(FOLD))) +
-  stat_summary() + scale_y_continuous(limits = c(0,0.5)) +
+  geom_line(aes(colour = factor(FOLD))) +
+  stat_summary(geom = "line") + scale_y_continuous(limits = c(0.1,0.5)) +
   xlab("Iterations (α = 1)") +
   ylab("Best Fitness") + theme(legend.position = "none")
 
@@ -56,8 +56,8 @@ Ftreea1 <- ggplot(treeIndAlpha1Data, aes(x = treeIndAlpha1Data$IT, y = treeIndAl
 grid.arrange(Ftreea0, Ftreea05, Ftreea1, ncol = 3)
 
 FtreeCov <- ggplot(treeIndCovData, aes(x = treeIndCovData$IT, y =BEST_F)) +
-  geom_point(aes(colour = factor(FOLD))) + geom_line(aes(colour = factor(FOLD))) +
-  stat_summary() + 
+  geom_line(aes(colour = factor(FOLD))) +
+  stat_summary(geom = "line") + 
   xlab("Iterations") +
   ylab("Best Fitness (Accuracy)") + theme(legend.position = "bottom")
 print(FtreeCov)
