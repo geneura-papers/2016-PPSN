@@ -1,4 +1,4 @@
-setwd('~/R/')
+setwd('~/Github/2017-ESWA/Results')
 
 #Execute this script just once!
 
@@ -13,16 +13,16 @@ add_fold_column <- function(directory) {
   }
 }
 
-add_fold_column("./lanzar1/CSVs")
-add_fold_column("./lanzar2/CSVs")
-add_fold_column("./lanzar3/CSVs")
-add_fold_column("./lanzar4/CSVs")
+add_fold_column("./tree_ind_alpha_0")
+add_fold_column("./tree_ind_alpha_0.5")
+add_fold_column("./tree_ind_alpha_1")
+add_fold_column("./tree_ind_coverage")
 
-add_fold_column("./lanzar5/150gen GRANTED/CSVs")
-add_fold_column("./lanzar5/150gen STRONGDENY/CSVs")
-add_fold_column("./lanzar6/150gen GRANTED/CSVs")
-add_fold_column("./lanzar6/150gen STRONGDENY/CSVs")
-add_fold_column("./lanzar7/150gen GRANTED/CSVs")
-add_fold_column("./lanzar7/150gen STRONGDENY/CSVs")
-add_fold_column("./lanzar8/150gen GRANTED/CSVs")
-add_fold_column("./lanzar8/150gen STRONGDENY/CSVs")
+add_fold_column("./list_ind_alpha_0/150gen GRANTED")
+add_fold_column("./list_ind_alpha_0/150gen STRONGDENY")
+add_fold_column("./list_ind_alpha_0.5/150gen GRANTED")
+add_fold_column("./list_ind_alpha_0.5/150gen STRONGDENY")
+add_fold_column("./list_ind_alpha_1/150gen GRANTED")
+add_fold_column("./list_ind_alpha_1/150gen STRONGDENY")
+add_fold_column("./list_ind_coverage/150gen GRANTED")
+add_fold_column("./list_ind_coverage/150gen STRONGDENY")

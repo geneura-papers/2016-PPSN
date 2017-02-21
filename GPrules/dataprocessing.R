@@ -1,4 +1,4 @@
-setwd('~/R/')
+setwd('~/Github/2017-ESWA/Results')
 
 require(ggplot2)
 require(dplyr)
@@ -20,19 +20,19 @@ get_legend<-function(myggplot){
   return(legend)
 }
 
-treeIndAlpha05Data <- read_data("./lanzar1/CSVs")
-treeIndAlpha0Data <- read_data("./lanzar2/CSVs")
-treeIndAlpha1Data <- read_data("./lanzar3/CSVs")
-treeIndCovData <- read_data("./lanzar4/CSVs")
+treeIndAlpha05Data <- read_data("./tree_ind_alpha_0")
+treeIndAlpha0Data <- read_data("./tree_ind_alpha_0.5")
+treeIndAlpha1Data <- read_data("./tree_ind_alpha_1")
+treeIndCovData <- read_data("./tree_ind_coverage")
 
-listIndCovAllowData <- read_data("./lanzar5/100gen GRANTED/CSVs")
-listIndCovDenyData <- read_data("./lanzar5/100gen STRONGDENY/CSVs")
-listIndAlpha05AllowData <- read_data("./lanzar6/150gen GRANTED/CSVs")
-listIndAlpha05DenyData <- read_data("./lanzar6/150gen STRONGDENY/CSVs")
-listIndAlpha0AllowData <- read_data("./lanzar7/150gen GRANTED/CSVs")
-listIndAlpha0DenyData <- read_data("./lanzar7/150gen STRONGDENY/CSVs")
-listIndAlpha1AllowData <- read_data("./lanzar8/150gen GRANTED/CSVs")
-listIndAlpha1DenyData <- read_data("./lanzar8/150gen STRONGDENY/CSVs")
+listIndCovAllowData <- read_data("./list_ind_alpha_0/150gen GRANTED")
+listIndCovDenyData <- read_data("./list_ind_alpha_0/150gen STRONGDENY")
+listIndAlpha05AllowData <- read_data("./list_ind_alpha_0.5/150gen GRANTED")
+listIndAlpha05DenyData <- read_data("./list_ind_alpha_0.5/150gen STRONGDENY")
+listIndAlpha0AllowData <- read_data("./list_ind_alpha_1/150gen GRANTED")
+listIndAlpha0DenyData <- read_data("./list_ind_alpha_1/150gen STRONGDENY")
+listIndAlpha1AllowData <- read_data("./list_ind_coverage/150gen GRANTED")
+listIndAlpha1DenyData <- read_data("./list_ind_coverage/150gen STRONGDENY")
 
 Ftreea0 <- ggplot(treeIndAlpha0Data, aes(x = treeIndAlpha0Data$IT, y =BEST_F/47966)) +
   geom_line(aes(colour = factor(FOLD))) +
