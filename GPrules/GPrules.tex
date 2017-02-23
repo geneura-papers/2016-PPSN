@@ -17,8 +17,8 @@
 
 \author[ugr]{Paloma De las Cuevas}
 \ead{palomacd@ugr.es}
-\author[ugr]{Pablo Garc\'{\i}a-S\'anchez}
-\ead{pablogarcia@ugr.es}
+\author[uca]{Pablo Garc\'{\i}a-S\'anchez}
+\ead{pablo.garciasanchez@uca.es}
 \author[ugr]{J.J. Merelo}
 \ead{jmerelo@geneura.ugr.es}
 \author[isgt]{Zeineb Chelly}
@@ -26,6 +26,8 @@
 
 \address[ugr]{Department of Computer Architecture and Computer Technology, ETSIIT and CITIC \\
 University of Granada, Granada, Spain. Tel: +34958241778. Fax: +34958248993}
+\address[uca]{Department of Computer Engineering, School of Engineering \\
+University of C\'adiz, Spain.}
 \address[isgt]{LARODEC, Institut Sup\'erieur de Gestion de Tunis, Tunisia.}
 
 
@@ -136,7 +138,8 @@ Focusing on the corporate world and as previously highlighted,
 it is clear that the uncontrolled access to internal networks by the
 personal devices, for which companies have limitations in
 controlling due to privacy preservation \cite{miller2012byod}, exposes the companies to security risks such as data
-leakage, improper decommissioning, phishing including spear phishing, surveillance, and many
+leakage, improper decommissioning, phishing including spear phishing, %Pablo: what is spear phishing? 
+surveillance, and many
 others \cite{lennon2012changing}. These threats have become the
 companies main security concern, and for them it is a challenge to
 assure a compromise between pushing personal devices towards
@@ -163,7 +166,7 @@ of a set of security rules, that in the end, classify an upcoming
 event or user action as permitted or not permitted.
 The main idea is to create a reliable rule set
 which is able to cover every new situation that may be a threat;
-allowing the system to go beyond the limited set of known pre-defined
+allowing the system to go beyond the limited set of known pre-defined %Pablo: this is the important and selling point of the paper. Also, mention that this can be used as a "reverse-engineering" to extract the initial set of rules set by the CSO, and to find additional ones
 rules. In order to have the space of possible policy rules be as wide
 as possible, we will need a technique that explores the rule space
 efficiently and with the least assumptions about rule structure.
@@ -176,7 +179,7 @@ solutions to a problem are internally encoded as trees, which can be
 seen as a decision tree classifier \cite{safavian1990survey}. In our case, the assigned classes, or leaves of the tree, would be ``allow'' or ``deny'', acting over a certain incoming event; whilst the nodes are the conditions that have to be met to apply the action. Taking this into account, GP can be used to generate these classification trees, optimising an objective function called {\em fitness}. The fitness can be defined as the accuracy of a rule, being this the most used metric in classification \cite{witten2005data}, along with the classification error. But since there are other metrics that influence ``how good'' a rule or a set of rules is, such as the depth of the created tree or the number of nodes it has \cite{back1996evolutionary}, it would be of convenience to use them in the definition of the fitness.
 Our proposed GP framework dedicated
 for the BYOD context is capable of performing an automatic discovery
-of classification rules, obtaining good fitness, and presenting the rules in a way that is helpful for a CSO. We demonstrate so by using the developed framework with a real-world dataset, and comparing two ways of coding the individuals: as a set of rules, or as a single rule.
+of classification rules, obtaining good fitness, and presenting the rules in a way that is helpful for a CSO. We demonstrate so by using the developed framework with a real-world dataset, and comparing two ways of coding the individuals: as a set of rules, or as a single rule. %Pablo: complete this paragraph with ", to establish blabla"
 
 The rest of the paper is organised as follows. In Section \ref{sec:SotA} we give an overview of the advances in GP applied to rule evolution and its applications; then, Section \ref{sec:problem} depicts the problem this work tries to solve, describing the available dataset and the proposed GP framework. The experimental set-up, as well as the different set of experiments that have been carried out are described in Section \ref{sec:experiments}. Section \ref{sec:gp} shows the obtained results from the application of GP to security rules extraction and, finally, the conclusions of this work along with some suggestions about how to continue our research are given in Section \ref{sec:future}.  
 
@@ -240,7 +243,7 @@ concluded that the efficiency of their system, along with the
 possibilities of the hardware in the devices, results in a location
 error of less than 50 meters with a 95\% confidence level. These
 promising results allow the companies to use the location of their
-employees to apply certain security policies.
+employees to apply certain security policies. %Pablo: Is this long paragraph necessary? If we can link it with our method, that's great, if not, I suggest deleting or reducing it.
 
 %Another barrier to obtain good quality knowledge discovering are datasets that present imbalance, because they normally bias the elaboration of classification rules or trees towards the majority class - the class with higher representation in the dataset - \cite{japkowicz2002class}. In this sense, solutions can be found in literature in order to reduce the bias while performing classification tasks, such as in \cite{chawla2005data} and \cite{sun2009classification}. However, as we have center our proposal in GP, we have studied Bhowan et al.'s work in \cite{bhowan2012developing}, where they present a comparison between many different types of fitness functions, testing on various unbalanced datasets, with different minority-class/majority-class ratios.
 
@@ -259,9 +262,9 @@ all fields but not exactly the one we focus on here. The authors
 studied three papers which use GP for classification with
 communications data, but mainly for intrusion detection and e-mail
 spamming. In \cite{Tsakonas2004195} the authors also extract rules with \textsc{IF \ldots THEN} structure through GP, although for medical purposes. Futhermore, Alex A. Freitas deeply studied the application of GP to Data Mining (DM) in \cite{freitas2002data}, providing the necessary knowledge and guidelines to design a GP framework for DM applications. Also, in \cite{DeFalco2002257}, a system which discovers
-rules for the PROBEN1 databases via GP is described and a new fitness is introduced. As happened in
+rules for the PROBEN1 databases via GP is described and a new fitness is introduced. As happened in %Pablo: describe what the PROBEN databases are.
 the survey of Espejo et al., from the six databases inside PROBEN1 and
-analysed by these authors, none is related to security. However, the authors' proposed fitness is indeed of interest for this research, and as such we compare the performance or our algorithm using two different fitness. Section \ref{subsec:solution} will describe in detail which solution has been built from what has been found in the work of Freitas.
+analysed by these authors, none is related to security. However, the authors' proposed fitness is indeed of interest for this research, and as such we compare the performance or our algorithm using two different fitness. Section \ref{subsec:solution} will describe in detail which solution has been built from what has been found in the work of Freitas. %Pablo: it is not a good practice to refer to future sections, maybe a small paragraph justifying the use of the fitness here would be better 
 
 %Once again, this paragraph does not follow the previous one. Maybe
 %move it one paragraph up, where you are talking about proper training
@@ -314,12 +317,12 @@ by allowing or denying employees' access to non-confidential
  % (Paloma) The whole paragraph?
 
 Our proposed solution is based on a novel GP framework dedicated for
-the BYOD context and capable of performing an automatic and wider discovery of classification rules. More precisely, our GP based framework will, first, extract all the possible values of every attribute in the data at hand and then make the ``RuleGeneticAlgorithm'' evolving. % (Paloma) Pablo, more fancy way of saying this?
+the BYOD context and capable of performing an automatic and wider discovery of classification rules. More precisely, our GP based framework will, first, extract all the possible values of every attribute in the data at hand and then make the GP algorithm evolving. % (Paloma) Pablo, more fancy way of saying this? Pablo: well, running the GP as it :P
 Specifically, in this context, we have decided to follow the more
-conventional approach in Genetic Algorithms, the Pittsburgh approach
+conventional approach in Genetic Programming, the Pittsburgh approach
 \cite{freitas2002data}, meaning that each individual is seen as a set
 of rules. The best individual is thus the set which rules covers the
-maximum patterns. The last step would be to present the rules to the
+maximum patterns. The last step would be to present the rules to the %Pablo: explain here we are going to use 2 individuals and 2 fitness
 CSO of the company and tune the algorithm according to the decision of
 finally including or not the set of rules in the main security
 policy. The description of the used data and further explicit details
@@ -363,7 +366,7 @@ The dataset contains a set of these ``events'' from which a number of attributes
 % mentioned do not seem to be BYOD specific. - JJ
 % (Paloma) Agree, will do
 
-The trials had a duration of a month plus a week, and a total of
+The trials had a duration of a month plus a week, and a total of %Pablo: a month plus a week, or 5 weeks?
 153270 events were registered in the database. We filtered those events that did not imply access to assets, meaning that they were not useful for
 knowledge extraction purposes, such as events of \textit{log in},
 \textit{log out}, or \textit{restarting the server}. % alternative
@@ -414,9 +417,9 @@ of expressions formed by two different types of nodes:
 At the same time, the variables can be differentiated into three types, described as follows \cite{witten2005data}:
 
 \begin{itemize}
-\item {\em Binary Variable}: those with a boolean value, for instance, variables that are related with the device services switched on or off and important features such as the device having or not an antivirus installed.
-\item {\em Categorical Variable}: the ones with nominal values, where it is defined a list with the possible values it may have, in order to randomly pick up one in the creation of the rules.
-\item {\em Numerical Variable}: those with a numerical value, for which both maximum and minimum values are specified.
+\item {\em Binary Variable}: those with a boolean value, for instance, variables that are related with the device services switched on or off and important features such as the device having or not an antivirus installed. %Pablo: add "For example, X and Y" (or even the complete set)
+\item {\em Categorical Variable}: the ones with nominal values, where it is defined a list with the possible values it may have, in order to randomly pick up one in the creation of the rules. %Pablo: same
+\item {\em Numerical Variable}: those with a numerical value, for which both maximum and minimum values are specified. %Pablo: same
 
 \end{itemize}
 
