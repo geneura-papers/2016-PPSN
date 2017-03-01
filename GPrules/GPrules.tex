@@ -5,6 +5,7 @@
 \usepackage{graphicx}
 \usepackage{amsmath}
 \usepackage{url}
+\usepackage{multirow}
 
 \journal{Expert Systems with Applications}
 
@@ -425,6 +426,37 @@ At the same time, the variables can be differentiated into three types, describe
 \item {\em Numerical Variable}: those with a numerical value, for which both maximum and minimum values are specified. %Pablo: same
 
 \end{itemize}
+
+Table \ref{tab:variables} details the variables, for each type, that have been used in the GP in order to create the rules. In addition, we differentiate between those variables that are BYOD specific, and those that come from the context.
+
+\begin{table*}
+\begin{center}
+\begin{tabular}{|l|l|l|l|}
+\hline
+Variable type                & Variable Name          & BYOD specific & Context Specific \\ \hline
+\multirow{8}{*}{Binary}      & BluetoothConnected     &               & \checkmark       \\ \cline{2-4} 
+                             & DeviceHasAccessibility & \checkmark    &                  \\ \cline{2-4} 
+                             & DeviceHasAntivirus     & \checkmark    &                  \\ \cline{2-4} 
+                             & DeviceHasPassword      & \checkmark    &                  \\ \cline{2-4} 
+                             & DeviceIsRooted         & \checkmark    &                  \\ \cline{2-4} 
+                             & MailHasAttachment      &               & \checkmark       \\ \cline{2-4} 
+                             & WifiConnected          &               & \checkmark       \\ \cline{2-4} 
+                             & WifiEnabled            &               & \checkmark       \\ \hline
+\multirow{8}{*}{Categorical} & AssetConfidentialLevel &               & \checkmark       \\ \cline{2-4} 
+                             & DeviceOS               & \checkmark    &                  \\ \cline{2-4} 
+                             & DeviceOwnedBy          & \checkmark    & \checkmark       \\ \cline{2-4} 
+                             & DeviceType             & \checkmark    &                  \\ \cline{2-4} 
+                             & EventLevel             &               & \checkmark       \\ \cline{2-4} 
+                             & EventType              &               & \checkmark       \\ \cline{2-4} 
+                             & UserRole               &               & \checkmark       \\ \cline{2-4} 
+                             & WifiEncryption         & \checkmark    &                  \\ \hline
+\multirow{2}{*}{Numerical}   & DeviceScreenTimeout    & \checkmark    &                  \\ \cline{2-4} 
+                             & PasswordLength         & \checkmark    &                  \\ \hline
+\end{tabular}
+\caption{A list of the variables that have been used to generate the rules. Those variables that are BYOD specific are also specified.}
+\label{tab:variables}
+\end{center}
+\end{table*}
 
 The tree is translated to a set of rules starting from the leafs to the root node passing each time by the ancestors. An example of a rule can be presented as follows:
 %TODO Show this more fancy :P (Pablo)
