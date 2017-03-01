@@ -180,8 +180,8 @@ solutions to a problem are internally encoded as trees, which can be
 seen as a decision tree classifier \cite{safavian1990survey}. In our case, the assigned classes, or leaves of the tree, would be ``allow'' or ``deny'', acting over a certain incoming event; whilst the nodes are the conditions that have to be met to apply the action. Taking this into account, GP can be used to generate these classification trees, optimising an objective function called {\em fitness}. The fitness can be defined as the accuracy of a rule, being this the most used metric in classification \cite{witten2005data}, along with the classification error. But since there are other metrics that influence ``how good'' a rule or a set of rules is, such as the depth of the created tree or the number of nodes it has \cite{back1996evolutionary}, it would be of convenience to use them in the definition of the fitness.
 Our proposed GP framework dedicated
 for the BYOD context is capable of performing an automatic discovery
-of classification rules, obtaining good fitness, and presenting the rules in a way that is helpful for a CSO. We demonstrate so by using the developed framework with a real-world dataset, and comparing two ways of coding the individuals: as a set of rules, or as a single rule. %Pablo: complete this paragraph with ", to establish blabla"
-% (Paloma) Establish... what? I think I don't get your comment :(
+of classification rules, obtaining good fitness, and presenting the rules in a way that is helpful for a CSO. We demonstrate so by using the developed framework with a real-world dataset, and comparing two ways of coding the individuals -- as a set of rules, or as a single rule -- so that we finally propose the approach with best performance. %Pablo: complete this paragraph with ", to establish blabla"
+% (Paloma) Done!
 
 The rest of the paper is organised as follows. In Section \ref{sec:SotA} we give an overview of the advances in GP applied to rule evolution and its applications; then, Section \ref{sec:problem} depicts the problem this work tries to solve, describing the available dataset and the proposed GP framework. The experimental set-up, as well as the different set of experiments that have been carried out are described in Section \ref{sec:experiments}. Section \ref{sec:gp} shows the obtained results from the application of GP to security rules extraction and, finally, the conclusions of this work along with some suggestions about how to continue our research are given in Section \ref{sec:future}.  
 
@@ -264,9 +264,10 @@ all fields but not exactly the one we focus on here. The authors
 studied three papers which use GP for classification with
 communications data, but mainly for intrusion detection and e-mail
 spamming. In \cite{Tsakonas2004195} the authors also extract rules with \textsc{IF \ldots THEN} structure through GP, although for medical purposes. Futhermore, Alex A. Freitas deeply studied the application of GP to Data Mining (DM) in \cite{freitas2002data}, providing the necessary knowledge and guidelines to design a GP framework for DM applications. Also, in \cite{DeFalco2002257}, a system which discovers
-rules for the PROBEN1 databases via GP is described and a new fitness is introduced. As happened in %Pablo: describe what the PROBEN databases are.
-the survey of Espejo et al., from the six databases inside PROBEN1 and
-analysed by these authors, none is related to security. However, the authors' proposed fitness is indeed of interest for this research, and as such we compare the performance or our algorithm using two different fitness. Section \ref{subsec:solution} will describe in detail which solution has been built from what has been found in the work of Freitas. %Pablo: it is not a good practice to refer to future sections, maybe a small paragraph justifying the use of the fitness here would be better 
+rules for the PROBEN1 databases via GP is described and a new fitness is introduced. PROBEN1 \cite{prechelt1994proben} is a collection of datasets from real world problems meant as benchmarks for the application of classification techniques. As happened in %Pablo: describe what the PROBEN databases are. % (Paloma) Done!
+the survey of Espejo et al., from six of the databases inside PROBEN1 and
+analysed by these authors, none is related to security. However, the authors' proposed fitness is indeed of interest for this research, and as such we compare the performance or our algorithm using two different fitness: the more classical approach that measures only the correctly classified instances (accuracy); and De Falco's et al. \cite{DeFalco2002257} suggestion, also taking into account the complexity of the solution.  %Pablo: it is not a good practice to refer to future sections, maybe a small paragraph justifying the use of the fitness here would be better 
+% (Paloma) Fixed!
 
 %Once again, this paragraph does not follow the previous one. Maybe
 %move it one paragraph up, where you are talking about proper training
@@ -323,8 +324,8 @@ the BYOD context and capable of performing an automatic and wider discovery of c
 Specifically, in this context, we have decided to follow the more
 conventional approach in Genetic Programming, the Pittsburgh approach
 \cite{freitas2002data}, meaning that each individual is seen as a set
-of rules. The best individual is thus the set which rules covers the
-maximum patterns. The last step would be to present the rules to the %Pablo: explain here we are going to use 2 individuals and 2 fitness
+of rules. However, in this work we have also implemented the Michigan approach, being the individual a single rule. The best individual is thus the one that obtains the best fitness, and it is obtained in two different ways, in order to finally choose the most efficient. The last step would be to present the rules to the %Pablo: explain here we are going to use 2 individuals and 2 fitness
+% (Paloma) Also done!
 CSO of the company and tune the algorithm according to the decision of
 finally including or not the set of rules in the main security
 policy. The description of the used data and further explicit details
