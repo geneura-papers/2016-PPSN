@@ -338,7 +338,7 @@ about our proposed solution are given in what is next. % What is BYOD
 \label{subsec:data}
 
 We have used user data to perform the experiments for this
-work but Anonymised, in the sense that from all the attributes extracted from the user actions, the username is not included as a variable to build rules with. % User data is not specific. What kind of data? - JJ
+work but anonymised, in the sense that from all the attributes extracted from the user actions, the username is not included as a variable to build rules with. % User data is not specific. What kind of data? - JJ
 % (Paloma) Tried to extend it
  The set of data has been gathered from the trials that were performed
  during the development of an FP7 European Project, called MUSES
@@ -390,18 +390,21 @@ GRANTED and 4007 are labelled as STRONGDENY.
 
 \subsection{Proposed Solution}
 \label{subsec:solution}
+
 As previously highlighted, in this work we propose a system which is
 able to process a set of user actions that have been allowed or denied
-based on initial, simple rules, and discover new rules by exploring
+based on initial, simple rules, and discover new rules through GP by exploring
 the whole space of possible combinations among the attribute
-values. The proposed method uses GP to create a tree to model the
-different rules, given that the problem can be seen as a
+values. The coding of the individual might take two approaches \cite{freitas2002data}. On the one hand, following the Pittsburgh approach, the proposed method uses GP to create an individual tree to model a set of different rules, given that the problem can be seen as a
 classification one and therefore the model can be a decision tree
 \cite{safavian1990survey}. Then, the generated tree is a binary tree
 of expressions formed by two different types of nodes:
 % What you are _actually_ doing is re-discovering the original simple
-% rules. You have to justify in what way you are _generalizing_ from
+% rules.
+% (Paloma) No, I'm not.
+% You have to justify in what way you are _generalizing_ from
 % those simple rules - JJ
+% (Paloma) No, not generalising either.
 
 \begin{itemize}
 \item {\em Variable}: it is a logical expression formed by a name, an operator and a value. It is the equivalent to a ``primitive'' in the field of GP \cite{back1996evolutionary}.  \\
