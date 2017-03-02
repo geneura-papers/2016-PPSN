@@ -473,36 +473,43 @@ Rules presented in this way offer good readability which is key to understand th
 % You should rather say what is the relationship between these rules
 % and the original rules - JJ
 
-With regard to the fitness, in the application of GP to classification
+\subsection{Choosing a suitable fitness}
+
+In the application of GP to classification
 the most used metric to calculate it is the accuracy
 \cite{espejo2010survey}. The accuracy is normally obtained as the
 ratio of the correctly classified instances among the total of
-instances. To this end, in \cite{witten2005data} the authors use the
+instances. Witten et al. use in \cite{witten2005data} the
 concepts of true positive/negative and false positive/negative. The
 first refer to the instances classified correctly, and the latter are
 those instances that should be negative (positive) but are classified
 as positive (negative), therefore they are false positives
 (negatives). Using this nomenclature, a Fitness defined as the
-accuracy or \textit{coverage} would be expressed as follows: 
+accuracy would be expressed as follows: 
 
-% Saving this for later \cite{DeFalco2002257}
+\begin{equation}
+\label{eq:accuracy}
+f_{Acc} = (TP + TN) / T_{tr}
+\end{equation}
+
+This kind of fitness is used in maximisation problems, given that the ideal value of $f_{c}$ is the whole training dataset, $T_{tr}$. This fitness has the advantage of not being computationally expensive, but it does not penalise the badly predicted instances (false positives and negatives), which in security environments such as this one it can be very harmful. To this end, in \cite{witten2005data} the authors define the coverage as:
 
 \begin{equation}
 \label{eq:coverage}
-f_{c} = TP + TN - (FP + FN)
+C_{ind} = TP + TN - (FP + FN)
 \end{equation}
 
-This kind of Fitness is used in maximisation problems, given that the ideal value of $f_{c}$ is the whole training dataset, $S_{tr}$. Additionally, to take into account the simplicity of the individuals, either they are a rule or a set of rules, in \cite{witten2005data} they introduce a measure of the generated trees complexity by this expression:
+Additionally, to take into account the simplicity of the individuals, either they are a rule or a set of rules, in \cite{witten2005data} they introduce a measure of the generated trees complexity by this expression:
 
 \begin{equation}
-f_{s} = N_{nodes} + depth
+S_{ind} = N_{nodes} + depth
 \end{equation}
 
-So that combining $f_{c}$, $f_{s}$ and introducing an $\alpha$ variable inside [0, 1] to tune up the degree of allowed complexity, the problem becomes now a matter of minimising this formula:
+So that combining $C_{ind}$, $S_{ind}$ and introducing an $\alpha$ variable inside [0, 1] to tune up the degree of allowed complexity, the problem becomes now a matter of minimising this formula:
 
 \begin{equation}
 \label{eq:complexFitness}
-Fitness F = (S_{tr} - f_{c}) + \alpha f_{s}
+f_{CS} = (T_{tr} - C_{ind}) + \alpha S_{ind}
 \end{equation}
 
 \section{Experiments Description}
