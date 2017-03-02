@@ -297,10 +297,7 @@ As previously highlighted, the main idea behind corporate security
 policies, which are defined by the CSO, is to build a basic, fixed,
 and well defined set of rules, which take the form of \textsc{IF
   \ldots THEN} clauses. By applying them the company system decides if certain conditions are met in order to allow or
-deny access to an asset, whether is from the company or is accesed from it. % not only company assets. Also other
-                                % assets _while_ on the company VPN or
-                                % network - JJ
-                                % (Paloma) better? 
+deny access to an asset, whether is from the company or is accesed from it. 
 Therefore, these rules can be visualized as the actions, taking place in a precise environment, being classified as
 allowed or denied. In this sense and while facing a security breach
 from a BYOD system, the set of rules will be tested looking for
@@ -321,18 +318,17 @@ by allowing or denying employees' access to non-confidential
  % (Paloma) The whole paragraph?
 
 Our proposed solution is based on a novel GP framework dedicated for
-the BYOD context and capable of performing an automatic and wider discovery of classification rules. More precisely, our GP based framework will, first, extract all the possible values of every attribute in the data at hand and then make the GP algorithm evolving. % (Paloma) Pablo, more fancy way of saying this? Pablo: well, running the GP as it :P
+the BYOD context and capable of performing an automatic and wider discovery of classification rules. More precisely, our GP based framework will, first, extract all the possible values of every attribute in the data at hand and then make the GP algorithm evolving. 
 Specifically, in this context, we have decided to follow the more
 conventional approach in Genetic Programming, the Pittsburgh approach
 \cite{freitas2002data}, meaning that each individual is seen as a set
-of rules. However, in this work we have also implemented the Michigan approach, being the individual a single rule. The best individual is thus the one that obtains the best fitness, and it is obtained in two different ways, in order to finally choose the most efficient. The last step would be to present the rules to the %Pablo: explain here we are going to use 2 individuals and 2 fitness
-% (Paloma) Also done!
-CSO of the company and tune the algorithm according to the decision of
+of rules. However, in this work we have also implemented the Michigan approach, being the individual a single rule. The best individual is thus the one that obtains the best fitness, and it is obtained in two different ways, in order to finally choose the most efficient. The last step would be to present the rules to the CSO of the company and tune the algorithm according to the decision of
 finally including or not the set of rules in the main security
 policy. The description of the used data and further explicit details
 about our proposed solution are given in what is next. % What is BYOD
                                 % specific in this approach? What are
                                 % you using from the BYOD context? - JJ
+                                % (Paloma) Explained in a table!
 
 \subsection{Available Data}
 \label{subsec:data}
@@ -531,7 +527,6 @@ mutation randomly changes the complete variable of a node or mutate
 the complete value. Each configuration is executed 30 times, with a
 population of 32 individuals and a 2-tournament selector for a pool of
 16 parents.
-
 
 Table \ref{tab:parameters} summarizes all the parameters used.
 
