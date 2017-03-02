@@ -1,4 +1,4 @@
-setwd('~/Github/2017-ESWA/Results')
+setwd('~/Github/2017-ESWA/GPrules/Results')
 
 require(ggplot2)
 require(dplyr)
