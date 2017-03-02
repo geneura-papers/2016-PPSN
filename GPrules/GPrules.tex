@@ -388,7 +388,7 @@ With respect to the balance between the classes, the dataset is
 unbalanced with the following ratio: 49289 instances are labelled as
 GRANTED and 4007 are labelled as STRONGDENY. 
 
-\subsection{Proposed Solution}
+\subsection{Proposed Solutions}
 \label{subsec:solution}
 
 As previously highlighted, in this work we propose a system which is
@@ -418,8 +418,10 @@ of expressions formed by two different types of nodes:
    \end{array}
    \right .
    \end{math}
-\item {\em Action}: it is a leaf of the   tree and therefore, a ``terminal'' state. Each decision is the result of applying the rule, so it is limited to two terms which are \texttt{GRANTED} or \texttt{STRONGDENY}.
+\item {\em Action}: it is a leaf of the tree and therefore, a ``terminal'' state. Each decision is the result of applying the rule, so it is limited to two terms which are \texttt{GRANTED} or \texttt{STRONGDENY}.
 \end{itemize}
+
+On the other hand, in the Michigan approach the individual is coded as a single rule. In this case we have expressed the rule as a list of conditions, with a fixed class, and therefore the algorithm has to be executed once for each class.
 
 At the same time, the variables can be differentiated into three types, described as follows \cite{witten2005data}:
 
