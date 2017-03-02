@@ -182,7 +182,7 @@ for the BYOD context is capable of performing an automatic discovery
 of classification rules, obtaining good fitness, and presenting the rules in a way that is helpful for a CSO. We demonstrate so by using the developed framework with a real-world dataset, and comparing two ways of coding the individuals -- as a set of rules, or as a single rule -- so that we finally propose the approach with best performance. %Pablo: complete this paragraph with ", to establish blabla"
 % (Paloma) Done!
 
-The rest of the paper is organised as follows. In Section \ref{sec:SotA} we give an overview of the advances in GP applied to rule evolution and its applications; then, Section \ref{sec:problem} depicts the problem this work tries to solve, describing the available dataset and the proposed GP framework. The experimental set-up, as well as the different set of experiments that have been carried out are described in Section \ref{sec:experiments}. Section \ref{sec:gp} shows the obtained results from the application of GP to security rules extraction and, finally, the conclusions of this work along with some suggestions about how to continue our research are given in Section \ref{sec:future}.  
+The rest of the paper is organised as follows. In Section \ref{sec:SotA} we give an overview of the advances in GP applied to rule evolution and its applications; then, Section \ref{sec:methodology} described the proposed methodology, depicting the problem this work tries to solve and describing the available dataset and the proposed GP framework. The experimental set-up, as well as the different set of experiments that have been carried out are also described in that section. Section \ref{sec:gp} shows the obtained results from the application of GP to security rules extraction and, finally, the conclusions of this work along with some suggestions about how to continue our research are given in Section \ref{sec:future}.  
 
 \section{Related Work}
 \label{sec:SotA}
@@ -287,8 +287,8 @@ company the data comes from by processing the data. If this principle
 cannot be guaranteed, the data should not be released
 \cite{boillat2014handbook}. 
 
-\section{Problem Description}
-\label{sec:problem}
+\section{Methodology}
+\label{sec:methodology}
 
 As previously highlighted, the main idea behind corporate security
 policies, which are defined by the CSO, is to build a basic, fixed,
@@ -512,18 +512,22 @@ f_{CS} = (T_{tr} - C_{ind}) + \alpha S_{ind}
 
 Therefore, in our experimental section we are going to compare both $f_{Acc}$ and $f_{CS}$, with different parameters of alpha, in order to check how they influence in the solution and then decide which measure offers the best performance.
 
-\section{Experiments Description}
+\subsection{Experimental Setup}
 \label{sec:experiments}
 
 % This is not a description of the experiment. The experiment
-% description is the set of steps needed to reproduce them - JJ
-Sub-tree crossover and 1-node mutation evolutionary operators have
+% description is the set of steps needed to reproduce them - JJ %PABLO: re-writing and organizing stuff
+Once the methods to compare have been explained, the rest of the experimental setup is described.
+
+The configurations that will be compared involve 2 different encoding of individuals (list vs. tree), 2 types of fitness ($f_{CS}$ and $f_{Acc}$), and different values for $\alpha$ in the case of $f_{Acc}$.
+
+With respect to the GP parameters, different decisions for experimental design have been taken into account. 
+First, sub-tree crossover and 1-node mutation evolutionary operators have
 been used, following our previous works that have used these operators
 obtaining good results \cite{EvoStar2014:GPBot}. In this case, the
 mutation randomly changes the complete variable of a node or mutate
-the complete value. Each configuration is executed 30 times, with a
-population of 32 individuals and a 2-tournament selector for a pool of
-16 parents.
+the complete value. A population of 32 individuals and a 2-tournament selector for a pool of
+16 parents have been used. These parameters have been also previously used in previous GP works \cite{EvoStar2014:GPBot}.
 
 Table \ref{tab:parameters} summarizes all the parameters used.
 
@@ -542,21 +546,29 @@ Replacement & Generational with elitism\\ \hline
 Stop criterion & 50 generations \\ \hline
 Maximum Tree Depth & 10 \\ \hline %PABLO: CONFIRM THIS!
 Runs per configuration & 30 \\ \hline
+\multicolumn{2}{|c|}{{\em Compared configurations}} \\ \hline
+Individual representation & List VS Tree \\ \hline
+Fitness & $f_{CS}$ VS $f_{Acc}$ \\ \hline
+$\alpha$ for $f_{CS}$ & 0, 0,5 and 1 \\ \hline
+
 \end{tabular}
 \caption{Parameters used in the experiments.}
 \label{tab:parameters}
 \end{center}
 \end{table}
 
-The used framework is OSGiLiath, a service-oriented evolutionary
-framework \cite{DBLP:journals/soco/Garcia-SanchezGCAG13}. The
-generated tree is converted to...
+During the fitness evaluation, the
+generated tree is converted into a string as input of the WEKA Java Library \cite{HallWEKA09}, to calculate the coverage and accuracy over the dataset, using 10-fold validation.
+
 %Please remenber to finish this - JJ
 % Still have to finish it - JJ
+% Pablo: done
 
-All the source code used in this
-work is available under a LGPL V3 License in
-\url{http://www.osgiliath.org}. 
+The specific source code of the proposed method is available under a LGPL V3 License 
+in \url{https://github.com/fergunet/GPRuleRefinement}, as a module for 
+the framework OSGiLiath \cite{DBLP:journals/soco/Garcia-SanchezGCAG13} 
+\footnote{The source code of OSGiLiath is available as well with the same license, in \url{http://www.osgiliath.org}.}.
+
 
 %\subsection{Results from Classifiers}
 %\label{subsec:classifiers}
