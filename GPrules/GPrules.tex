@@ -592,6 +592,8 @@ In this section we are going to study the two proposed approaches, each one pres
 
 \subsection{Pittsburgh approach}
 
+The best obtained fitness when coding the individuals as sets of rules are detailed in Table \ref{tab:pittsburgh}. Values are represented by their mean and standard deviation, given that the algorithm has been executed 10 times, the data folded in a different way each.
+
 \begin{table*}
 \begin{center}
 \begin{tabular}{cc|c|}
@@ -602,7 +604,7 @@ In this section we are going to study the two proposed approaches, each one pres
 \multicolumn{1}{|c|}{}                          & $\alpha$ = 0.5 & 7239.5 $\pm$ 41.825   \\ \cline{2-3} 
 \multicolumn{1}{|c|}{}                          & $\alpha$ = 1   & 7258 $\pm$ 204.872   \\ \hline
 \end{tabular}
-\caption{Results obtained when the individual is coded as a set of rules, following the Pittsburgh approach. Two different fitness have been used, and for $\alpha$ values of 0, 0.5, and 1.}
+\caption{Best fitness obtained when the individual is coded as a set of rules, following the Pittsburgh approach, and with 10-fold cross-validation. Two different fitness have been used, and for $\alpha$ values of 0, 0.5, and 1.}
 \label{tab:pittsburgh}
 \end{center}
 \end{table*}
@@ -623,7 +625,7 @@ In this section we are going to study the two proposed approaches, each one pres
 \multicolumn{1}{|c|}{}                          & \multirow{2}{*}{$\alpha$ = 1}   & GRANTED    & 27343 $\pm$ 436.553                        \\ \cline{3-4} 
 \multicolumn{1}{|c|}{}                          &                                 & STRONGDENY & \multicolumn{1}{l|}{47937 $\pm$ 664.005}   \\ \hline
 \end{tabular}
-\caption{Results obtained when the individual is coded as a single rule, following the Michigan approach, and represented by class. Two different fitness have been used, and for $\alpha$ values of 0, 0.5, and 1.}
+\caption{Best fitness obtained when the individual is coded as a single rule, following the Michigan approach, and represented by class. Data was divided in 10-folds to perform cross-validation. Two different fitness have been used, and for $\alpha$ values of 0, 0.5, and 1.}
 \label{tab:michigan}
 \end{center}
 \end{table*}

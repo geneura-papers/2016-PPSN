@@ -20,21 +20,7 @@ get_legend<-function(myggplot){
   return(legend)
 }
 
-get_mean <- function(myresults) {
-  theMean <- mean(tail(myresults$BEST_F[myresults$FOLD == "fold0"], n=1),
-                  tail(myresults$BEST_F[myresults$FOLD == "fold1"], n=1),
-                  tail(myresults$BEST_F[myresults$FOLD == "fold2"], n=1),
-                  tail(myresults$BEST_F[myresults$FOLD == "fold3"], n=1),
-                  tail(myresults$BEST_F[myresults$FOLD == "fold4"], n=1),
-                  tail(myresults$BEST_F[myresults$FOLD == "fold5"], n=1),
-                  tail(myresults$BEST_F[myresults$FOLD == "fold6"], n=1),
-                  tail(myresults$BEST_F[myresults$FOLD == "fold7"], n=1),
-                  tail(myresults$BEST_F[myresults$FOLD == "fold8"], n=1),
-                  tail(myresults$BEST_F[myresults$FOLD == "fold9"], n=1))
-  return(theMean)
-}
-
-get_stdev <- function(myresults) {
+get_data_vector <- function(myresults) {
   x <- c(tail(myresults$BEST_F[myresults$FOLD == "fold0"], n=1),
          tail(myresults$BEST_F[myresults$FOLD == "fold1"], n=1),
          tail(myresults$BEST_F[myresults$FOLD == "fold2"], n=1),
@@ -45,7 +31,14 @@ get_stdev <- function(myresults) {
          tail(myresults$BEST_F[myresults$FOLD == "fold7"], n=1),
          tail(myresults$BEST_F[myresults$FOLD == "fold8"], n=1),
          tail(myresults$BEST_F[myresults$FOLD == "fold9"], n=1))
-  return(sd(x))
+  return(x)
+}
+
+get_stats <- function(myVector) {
+  theMedian <- median(myVector)
+  theMin <- min(myVector)
+  theMax <- max(myVector)
+  cat(sprintf("Min: %f, Median: %f, Max: %f", theMin, theMax, theMedian))
 }
 
 treeIndAlpha0Data <- read_data("./tree_ind_alpha_0")
@@ -62,19 +55,19 @@ listIndAlpha0DenyData <- read_data("./list_ind_alpha_1/150gen STRONGDENY")
 listIndAlpha1AllowData <- read_data("./list_ind_alpha_0/150gen GRANTED")
 listIndAlpha1DenyData <- read_data("./list_ind_alpha_0/150gen STRONGDENY")
 
-cat(sprintf("%f, %f", get_mean(treeIndCovData), get_stdev(treeIndCovData)))
-cat(sprintf("%f, %f", get_mean(treeIndAlpha0Data), get_stdev(treeIndAlpha0Data)))
-cat(sprintf("%f, %f", get_mean(treeIndAlpha05Data), get_stdev(treeIndAlpha05Data)))
-cat(sprintf("%f, %f", get_mean(treeIndAlpha1Data), get_stdev(treeIndAlpha1Data)))
+get_stats(get_data_vector(treeIndCovData))
+get_stats(get_data_vector(treeIndAlpha0Data))
+get_stats(get_data_vector(treeIndAlpha05Data))
+get_stats(get_data_vector(treeIndAlpha1Data))
 
-cat(sprintf("%f, %f", get_mean(listIndCovAllowData), get_stdev(listIndCovAllowData)))
-cat(sprintf("%f, %f", get_mean(listIndCovDenyData), get_stdev(listIndCovDenyData)))
-cat(sprintf("%f, %f", get_mean(listIndAlpha0AllowData), get_stdev(listIndAlpha0AllowData)))
-cat(sprintf("%f, %f", get_mean(listIndAlpha0DenyData), get_stdev(listIndAlpha0DenyData)))
-cat(sprintf("%f, %f", get_mean(listIndAlpha05AllowData), get_stdev(listIndAlpha05AllowData)))
-cat(sprintf("%f, %f", get_mean(listIndAlpha05DenyData), get_stdev(listIndAlpha05DenyData)))
-cat(sprintf("%f, %f", get_mean(listIndAlpha1AllowData), get_stdev(listIndAlpha1AllowData)))
-cat(sprintf("%f, %f", get_mean(listIndAlpha1DenyData), get_stdev(listIndAlpha1DenyData)))
+get_stats(get_data_vector(listIndCovAllowData))
+get_stats(get_data_vector(listIndCovDenyData))
+get_stats(get_data_vector(listIndAlpha0AllowData))
+get_stats(get_data_vector(listIndAlpha0DenyData))
+get_stats(get_data_vector(listIndAlpha05AllowData))
+get_stats(get_data_vector(listIndAlpha05DenyData))
+get_stats(get_data_vector(listIndAlpha1AllowData))
+get_stats(get_data_vector(listIndAlpha1DenyData))
 
 # ---------
 # Graphs
@@ -151,3 +144,10 @@ FlistdenyAlpha1 <- ggplot(listIndAlpha1DenyData, aes(x = listIndAlpha1DenyData$I
 
 grid.arrange(FlistallowAlpha0, FlistdenyAlpha0, FlistallowAlpha05, FlistdenyAlpha05, FlistallowAlpha1, FlistdenyAlpha1, ncol = 2, nrow = 3)
 grid.arrange(FlistallowAlpha0, FlistdenyAlpha0, FlistallowAlpha05, FlistdenyAlpha05, FlistallowAlpha1, FlistdenyAlpha1, theLegend, ncol = 3, nrow = 3, layout_matrix = rbind(c(1, 2, 7), c(3, 4, 7), c(5, 6, 7)))
+
+# ---------
+# Boxplots
+# ---------
+
+aBoxplot <- ggplot(treeIndCovData, aes(treeIndCovData$FOLD, treeIndCovData$TIME)) + stat_boxplot() + geom_errorbar(aes())
+print(aBoxplot)
