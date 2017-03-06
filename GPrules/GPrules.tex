@@ -594,36 +594,36 @@ In this section we are going to study the two proposed approaches, each one pres
 
 The best obtained fitness when coding the individuals as sets of rules are detailed in Table \ref{tab:pittsburgh}. Values are represented by their mean and standard deviation, given that the algorithm has been executed 10 times, the data folded in a different way each.
 
-\begin{table*}
+\begin{table}
 \begin{center}
-\begin{tabular}{cc|c|}
-\cline{3-3}
-                                                &                & Mean                    \\ \hline
-\multicolumn{2}{|c|}{$F_{Acc}$}                                  & 0.925 $\pm$ $<$0.001 \\ \hline
-\multicolumn{1}{|c|}{\multirow{3}{*}{$F_{CS}$}} & $\alpha$ = 0   & 7170 $\pm$ 320.260  \\ \cline{2-3} 
-\multicolumn{1}{|c|}{}                          & $\alpha$ = 0.5 & 7239.5 $\pm$ 41.825   \\ \cline{2-3} 
-\multicolumn{1}{|c|}{}                          & $\alpha$ = 1   & 7258 $\pm$ 204.872   \\ \hline
+\begin{tabular}{cc|l|l|l|}
+\cline{3-5}
+                                                &                & Best       & Median & Worst       \\ \hline
+\multicolumn{2}{|c|}{$F_{Acc}$}                                  & 0.924      & 0.925  & 0.926       \\ \hline
+\multicolumn{1}{|c|}{\multirow{3}{*}{$F_{CS}$}} & $\alpha$ = 0   & 6198       & 7193   & 7253        \\ \cline{2-5} 
+\multicolumn{1}{|c|}{}                          & $\alpha$ = 0.5 & 7149       & 7250   & 7274        \\ \cline{2-5} 
+\multicolumn{1}{|c|}{}                          & $\alpha$ = 1   & 6620       & 7253.5 & 7298        \\ \hline
 \end{tabular}
 \caption{Best fitness obtained when the individual is coded as a set of rules, following the Pittsburgh approach, and with 10-fold cross-validation. Two different fitness have been used, and for $\alpha$ values of 0, 0.5, and 1.}
 \label{tab:pittsburgh}
 \end{center}
-\end{table*}
+\end{table}
 
 \subsection{Michigan approach}
 
 \begin{table*}
 \begin{center}
-\begin{tabular}{cc|l|c|}
-\cline{3-4}
-                                                &                                 & Class      & Mean                                          \\ \hline
-\multicolumn{2}{|c|}{\multirow{2}{*}{$F_{Acc}$}}                                  & GRANTED    & 0.469 $\pm$ 0.130                       \\ \cline{3-4} 
-\multicolumn{2}{|c|}{}                                                            & STRONGDENY & \multicolumn{1}{l|}{0.049 $\pm$ 0.131} \\ \hline
-\multicolumn{1}{|c|}{\multirow{6}{*}{$F_{CS}$}} & \multirow{2}{*}{$\alpha$ = 0}   & GRANTED    & 26279 $\pm$ 646.948                        \\ \cline{3-4} 
-\multicolumn{1}{|c|}{}                          &                                 & STRONGDENY & \multicolumn{1}{l|}{46848 $\pm$ 647.290}   \\ \cline{2-4} 
-\multicolumn{1}{|c|}{}                          & \multirow{2}{*}{$\alpha$ = 0.5} & GRANTED    & 26085 $\pm$ 502.579                        \\ \cline{3-4} 
-\multicolumn{1}{|c|}{}                          &                                 & STRONGDENY & \multicolumn{1}{l|}{46431 $\pm$ 588.485}   \\ \cline{2-4} 
-\multicolumn{1}{|c|}{}                          & \multirow{2}{*}{$\alpha$ = 1}   & GRANTED    & 27343 $\pm$ 436.553                        \\ \cline{3-4} 
-\multicolumn{1}{|c|}{}                          &                                 & STRONGDENY & \multicolumn{1}{l|}{47937 $\pm$ 664.005}   \\ \hline
+\begin{tabular}{cc|l|l|l|l|}
+\cline{3-6}
+                                                &                                 & Class      & Best       & Median   & Worst       \\ \hline
+\multicolumn{2}{|c|}{\multirow{2}{*}{$F_{Acc}$}}                                  & GRANTED    & 0.055      & 0.466    & 0.471       \\ \cline{3-6} 
+\multicolumn{2}{|c|}{}                                                            & STRONGDENY & 0.043      & 0.048    & 0.463       \\ \hline
+\multicolumn{1}{|c|}{\multirow{6}{*}{$F_{CS}$}} & \multirow{2}{*}{$\alpha$ = 0}   & GRANTED    & 26085      & 26585    & 27333       \\ \cline{3-6} 
+\multicolumn{1}{|c|}{}                          &                                 & STRONGDENY & 46210      & 46811    & 47926       \\ \cline{2-6} 
+\multicolumn{1}{|c|}{}                          & \multirow{2}{*}{$\alpha$ = 0.5} & GRANTED    & 26222      & 26757.5  & 27343       \\ \cline{3-6} 
+\multicolumn{1}{|c|}{}                          &                                 & STRONGDENY & 46186      & 46624.5  & 47937       \\ \cline{2-6} 
+\multicolumn{1}{|c|}{}                          & \multirow{2}{*}{$\alpha$ = 1}   & GRANTED    & 25559      & 26274    & 27336       \\ \cline{3-6} 
+\multicolumn{1}{|c|}{}                          &                                 & STRONGDENY & 46212      & 47120.5  & 47925       \\ \hline
 \end{tabular}
 \caption{Best fitness obtained when the individual is coded as a single rule, following the Michigan approach, and represented by class. Data was divided in 10-folds to perform cross-validation. Two different fitness have been used, and for $\alpha$ values of 0, 0.5, and 1.}
 \label{tab:michigan}

@@ -38,7 +38,7 @@ get_stats <- function(myVector) {
   theMedian <- median(myVector)
   theMin <- min(myVector)
   theMax <- max(myVector)
-  cat(sprintf("Min: %f, Median: %f, Max: %f", theMin, theMax, theMedian))
+  cat(sprintf("Min: %f, Max: %f, Median: %f", theMin, theMax, theMedian))
 }
 
 treeIndAlpha0Data <- read_data("./tree_ind_alpha_0")
