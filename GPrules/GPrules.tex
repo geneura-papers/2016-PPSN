@@ -579,7 +579,43 @@ work is available under a LGPL V3 License in
 In this section we are going to study the two proposed approaches, each one presenting
 
 \subsection{Pittsburgh approach}
+
+\begin{table*}
+\begin{center}
+\begin{tabular}{cc|c|}
+\cline{3-3}
+                                                &                & Mean                    \\ \hline
+\multicolumn{2}{|c|}{$F_{Acc}$}                                  & 0.925 $\pm$ $<$0.001 \\ \hline
+\multicolumn{1}{|c|}{\multirow{3}{*}{$F_{CS}$}} & $\alpha$ = 0   & 7170 $\pm$ 320.260  \\ \cline{2-3} 
+\multicolumn{1}{|c|}{}                          & $\alpha$ = 0.5 & 7239.5 $\pm$ 41.825   \\ \cline{2-3} 
+\multicolumn{1}{|c|}{}                          & $\alpha$ = 1   & 7258 $\pm$ 204.872   \\ \hline
+\end{tabular}
+\caption{A list of the variables that have been used to generate the rules. Those variables that are BYOD specific are also specified.}
+\label{tab:pittsburgh}
+\end{center}
+\end{table*}
+
 \subsection{Michigan approach}
+
+\begin{table*}
+\begin{center}
+\begin{tabular}{cc|l|c|}
+\cline{3-4}
+                                                &                                 & Class      & Mean                                          \\ \hline
+\multicolumn{2}{|c|}{\multirow{2}{*}{$F_{Acc}$}}                                  & GRANTED    & 0.469 $\pm$ 0.130                       \\ \cline{3-4} 
+\multicolumn{2}{|c|}{}                                                            & STRONGDENY & \multicolumn{1}{l|}{0.049 $\pm$ 0.131} \\ \hline
+\multicolumn{1}{|c|}{\multirow{6}{*}{$F_{CS}$}} & \multirow{2}{*}{$\alpha$ = 0}   & GRANTED    & 26279 $\pm$ 646.948                        \\ \cline{3-4} 
+\multicolumn{1}{|c|}{}                          &                                 & STRONGDENY & \multicolumn{1}{l|}{46848 $\pm$ 647.290}   \\ \cline{2-4} 
+\multicolumn{1}{|c|}{}                          & \multirow{2}{*}{$\alpha$ = 0.5} & GRANTED    & 26085 $\pm$ 502.579                        \\ \cline{3-4} 
+\multicolumn{1}{|c|}{}                          &                                 & STRONGDENY & \multicolumn{1}{l|}{46431 $\pm$ 588.485}   \\ \cline{2-4} 
+\multicolumn{1}{|c|}{}                          & \multirow{2}{*}{$\alpha$ = 1}   & GRANTED    & 27343 $\pm$ 436.553                        \\ \cline{3-4} 
+\multicolumn{1}{|c|}{}                          &                                 & STRONGDENY & \multicolumn{1}{l|}{47937 $\pm$ 664.005}   \\ \hline
+\end{tabular}
+\caption{A list of the variables that have been used to generate the rules. Those variables that are BYOD specific are also specified.}
+\label{tab:michigan}
+\end{center}
+\end{table*}
+
 \subsection{Proposed system configuration}
 
 % Fitness charts are not results. Plus representing 10 different

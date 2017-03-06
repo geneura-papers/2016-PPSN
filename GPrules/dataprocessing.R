@@ -20,19 +20,65 @@ get_legend<-function(myggplot){
   return(legend)
 }
 
-treeIndAlpha05Data <- read_data("./tree_ind_alpha_0")
-treeIndAlpha0Data <- read_data("./tree_ind_alpha_0.5")
+get_mean <- function(myresults) {
+  theMean <- mean(tail(myresults$BEST_F[myresults$FOLD == "fold0"], n=1),
+                  tail(myresults$BEST_F[myresults$FOLD == "fold1"], n=1),
+                  tail(myresults$BEST_F[myresults$FOLD == "fold2"], n=1),
+                  tail(myresults$BEST_F[myresults$FOLD == "fold3"], n=1),
+                  tail(myresults$BEST_F[myresults$FOLD == "fold4"], n=1),
+                  tail(myresults$BEST_F[myresults$FOLD == "fold5"], n=1),
+                  tail(myresults$BEST_F[myresults$FOLD == "fold6"], n=1),
+                  tail(myresults$BEST_F[myresults$FOLD == "fold7"], n=1),
+                  tail(myresults$BEST_F[myresults$FOLD == "fold8"], n=1),
+                  tail(myresults$BEST_F[myresults$FOLD == "fold9"], n=1))
+  return(theMean)
+}
+
+get_stdev <- function(myresults) {
+  x <- c(tail(myresults$BEST_F[myresults$FOLD == "fold0"], n=1),
+         tail(myresults$BEST_F[myresults$FOLD == "fold1"], n=1),
+         tail(myresults$BEST_F[myresults$FOLD == "fold2"], n=1),
+         tail(myresults$BEST_F[myresults$FOLD == "fold3"], n=1),
+         tail(myresults$BEST_F[myresults$FOLD == "fold4"], n=1),
+         tail(myresults$BEST_F[myresults$FOLD == "fold5"], n=1),
+         tail(myresults$BEST_F[myresults$FOLD == "fold6"], n=1),
+         tail(myresults$BEST_F[myresults$FOLD == "fold7"], n=1),
+         tail(myresults$BEST_F[myresults$FOLD == "fold8"], n=1),
+         tail(myresults$BEST_F[myresults$FOLD == "fold9"], n=1))
+  return(sd(x))
+}
+
+treeIndAlpha0Data <- read_data("./tree_ind_alpha_0")
+treeIndAlpha05Data <- read_data("./tree_ind_alpha_0.5")
 treeIndAlpha1Data <- read_data("./tree_ind_alpha_1")
 treeIndCovData <- read_data("./tree_ind_coverage")
 
-listIndCovAllowData <- read_data("./list_ind_alpha_0/150gen GRANTED")
-listIndCovDenyData <- read_data("./list_ind_alpha_0/150gen STRONGDENY")
+listIndCovAllowData <- read_data("./list_ind_coverage/150gen GRANTED")
+listIndCovDenyData <- read_data("./list_ind_coverage/150gen STRONGDENY")
 listIndAlpha05AllowData <- read_data("./list_ind_alpha_0.5/150gen GRANTED")
 listIndAlpha05DenyData <- read_data("./list_ind_alpha_0.5/150gen STRONGDENY")
 listIndAlpha0AllowData <- read_data("./list_ind_alpha_1/150gen GRANTED")
 listIndAlpha0DenyData <- read_data("./list_ind_alpha_1/150gen STRONGDENY")
-listIndAlpha1AllowData <- read_data("./list_ind_coverage/150gen GRANTED")
-listIndAlpha1DenyData <- read_data("./list_ind_coverage/150gen STRONGDENY")
+listIndAlpha1AllowData <- read_data("./list_ind_alpha_0/150gen GRANTED")
+listIndAlpha1DenyData <- read_data("./list_ind_alpha_0/150gen STRONGDENY")
+
+cat(sprintf("%f, %f", get_mean(treeIndCovData), get_stdev(treeIndCovData)))
+cat(sprintf("%f, %f", get_mean(treeIndAlpha0Data), get_stdev(treeIndAlpha0Data)))
+cat(sprintf("%f, %f", get_mean(treeIndAlpha05Data), get_stdev(treeIndAlpha05Data)))
+cat(sprintf("%f, %f", get_mean(treeIndAlpha1Data), get_stdev(treeIndAlpha1Data)))
+
+cat(sprintf("%f, %f", get_mean(listIndCovAllowData), get_stdev(listIndCovAllowData)))
+cat(sprintf("%f, %f", get_mean(listIndCovDenyData), get_stdev(listIndCovDenyData)))
+cat(sprintf("%f, %f", get_mean(listIndAlpha0AllowData), get_stdev(listIndAlpha0AllowData)))
+cat(sprintf("%f, %f", get_mean(listIndAlpha0DenyData), get_stdev(listIndAlpha0DenyData)))
+cat(sprintf("%f, %f", get_mean(listIndAlpha05AllowData), get_stdev(listIndAlpha05AllowData)))
+cat(sprintf("%f, %f", get_mean(listIndAlpha05DenyData), get_stdev(listIndAlpha05DenyData)))
+cat(sprintf("%f, %f", get_mean(listIndAlpha1AllowData), get_stdev(listIndAlpha1AllowData)))
+cat(sprintf("%f, %f", get_mean(listIndAlpha1DenyData), get_stdev(listIndAlpha1DenyData)))
+
+# ---------
+# Graphs
+# ---------
 
 Ftreea0 <- ggplot(treeIndAlpha0Data, aes(x = treeIndAlpha0Data$IT, y =BEST_F/47966)) +
   geom_line(aes(colour = factor(FOLD))) +
