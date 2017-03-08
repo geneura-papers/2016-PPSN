@@ -557,12 +557,8 @@ $\alpha$ for $f_{CS}$ & 0, 0,5 and 1 \\ \hline
 \end{center}
 \end{table}
 
-During the fitness evaluation, the
-generated tree is converted into a string as input of the WEKA Java Library \cite{HallWEKA09}, to calculate the coverage and accuracy over the dataset, using 10-fold validation.
-
-%Please remenber to finish this - JJ
-% Still have to finish it - JJ
-% Pablo: done
+During the fitness evaluation, the generated individual is converted into a string, which can become a single rule or set of rules depending on the approach. Then, the chosen fitness is evaluated for a particular rule - the single rule or each one inside the set - and over the 90\% of the data.
+In order to perform 10-fold cross-validation \cite{kohavi1995study}, the WEKA Java Library \cite{HallWEKA09} has been used to generate the 10 folds or distributions of data into 90\% training (fitness evaluation) and 10\% validation.
 
 The specific source code of the proposed method is available under a LGPL V3 License 
 in \url{https://github.com/fergunet/GPRuleRefinement}, as a module for 

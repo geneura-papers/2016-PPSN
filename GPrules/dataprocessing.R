@@ -105,6 +105,9 @@ bestFListFCS <- rbind(create_dataframe(listIndAlpha0AllowData, listIndAlpha0Allo
                       create_dataframe(listIndAlpha0DenyData, listIndAlpha0DenyData$CONF[1]),
                       create_dataframe(listIndAlpha05DenyData, listIndAlpha05DenyData$CONF[1]),
                       create_dataframe(listIndAlpha1DenyData, listIndAlpha1DenyData$CONF[1]))
+latexTable <- rbind(bestFTreeCov, bestFTreeFCS, bestFListCov, bestFListFCS)
+print(xtable(latexTable), type = "html")
+
 
 # --------
 # Stats
@@ -222,19 +225,23 @@ grid.arrange(treeBoxplotWF, listBoxplotWF, ncol = 2)
 BtreeCov <- ggplot(bestFTreeCov, aes(bestFTreeCov$CONF, bestFTreeCov$BEST_F*100)) +
   geom_boxplot(outlier.shape = NA) +
   xlab("Experiment configuration") +
-  ylab("% correctly classified instances (FAcc*100)")
+  ylab("% correctly classified instances (FAcc*100)") +
+  ylim(0, 95)
 BtreeFCS <- ggplot(bestFTreeFCS, aes(bestFTreeFCS$CONF, bestFTreeFCS$BEST_F)) +
   geom_boxplot(outlier.shape = NA) +
   xlab("Experiment configuration") +
-  ylab("Best Fitness, FCS")
+  ylab("Best Fitness, FCS") +
+  ylim(6000, 48000)
 BlistCov <- ggplot(bestFListCov, aes(bestFListCov$CONF, bestFListCov$BEST_F*100)) +
   geom_boxplot(outlier.shape = NA) +
   xlab("Experiment configuration") +
-  ylab("% correctly classified instances (FAcc*100)")
+  ylab("% correctly classified instances (FAcc*100)") +
+  ylim(0, 95)
 BlistFCS <- ggplot(bestFListFCS, aes(bestFListFCS$CONF, bestFListFCS$BEST_F)) +
   geom_boxplot(outlier.shape = NA) +
   xlab("Experiment configuration") +
-  ylab("Best Fitness, FCS")
+  ylab("Best Fitness, FCS") +
+  ylim(6000, 48000)
 
 grid.arrange(BtreeCov, BlistCov, ncol = 2)
 grid.arrange(BtreeFCS, BlistFCS, ncol = 2)
