@@ -64,30 +64,30 @@ create_dataframe <- function(myresults, experimentName) {
 }
 
 treeIndAlpha0Data <- read_data("./tree_ind_alpha_0")
-treeIndAlpha0Data$CONF <- "Pittsburgh_FCS_α0"
+treeIndAlpha0Data$CONF <- "Pitt_FCS_α0"
 treeIndAlpha05Data <- read_data("./tree_ind_alpha_0.5")
-treeIndAlpha05Data$CONF <- "Pittsburgh_FCS_α0.5"
+treeIndAlpha05Data$CONF <- "Pit_FCS_α0.5"
 treeIndAlpha1Data <- read_data("./tree_ind_alpha_1")
-treeIndAlpha1Data$CONF <- "Pittsburgh_FCS_α1"
+treeIndAlpha1Data$CONF <- "Pitt_FCS_α1"
 treeIndCovData <- read_data("./tree_ind_coverage")
-treeIndCovData$CONF <- "Pittsburgh_FAcc"
+treeIndCovData$CONF <- "Pitt_FAcc"
 
 listIndCovAllowData <- read_data("./list_ind_coverage/150gen GRANTED")
-listIndCovAllowData$CONF <- "Michigan_FAcc_Allow"
+listIndCovAllowData$CONF <- "Mich_FAcc_Allow"
 listIndCovDenyData <- read_data("./list_ind_coverage/150gen STRONGDENY")
-listIndCovDenyData$CONF <- "Michigan_FAcc_Deny"
+listIndCovDenyData$CONF <- "Mich_FAcc_Deny"
 listIndAlpha0AllowData <- read_data("./list_ind_alpha_0/150gen GRANTED")
-listIndAlpha0AllowData$CONF <- "Pittsburgh_FCS_α0_Allow"
+listIndAlpha0AllowData$CONF <- "Mich_FCS_α0_Allow"
 listIndAlpha0DenyData <- read_data("./list_ind_alpha_0/150gen STRONGDENY")
-listIndAlpha0DenyData$CONF <- "Pittsburgh_FCS_α0_Deny"
+listIndAlpha0DenyData$CONF <- "Mich_FCS_α0_Deny"
 listIndAlpha05AllowData <- read_data("./list_ind_alpha_0.5/150gen GRANTED")
-listIndAlpha05AllowData$CONF <- "Pittsburgh_FCS_α0.5_Allow"
+listIndAlpha05AllowData$CONF <- "Mich_FCS_α0.5_Allow"
 listIndAlpha05DenyData <- read_data("./list_ind_alpha_0.5/150gen STRONGDENY")
-listIndAlpha05DenyData$CONF <- "Pittsburgh_FCS_α0.5_Deny"
+listIndAlpha05DenyData$CONF <- "Mich_FCS_α0.5_Deny"
 listIndAlpha1AllowData <- read_data("./list_ind_alpha_1/150gen GRANTED")
-listIndAlpha1AllowData$CONF <- "Pittsburgh_FCS_α1_Allow"
+listIndAlpha1AllowData$CONF <- "Mich_FCS_α1_Allow"
 listIndAlpha1DenyData <- read_data("./list_ind_alpha_1/150gen STRONGDENY")
-listIndAlpha1DenyData$CONF <- "Pittsburgh_FCS_α1_Deny"
+listIndAlpha1DenyData$CONF <- "Mich_FCS_α1_Deny"
 
 treeIndALL <- rbind(treeIndCovData, treeIndAlpha0Data, treeIndAlpha05Data, treeIndAlpha1Data)
 listIndALL <- rbind(listIndCovAllowData, listIndCovDenyData, listIndAlpha0AllowData, listIndAlpha0DenyData,
@@ -100,10 +100,10 @@ bestFTreeFCS <- rbind(create_dataframe(treeIndAlpha0Data, treeIndAlpha0Data$CONF
 bestFListCov <- rbind(create_dataframe(listIndCovAllowData, listIndCovAllowData$CONF[1]),
                       create_dataframe(listIndCovDenyData, listIndCovDenyData$CONF[1]))
 bestFListFCS <- rbind(create_dataframe(listIndAlpha0AllowData, listIndAlpha0AllowData$CONF[1]),
-                      create_dataframe(listIndAlpha0DenyData, listIndAlpha0DenyData$CONF[1]),
                       create_dataframe(listIndAlpha05AllowData, listIndAlpha05AllowData$CONF[1]),
-                      create_dataframe(listIndAlpha05DenyData, listIndAlpha05DenyData$CONF[1]),
                       create_dataframe(listIndAlpha1AllowData, listIndAlpha1AllowData$CONF[1]),
+                      create_dataframe(listIndAlpha0DenyData, listIndAlpha0DenyData$CONF[1]),
+                      create_dataframe(listIndAlpha05DenyData, listIndAlpha05DenyData$CONF[1]),
                       create_dataframe(listIndAlpha1DenyData, listIndAlpha1DenyData$CONF[1]))
 
 # --------
@@ -219,14 +219,27 @@ listBoxplotWF <- ggplot(listIndALL[listIndALL$CONF != "Michigan_FAcc_Allow" || l
   scale_y_log10()
 grid.arrange(treeBoxplotWF, listBoxplotWF, ncol = 2)
 
-BtreeCov <- ggplot(bestFTreeCov, aes(bestFTreeCov$CONF, bestFTreeCov$BEST_F)) +
-  geom_boxplot(outlier.shape = NA)
+BtreeCov <- ggplot(bestFTreeCov, aes(bestFTreeCov$CONF, bestFTreeCov$BEST_F*100)) +
+  geom_boxplot(outlier.shape = NA) +
+  xlab("Experiment configuration") +
+  ylab("% correctly classified instances (FAcc*100)")
 BtreeFCS <- ggplot(bestFTreeFCS, aes(bestFTreeFCS$CONF, bestFTreeFCS$BEST_F)) +
-  geom_boxplot(outlier.shape = NA)
-BlistCov <- ggplot(bestFListCov, aes(bestFListCov$CONF, bestFListCov$BEST_F)) +
-  geom_boxplot(outlier.shape = NA)
+  geom_boxplot(outlier.shape = NA) +
+  xlab("Experiment configuration") +
+  ylab("Best Fitness, FCS")
+BlistCov <- ggplot(bestFListCov, aes(bestFListCov$CONF, bestFListCov$BEST_F*100)) +
+  geom_boxplot(outlier.shape = NA) +
+  xlab("Experiment configuration") +
+  ylab("% correctly classified instances (FAcc*100)")
 BlistFCS <- ggplot(bestFListFCS, aes(bestFListFCS$CONF, bestFListFCS$BEST_F)) +
-  geom_boxplot(outlier.shape = NA)
+  geom_boxplot(outlier.shape = NA) +
+  xlab("Experiment configuration") +
+  ylab("Best Fitness, FCS")
 
 grid.arrange(BtreeCov, BlistCov, ncol = 2)
 grid.arrange(BtreeFCS, BlistFCS, ncol = 2)
+
+ggsave("../img/bestFTreeCov.pdf", plot = BtreeCov, units = "mm", width = 80, height = 100, scale = 1.5)
+ggsave("../img/bestFTreeFCS.pdf", plot = BtreeFCS, units = "mm", width = 70, height = 80, scale = 1.5)
+ggsave("../img/bestFListCov.pdf", plot = BlistCov, units = "mm", width = 80, height = 100, scale = 1.5)
+ggsave("../img/bestFListFCS.pdf", plot = BlistFCS, units = "mm", width = 120, height = 120, scale = 2)
