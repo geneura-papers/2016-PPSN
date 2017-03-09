@@ -38,7 +38,10 @@ get_stats <- function(myVector) {
   theMedian <- median(myVector)
   theMin <- min(myVector)
   theMax <- max(myVector)
-  cat(sprintf("Min: %f, Max: %f, Median: %f", theMin, theMax, theMedian))
+  theMean <- mean(myVector)
+  theSTD <- sd(myVector)
+  cat(sprintf("Min: %f, Max: %f, Median: %f, Mean: %f, STDev: %f",
+              theMin, theMax, theMedian, theMean, theSTD))
 }
 
 add_worst_as_column <- function(myresults, fitness) {

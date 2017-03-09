@@ -591,20 +591,20 @@ In this section we are going to study the two proposed approaches, each one pres
 
 The best obtained fitness when coding the individuals as sets of rules are detailed in Table \ref{tab:pittsburgh}. Because the algorithm has been executed 10 times, the data folded in a different way each, we obtained 10 best fitness, from which we present the worst case, the best case, and the median. It is important to point out that in the case of $F_{Acc}$ the best value is the maximum, whilst for $F_{CS}$, the best possible value is the minimum.
 
-\begin{table}
+\begin{table*}
 \begin{center}
-\begin{tabular}{cc|l|l|l|}
-\cline{3-5}
-                                                &                & Average & Best       & Median & Worst       \\ \hline
-\multicolumn{2}{|c|}{$F_{Acc}$}                                  & 0.923   & 0.926      & 0.925  & 0.924       \\ \hline
-\multicolumn{1}{|c|}{\multirow{3}{*}{$F_{CS}$}} & $\alpha$ = 0   & 7102.2 * & 6198        & 7193   & 7253        \\ \cline{2-5} 
-\multicolumn{1}{|c|}{}                          & $\alpha$ = 0.5 & 7235.95 & 7149       & 7250   & 7274        \\ \cline{2-5} 
-\multicolumn{1}{|c|}{}                          & $\alpha$ = 1   & 7192.8  & 6620       & 7253.5 & 7298        \\ \hline
+\begin{tabular}{cc|l|l|l|l|l|}
+\cline{3-7}
+                                                &                & Average & SD & Best       & Median & Worst       \\ \hline
+\multicolumn{2}{|c|}{$F_{Acc}$}                                  & 0.925   & $<$0.001 & 0.926      & 0.925  & 0.924       \\ \hline
+\multicolumn{1}{|c|}{\multirow{3}{*}{$F_{CS}$}} & $\alpha$ = 0   & 7102.2 * & 320.260 & 6198        & 7193   & 7253        \\ \cline{2-7} 
+\multicolumn{1}{|c|}{}                          & $\alpha$ = 0.5 & 7235.95 & 41.825 & 7149       & 7250   & 7274        \\ \cline{2-7} 
+\multicolumn{1}{|c|}{}                          & $\alpha$ = 1   & 7192.8  & 204.872 & 6620       & 7253.5 & 7298        \\ \hline
 \end{tabular}
 \caption{Best fitness obtained when the individual is coded as a set of rules, following the Pittsburgh approach, and with 10-fold cross-validation. Two different fitness have been used, and for $\alpha$ values of 0, 0.5, and 1. Note that in the case of $F_{Acc}$ the best value is the maximum, whilst for $F_{CS}$, the best possible value is the minimum. An * indicates the  statistically significant best value for $\alpha$.}
 \label{tab:pittsburgh}
 \end{center}
-\end{table}
+\end{table*}
 
 
 In the case of $F_{Acc}$ for the Pittsburgh approach, as the distribution are not normal, a non-parametric test (Friedman) has been used to asset the statistical significance \cite{DerracTests11}, obtaining a p-value of 0.0001. $\alpha$ = 0 is significantly different with $\alpha$ = 0.5 and $\alpha$ = 1, while there are not difference between the two former (p-value = 0.08).
@@ -613,17 +613,17 @@ In the case of $F_{Acc}$ for the Pittsburgh approach, as the distribution are no
 
 \begin{table*}
 \begin{center}
-\begin{tabular}{cc|l|l|l|l|}
-\cline{3-6}
-                                                &                                 & Class      & Best       & Median   & Worst       \\ \hline
-\multicolumn{2}{|c|}{\multirow{2}{*}{$F_{Acc}$}}                                  & GRANTED    & 0.471      & 0.466    & 0.055       \\ \cline{3-6} 
-\multicolumn{2}{|c|}{}                                                            & STRONGDENY & 0.463      & 0.048    & 0.043       \\ \hline
-\multicolumn{1}{|c|}{\multirow{6}{*}{$F_{CS}$}} & \multirow{2}{*}{$\alpha$ = 0}   & GRANTED    & 25559      & 26274    & 27336       \\ \cline{3-6} 
-\multicolumn{1}{|c|}{}                          &                                 & STRONGDENY & 46212      & 47120.5  & 47925       \\ \cline{2-6} 
-\multicolumn{1}{|c|}{}                          & \multirow{2}{*}{$\alpha$ = 0.5} & GRANTED    & 26222      & 26757.5  & 27343       \\ \cline{3-6} 
-\multicolumn{1}{|c|}{}                          &                                 & STRONGDENY & 46186      & 46624.5  & 47937       \\ \cline{2-6} 
-\multicolumn{1}{|c|}{}                          & \multirow{2}{*}{$\alpha$ = 1}   & GRANTED    & 26085      & 26585    & 27333       \\ \cline{3-6} 
-\multicolumn{1}{|c|}{}                          &                                 & STRONGDENY & 46210      & 46811    & 47926       \\ \hline
+\begin{tabular}{cc|l|l|l|l|l|l|}
+\cline{3-8}
+                                                &                                 & Class      & Average & SD & Best & Median & Worst \\ \hline
+\multicolumn{2}{|c|}{\multirow{2}{*}{$F_{Acc}$}}                                  & GRANTED    & 0.426 & 0.13 & 0.471 & 0.466 & 0.055 \\ \cline{3-8} 
+\multicolumn{2}{|c|}{}                                                            & STRONGDENY & 0.09 & 0.131 & 0.463 & 0.048 & 0.043 \\ \hline
+\multicolumn{1}{|c|}{\multirow{6}{*}{$F_{CS}$}} & \multirow{2}{*}{$\alpha$ = 0}   & GRANTED    & 26473.2 & 646.948 & 25559 & 26274 & 27336 \\ \cline{3-8} 
+\multicolumn{1}{|c|}{}                          &                                 & STRONGDENY & 47036.2 & 647.29 & 46212 & 47120.5 & 47925 \\ \cline{2-8} 
+\multicolumn{1}{|c|}{}                          & \multirow{2}{*}{$\alpha$ = 0.5} & GRANTED    & 26702.6 & 436.553 & 26222 & 26757.5 & 27343 \\ \cline{3-8} 
+\multicolumn{1}{|c|}{}                          &                                 & STRONGDENY & 46928.6 & 664.005 & 46186 & 46624.5 & 47937 \\ \cline{2-8} 
+\multicolumn{1}{|c|}{}                          & \multirow{2}{*}{$\alpha$ = 1}   & GRANTED    & 26679.4 & 502.579 & 26085 & 26585 & 27333 \\ \cline{3-8} 
+\multicolumn{1}{|c|}{}                          &                                 & STRONGDENY & 46904.4 & 588.485 & 46210 & 46811 & 47926 \\ \hline
 \end{tabular}
 \caption{Best fitness obtained when the individual is coded as a single rule, following the Michigan approach, and represented by class. Data was divided in 10-folds to perform cross-validation. Two different fitness have been used, and for $\alpha$ values of 0, 0.5, and 1. Note that in the case of $F_{Acc}$ the best value is the maximum, whilst for $F_{CS}$, the best possible value is the minimum.}
 \label{tab:michigan}
