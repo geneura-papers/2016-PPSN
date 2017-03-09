@@ -562,7 +562,7 @@ During the fitness evaluation, the generated individual is converted into a stri
 For further reliability of the results, it is advised to perform 10-fold cross-validation \cite{kohavi1995study}, and as such the WEKA Java Library \cite{HallWEKA09} has been used to generate the 10 folds or distributions of data into 90\% training (fitness evaluation) and 10\% validation. This way, each experiment has been executed 10 times, a different distribution of the data each.
 
 The specific source code of the proposed method is available under a LGPL V3 License 
-in \url{https://github.com/fergunet/GPRuleRefinement}, as a module for 
+at \url{https://github.com/fergunet/GPRuleRefinement}, as a module for 
 the framework OSGiLiath \cite{DBLP:journals/soco/Garcia-SanchezGCAG13} 
 \footnote{The source code of OSGiLiath is available as well with the same license, in \url{http://www.osgiliath.org}.}.
 
@@ -589,7 +589,7 @@ In this section we are going to study the two proposed approaches, each one pres
 
 \subsection{Pittsburgh approach}
 
-The best obtained fitness when coding the individuals as sets of rules are detailed in Table \ref{tab:pittsburgh}. Values are represented by their mean and standard deviation, given that the algorithm has been executed 10 times, the data folded in a different way each.
+The best obtained fitness when coding the individuals as sets of rules are detailed in Table \ref{tab:pittsburgh}. Because the algorithm has been executed 10 times, the data folded in a different way each, we obtained 10 best fitness, from which we present the worst case, the best case, and the median. It is important to point out that in the case of $F_{Acc}$ the best value is the maximum, whilst for $F_{CS}$, the best possible value is the minimum.
 
 \begin{table}
 \begin{center}
@@ -628,15 +628,6 @@ The best obtained fitness when coding the individuals as sets of rules are detai
 \end{table*}
 
 \subsection{Proposed system configuration}
-
-% Fitness charts are not results. Plus representing 10 different
-% time-evolving quantities is _very_ confusing. I cannot see a valid
-% reason to publish a single one of these charts, not to mention all
-% of them. If what you want to show is differences betwen using one
-% fitness or other, just publish the final result, the effort needed
-% or anything that proves that you are extracting rules from the
-% original policies, several pages of charts with the evolution of
-% fitness, which by themselves prove nothing.
 
 %\begin{figure*}[h!tb]
 %\centering
