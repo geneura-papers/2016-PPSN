@@ -543,13 +543,13 @@ Mutation  & 1-node mutation\\ \hline
 Mutation step-size & 0.25 \\ \hline
 Selection & 2-tournament \\ \hline
 Replacement & Generational with elitism\\ \hline
-Stop criterion & 50 generations \\ \hline
-Maximum Tree Depth & 10 \\ \hline %PABLO: CONFIRM THIS!
-Runs per configuration & 30 \\ \hline
+Stop criterion & 150 generations \\ \hline
+Maximum Tree Depth & 10 \\ \hline 
+Runs per configuration & 10 \\ \hline
 \multicolumn{2}{|c|}{{\em Compared configurations}} \\ \hline
 Individual representation & List VS Tree \\ \hline
 Fitness & $f_{CS}$ VS $f_{Acc}$ \\ \hline
-$\alpha$ for $f_{CS}$ & 0, 0,5 and 1 \\ \hline
+$\alpha$ for $f_{CS}$ & 0, 0.5, and 1 \\ \hline
 
 \end{tabular}
 \caption{Parameters used in the experiments.}
@@ -558,7 +558,7 @@ $\alpha$ for $f_{CS}$ & 0, 0,5 and 1 \\ \hline
 \end{table}
 
 During the fitness evaluation, the generated individual is converted into a string, which can become a single rule or set of rules depending on the approach. Then, the chosen fitness is evaluated for a particular rule - the single rule or each one inside the set - and over the 90\% of the data.
-In order to perform 10-fold cross-validation \cite{kohavi1995study}, the WEKA Java Library \cite{HallWEKA09} has been used to generate the 10 folds or distributions of data into 90\% training (fitness evaluation) and 10\% validation.
+For further reliability of the results, it is advised to perform 10-fold cross-validation \cite{kohavi1995study}, and as such the WEKA Java Library \cite{HallWEKA09} has been used to generate the 10 folds or distributions of data into 90\% training (fitness evaluation) and 10\% validation. This way, each experiment has been executed 10 times, a different distribution of the data each.
 
 The specific source code of the proposed method is available under a LGPL V3 License 
 in \url{https://github.com/fergunet/GPRuleRefinement}, as a module for 
