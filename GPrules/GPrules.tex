@@ -419,9 +419,9 @@ On the other hand, in the Michigan approach the individual is coded as a single 
 At the same time, the variables can be differentiated into three types, described as follows \cite{witten2005data}:
 
 \begin{itemize}
-\item {\em Binary Variable}: those with a boolean value, for instance, variables that are related with the device services switched on or off and important features such as the device having or not an antivirus installed. %Pablo: add "For example, X and Y" (or even the complete set)
-\item {\em Categorical Variable}: the ones with nominal values, where it is defined a list with the possible values it may have, in order to randomly pick up one in the creation of the rules. %Pablo: same
-\item {\em Numerical Variable}: those with a numerical value, for which both maximum and minimum values are specified. %Pablo: same
+\item {\em Binary Variable}: those with a boolean value, for instance, variables that are related with the device services switched on or off and important features such as the device having or not an antivirus installed. 
+\item {\em Categorical Variable}: the ones with nominal values, where it is defined a list with the possible values it may have, in order to randomly pick up one in the creation of the rules. 
+\item {\em Numerical Variable}: those with a numerical value, for which both maximum and minimum values are specified. 
 
 \end{itemize}
 
@@ -456,7 +456,9 @@ Variable type                & Variable Name          & BYOD specific & Context 
 \end{center}
 \end{table*}
 
-The tree is translated to a set of rules starting from the leafs to the root node passing each time by the ancestors. An example of a rule can be presented as follows:
+In the case of an individual coded as a set of rules, the tree is translated to a set of rules starting from the leafs to the root node passing each time by the ancestors. However, an individual represented by a single rule, is coded as a list of conditions to which a class is assigned. Thus, an experiment following this last approach has to be run many times as classes there are.
+
+An example of a rule can be presented as follows:
 %TODO Show this more fancy :P (Pablo)
 
 \begin{verbatim}
