@@ -595,16 +595,19 @@ The best obtained fitness when coding the individuals as sets of rules are detai
 \begin{center}
 \begin{tabular}{cc|l|l|l|}
 \cline{3-5}
-                                                &                & Best       & Median & Worst       \\ \hline
-\multicolumn{2}{|c|}{$F_{Acc}$}                                  & 0.926      & 0.925  & 0.924       \\ \hline
-\multicolumn{1}{|c|}{\multirow{3}{*}{$F_{CS}$}} & $\alpha$ = 0   & 6198       & 7193   & 7253        \\ \cline{2-5} 
-\multicolumn{1}{|c|}{}                          & $\alpha$ = 0.5 & 7149       & 7250   & 7274        \\ \cline{2-5} 
-\multicolumn{1}{|c|}{}                          & $\alpha$ = 1   & 6620       & 7253.5 & 7298        \\ \hline
+                                                &                & Average & Best       & Median & Worst       \\ \hline
+\multicolumn{2}{|c|}{$F_{Acc}$}                                  & 0.923   & 0.926      & 0.925  & 0.924       \\ \hline
+\multicolumn{1}{|c|}{\multirow{3}{*}{$F_{CS}$}} & $\alpha$ = 0   & 7102.2 * & 6198        & 7193   & 7253        \\ \cline{2-5} 
+\multicolumn{1}{|c|}{}                          & $\alpha$ = 0.5 & 7235.95 & 7149       & 7250   & 7274        \\ \cline{2-5} 
+\multicolumn{1}{|c|}{}                          & $\alpha$ = 1   & 7192.8  & 6620       & 7253.5 & 7298        \\ \hline
 \end{tabular}
-\caption{Best fitness obtained when the individual is coded as a set of rules, following the Pittsburgh approach, and with 10-fold cross-validation. Two different fitness have been used, and for $\alpha$ values of 0, 0.5, and 1. Note that in the case of $F_{Acc}$ the best value is the maximum, whilst for $F_{CS}$, the best possible value is the minimum.}
+\caption{Best fitness obtained when the individual is coded as a set of rules, following the Pittsburgh approach, and with 10-fold cross-validation. Two different fitness have been used, and for $\alpha$ values of 0, 0.5, and 1. Note that in the case of $F_{Acc}$ the best value is the maximum, whilst for $F_{CS}$, the best possible value is the minimum. An * indicates the  statistically significant best value for $\alpha$.}
 \label{tab:pittsburgh}
 \end{center}
 \end{table}
+
+
+In the case of $F_{Acc}$ for the Pittsburgh approach, as the distribution are not normal, a non-parametric test (Friedman) has been used to asset the statistical significance \cite{DerracTests11}, obtaining a p-value of 0.0001. $\alpha$ = 0 is significantly different with $\alpha$ = 0.5 and $\alpha$ = 1, while there are not difference between the two former (p-value = 0.08).
 
 \subsection{Michigan approach}
 
@@ -626,6 +629,8 @@ The best obtained fitness when coding the individuals as sets of rules are detai
 \label{tab:michigan}
 \end{center}
 \end{table*}
+
+No significant differences have been found between the different values of $\alpha$ for GRANTED and STRONGDENY, after applying a Friedman test for GRANTED, and an ANOVA test for STRONGDENY. ANOVA has been used in the STRONGDENY results instead Friedman because these distributions follows a normal curve.
 
 \subsection{Proposed system configuration}
 
