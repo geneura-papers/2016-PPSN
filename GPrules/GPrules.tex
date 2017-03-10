@@ -168,7 +168,7 @@ BYOD security rules from activation instances that might help the CSO in the def
 of security policies that, eventually, classify an upcoming
 event or user action as permitted or not permitted. This could be used
 in two different scenarios: a CSO has hand-coded a set of security
-policies and wants to simplify or generalize them; a second scenario
+policies and wants to simplify or generalise them; a second scenario
 would simply eliminate rules and have the CSO decide, by hand, which
 particular events wants to grant access or deny and have a system such
 as the one described in the paper generate a set of security policies
@@ -449,7 +449,7 @@ At the same time, the variables can be differentiated into three types, describe
 
 \end{itemize}
 
-Table \ref{tab:variables} details the variables, for each type, that have been used in the GP in order to create the rules. In addition, we differentiate between those variables that are BYOD specific, and those that come from the context.
+Table \ref{tab:variables} details the variables, for each type, that have been used in the GP in order to create the rules. In addition, we differentiate between those variables that are BYOD specific, and those that come from the context. A variable that is BYOD specific means that its value strictly depends on the employee owning the device or being provided by the company, such as the device OS, if the device has been rooted, or the password length the user has configured. The same way, a variable that is the same no matter who owns the device, for instance, the user role or the type of the action (event) performed, we say is context specific.
 
 \begin{table*}
 \begin{center}
@@ -477,10 +477,6 @@ Variable type                & Variable Name          & BYOD specific & Context 
 \end{tabular}
 \caption{A list of the variables that have been used to generate the
   rules. Those variables that are BYOD specific are also specified.}
-% You should say somewhere whay are they specific. You can have WiFi
-% encryption with a company-provided device, for
-% instance. DeviceOwnedBy should be BYOD specific, for instance. if
-% it's not owned by the user, the context is _still_ BYOD. - JJ
 \label{tab:variables}
 \end{center}
 \end{table*}
@@ -526,14 +522,13 @@ of $f_{c}$ is the whole training dataset, $T_{tr}$, and  has the
 advantage of not being computationally expensive, but it does not
 penalise the badly predicted instances (false positives and
 negatives), which in security environments such as this one can be
-very harmful. % Which ones are harmful? - JJ
+very harmful. Furthermore, a false negative would mean that the system denies an event that should be allowed, but the worst case scenario is having a false positive, when a dangerous event is classified as allowed.
 To this end, in \cite{witten2005data} the authors define the coverage as:
 
 \begin{equation}
 \label{eq:coverage}
 C_{ind} = TP + TN - (FP + FN)
 \end{equation}
-% You have not defined FP and FN - JJ
 Additionally, to take into account the complexity of the individuals,
 either they are a rule or a set of rules, in \cite{witten2005data}
 they introduce a measure of the generated trees complexity by this
@@ -552,8 +547,7 @@ f_{CS} = (T_{tr} - C_{ind}) + \alpha S_{ind}
 
 Therefore, in our experimental section we are going to compare both
 $f_{Acc}$ and $f_{CS}$, with different  alpha values, in order
-to check how they influence in the solution % They influence what in
-                                % the solution? - JJ
+to check how they influence in the number of evaluations taken to find the solution (the less, the better) 
 and then decide which measure offers the best performance. % The best
                                 % performance from which point of
                                 % view? A different fitness? Why don't
