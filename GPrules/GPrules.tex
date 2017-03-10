@@ -578,6 +578,7 @@ Table \ref{tab:parameters} summarizes all the parameters used.
 
 \begin{table}
 \begin{center}
+\resizebox{7.5cm}{!}{
 \begin{tabular}{|c|c|}
 \hline
 {\em Parameter Name} & {\em Value} \\\hline
@@ -596,6 +597,7 @@ Fitness & $f_{CS}$ VS $f_{Acc}$ \\ \hline
 $\alpha$ for $f_{CS}$ & 0, 0.5, and 1 \\ \hline
 
 \end{tabular}
+}
 \caption{Parameters used in the experiments.}
 \label{tab:parameters}
 \end{center}
@@ -657,7 +659,7 @@ The best obtained fitness when coding the individuals as sets of rules are detai
 \end{table*}
 
 
-In the case of $F_{Acc}$ for the Pittsburgh approach, as the distributions are not normal, a non-parametric test (Friedman) has been used to asset the statistical significance \cite{DerracTests11}, obtaining a p-value of 0.0001. $\alpha$ = 0 is significantly different with $\alpha$ = 0.5 and $\alpha$ = 1, while there are not differences between the two former (p-value = 0.08).
+In the case of $F_{Acc}$ for the Pittsburgh approach, as the distributions are not normal, a non-parametric test (Kruskal-Wallis) has been used to asset the statistical significance \cite{DerracTests11}, obtaining a p-value of 0.0001. $\alpha$ = 0 is significantly different with $\alpha$ = 0.5 and $\alpha$ = 1, while there are not differences between the two former (p-value = 0.08).
 
 \subsection{Michigan approach}
 
@@ -685,14 +687,12 @@ In the case of $F_{Acc}$ for the Pittsburgh approach, as the distributions are n
 \end{center}
 \end{table*}
 
-No significant differences have been found between results for the
-different values of $\alpha$ % differences between statistical
-                             % variables, not parameters like alpha. - JJ
-for GRANTED and STRONGDENY, after applying a Friedman test for
-GRANTED, and an ANOVA test for STRONGDENY. %this means you have
+No significant differences have been found between the results of apply the
+three values of $\alpha$,  % differences between statistical
+                             % variables, not parameters like alpha. - JJ PABLO: you are right, changed to "the results of apply"
+for GRANTED and STRONGDENY. In the case of comparing the three distributions for STRONGDENY, an ANOVA test has been applied instead Kruskal-Wallis, as these distributions follow a normal curve.  %this means you have
                                 %different alphas for granted and
-                                %strongdeny? please clarify - JJ
-ANOVA has been used in the STRONGDENY results instead Friedman because these distributions follows a normal curve.
+                                %strongdeny? please clarify - JJ PABLO: Rewritten, more clear now
 
 \subsection{Proposed system configuration}
 
