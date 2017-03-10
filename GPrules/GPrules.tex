@@ -139,7 +139,9 @@ Focusing on the corporate world and as previously highlighted,
 it is clear that the uncontrolled access to internal networks by the
 personal devices, for which companies have limitations in
 controlling due to privacy preservation \cite{miller2012byod}, exposes the companies to security risks such as data
-leakage, improper decommissioning, phishing that is focused on a specifig group or company\footnote{Also known as \textit{spear phishing}}, 
+leakage, improper decommissioning, phishing that is focused on a
+specifig group or company\footnote{Also known as \textit{spear
+    phishing}.}, 
 surveillance, and many
 others \cite{lennon2012changing}. These threats have become the
 companies main security concern, and for them it is a challenge to
@@ -162,12 +164,22 @@ possible combination of events that might lead to a dangerous
 situation. 
 
 The aim of this paper is to propose a novel technique for extracting
-BYOD security rules that help the CSO in the definition and refinement
-of a set of security rules, that in the end, classify an upcoming
-event or user action as permitted or not permitted.
-The main idea is to create a reliable rule set
+BYOD security rules from activation instances that might help the CSO in the definition and refinement
+of security policies that, eventually, classify an upcoming
+event or user action as permitted or not permitted. This could be used
+in two different scenarios: a CSO has hand-coded a set of security
+policies and wants to simplify or generalize them; a second scenario
+would simply eliminate rules and have the CSO decide, by hand, which
+particular events wants to grant access or deny and have a system such
+as the one described in the paper generate a set of security policies
+by creating a set of rules from particular events. 
+The main objective is to create a reliable rule set
 which is able to cover every new situation that may be a threat;
-allowing the system to go beyond the limited set of known pre-defined rules. Additionally, this feature can be used as ``reverse engineering'', so that the rules initially made by the CSO are found in the solution along with additional ones. In order to have the space of possible policy rules be as wide
+allowing the system to go beyond the limited set of known pre-defined
+rules. Additionally, this feature can be used as ``reverse
+engineering'', so that the rules initially made by the current or
+former CSO are found in the solution along with additional ones. In
+order to have the space of possible policy rules be as wide 
 as possible, we will need a technique that explores the rule space
 efficiently and with the least assumptions about rule structure.
 This is why we have decided to use Genetic Programming (GP) for dealing with the problem of
@@ -181,6 +193,15 @@ Our proposed GP framework dedicated
 for the BYOD context is capable of performing an automatic discovery
 of classification rules, obtaining good fitness, and presenting the rules in a way that is helpful for a CSO. We demonstrate so by using the developed framework with a real-world dataset, and comparing two ways of coding the individuals -- as a set of rules, or as a single rule -- so that we finally propose the approach with best performance. %Pablo: complete this paragraph with ", to establish blabla"
 % (Paloma) Done!
+% You have not mentioned you are comparing different fitness
+% functions. You _really_ have to characterize the problem you are
+% tackling in the introduction. If you are comparing fitness, you have
+% to say that the problem in this context is to find a fitness
+% function. Representation is not problem specific, so you have to
+% proceed from the generic (algorithm domain) to the specific (problem
+% domain) when explaining what you are going to do in this particular
+% paper. Are conclusions about codification specific to the problem
+% domain? - JJ
 
 The rest of the paper is organised as follows. In Section \ref{sec:SotA} we give an overview of the advances in GP applied to rule evolution and its applications; then, Section \ref{sec:methodology} described the proposed methodology, depicting the problem this work tries to solve and describing the available dataset and the proposed GP framework. The experimental set-up, as well as the different set of experiments that have been carried out are also described in that section. Section \ref{sec:gp} shows the obtained results from the application of GP to security rules extraction and, finally, the conclusions of this work along with some suggestions about how to continue our research are given in Section \ref{sec:future}.  
 
@@ -265,7 +286,10 @@ communications data, but mainly for intrusion detection and e-mail
 spamming. In \cite{Tsakonas2004195} the authors also extract rules with \textsc{IF \ldots THEN} structure through GP, although for medical purposes. Futhermore, Alex A. Freitas deeply studied the application of GP to Data Mining (DM) in \cite{freitas2002data}, providing the necessary knowledge and guidelines to design a GP framework for DM applications. Also, in \cite{DeFalco2002257}, a system which discovers
 rules for the PROBEN1 databases via GP is described and a new fitness is introduced. PROBEN1 \cite{prechelt1994proben} is a collection of datasets from real world problems meant as benchmarks for the application of classification techniques. As happened in 
 the survey of Espejo et al., from six of the databases inside PROBEN1 and
-analysed by these authors, none is related to security. However, the authors' proposed fitness is indeed of interest for this research, and as such we compare the performance or our algorithm using two different fitness: the more classical approach that measures only the correctly classified instances (accuracy); and De Falco's et al. \cite{DeFalco2002257} suggestion, also taking into account the complexity of the solution. 
+analysed by these authors, none is related to security. However, the
+authors' proposed fitness is indeed of interest for this research, and
+as such we compare the performance or our algorithm using two
+different fitness functions: the more classical approach that measures only the correctly classified instances (accuracy); and De Falco's et al. \cite{DeFalco2002257} suggestion, also taking into account the complexity of the solution. 
 
 %Once again, this paragraph does not follow the previous one. Maybe
 %move it one paragraph up, where you are talking about proper training
@@ -451,7 +475,12 @@ Variable type                & Variable Name          & BYOD specific & Context 
 \multirow{2}{*}{Numerical}   & DeviceScreenTimeout    & \checkmark    &                  \\ \cline{2-4} 
                              & PasswordLength         & \checkmark    &                  \\ \hline
 \end{tabular}
-\caption{A list of the variables that have been used to generate the rules. Those variables that are BYOD specific are also specified.}
+\caption{A list of the variables that have been used to generate the
+  rules. Those variables that are BYOD specific are also specified.}
+% You should say somewhere whay are they specific. You can have WiFi
+% encryption with a company-provided device, for
+% instance. DeviceOwnedBy should be BYOD specific, for instance. if
+% it's not owned by the user, the context is _still_ BYOD. - JJ
 \label{tab:variables}
 \end{center}
 \end{table*}
@@ -484,7 +513,7 @@ concepts of true positive/negative and false positive/negative. The
 first refer to the instances classified correctly, and the latter are
 those instances that should be negative (positive) but are classified
 as positive (negative), therefore they are false positives
-(negatives). Using this nomenclature, a Fitness defined as the
+(negatives). Using this nomenclature, a fitness function defined for
 accuracy would be expressed as follows: 
 
 \begin{equation}
@@ -492,14 +521,23 @@ accuracy would be expressed as follows:
 f_{Acc} = (TP + TN) / T_{tr}
 \end{equation}
 
-This kind of fitness is used in maximisation problems, given that the ideal value of $f_{c}$ is the whole training dataset, $T_{tr}$. This fitness has the advantage of not being computationally expensive, but it does not penalise the badly predicted instances (false positives and negatives), which in security environments such as this one it can be very harmful. To this end, in \cite{witten2005data} the authors define the coverage as:
+This kind of fitness has to be maximized, given that the ideal value
+of $f_{c}$ is the whole training dataset, $T_{tr}$, and  has the
+advantage of not being computationally expensive, but it does not
+penalise the badly predicted instances (false positives and
+negatives), which in security environments such as this one can be
+very harmful. % Which ones are harmful? - JJ
+To this end, in \cite{witten2005data} the authors define the coverage as:
 
 \begin{equation}
 \label{eq:coverage}
 C_{ind} = TP + TN - (FP + FN)
 \end{equation}
-
-Additionally, to take into account the simplicity of the individuals, either they are a rule or a set of rules, in \cite{witten2005data} they introduce a measure of the generated trees complexity by this expression:
+% You have not defined FP and FN - JJ
+Additionally, to take into account the complexity of the individuals,
+either they are a rule or a set of rules, in \cite{witten2005data}
+they introduce a measure of the generated trees complexity by this
+expression: 
 
 \begin{equation}
 S_{ind} = N_{nodes} + depth
@@ -512,13 +550,24 @@ So that combining $C_{ind}$, $S_{ind}$ and introducing an $\alpha$ variable insi
 f_{CS} = (T_{tr} - C_{ind}) + \alpha S_{ind}
 \end{equation}
 
-Therefore, in our experimental section we are going to compare both $f_{Acc}$ and $f_{CS}$, with different parameters of alpha, in order to check how they influence in the solution and then decide which measure offers the best performance.
+Therefore, in our experimental section we are going to compare both
+$f_{Acc}$ and $f_{CS}$, with different  alpha values, in order
+to check how they influence in the solution % They influence what in
+                                % the solution? - JJ
+and then decide which measure offers the best performance. % The best
+                                % performance from which point of
+                                % view? A different fitness? Why don't
+                                % you use that different one as
+                                % fitness? - JJ
+
+%Besides, this is actually a multi-objective problem. You have to
+%optimize _both_ to get the best set of rules. - JJ
 
 \subsection{Experimental Setup}
 \label{sec:experiments}
 
 % This is not a description of the experiment. The experiment
-% description is the set of steps needed to reproduce them - JJ %PABLO: re-writing and organizing stuff
+% description is the set of steps needed to reproduce it - JJ %PABLO: re-writing and organizing stuff
 Once the methods to compare have been explained, the rest of the experimental setup is described.
 
 The configurations that will be compared involve 2 different encoding of individuals (list vs. tree), 2 types of fitness ($f_{CS}$ and $f_{Acc}$), and different values for $\alpha$ in the case of $f_{Acc}$.
@@ -558,7 +607,7 @@ $\alpha$ for $f_{CS}$ & 0, 0.5, and 1 \\ \hline
 \end{center}
 \end{table}
 
-During the fitness evaluation, the generated individual is converted into a string, which can become a single rule or set of rules depending on the approach. Then, the chosen fitness is evaluated for a particular rule - the single rule or each one inside the set - and over the 90\% of the data.
+During the fitness evaluation, the generated individual is converted into a string, which can become a single rule or set of rules depending on the approach. Then, the chosen fitness is evaluated for a particular rule -- the single rule or each one inside the set -- and over the 90\% of the data.
 For further reliability of the results, it is advised to perform 10-fold cross-validation \cite{kohavi1995study}, and as such the WEKA Java Library \cite{HallWEKA09} has been used to generate the 10 folds or distributions of data into 90\% training (fitness evaluation) and 10\% validation. This way, each experiment has been executed 10 times, a different distribution of the data each.
 
 The specific source code of the proposed method is available under a LGPL V3 License 
@@ -601,7 +650,14 @@ The best obtained fitness when coding the individuals as sets of rules are detai
 \multicolumn{1}{|c|}{}                          & $\alpha$ = 0.5 & 7235.95 & 41.825 & 7149       & 7250   & 7274        \\ \cline{2-7} 
 \multicolumn{1}{|c|}{}                          & $\alpha$ = 1   & 7192.8  & 204.872 & 6620       & 7253.5 & 7298        \\ \hline
 \end{tabular}
-\caption{Best fitness obtained when the individual is coded as a set of rules, following the Pittsburgh approach, and with 10-fold cross-validation. Two different fitness have been used, and for $\alpha$ values of 0, 0.5, and 1. Note that in the case of $F_{Acc}$ the best value is the maximum, whilst for $F_{CS}$, the best possible value is the minimum. An * indicates the  statistically significant best value for $\alpha$.}
+\caption{Best fitness obtained when the individual is coded as a set
+  of rules, following the Pittsburgh approach, and with 10-fold
+  cross-validation. Two different fitness functions have been used,
+  and for $\alpha$ values of 0, 0.5, and 1. Note that in the case of
+  $F_{Acc}$ higher is better, whilst for $F_{CS}$, the lower is
+  better. An $*$ indicates the  statistically significant best value
+  for $\alpha$. %In that case, it should be by the side of $\alpha$
+}
 \label{tab:pittsburgh}
 \end{center}
 \end{table*}
@@ -625,12 +681,24 @@ In the case of $F_{Acc}$ for the Pittsburgh approach, as the distribution are no
 \multicolumn{1}{|c|}{}                          & \multirow{2}{*}{$\alpha$ = 1}   & GRANTED    & 26679.4 & 502.579 & 26085 & 26585 & 27333 \\ \cline{3-8} 
 \multicolumn{1}{|c|}{}                          &                                 & STRONGDENY & 46904.4 & 588.485 & 46210 & 46811 & 47926 \\ \hline
 \end{tabular}
-\caption{Best fitness obtained when the individual is coded as a single rule, following the Michigan approach, and represented by class. Data was divided in 10-folds to perform cross-validation. Two different fitness have been used, and for $\alpha$ values of 0, 0.5, and 1. Note that in the case of $F_{Acc}$ the best value is the maximum, whilst for $F_{CS}$, the best possible value is the minimum.}
+\caption{Best fitness obtained when the individual is coded as a
+  single rule, following the Michigan approach, and represented by
+  class. Data was divided in 10-folds to perform cross-validation. Two
+  different fitness have been used, and for $\alpha$ values of 0, 0.5,
+  and 1. Note that in the case of $F_{Acc}$ higher is better, whilst
+  for $F_{CS}$, lower is better.} % no mark for teh best alpha? - JJ
 \label{tab:michigan}
 \end{center}
 \end{table*}
 
-No significant differences have been found between the different values of $\alpha$ for GRANTED and STRONGDENY, after applying a Friedman test for GRANTED, and an ANOVA test for STRONGDENY. ANOVA has been used in the STRONGDENY results instead Friedman because these distributions follows a normal curve.
+No significant differences have been found between results for the
+different values of $\alpha$ % differences between statistical
+                             % variables, not parameters like alpha. - JJ
+for GRANTED and STRONGDENY, after applying a Friedman test for
+GRANTED, and an ANOVA test for STRONGDENY. %this means you have
+                                %different alphas for granted and
+                                %strongdeny? please clarify - JJ
+ANOVA has been used in the STRONGDENY results instead Friedman because these distributions follows a normal curve.
 
 \subsection{Proposed system configuration}
 
