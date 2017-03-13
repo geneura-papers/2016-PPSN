@@ -87,7 +87,7 @@ computing has moved over time to smaller, more reliable and faster
 high-tech devices such as smartphones, laptops and tablets. The use of
 these technologies in several forms is progressing, and has led to the
 form of use known as the ``Bring Your Own Device'' (BYOD) concept or
-philosophy. % Definition of the concept should have a reference too - JJ
+philosophy. 
 Since its first appearance in research
 \cite{ballagas2004byod} as a way to name the interaction between
 people's devices and a public display, such as art or advertising, it
@@ -191,7 +191,7 @@ This is why we have decided to use Genetic Programming (GP) for dealing with the
 discovering novel, interesting knowledge and rules from large
 amounts of data \cite{freitas2002data}, given that the up-to-date approaches are based in general pre-defined of manually defined rules \cite{ali2015analysis}. Considered part of the so-called \emph{Evolutionary
   Algorithms} \cite{back1996evolutionary}, GP is an optimization
-techniques inspired by natural evolution. By this method, the
+technique inspired by natural evolution. By this method, the
 solutions to a problem are internally encoded as trees, which can be
 seen as a decision tree classifier \cite{safavian1990survey}. In our
 case, the assigned classes, or leaves of the tree, would be ``allow''
@@ -425,12 +425,8 @@ The dataset contains a set of these ``events'' from which a number of attributes
     the application which originated the event, among others. 
   \item Attributes inferred from the information in the database: the information given by the aforementioned attributes, along with the rest of information already existing in the database, helps inferring other attibutes. These are, for instance: all extra information related to the origin, like the user position in the company or the device Operating System; the configuration of the device, such as WiFi or Bluetooth being enabled; and even lexical properties of the user password, in order to avoid storing the password itself or using it for classification or rule generation.
 \end{itemize}
-% A more interesting way of classifying them would be the fact that
-% they are BYOD specific or not. All of the examples that you have
-% mentioned do not seem to be BYOD specific. - JJ
-% (Paloma) Agree, will do
 
-The trials had a duration of a month plus a week, and a total of %Pablo: a month plus a week, or 5 weeks?
+The trials had a duration of five weeks, and a total of 
 153270 events were registered in the database. We filtered those events that did not imply access to assets, meaning that they were not useful for
 knowledge extraction purposes, such as events of \textit{log in},
 \textit{log out}, or \textit{restarting the server}. % alternative
@@ -509,7 +505,7 @@ Variable type                & Variable Name          & BYOD specific & Context 
                              & WifiEnabled            &               & \checkmark       \\ \hline
 \multirow{8}{*}{Categorical} & AssetConfidentialLevel &               & \checkmark       \\ \cline{2-4} 
                              & DeviceOS               & \checkmark    &                  \\ \cline{2-4} 
-                             & DeviceOwnedBy          & \checkmark    & \checkmark       \\ \cline{2-4} 
+                             & DeviceOwnedBy          & \checkmark    &                  \\ \cline{2-4} 
                              & DeviceType             & \checkmark    &                  \\ \cline{2-4} 
                              & EventLevel             &               & \checkmark       \\ \cline{2-4} 
                              & EventType              &               & \checkmark       \\ \cline{2-4} 
@@ -523,8 +519,6 @@ Variable type                & Variable Name          & BYOD specific & Context 
 \label{tab:variables}
 \end{center}
 \end{table*}
-%DeviceOwnedBy has two check marks. Leave only one of them, probably
-%BYOD specific - JJ
 
 In the case of an individual coded as a set of rules, the tree is
 translated to a set of rules starting from the leafs to the root node
@@ -737,17 +731,13 @@ In the case of $F_{Acc}$ for the Pittsburgh approach, as the distributions are n
   class. Data was divided in 10-folds to perform cross-validation. Two
   different fitness have been used, and for $\alpha$ values of 0, 0.5,
   and 1. Note that in the case of $F_{Acc}$ higher is better, whilst
-  for $F_{CS}$, lower is better.} % no mark for teh best alpha? - JJ
+  for $F_{CS}$, lower is better.} False positives (FP) and false negatives (FN) rates are also indicated.% no mark for teh best alpha? - JJ
 \label{tab:michigan}
 \end{center}
 \end{table*}
 
 No significant differences have been found between the results of apply the
-three values of $\alpha$,  % differences between statistical
-                             % variables, not parameters like alpha. - JJ PABLO: you are right, changed to "the results of apply"
-for GRANTED and STRONGDENY. In the case of comparing the three distributions for STRONGDENY, an ANOVA test has been applied instead Kruskal-Wallis, as these distributions follow a normal curve.  %this means you have
-                                %different alphas for granted and
-                                %strongdeny? please clarify - JJ PABLO: Rewritten, more clear now
+three values of $\alpha$, for GRANTED and STRONGDENY. In the case of comparing the three distributions for STRONGDENY, an ANOVA test has been applied instead Kruskal-Wallis, as these distributions follow a normal curve.
 
 \subsection{Proposed system configuration}
 
