@@ -693,13 +693,13 @@ The best obtained fitness when coding the individuals as sets of rules are detai
 
 \begin{table*}
 \begin{center}
-\begin{tabular}{cc|l|l|l|l|l|}
-\cline{3-7}
-                                                &                & Average & SD & Best       & Median & Worst       \\ \hline
-\multicolumn{2}{|c|}{$F_{Acc}$}                                  & 0.925   & $<$0.001 & 0.926      & 0.925  & 0.924       \\ \hline
-\multicolumn{1}{|c|}{\multirow{3}{*}{$F_{CS}$}} & $\alpha$ = 0   & 7102.2 * & 320.260 & 6198        & 7193   & 7253        \\ \cline{2-7} 
-\multicolumn{1}{|c|}{}                          & $\alpha$ = 0.5 & 7235.95 & 41.825 & 7149       & 7250   & 7274        \\ \cline{2-7} 
-\multicolumn{1}{|c|}{}                          & $\alpha$ = 1   & 7192.8  & 204.872 & 6620       & 7253.5 & 7298        \\ \hline
+\begin{tabular}{cc|l|l|l|l|l|l|l|}
+\cline{3-9}
+                                                &                & Average & SD & Best       & Median & Worst & FP (avg) & FN (avg)   \\ \hline
+\multicolumn{2}{|c|}{$F_{Acc}$}                                  & 0.925   & $<$0.001 & 0.926      & 0.925  & 0.924 & 400.3 & 0 \\ \hline
+\multicolumn{1}{|c|}{\multirow{3}{*}{$F_{CS}$}} & $\alpha$ = 0 *  & 7102.2  & 320.260 & 6198        & 7193   & 7253 & 390.7 & 1.7 \\ \cline{2-9} 
+\multicolumn{1}{|c|}{}                          & $\alpha$ = 0.5 & 7235.95 & 41.825 & 7149       & 7250   & 7274 & 400.5 & 0 \\ \cline{2-9} 
+\multicolumn{1}{|c|}{}                          & $\alpha$ = 1   & 7192.8  & 204.872 & 6620       & 7253.5 & 7298 & 398.1 & 0 \\ \hline
 \end{tabular}
 \caption{Best fitness obtained when the individual is coded as a set
   of rules, following the Pittsburgh approach, and with 10-fold
@@ -707,7 +707,7 @@ The best obtained fitness when coding the individuals as sets of rules are detai
   and for $\alpha$ values of 0, 0.5, and 1. Note that in the case of
   $F_{Acc}$ higher is better, whilst for $F_{CS}$, the lower is
   better. An $*$ indicates the  statistically significant best value
-  for $\alpha$. %In that case, it should be by the side of $\alpha$
+  for $\alpha$. False positives (FP) and false negatives (FN) rates are also indicated.
 }
 \label{tab:pittsburgh}
 \end{center}
