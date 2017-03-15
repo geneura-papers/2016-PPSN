@@ -44,10 +44,7 @@ the
 access to internal network and the assets it holds by these personal
 devices, whose corporate control is forcefully limited, exposes the companies to
 security threats such as leak of confidential data and access by
-unauthorised users. % All this intro should be shorter and more to the
-                    % point - JJ
-%I have made it _larger_, better to explain concepts involved. If
-%someone is able to make it shorter, please do - JJ
+unauthorised users. 
 To handle these kinds of threats, we propose a way of detecting and controlling abnormal user
 access by establishing a policy based on classification rules. Our
 approach for the problem of BYOD security uses Genetic Programming
@@ -704,7 +701,14 @@ The best obtained fitness when coding the individuals as sets of rules are detai
 \end{table*}
 
 
-In the case of $F_{Acc}$ for the Pittsburgh approach, as the distributions are not normal, a non-parametric test (Kruskal-Wallis) has been used to asset the statistical significance \cite{DerracTests11}, obtaining a p-value of 0.0001. $\alpha$ = 0 is significantly different with $\alpha$ = 0.5 and $\alpha$ = 1, while there are not differences between the two former (p-value = 0.08).
+In the case of $F_{Acc}$ for the Pittsburgh approach, since the
+distributions do not follow the normal, a non-parametric test
+(Kruskal-Wallis) has been used to asset the statistical significance
+\cite{DerracTests11}, obtaining a p-value of 0.0001. $\alpha$ = 0 is
+significantly different with $\alpha$ = 0.5 and $\alpha$ = 1, while
+there are not differences between the two former (p-value = 0.08).
+%this is an enumeration of results. What can you say about them? Do
+%they prove your initial hypothesis? - JJ
 
 \subsection{Michigan approach}
 
@@ -732,8 +736,18 @@ In the case of $F_{Acc}$ for the Pittsburgh approach, as the distributions are n
 \end{center}
 \end{table*}
 
+%We wanted to test different values of alpha because... (hypotesis you
+%want to prove). However... 
 No significant differences have been found between the results of apply the
-three values of $\alpha$, for GRANTED and STRONGDENY. In the case of comparing the three distributions for STRONGDENY, an ANOVA test has been applied instead Kruskal-Wallis, as these distributions follow a normal curve.
+three values of $\alpha$, for GRANTED and STRONGDENY. % which means,
+                                % in the context of this problem,
+                                % that... 
+In the case of comparing the three distributions % Distributions or
+                                % results for different values of
+                                % alpha? 
+for STRONGDENY, an ANOVA test has been applied instead Kruskal-Wallis,
+as these distributions follow a normal curve. % and results obtained
+                                % show that.... which means... 
 
 \subsection{Proposed system configuration}
 
@@ -773,13 +787,22 @@ three values of $\alpha$, for GRANTED and STRONGDENY. In the case of comparing t
 \section{Conclusions and Future Work}
 \label{sec:future}
 
-As it has been proven, the highly imbalance that is present in the dataset clearly biases the results towards the majority class \cite{japkowicz2002class}, in this case, GRANTED. In this sense, solutions can be found in literature in order to reduce the bias while performing classification tasks, such as in \cite{chawla2005data} and \cite{sun2009classification}. Also, in \cite{bhowan2012developing}, the authors present a comparison between many different types of fitness functions, testing on various unbalanced datasets, with different minority-class/majority-class ratios. For our future work we will implement these solutions to continue improving our system.
+As it has been proven, the highly imbalance that is present in the
+dataset clearly biases the results towards the majority class
+\cite{japkowicz2002class}, in this case, GRANTED. In this sense,
+solutions can be found in literature in order to reduce the bias while
+performing classification tasks, such as in \cite{chawla2005data} and
+\cite{sun2009classification}. Also, in \cite{bhowan2012developing},
+the authors present a comparison between many different types of
+fitness functions, testing on various unbalanced datasets, with
+different minority-class/majority-class ratios. For our future work we
+will implement these solutions to continue improving our system. 
 
 \section*{Acknowledgments.}
 
 This work has been supported in part by TIN2014-56494-C4-3-P (Spanish
 Ministry of Economy and Competitivity), PROY-PP2015-06 (Plan Propio
-2015 UGR).
+2015 UGR). %Is this one still working? - JJ
 
 \bibliographystyle{elsarticle-num}
 \bibliography{GPrules,geneura}
