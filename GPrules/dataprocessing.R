@@ -20,7 +20,7 @@ get_legend<-function(myggplot){
   return(legend)
 }
 
-get_data_vector <- function(myresults) {
+get_fitness_vector <- function(myresults) {
   x <- c(tail(myresults$BEST_F[myresults$FOLD == "fold0"], n=1),
          tail(myresults$BEST_F[myresults$FOLD == "fold1"], n=1),
          tail(myresults$BEST_F[myresults$FOLD == "fold2"], n=1),
@@ -31,6 +31,21 @@ get_data_vector <- function(myresults) {
          tail(myresults$BEST_F[myresults$FOLD == "fold7"], n=1),
          tail(myresults$BEST_F[myresults$FOLD == "fold8"], n=1),
          tail(myresults$BEST_F[myresults$FOLD == "fold9"], n=1))
+  return(x)
+}
+
+get_validation_vector <- function(myresults) {
+  x <- c(tail(myresults$BEST_VALIDATION[myresults$FOLD == "fold0"], n=1),
+         tail(myresults$BEST_VALIDATION[myresults$FOLD == "fold1"], n=1),
+         tail(myresults$BEST_VALIDATION[myresults$FOLD == "fold2"], n=1),
+         tail(myresults$BEST_VALIDATION[myresults$FOLD == "fold3"], n=1),
+         tail(myresults$BEST_VALIDATION[myresults$FOLD == "fold4"], n=1),
+         tail(myresults$BEST_VALIDATION[myresults$FOLD == "fold5"], n=1),
+         tail(myresults$BEST_VALIDATION[myresults$FOLD == "fold6"], n=1),
+         tail(myresults$BEST_VALIDATION[myresults$FOLD == "fold7"], n=1),
+         tail(myresults$BEST_VALIDATION[myresults$FOLD == "fold8"], n=1),
+         tail(myresults$BEST_VALIDATION[myresults$FOLD == "fold9"], n=1))
+  x <- x/5330
   return(x)
 }
 
@@ -45,7 +60,7 @@ get_stats <- function(myVector) {
 }
 
 add_worst_as_column <- function(myresults, fitness) {
- y <- get_data_vector(myresults)
+ y <- get_fitness_vector(myresults)
  theMin <- min(y)
  theMax <- max(y)
  if (fitness == "facc") {
@@ -56,7 +71,7 @@ add_worst_as_column <- function(myresults, fitness) {
 }
 
 create_dataframe <- function(myresults, experimentName) {
-  BEST_F <- get_data_vector(myresults)
+  BEST_F <- get_fitness_vector(myresults)
   CONF <- c(experimentName,experimentName,
             experimentName,experimentName,
             experimentName,experimentName,
@@ -116,19 +131,33 @@ print(xtable(latexTable), type = "html")
 # Stats
 # --------
 
-get_stats(get_data_vector(treeIndCovData))
-get_stats(get_data_vector(treeIndAlpha0Data))
-get_stats(get_data_vector(treeIndAlpha05Data))
-get_stats(get_data_vector(treeIndAlpha1Data))
+get_stats(get_fitness_vector(treeIndCovData))
+get_stats(get_fitness_vector(treeIndAlpha0Data))
+get_stats(get_fitness_vector(treeIndAlpha05Data))
+get_stats(get_fitness_vector(treeIndAlpha1Data))
 
-get_stats(get_data_vector(listIndCovAllowData))
-get_stats(get_data_vector(listIndCovDenyData))
-get_stats(get_data_vector(listIndAlpha0AllowData))
-get_stats(get_data_vector(listIndAlpha0DenyData))
-get_stats(get_data_vector(listIndAlpha05AllowData))
-get_stats(get_data_vector(listIndAlpha05DenyData))
-get_stats(get_data_vector(listIndAlpha1AllowData))
-get_stats(get_data_vector(listIndAlpha1DenyData))
+get_stats(get_fitness_vector(listIndCovAllowData))
+get_stats(get_fitness_vector(listIndCovDenyData))
+get_stats(get_fitness_vector(listIndAlpha0AllowData))
+get_stats(get_fitness_vector(listIndAlpha0DenyData))
+get_stats(get_fitness_vector(listIndAlpha05AllowData))
+get_stats(get_fitness_vector(listIndAlpha05DenyData))
+get_stats(get_fitness_vector(listIndAlpha1AllowData))
+get_stats(get_fitness_vector(listIndAlpha1DenyData))
+
+get_stats(get_validation_vector(treeIndCovData))
+get_stats(get_validation_vector(treeIndAlpha0Data))
+get_stats(get_validation_vector(treeIndAlpha05Data))
+get_stats(get_validation_vector(treeIndAlpha1Data))
+
+get_stats(get_validation_vector(listIndCovAllowData))
+get_stats(get_validation_vector(listIndCovDenyData))
+get_stats(get_validation_vector(listIndAlpha0AllowData))
+get_stats(get_validation_vector(listIndAlpha0DenyData))
+get_stats(get_validation_vector(listIndAlpha05AllowData))
+get_stats(get_validation_vector(listIndAlpha05DenyData))
+get_stats(get_validation_vector(listIndAlpha1AllowData))
+get_stats(get_validation_vector(listIndAlpha1DenyData))
 
 # ---------
 # Graphs

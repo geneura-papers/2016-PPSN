@@ -680,13 +680,13 @@ The best obtained fitness when coding the individuals as sets of rules are detai
 
 \begin{table*}
 \begin{center}
-\begin{tabular}{cc|l|l|l|l|l|l|l|}
-\cline{3-9}
-                                                &                & Average & SD & Best       & Median & Worst & FP (avg) & FN (avg)   \\ \hline
-\multicolumn{2}{|c|}{$F_{Acc}$}                                  & 0.925   & $<$0.001 & 0.926      & 0.925  & 0.924 & 400.3 & 0 \\ \hline
-\multicolumn{1}{|c|}{\multirow{3}{*}{$F_{CS}$}} & $\alpha$ = 0 *  & 7102.2  & 320.260 & 6198        & 7193   & 7253 & 390.7 & 1.7 \\ \cline{2-9} 
-\multicolumn{1}{|c|}{}                          & $\alpha$ = 0.5 & 7235.95 & 41.825 & 7149       & 7250   & 7274 & 400.5 & 0 \\ \cline{2-9} 
-\multicolumn{1}{|c|}{}                          & $\alpha$ = 1   & 7192.8  & 204.872 & 6620       & 7253.5 & 7298 & 398.1 & 0 \\ \hline
+\begin{tabular}{cc|l|l|l|l|l|}
+\cline{3-7}
+                                                &                & Average & SD & Best       & Median & Worst \\ \hline
+\multicolumn{2}{|c|}{$F_{Acc}$}                                  & 0.925   & $<$0.001 & 0.926      & 0.925  & 0.924 \\ \hline
+\multicolumn{1}{|c|}{\multirow{3}{*}{$F_{CS}$}} & $\alpha$ = 0 *  & 7102.2  & 320.260 & 6198        & 7193   & 7253 \\ \cline{2-7} 
+\multicolumn{1}{|c|}{}                          & $\alpha$ = 0.5 & 7235.95 & 41.825 & 7149       & 7250   & 7274 \\ \cline{2-7} 
+\multicolumn{1}{|c|}{}                          & $\alpha$ = 1   & 7192.8  & 204.872 & 6620       & 7253.5 & 7298 \\ \hline
 \end{tabular}
 \caption{Best fitness obtained when the individual is coded as a set
   of rules, following the Pittsburgh approach, and with 10-fold
@@ -709,6 +709,21 @@ significantly different with $\alpha$ = 0.5 and $\alpha$ = 1, while
 there are not differences between the two former (p-value = 0.08).
 %this is an enumeration of results. What can you say about them? Do
 %they prove your initial hypothesis? - JJ
+
+\begin{table*}
+\begin{center}
+\begin{tabular}{cc|l|l|l|l|l|l|l|}
+\cline{3-9}
+                                                &                & Average & SD & Best       & Median & Worst & FP (avg) & FN (avg)   \\ \hline
+\multicolumn{2}{|c|}{$F_{Acc}$}                                  & 0.925 & 0.004 & 0.929      & 0.926  & 0.917 & 400.3 & 0 \\ \hline
+\multicolumn{1}{|c|}{\multirow{3}{*}{$F_{CS}$}} & $\alpha$ = 0 *  & 0.926 & 0.006 & 0.941     & 0.926   & 0.917 & 390.7 & 1.7 \\ \cline{2-9} 
+\multicolumn{1}{|c|}{}                          & $\alpha$ = 0.5 & 0.925 & 0.004 & 0.929       & 0.926   & 0.917 & 400.5 & 0 \\ \cline{2-9} 
+\multicolumn{1}{|c|}{}                          & $\alpha$ = 1   & 0.922  & 0.008 & 0.929       & 0.924 & 0.902 & 398.1 & 0 \\ \hline
+\end{tabular}
+\caption{Best validation obtained for each case, for a different fitness function or configuration has been used, and for Pittsburgh approach. They are represented by their mean and median due to the 10-fold cross-validation used. An $*$ indicates the  statistically significant best value for $\alpha$. False positives (FP) and false negatives (FN) rates are also indicated.}
+\label{tab:pittsburghVAL}
+\end{center}
+\end{table*}
 
 \subsection{Michigan approach}
 
@@ -748,6 +763,25 @@ In the case of comparing the three distributions % Distributions or
 for STRONGDENY, an ANOVA test has been applied instead Kruskal-Wallis,
 as these distributions follow a normal curve. % and results obtained
                                 % show that.... which means... 
+                                
+\begin{table*}
+\begin{center}
+\begin{tabular}{cc|l|l|l|l|l|l|l|l|}
+\cline{3-10}
+                                                &                                 & Class      & Average & SD & Best & Median & Worst & FP (avg) & FN (avg) \\ \hline
+\multicolumn{2}{|c|}{\multirow{2}{*}{$F_{Acc}$}}                                  & GRANTED    & 0.425 & 0.132 & 0.473 & 0.468 & 0.051 & 112.3  & 0 \\ \cline{3-10} 
+\multicolumn{2}{|c|}{}                                                            & STRONGDENY & 0.092 & 0.131 & 0.465 & 0.049 & 0.044 & 0 & 25.5 \\ \hline
+\multicolumn{1}{|c|}{\multirow{6}{*}{$F_{CS}$}} & \multirow{2}{*}{$\alpha$ = 0}   & GRANTED    & 0.466 & 0.003 & 0.471 & 0.467 & 0.459 & 110.6 & 0 \\ \cline{3-10} 
+\multicolumn{1}{|c|}{}                          &                                 & STRONGDENY & 0.024 & 0.014 & 0.044 & 0.024 & 0.003 & 0 & 473.8 \\ \cline{2-10} 
+\multicolumn{1}{|c|}{}                          & \multirow{2}{*}{$\alpha$ = 0.5} & GRANTED    & 0.466 & 0.004 & 0.473 & 0.464 & 0.461 & 116.9 & 0 \\ \cline{3-10} 
+\multicolumn{1}{|c|}{}                          &                                 & STRONGDENY & 0.029 & 0.013 & 0.047 & 0.032 & 0.011 & 0 & 188.8 \\ \cline{2-10} 
+\multicolumn{1}{|c|}{}                          & \multirow{2}{*}{$\alpha$ = 1}   & GRANTED    & 0.466 & 0.003 & 0.47 & 0.466 & 0.461 & 161.2 & 0 \\ \cline{3-10} 
+\multicolumn{1}{|c|}{}                          &                                 & STRONGDENY & 0.031 & 0.014 & 0.05 & 0.038 & 0.01 & 0 & 1274.5 \\ \hline
+\end{tabular}
+\caption{Best validation obtained for each case, for a different fitness function or configuration has been used, and for Michigan approach. They are represented by their mean and median due to the 10-fold cross-validation used. An $*$ indicates the  statistically significant best value for $\alpha$. False positives (FP) and false negatives (FN) rates are also indicated.}
+\label{tab:michiganVAL}
+\end{center}
+\end{table*}
 
 \subsection{Proposed system configuration}
 
