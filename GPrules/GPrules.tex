@@ -124,7 +124,6 @@ However, there exists a big disadvantage concerning security, since
 potentially unsecured devices from unaware users might interact with
 important company assets. Therefore, the main issue is to obtain a high level
 of security, while maintaining user privacy \cite{miller2012byod}.
-%Focusing on the corporate world and as previously highlighted,
 Clearly the uncontrolled access to internal networks by the
 personal devices, for which companies have control limits
 due to privacy concerns \cite{miller2012byod}, exposes the companies to security risks such as data
@@ -142,10 +141,8 @@ thus every department must be involved in establishing security
 policies and procedures to minimize the company's risks.
 
 To this end, the Corporate Security Policies (CSPs) \cite{Kaeo:2003:DNS:1201807}, 
-defined by the company's Chief Security Officer (CSO) are the core at
-the % he probably does not do that _personally_ maybe "approved" or
-    % "pushed" would be a better term - JJ
-identification of threats and the construction of a set of security rules. The description of these jobs include protecting
+approved by the company's Chief Security Officer (CSO) are the core at
+the  identification of threats and the construction of a set of security rules. The description of these jobs include protecting
 company assets by defining permissions to be considered for every
 different action to be performed inside or outside the company's work
 space, and eventually coming from the employees personal
@@ -193,28 +190,12 @@ classification error. But since there are other metrics that influence
 created tree or the number of nodes it has
 \cite{back1996evolutionary}, it would be of convenience to use them in
 the definition of the fitness. 
-Our proposed GP framework dedicated % dedicated? - JJ
-to the BYOD context is capable of performing an automatic discovery
-of classification rules, obtaining good fitness, and presenting the
+Our proposed GP framework is capable of performing an automatic discovery
+of classification rules from the BYOD context data, obtaining good fitness, and presenting the
 rules in a way that is helpful for a CSO. We demonstrate so by using
 the developed framework with a real-world dataset, and comparing two
 ways of coding the individuals -- as a set of rules, or as a single
-rule -- so that we finally propose the approach with the best
-performance. %Pablo: complete this paragraph with ", to establish
-             %blabla" 
-% (Paloma) Done!
-% You have not mentioned you are comparing different fitness
-% functions. You _really_ have to characterize the problem you are
-% tackling in the introduction. If you are comparing fitness, you have
-% to say that the problem in this context is to find a fitness
-% function. Representation is not problem specific, so you have to
-% proceed from the generic (algorithm domain) to the specific (problem
-% domain) when explaining what you are going to do in this particular
-% paper. Are conclusions about codification specific to the problem
-% domain? - JJ
-% What are the tradeoffs with single and multiple rules? Why do you
-% have to compare them here? Are you comparing it with something else,
-% such as random forest? - JJ
+rule -- so that we are able to choose the best approach for our system. We make this comparison because while obtaining a set of rules as solution is computationally expensive due to the need of longer evaluations, to evaluate a single rule not taking into account how it interacts with what the others cover \cite{freitas2002data} can lead to massive overlapping. Hence, we must study their accuracy despite of their advantages and disadvantages. In addition, we choose the most appropriate (fastest to converge and with best value) fitness after comparing the use of a most simpler-accuracy-measure one, and a complex one which takes into account the complexity of the individuals. Finally, we propose the approach with the best performance in terms of best fitness value. 
 
 The rest of the paper is organised as follows. In Section
 \ref{sec:SotA} we give an overview of the advances in GP applied to
