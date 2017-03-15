@@ -365,10 +365,7 @@ about our proposed solution are given in what is next. % What is BYOD
 \subsection{Available Data}
 \label{subsec:data}
 
-We have used user data to perform the experiments for this
-work but anonymised, in the sense that from all the attributes extracted from the user actions, the username is not included as a variable to build rules with. % User data is not specific. What kind of data? - JJ
-% (Paloma) Tried to extend it
- The set of data has been gathered from the trials that were performed
+ The set of used data has been gathered from the trials that were performed
  during the development of an FP7 European Project, called MUSES
  \cite{DBLP:conf/sac/MoraCGZJEBAH14}. In these trials, a group of
  users tested a smartphone and PC application meant for securing a
@@ -378,15 +375,8 @@ work but anonymised, in the sense that from all the attributes extracted from th
  conditions are met in an ``event'' (an action performed by a user),
  the corresponding action could be allowed - nothing happened - or
  denied, where a warning appears explaining the rule that the user did not comply with and how to perform the action in a more secure way or environment.
-								% Are you going to validate those
-                                % warnings? To use them in the
-                                % training set?
-                                % (Paloma) This I didn't get
-                                % What is BYOD specific?
-                                % about them? - JJ
-                                % (Paloma) Tried to explain this
 
-The dataset contains a set of these ``events'' from which a number of attributes (variables) have been extracted or are given by the application itself. The attributes can be classified in different ways; one of them is based on whether they are directly read from the application or inferred after processing the read data. Therefore, we distinguish between:
+The dataset contains a set of these ``events'' from which a number of attributes (variables) have been extracted or are given by the application itself. User data has been also extracted but anonymised, in the sense that from all the attributes extracted from the user actions, the username is not included as a variable to build rules with. They were included, however, attributes such as the user role or the length of the password set by the user (never the password itself). The attributes can be classified in different ways; one of them is based on whether they are directly read from the application or inferred after processing the read data. Therefore, we distinguish between:
 \begin{itemize}
   \item Attributes given by the tested application: these attributes
     are related to the type of the event (action), its timestamp, or
@@ -397,10 +387,7 @@ The dataset contains a set of these ``events'' from which a number of attributes
 The trials had a duration of five weeks, and a total of 
 153270 events were registered in the database. We filtered those events that did not imply access to assets, meaning that they were not useful for
 knowledge extraction purposes, such as events of \textit{log in},
-\textit{log out}, or \textit{restarting the server}. % alternative
-                                % rephrasing: We filtered those events
-                                % that didn't imply access to assets,
-                                % such as... JJ
+\textit{log out}, or \textit{restarting the server}.
 The remaining was a 35\% (53296 instances) of the total, and were considered as \textit{important}
 because they did contain information about user actions such as
 opening files or sending emails in a certain connection environment,
