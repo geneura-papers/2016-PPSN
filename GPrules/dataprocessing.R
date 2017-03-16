@@ -46,6 +46,22 @@ get_validation_vector <- function(myresults) {
          tail(myresults$BEST_VALIDATION[myresults$FOLD == "fold8"], n=1),
          tail(myresults$BEST_VALIDATION[myresults$FOLD == "fold9"], n=1))
   x <- x/5330
+  print(x)
+  return(x)
+}
+
+get_time_vector <- function(myresults) {
+  x <- c(tail(myresults$TIME[myresults$FOLD == "fold0"], n=1),
+         tail(myresults$TIME[myresults$FOLD == "fold1"], n=1),
+         tail(myresults$TIME[myresults$FOLD == "fold2"], n=1),
+         tail(myresults$TIME[myresults$FOLD == "fold3"], n=1),
+         tail(myresults$TIME[myresults$FOLD == "fold4"], n=1),
+         tail(myresults$TIME[myresults$FOLD == "fold5"], n=1),
+         tail(myresults$TIME[myresults$FOLD == "fold6"], n=1),
+         tail(myresults$TIME[myresults$FOLD == "fold7"], n=1),
+         tail(myresults$TIME[myresults$FOLD == "fold8"], n=1),
+         tail(myresults$TIME[myresults$FOLD == "fold9"], n=1))
+  x <- ((x/1000)/60)/60
   return(x)
 }
 
@@ -71,13 +87,13 @@ add_worst_as_column <- function(myresults, fitness) {
 }
 
 create_dataframe <- function(myresults, experimentName) {
-  BEST_F <- get_fitness_vector(myresults)
+  BEST_VAL <- get_fitness_vector(myresults)
   CONF <- c(experimentName,experimentName,
             experimentName,experimentName,
             experimentName,experimentName,
             experimentName,experimentName,
             experimentName,experimentName)
-  theDF <- data.frame(BEST_F, CONF)
+  theDF <- data.frame(BEST_VAL, CONF)
   return(theDF)
 }
 
@@ -124,7 +140,7 @@ bestFListFCS <- rbind(create_dataframe(listIndAlpha0AllowData, listIndAlpha0Allo
                       create_dataframe(listIndAlpha05DenyData, listIndAlpha05DenyData$CONF[1]),
                       create_dataframe(listIndAlpha1DenyData, listIndAlpha1DenyData$CONF[1]))
 latexTable <- rbind(bestFTreeCov, bestFTreeFCS, bestFListCov, bestFListFCS)
-print(xtable(latexTable), type = "html")
+print(xtable(latexTable, digits = c(0, 7, 0)), type = "html")
 
 
 # --------
@@ -158,6 +174,20 @@ get_stats(get_validation_vector(listIndAlpha05AllowData))
 get_stats(get_validation_vector(listIndAlpha05DenyData))
 get_stats(get_validation_vector(listIndAlpha1AllowData))
 get_stats(get_validation_vector(listIndAlpha1DenyData))
+
+get_stats(get_time_vector(treeIndCovData))
+get_stats(get_time_vector(treeIndAlpha0Data))
+get_stats(get_time_vector(treeIndAlpha05Data))
+get_stats(get_time_vector(treeIndAlpha1Data))
+
+get_stats(get_time_vector(listIndCovAllowData))
+get_stats(get_time_vector(listIndCovDenyData))
+get_stats(get_time_vector(listIndAlpha0AllowData))
+get_stats(get_time_vector(listIndAlpha0DenyData))
+get_stats(get_time_vector(listIndAlpha05AllowData))
+get_stats(get_time_vector(listIndAlpha05DenyData))
+get_stats(get_time_vector(listIndAlpha1AllowData))
+get_stats(get_time_vector(listIndAlpha1DenyData))
 
 # ---------
 # Graphs
