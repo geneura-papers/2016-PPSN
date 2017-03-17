@@ -687,6 +687,8 @@ there are not differences between the two former (p-value = 0.08).
 \end{center}
 \end{table*}
 
+Taking into consideration the infrastructure available for the experiments (see Section\ref{sec:experiments}), the execution times for the Pittsburgh approach are in Table \ref{tab:pittsburghTime}, detailed by their average value and standard deviation (sd). Values are expressed in miliseconds, and it can be seen that it mostly takes the same to execute all of them, given that the stopping criterion is to finish 150 generations.
+
 \begin{table*}
 \begin{center}
 \begin{tabular}{ll|l|l|l|}
@@ -759,6 +761,8 @@ as these distributions follow a normal curve. % and results obtained
 \label{tab:michiganVAL}
 \end{center}
 \end{table*}
+
+Execution times (in average) can be consulted in Table \ref{tab:michiganTime}. It is important to understand, before making a comparison with results in Table \ref{tab:pittsburghTime} from the Pittsburgh approach, that for each different fitness or configuration of the fitness (different $\alpha$), in the Michigan approach the algorithm has to be executed twice, given that we obtain a single rule as a solution at the time we have two classes. This means that even though we can see the times described in Table \ref{tab:michiganTime} are around half the ones in Table \ref{tab:pittsburghTime}, the times for both classes should be added up together.
 
 \begin{table*}
 \begin{center}
