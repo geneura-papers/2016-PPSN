@@ -48,12 +48,18 @@ unauthorised users.
 To handle these kinds of threats, we propose a way of detecting and controlling abnormal user
 access by establishing a policy based on classification rules. Our
 approach for the problem of BYOD security uses Genetic Programming
-(GP) via a standard GP framework. GP is used as a promising approach 
-capable of performing an automatic discovery of novel and interesting
-threat classification rules, with the additional feature of presenting
-the new rules in an easily understandable way. The fitness obtained after the simulation results over real data, and after testing different configurations in the way of coding the individuals and obtaining the fitness. Through these comparisons, we can confirm the
+(GP) via a standard GP framework, since GP is 
+capable of discovering of novel and interesting threat classification
+rules, with the additional feature of presenting the new rules in an
+easily understandable way. % These rules are a re-formulation of the
+                           % old rules set by the CSO. They are not totally new - JJ
+The fitness function obtained 
+after the simulation results over real data, and after testing
+different configurations in the way of coding the individuals and
+obtaining the fitness. % this sentence lacks a predicate. - JJ
+Through these comparisons, we can confirm the 
 viability, effectiveness, and applicability of the GP approach, in certain conditions, to the
-BYOD security context.
+BYOD security context. 
 \end{abstract}
 
 
@@ -606,9 +612,14 @@ During the fitness evaluation, the generated individual is converted
 into a string, which can become a single rule or set of rules
 depending on the approach. % But this is what you are going to
                            % compare. You should make a lot of more
-                           % enphasis - JJ
+                           % emphasis - JJ
 Then, the chosen fitness is evaluated for a particular rule -- the single rule or each one inside the set -- and over the 90\% of the data.
-For further reliability of the results, it is advised to perform 10-fold cross-validation \cite{kohavi1995study}, and as such the WEKA Java Library \cite{HallWEKA09} has been used to generate the 10 folds or distributions of data into 90\% training (fitness evaluation) and 10\% validation. This way, each experiment has been executed 10 times, a different distribution of the data each.
+For further reliability of the results, it is advised to perform
+10-fold cross-validation \cite{kohavi1995study}, and as such the WEKA
+Java Library \cite{HallWEKA09} has been used to generate the 10 folds
+or distributions of data into 90\% training (fitness evaluation) and
+10\% validation. This way, each experiment has been executed 10 times,
+each one with a different distribution of data.
 
 The specific source code of the proposed method is available under a LGPL V3 License 
 at \url{https://github.com/fergunet/GPRuleRefinement}, as a module for 
@@ -634,7 +645,21 @@ the framework OSGiLiath \cite{DBLP:journals/soco/Garcia-SanchezGCAG13}
 \section{Results from Genetic Programming application}
 \label{sec:gp}
 
-In this section we are going to study the two proposed approaches, each one presenting the results for the two used fitness described in Equations \ref{eq:accuracy} and \ref{eq:complexFitness}. In addition, an example of the individuals obtained will be presented, along with their advantages and disadvantages. Lastly, we will choose the best approach, justifying this choice.
+% A paper is a story, has a narrative. Introduce the section by
+% stating where in your narrative are right now. "Remember, dear
+% reader, that we wanted to compare the two proposed approaches
+% because... We are going to do so right here" - JJ
+
+In this section we are going to study the two proposed approaches,
+each one presenting the results for the two used fitness functions
+described in
+% This is the nth time I change "fitness" to "fitness
+% function". Fitness by itself is the value, "fitness function" what
+% you do to find it out. - JJ
+Equations \ref{eq:accuracy} and \ref{eq:complexFitness}. In addition,
+an example of the individuals obtained will be presented, along with
+their advantages and disadvantages. Lastly, we will choose the best
+approach, justifying this choice. 
 
 \subsection{Pittsburgh approach}
 
@@ -730,7 +755,8 @@ there are not differences between the two former (p-value = 0.08).
 
 %We wanted to test different values of alpha because... (hypotesis you
 %want to prove). However... 
-No significant differences have been found between the results of apply the
+No significant differences have been found between the results of
+applying the % Please revise grammar thoroughly - JJ
 three values of $\alpha$, for GRANTED and STRONGDENY. % which means,
                                 % in the context of this problem,
                                 % that... 
@@ -781,6 +807,9 @@ as these distributions follow a normal curve. % and results obtained
 
 \subsection{Proposed system configuration}
 
+% I don't know what you intend to do in this section, but I need to
+% see the whole paper before being able to say something about it.
+
 %\begin{figure*}[h!tb]
 %\centering
 %\includegraphics[width=\textwidth]{img/tree_ind_diff_alpha.pdf}
@@ -817,8 +846,25 @@ as these distributions follow a normal curve. % and results obtained
 \section{Conclusions and Future Work}
 \label{sec:future}
 
-As it has been proven, the highly imbalance that is present in the
-dataset clearly biases the results towards the majority class
+% This is what you say in the abstract:
+% Through these comparisons, we can confirm the 
+% viability, effectiveness, and applicability of the GP approach, in certain conditions, to the
+% BYOD security context.
+% This is the objective of the paper. You say nothing about imbalanced
+% sets, not to mention proving anything about them. You can't make the
+% objectives of the paper a moving target, stating something in the
+% abstract, moving to a different objective in the intro, proving
+% something altogether different in the experimental section (related
+% to something called alfa, which does not appear in the abstract
+% either) and finally concluding something that goes in a different
+% direction. A paper is
+% "We were wondering if A was true. In order to prove if A is true, we
+% are going to previously prove B and C. We do experiments with B and
+% C. Experiments prove that A is true in this and that condition, so
+% we propose E and F to check that it could be true in that other
+% condition we have not proved here.
+As it has been proven, the highly imbalanced data set that we are
+using clearly biases the results towards the majority class 
 \cite{japkowicz2002class}, in this case, GRANTED. In this sense,
 solutions can be found in literature in order to reduce the bias while
 performing classification tasks, such as in \cite{chawla2005data} and
