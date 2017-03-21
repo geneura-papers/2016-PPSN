@@ -53,10 +53,9 @@ capable of discovering of novel and interesting threat classification
 rules, with the additional feature of presenting the new rules in an
 easily understandable way. % These rules are a re-formulation of the
                            % old rules set by the CSO. They are not totally new - JJ
-The fitness function obtained 
+We obtain good dataset coverage 
 after the simulation results over real data, and after testing
-different configurations in the way of coding the individuals and
-obtaining the fitness. % this sentence lacks a predicate. - JJ
+different fitness functions and configurations in the way of coding the individuals.
 Through these comparisons, we can confirm the 
 viability, effectiveness, and applicability of the GP approach, in certain conditions, to the
 BYOD security context. 
@@ -363,10 +362,7 @@ conventional approach in Genetic Programming, the Pittsburgh approach
 of rules. However, in this work we have also implemented the Michigan approach, being the individual a single rule. The best individual is thus the one that obtains the best fitness, and it is obtained in two different ways, in order to finally choose the most efficient. The last step would be to present the rules to the CSO of the company and tune the algorithm according to the decision of
 finally including or not the set of rules in the main security
 policy. The description of the used data and further explicit details
-about our proposed solution are given in what is next. % What is BYOD
-                                % specific in this approach? What are
-                                % you using from the BYOD context? - JJ
-                                % (Paloma) Explained in a table!
+about our proposed solution are given in what is next.
 
 \subsection{Available Data}
 \label{subsec:data}
@@ -652,11 +648,7 @@ the framework OSGiLiath \cite{DBLP:journals/soco/Garcia-SanchezGCAG13}
 
 In this section we are going to study the two proposed approaches,
 each one presenting the results for the two used fitness functions
-described in
-% This is the nth time I change "fitness" to "fitness
-% function". Fitness by itself is the value, "fitness function" what
-% you do to find it out. - JJ
-Equations \ref{eq:accuracy} and \ref{eq:complexFitness}. In addition,
+described in Equations \ref{eq:accuracy} and \ref{eq:complexFitness}. In addition,
 an example of the individuals obtained will be presented, along with
 their advantages and disadvantages. Lastly, we will choose the best
 approach, justifying this choice. 
@@ -730,6 +722,7 @@ Taking into consideration the infrastructure available for the experiments (see 
 \end{table*}
 
 \subsection{Michigan approach}
+\label{subsec:michigan}
 
 \begin{table*}
 \begin{center}
@@ -788,6 +781,8 @@ as these distributions follow a normal curve. % and results obtained
 \end{center}
 \end{table*}
 
+Furthermore, Tables \ref{tab:michigan} and \ref{tab:michiganVAL} show worse results for the class STRONGDENY than for the class GRANTED. If we analyse the ratio of instances in each class, we obtain that the majority class is indeed GRANTED, and it surpasses the STRONGDENY class in 13:1.
+
 Execution times (in average) can be consulted in Table \ref{tab:michiganTime}. It is important to understand, before making a comparison with results in Table \ref{tab:pittsburghTime} from the Pittsburgh approach, that for each different fitness or configuration of the fitness (different $\alpha$), in the Michigan approach the algorithm has to be executed twice, given that we obtain a single rule as a solution at the time we have two classes. This means that even though we can see the times described in Table \ref{tab:michiganTime} are around half the ones in Table \ref{tab:pittsburghTime}, the times for both classes should be added up together.
 
 \begin{table*}
@@ -809,10 +804,11 @@ Execution times (in average) can be consulted in Table \ref{tab:michiganTime}. I
 \end{center}
 \end{table*}
 
-\subsection{Proposed system configuration}
+\subsection{Examples of the best obtained individuals}
+\label{subsec:examples}
 
-% I don't know what you intend to do in this section, but I need to
-% see the whole paper before being able to say something about it.
+Once the results have been analysed, here we present some examples of the individuals that have been obtained in the simulations, proving their readability and usefulness for the CSOs. In addition, we present the relation between the obtained solutions and the original rules that allowed to classify the dataset we have been working with.
+
 
 %\begin{figure*}[h!tb]
 %\centering
@@ -850,24 +846,9 @@ Execution times (in average) can be consulted in Table \ref{tab:michiganTime}. I
 \section{Conclusions and Future Work}
 \label{sec:future}
 
-% This is what you say in the abstract:
-% Through these comparisons, we can confirm the 
-% viability, effectiveness, and applicability of the GP approach, in certain conditions, to the
-% BYOD security context.
-% This is the objective of the paper. You say nothing about imbalanced
-% sets, not to mention proving anything about them. You can't make the
-% objectives of the paper a moving target, stating something in the
-% abstract, moving to a different objective in the intro, proving
-% something altogether different in the experimental section (related
-% to something called alfa, which does not appear in the abstract
-% either) and finally concluding something that goes in a different
-% direction. A paper is
-% "We were wondering if A was true. In order to prove if A is true, we
-% are going to previously prove B and C. We do experiments with B and
-% C. Experiments prove that A is true in this and that condition, so
-% we propose E and F to check that it could be true in that other
-% condition we have not proved here.
-As it has been proven, the highly imbalanced data set that we are
+% (Paloma) From now on, please take into consideration that finished sections will be sent for review. If they are not under review it's because they are not finished.
+
+As it has been seen in Sections \ref{subsec:michigan} and \ref{subsec:examples}, the highly imbalanced data set that we are
 using clearly biases the results towards the majority class 
 \cite{japkowicz2002class}, in this case, GRANTED. In this sense,
 solutions can be found in literature in order to reduce the bias while
