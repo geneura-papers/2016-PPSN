@@ -4,6 +4,7 @@ require(ggplot2)
 require(dplyr)
 require(reshape2)
 require(xtable)
+
 library(gridExtra)
 library(grid)
 library(lattice)
@@ -20,49 +21,24 @@ get_legend<-function(myggplot){
   return(legend)
 }
 
-get_fitness_vector <- function(myresults) {
-  x <- c(tail(myresults$BEST_F[myresults$FOLD == "fold0"], n=1),
-         tail(myresults$BEST_F[myresults$FOLD == "fold1"], n=1),
-         tail(myresults$BEST_F[myresults$FOLD == "fold2"], n=1),
-         tail(myresults$BEST_F[myresults$FOLD == "fold3"], n=1),
-         tail(myresults$BEST_F[myresults$FOLD == "fold4"], n=1),
-         tail(myresults$BEST_F[myresults$FOLD == "fold5"], n=1),
-         tail(myresults$BEST_F[myresults$FOLD == "fold6"], n=1),
-         tail(myresults$BEST_F[myresults$FOLD == "fold7"], n=1),
-         tail(myresults$BEST_F[myresults$FOLD == "fold8"], n=1),
-         tail(myresults$BEST_F[myresults$FOLD == "fold9"], n=1))
-  return(x)
-}
-
-get_validation_vector <- function(myresults) {
-  x <- c(tail(myresults$BEST_VALIDATION[myresults$FOLD == "fold0"], n=1),
-         tail(myresults$BEST_VALIDATION[myresults$FOLD == "fold1"], n=1),
-         tail(myresults$BEST_VALIDATION[myresults$FOLD == "fold2"], n=1),
-         tail(myresults$BEST_VALIDATION[myresults$FOLD == "fold3"], n=1),
-         tail(myresults$BEST_VALIDATION[myresults$FOLD == "fold4"], n=1),
-         tail(myresults$BEST_VALIDATION[myresults$FOLD == "fold5"], n=1),
-         tail(myresults$BEST_VALIDATION[myresults$FOLD == "fold6"], n=1),
-         tail(myresults$BEST_VALIDATION[myresults$FOLD == "fold7"], n=1),
-         tail(myresults$BEST_VALIDATION[myresults$FOLD == "fold8"], n=1),
-         tail(myresults$BEST_VALIDATION[myresults$FOLD == "fold9"], n=1))
-  x <- x/5330
-  print(x)
-  return(x)
-}
-
-get_time_vector <- function(myresults) {
-  x <- c(tail(myresults$TIME[myresults$FOLD == "fold0"], n=1),
-         tail(myresults$TIME[myresults$FOLD == "fold1"], n=1),
-         tail(myresults$TIME[myresults$FOLD == "fold2"], n=1),
-         tail(myresults$TIME[myresults$FOLD == "fold3"], n=1),
-         tail(myresults$TIME[myresults$FOLD == "fold4"], n=1),
-         tail(myresults$TIME[myresults$FOLD == "fold5"], n=1),
-         tail(myresults$TIME[myresults$FOLD == "fold6"], n=1),
-         tail(myresults$TIME[myresults$FOLD == "fold7"], n=1),
-         tail(myresults$TIME[myresults$FOLD == "fold8"], n=1),
-         tail(myresults$TIME[myresults$FOLD == "fold9"], n=1))
-  x <- ((x/1000)/60)/60
-  return(x)
+get_vector <- function(myresults, attribute) {
+  x <- c(tail(myresults[[attribute]][myresults$FOLD == "fold0"], n=1),
+         tail(myresults[[attribute]][myresults$FOLD == "fold1"], n=1),
+         tail(myresults[[attribute]][myresults$FOLD == "fold2"], n=1),
+         tail(myresults[[attribute]][myresults$FOLD == "fold3"], n=1),
+         tail(myresults[[attribute]][myresults$FOLD == "fold4"], n=1),
+         tail(myresults[[attribute]][myresults$FOLD == "fold5"], n=1),
+         tail(myresults[[attribute]][myresults$FOLD == "fold6"], n=1),
+         tail(myresults[[attribute]][myresults$FOLD == "fold7"], n=1),
+         tail(myresults[[attribute]][myresults$FOLD == "fold8"], n=1),
+         tail(myresults[[attribute]][myresults$FOLD == "fold9"], n=1))
+  if(attribute == "BEST_VALIDATION") {
+    return(x/5330)
+  } else if (attribute == "TIME") {
+    return(((x/1000)/60)/60)
+  } else {
+    return(x) 
+  }
 }
 
 get_stats <- function(myVector) {
@@ -76,7 +52,7 @@ get_stats <- function(myVector) {
 }
 
 add_worst_as_column <- function(myresults, fitness) {
- y <- get_fitness_vector(myresults)
+ y <- get_vector(myresults, "BEST_F")
  theMin <- min(y)
  theMax <- max(y)
  if (fitness == "facc") {
@@ -86,14 +62,14 @@ add_worst_as_column <- function(myresults, fitness) {
  }
 }
 
-create_dataframe <- function(myresults, experimentName) {
-  BEST_VAL <- get_fitness_vector(myresults)
+create_dataframe <- function(myresults, experimentName, attribute) {
+  BEST_VALUES <- get_vector(myresults, attribute)
   CONF <- c(experimentName,experimentName,
             experimentName,experimentName,
             experimentName,experimentName,
             experimentName,experimentName,
             experimentName,experimentName)
-  theDF <- data.frame(BEST_VAL, CONF)
+  theDF <- data.frame(BEST_VALUES, CONF)
   return(theDF)
 }
 
@@ -127,67 +103,114 @@ treeIndALL <- rbind(treeIndCovData, treeIndAlpha0Data, treeIndAlpha05Data, treeI
 listIndALL <- rbind(listIndCovAllowData, listIndCovDenyData, listIndAlpha0AllowData, listIndAlpha0DenyData,
                     listIndAlpha05AllowData, listIndAlpha05DenyData, listIndAlpha1AllowData, listIndAlpha1DenyData)
 
-bestFTreeCov <- rbind(create_dataframe(treeIndCovData, treeIndCovData$CONF[1]))
-bestFTreeFCS <- rbind(create_dataframe(treeIndAlpha0Data, treeIndAlpha0Data$CONF[1]),
-                      create_dataframe(treeIndAlpha05Data, treeIndAlpha05Data$CONF[1]),
-                      create_dataframe(treeIndAlpha1Data, treeIndAlpha1Data$CONF[1]))
-bestFListCov <- rbind(create_dataframe(listIndCovAllowData, listIndCovAllowData$CONF[1]),
-                      create_dataframe(listIndCovDenyData, listIndCovDenyData$CONF[1]))
-bestFListFCS <- rbind(create_dataframe(listIndAlpha0AllowData, listIndAlpha0AllowData$CONF[1]),
-                      create_dataframe(listIndAlpha05AllowData, listIndAlpha05AllowData$CONF[1]),
-                      create_dataframe(listIndAlpha1AllowData, listIndAlpha1AllowData$CONF[1]),
-                      create_dataframe(listIndAlpha0DenyData, listIndAlpha0DenyData$CONF[1]),
-                      create_dataframe(listIndAlpha05DenyData, listIndAlpha05DenyData$CONF[1]),
-                      create_dataframe(listIndAlpha1DenyData, listIndAlpha1DenyData$CONF[1]))
-latexTable <- rbind(bestFTreeCov, bestFTreeFCS, bestFListCov, bestFListFCS)
-print(xtable(latexTable, digits = c(0, 7, 0)), type = "html")
+bestFTreeCov <- create_dataframe(treeIndCovData, treeIndCovData$CONF[1], "BEST_F")
+bestFTreeFCS <- rbind(create_dataframe(treeIndAlpha0Data, treeIndAlpha0Data$CONF[1], "BEST_F"),
+                      create_dataframe(treeIndAlpha05Data, treeIndAlpha05Data$CONF[1], "BEST_F"),
+                      create_dataframe(treeIndAlpha1Data, treeIndAlpha1Data$CONF[1], "BEST_F"))
+bestFListCov <- rbind(create_dataframe(listIndCovAllowData, listIndCovAllowData$CONF[1], "BEST_F"),
+                      create_dataframe(listIndCovDenyData, listIndCovDenyData$CONF[1], "BEST_F"))
+bestFListFCS <- rbind(create_dataframe(listIndAlpha0AllowData, listIndAlpha0AllowData$CONF[1], "BEST_F"),
+                      create_dataframe(listIndAlpha05AllowData, listIndAlpha05AllowData$CONF[1], "BEST_F"),
+                      create_dataframe(listIndAlpha1AllowData, listIndAlpha1AllowData$CONF[1], "BEST_F"),
+                      create_dataframe(listIndAlpha0DenyData, listIndAlpha0DenyData$CONF[1], "BEST_F"),
+                      create_dataframe(listIndAlpha05DenyData, listIndAlpha05DenyData$CONF[1], "BEST_F"),
+                      create_dataframe(listIndAlpha1DenyData, listIndAlpha1DenyData$CONF[1], "BEST_F"))
+bestFListCovAllow <- create_dataframe(listIndCovAllowData, listIndCovAllowData$CONF[1], "BEST_F")
+bestFListFCSAllow <- rbind(create_dataframe(listIndAlpha0AllowData, listIndAlpha0AllowData$CONF[1], "BEST_F"),
+                      create_dataframe(listIndAlpha05AllowData, listIndAlpha05AllowData$CONF[1], "BEST_F"),
+                      create_dataframe(listIndAlpha1AllowData, listIndAlpha1AllowData$CONF[1], "BEST_F"))
+bestFListCovDeny <- create_dataframe(listIndCovDenyData, listIndCovDenyData$CONF[1], "BEST_F")
+bestFListFCSDeny <- rbind(create_dataframe(listIndAlpha0DenyData, listIndAlpha0DenyData$CONF[1], "BEST_F"),
+                      create_dataframe(listIndAlpha05DenyData, listIndAlpha05DenyData$CONF[1], "BEST_F"),
+                      create_dataframe(listIndAlpha1DenyData, listIndAlpha1DenyData$CONF[1], "BEST_F"))
 
+bestVTreeCov <- create_dataframe(treeIndCovData, treeIndCovData$CONF[1], "BEST_VALIDATION")
+bestVTreeFCS <- rbind(create_dataframe(treeIndAlpha0Data, treeIndAlpha0Data$CONF[1], "BEST_VALIDATION"),
+                      create_dataframe(treeIndAlpha05Data, treeIndAlpha05Data$CONF[1], "BEST_VALIDATION"),
+                      create_dataframe(treeIndAlpha1Data, treeIndAlpha1Data$CONF[1], "BEST_VALIDATION"))
+bestVListCov <- rbind(create_dataframe(listIndCovAllowData, listIndCovAllowData$CONF[1], "BEST_VALIDATION"),
+                      create_dataframe(listIndCovDenyData, listIndCovDenyData$CONF[1], "BEST_VALIDATION"))
+bestVListFCS <- rbind(create_dataframe(listIndAlpha0AllowData, listIndAlpha0AllowData$CONF[1], "BEST_VALIDATION"),
+                      create_dataframe(listIndAlpha05AllowData, listIndAlpha05AllowData$CONF[1], "BEST_VALIDATION"),
+                      create_dataframe(listIndAlpha1AllowData, listIndAlpha1AllowData$CONF[1], "BEST_VALIDATION"),
+                      create_dataframe(listIndAlpha0DenyData, listIndAlpha0DenyData$CONF[1], "BEST_VALIDATION"),
+                      create_dataframe(listIndAlpha05DenyData, listIndAlpha05DenyData$CONF[1], "BEST_VALIDATION"),
+                      create_dataframe(listIndAlpha1DenyData, listIndAlpha1DenyData$CONF[1], "BEST_VALIDATION"))
+bestVListCovAllow <- create_dataframe(listIndCovAllowData, listIndCovAllowData$CONF[1], "BEST_VALIDATION")
+bestVListFCSAllow <- rbind(create_dataframe(listIndAlpha0AllowData, listIndAlpha0AllowData$CONF[1], "BEST_VALIDATION"),
+                      create_dataframe(listIndAlpha05AllowData, listIndAlpha05AllowData$CONF[1], "BEST_VALIDATION"),
+                      create_dataframe(listIndAlpha1AllowData, listIndAlpha1AllowData$CONF[1], "BEST_VALIDATION"))
+bestVListCovDeny <- create_dataframe(listIndCovDenyData, listIndCovDenyData$CONF[1], "BEST_VALIDATION")
+bestVListFCSDeny <- rbind(create_dataframe(listIndAlpha0DenyData, listIndAlpha0DenyData$CONF[1], "BEST_VALIDATION"),
+                      create_dataframe(listIndAlpha05DenyData, listIndAlpha05DenyData$CONF[1], "BEST_VALIDATION"),
+                      create_dataframe(listIndAlpha1DenyData, listIndAlpha1DenyData$CONF[1], "BEST_VALIDATION"))
+
+#latexTable <- rbind(bestFTreeCov, bestFTreeFCS, bestFListCov, bestFListFCS)
+#print(xtable(latexTable, digits = c(0, 7, 0)), type = "html")
+
+bestFTreeCov$CONF <- as.factor(bestFTreeCov$CONF)
+bestVTreeCov$CONF <- as.factor(bestVTreeCov$CONF)
+bestFListCovAllow$CONF <- as.factor(bestFListCovAllow$CONF)
+bestFListCovDeny$CONF <- as.factor(bestFListCovDeny$CONF)
+bestVListCovAllow$CONF <- as.factor(bestVListCovAllow$CONF)
+bestVListCovDeny$CONF <- as.factor(bestVListCovDeny$CONF)
+
+kruskal.test(bestFTreeFCS$BEST_VALUES ~ bestFTreeFCS$CONF, data = bestFTreeFCS)
+pairwise.wilcox.test(bestFTreeFCS$BEST_F, bestFTreeFCS$CONF, p.adjust.method = "bonferroni")
+pairwise.wilcox.test(bestFTreeFCS$BEST_F, bestFTreeFCS$CONF, p.adjust.method = "holm")
+kruskal.test(bestVTreeFCS$BEST_VALUES ~ bestVTreeFCS$CONF, data = bestVTreeFCS)
+friedman.test(bestFTreeFCS$BEST_F, bestFTreeFCS$CONF)
+
+kruskal.test(bestFListFCSAllow$BEST_VALUES ~ bestFListFCSAllow$CONF, data = bestFListFCSAllow)
+kruskal.test(bestFListFCSDeny$BEST_VALUES ~ bestFListFCSDeny$CONF, data = bestFListFCSDeny)
+kruskal.test(bestVListFCSAllow$BEST_VALUES ~ bestVListFCSAllow$CONF, data = bestVListFCSAllow)
+kruskal.test(bestVListFCSDeny$BEST_VALUES ~ bestVListFCSDeny$CONF, data = bestVListFCSDeny)
 
 # --------
 # Stats
 # --------
 
-get_stats(get_fitness_vector(treeIndCovData))
-get_stats(get_fitness_vector(treeIndAlpha0Data))
-get_stats(get_fitness_vector(treeIndAlpha05Data))
-get_stats(get_fitness_vector(treeIndAlpha1Data))
+get_stats(get_vector(treeIndCovData, "BEST_F"))
+get_stats(get_vector(treeIndAlpha0Data, "BEST_F"))
+get_stats(get_vector(treeIndAlpha05Data, "BEST_F"))
+get_stats(get_vector(treeIndAlpha1Data, "BEST_F"))
 
-get_stats(get_fitness_vector(listIndCovAllowData))
-get_stats(get_fitness_vector(listIndCovDenyData))
-get_stats(get_fitness_vector(listIndAlpha0AllowData))
-get_stats(get_fitness_vector(listIndAlpha0DenyData))
-get_stats(get_fitness_vector(listIndAlpha05AllowData))
-get_stats(get_fitness_vector(listIndAlpha05DenyData))
-get_stats(get_fitness_vector(listIndAlpha1AllowData))
-get_stats(get_fitness_vector(listIndAlpha1DenyData))
+get_stats(get_vector(listIndCovAllowData, "BEST_F"))
+get_stats(get_vector(listIndCovDenyData, "BEST_F"))
+get_stats(get_vector(listIndAlpha0AllowData, "BEST_F"))
+get_stats(get_vector(listIndAlpha0DenyData, "BEST_F"))
+get_stats(get_vector(listIndAlpha05AllowData, "BEST_F"))
+get_stats(get_vector(listIndAlpha05DenyData, "BEST_F"))
+get_stats(get_vector(listIndAlpha1AllowData, "BEST_F"))
+get_stats(get_vector(listIndAlpha1DenyData, "BEST_F"))
 
-get_stats(get_validation_vector(treeIndCovData))
-get_stats(get_validation_vector(treeIndAlpha0Data))
-get_stats(get_validation_vector(treeIndAlpha05Data))
-get_stats(get_validation_vector(treeIndAlpha1Data))
+get_stats(get_vector(treeIndCovData, "BEST_VALIDATION"))
+get_stats(get_vector(treeIndAlpha0Data, "BEST_VALIDATION"))
+get_stats(get_vector(treeIndAlpha05Data, "BEST_VALIDATION"))
+get_stats(get_vector(treeIndAlpha1Data, "BEST_VALIDATION"))
 
-get_stats(get_validation_vector(listIndCovAllowData))
-get_stats(get_validation_vector(listIndCovDenyData))
-get_stats(get_validation_vector(listIndAlpha0AllowData))
-get_stats(get_validation_vector(listIndAlpha0DenyData))
-get_stats(get_validation_vector(listIndAlpha05AllowData))
-get_stats(get_validation_vector(listIndAlpha05DenyData))
-get_stats(get_validation_vector(listIndAlpha1AllowData))
-get_stats(get_validation_vector(listIndAlpha1DenyData))
+get_stats(get_vector(listIndCovAllowData, "BEST_VALIDATION"))
+get_stats(get_vector(listIndCovDenyData, "BEST_VALIDATION"))
+get_stats(get_vector(listIndAlpha0AllowData, "BEST_VALIDATION"))
+get_stats(get_vector(listIndAlpha0DenyData, "BEST_VALIDATION"))
+get_stats(get_vector(listIndAlpha05AllowData, "BEST_VALIDATION"))
+get_stats(get_vector(listIndAlpha05DenyData, "BEST_VALIDATION"))
+get_stats(get_vector(listIndAlpha1AllowData, "BEST_VALIDATION"))
+get_stats(get_vector(listIndAlpha1DenyData, "BEST_VALIDATION"))
 
-get_stats(get_time_vector(treeIndCovData))
-get_stats(get_time_vector(treeIndAlpha0Data))
-get_stats(get_time_vector(treeIndAlpha05Data))
-get_stats(get_time_vector(treeIndAlpha1Data))
+get_stats(get_vector(treeIndCovData, "TIME"))
+get_stats(get_vector(treeIndAlpha0Data, "TIME"))
+get_stats(get_vector(treeIndAlpha05Data, "TIME"))
+get_stats(get_vector(treeIndAlpha1Data, "TIME"))
 
-get_stats(get_time_vector(listIndCovAllowData))
-get_stats(get_time_vector(listIndCovDenyData))
-get_stats(get_time_vector(listIndAlpha0AllowData))
-get_stats(get_time_vector(listIndAlpha0DenyData))
-get_stats(get_time_vector(listIndAlpha05AllowData))
-get_stats(get_time_vector(listIndAlpha05DenyData))
-get_stats(get_time_vector(listIndAlpha1AllowData))
-get_stats(get_time_vector(listIndAlpha1DenyData))
+get_stats(get_vector(listIndCovAllowData, "TIME"))
+get_stats(get_vector(listIndCovDenyData, "TIME"))
+get_stats(get_vector(listIndAlpha0AllowData, "TIME"))
+get_stats(get_vector(listIndAlpha0DenyData, "TIME"))
+get_stats(get_vector(listIndAlpha05AllowData, "TIME"))
+get_stats(get_vector(listIndAlpha05DenyData, "TIME"))
+get_stats(get_vector(listIndAlpha1AllowData, "TIME"))
+get_stats(get_vector(listIndAlpha1DenyData, "TIME"))
 
 # ---------
 # Graphs
