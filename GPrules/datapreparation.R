@@ -1,4 +1,4 @@
-setwd('~/Github/2017-ESWA/Results')
+setwd('~/Github/2017-ESWA/GPrules/Results')
 
 #Execute this script just once!
 

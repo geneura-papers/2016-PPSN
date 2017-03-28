@@ -5,6 +5,7 @@
 \usepackage{graphicx}
 \usepackage{amsmath}
 \usepackage{url}
+\usepackage{multirow}
 
 \journal{Expert Systems with Applications}
 
@@ -13,12 +14,12 @@
 \begin{frontmatter}
 
 % first the title is needed
-\title{A Novel Technique for the Extraction of BYOD Security Rules Based on Genetic Programming}
+\title{Comparing individual representation and evaluation for automatic rule extraction using GP in a BYOD scenario}
 
 \author[ugr]{Paloma De las Cuevas}
 \ead{palomacd@ugr.es}
-\author[ugr]{Pablo Garc\'{\i}a-S\'anchez}
-\ead{pablogarcia@ugr.es}
+\author[uca]{Pablo Garc\'{\i}a-S\'anchez}
+\ead{pablo.garciasanchez@uca.es}
 \author[ugr]{J.J. Merelo}
 \ead{jmerelo@geneura.ugr.es}
 \author[isgt]{Zeineb Chelly}
@@ -26,17 +27,15 @@
 
 \address[ugr]{Department of Computer Architecture and Computer Technology, ETSIIT and CITIC \\
 University of Granada, Granada, Spain. Tel: +34958241778. Fax: +34958248993}
+\address[uca]{Department of Computer Engineering, School of Engineering \\
+University of C\'adiz, Spain.}
 \address[isgt]{LARODEC, Institut Sup\'erieur de Gestion de Tunis, Tunisia.}
 
 
 \begin{abstract}
-The growth in the number of personal devices in terms of variety and
-computational % Does not click. Growth in the personal devices area,
-              % maybe. "number" does not grow "in terms of variety". - JJ
-abilities has given birth to the concept of ``Bring Your Own Device''
-(BYOD), which applied to the corporate world has led companies to
-create policies geared towards allowing and enabling those devices. % allowing what and enabling for what or where? Maybe allow to "carry" and enable "use as company tools"? - JJ
-This allows % What is "this" here? "These policies"? - JJ
+The constant improvement in the computational abilities and features of the personal devices has favoured the application of the concept of ``Bring Your Own Device'' (BYOD) to the corporate world, making the companies to
+create policies geared towards enabling these devices as company tools. 
+This philosophy allows
 employees to bring and use their personal devices at
 the company premises, on virtual private networks or otherwise while
 on company work. Despite the significant advantages of this policy
@@ -45,28 +44,26 @@ the
 access to internal network and the assets it holds by these personal
 devices, whose corporate control is forcefully limited, exposes the companies to
 security threats such as leak of confidential data and access by
-unauthorised users. % All this intro should be shorter and more to the
-                    % point - JJ
-%I have made it _larger_, better to explain concepts involved. If
-%someone is able to make it shorter, please do - JJ
+unauthorised users. 
 To handle these kinds of threats, we propose a way of detecting and controlling abnormal user
 access by establishing a policy based on classification rules. Our
 approach for the problem of BYOD security uses Genetic Programming
-(GP) via a standard GP framework. GP is used as a promising approach % Do we prove this? - JJ
-capable of performing an automatic discovery of novel and interesting
-threat classification rules, with the additional feature of presenting
-the new rules in an easily understandable way. % If we prove this in
-                                % this paper, we should say so - JJ
-The simulation results over real data and a
-comparison with the results achieved by other techniques confirm the
-viability, effectiveness, and applicability of the GP approach to the
-BYOD security context.
+(GP) via a standard GP framework, since GP is 
+capable of discovering of novel and interesting threat classification
+rules, with the additional feature of presenting the new rules in an
+easily understandable way. % These rules are a re-formulation of the
+                           % old rules set by the CSO. They are not totally new - JJ
+We obtain good dataset coverage 
+after the simulation results over real data, and after testing
+different fitness functions and configurations in the way of coding the individuals.
+Through these comparisons, we can confirm the 
+viability, effectiveness, and applicability of the GP approach, in certain conditions, to the
+BYOD security context. 
 \end{abstract}
 
 
 \begin{keyword}
 %TODO: Keywords
-% Zaineb : I am proposing these keywords for now
 Bring Your Own Device, Security, Genetic Programming, Rules Extraction. 
 \end{keyword}
 
@@ -76,15 +73,15 @@ Bring Your Own Device, Security, Genetic Programming, Rules Extraction.
 \section{Introduction}
 \label{sec:intro}
 
-The fast pace of new technology has led modern computing to undergo
+The fast pace of introduction of new technologies has led modern computing to undergo
 several outstanding transitions in a short period of time. Modern
 computing has moved over time to smaller, more reliable and faster
 high-tech devices such as smartphones, laptops and tablets. The use of
 these technologies in several forms is progressing, and has led to the
 form of use known as the ``Bring Your Own Device'' (BYOD) concept or
-philosophy. % Definition of the concept should have a reference too - JJ
+philosophy. 
 Since its first appearance in research
-\cite{ballagas2004byod} as a way to call the interaction between
+\cite{ballagas2004byod} as a way to name the interaction between
 people's devices and a public display, such as art or advertising, it
 has become a very popular practise, integrated into companies
 \cite{thomson2012byod} and even schools \cite{song2014bring}.  
@@ -94,10 +91,10 @@ practice refers to allowing employees to use their
 personal laptops, smartphones, tablets, and other mobile devices in
 for work-related tasks, but not necessarily while being in the workplace This has many
 advantages \cite{singh2012byod}; among them we mention saving costs --
-as the company allows itself to save money on high-priced devices that
+since the company saves money on high-priced devices that
 it would normally be required to purchase for their employees --, and
 increasing flexibility and worker productivity as employees will not
-be asked to haul around multiple devices to satisfy both their personal and
+be asked to haul around while on the road multiple devices to satisfy both their personal and
 work needs, having everything they need in one device anytime and
 anywhere. 
 Other advantages are tied to the increase of worker satisfaction, attracting the best candidates, and the increase of engagement in the workplace and after hours \cite{singh2012byod}. 
@@ -128,27 +125,29 @@ Other advantages are tied to the increase of worker satisfaction, attracting the
 %personalising learning experiences, encouraging students' independent
 %learning, and promoting anytime, anywhere learning opportunities. % and this is important to know because... - JJ
 
-However, there exists a big disadvantage concerning security, as
+However, there exists a big disadvantage concerning security, since
 potentially unsecured devices from unaware users might interact with
-important assets. Therefore, the main issue is to obtain a high level
+important company assets. Therefore, the main issue is to obtain a high level
 of security, while maintaining user privacy \cite{miller2012byod}.
-Focusing on the corporate world and as previously highlighted,
-it is clear that the uncontrolled access to internal networks by the
-personal devices, for which companies have limitations in
-controlling due to privacy preservation \cite{miller2012byod}, exposes the companies to security risks such as data
-leakage, improper decommissioning, phishing including spear phishing, surveillance, and many
-others \cite{lennon2012changing}. These threats have become the
-companies main security concern, and for them it is a challenge to
+Clearly the uncontrolled access to internal networks by the
+personal devices, for which companies have control limits
+due to privacy concerns \cite{miller2012byod}, exposes the companies to security risks such as data
+leakage, improper decommissioning, phishing that is focused on a
+specifig group or company\footnote{Also known as \textit{spear
+    phishing}.}, 
+surveillance, and many
+others possible threats\cite{lennon2012changing}. These threats have become the
+companies main security concern, which makes a challenge to
 assure a compromise between pushing personal devices towards
-professional use and coping with their own stringent and complex
+professional use while coping with their own stringent and complex
 security requirements. This trend is inevitable as enterprises are
 faced with questions of whether and how to manage this situation \cite{thomson2012byod}; and
 thus every department must be involved in establishing security
 policies and procedures to minimize the company's risks.
 
 To this end, the Corporate Security Policies (CSPs) \cite{Kaeo:2003:DNS:1201807}, 
-defined by the company's Chief Security Officer (CSO) are the core at the
-identification of threats and the construction of a set of security rules. The description of these jobs include protecting
+approved by the company's Chief Security Officer (CSO) are the core at
+the  identification of threats and the construction of a set of security rules. The description of these jobs include protecting
 company assets by defining permissions to be considered for every
 different action to be performed inside or outside the company's work
 space, and eventually coming from the employees personal
@@ -158,27 +157,63 @@ possible combination of events that might lead to a dangerous
 situation. 
 
 The aim of this paper is to propose a novel technique for extracting
-BYOD security rules that help the CSO in the definition and refinement
-of a set of security rules, that in the end, classify an upcoming
-event or user action as permitted or not permitted.
-The main idea is to create a reliable rule set
+BYOD security rules from activation instances that might help the CSO in the definition and refinement
+of security policies that, eventually, classify an upcoming
+event or user action as permitted or not permitted. This could be used
+in two different scenarios: a CSO has hand-coded a set of security
+policies and wants to simplify or generalise them; a second scenario
+would simply eliminate rules and have the CSO decide, by hand, which
+particular events wants to grant access or deny and have a system such
+as the one described in the paper generate a set of security policies
+by creating a set of rules from particular events. 
+The main objective is to create a reliable rule set
 which is able to cover every new situation that may be a threat;
 allowing the system to go beyond the limited set of known pre-defined
-rules. In order to have the space of possible policy rules be as wide
+rules. Additionally, this feature can be used as ``reverse
+engineering'', so that the rules initially made by the current or
+former CSO are found in the solution along with additional ones. In
+order to have the space of possible policy rules be as wide 
 as possible, we will need a technique that explores the rule space
 efficiently and with the least assumptions about rule structure.
+
 This is why we have decided to use Genetic Programming (GP) for dealing with the problem of
 discovering novel, interesting knowledge and rules from large
 amounts of data \cite{freitas2002data}, given that the up-to-date approaches are based in general pre-defined of manually defined rules \cite{ali2015analysis}. Considered part of the so-called \emph{Evolutionary
-  Algorithms} \cite{back1996evolutionary}, GP are optimization
-techniques inspired by natural evolution. By this method, the
+  Algorithms} \cite{back1996evolutionary}, GP is an optimization
+technique inspired by natural evolution. By this method, the
 solutions to a problem are internally encoded as trees, which can be
-seen as a decision tree classifier \cite{safavian1990survey}. In our case, the assigned classes, or leaves of the tree, would be ``allow'' or ``deny'', acting over a certain incoming event; whilst the nodes are the conditions that have to be met to apply the action. Taking this into account, GP can be used to generate these classification trees, optimising an objective function called {\em fitness}. The fitness can be defined as the accuracy of a rule, being this the most used metric in classification \cite{witten2005data}, along with the classification error. But since there are other metrics that influence ``how good'' a rule or a set of rules is, such as the depth of the created tree or the number of nodes it has \cite{back1996evolutionary}, it would be of convenience to use them in the definition of the fitness.
-Our proposed GP framework dedicated
-for the BYOD context is capable of performing an automatic discovery
-of classification rules, obtaining good fitness, and presenting the rules in a way that is helpful for a CSO. We demonstrate so by using the developed framework with a real-world dataset, and comparing two ways of coding the individuals: as a set of rules, or as a single rule.
+seen as a decision tree classifier \cite{safavian1990survey}. In our
+case, the assigned classes, or leaves of the tree, would be ``allow''
+or ``deny'', acting over a certain incoming event; whilst the nodes
+are the conditions that have to be met to apply the action. Taking
+this into account, GP can be used to generate these classification
+trees, optimising an objective function called {\em fitness}. The
+fitness can be defined as the accuracy of a rule, being this the most
+used metric in classification \cite{witten2005data}, along with the
+classification error. But since there are other metrics that influence
+``how good'' a rule or a set of rules is, such as the depth of the
+created tree or the number of nodes it has
+\cite{back1996evolutionary}, it would be of convenience to use them in
+the definition of the fitness. 
+Our proposed GP framework is capable of performing an automatic discovery
+of classification rules from the BYOD context data, obtaining good fitness, and presenting the
+rules in a way that is helpful for a CSO. We demonstrate so by using
+the developed framework with a real-world dataset, and comparing two
+ways of coding the individuals -- as a set of rules, or as a single
+rule -- so that we are able to choose the best approach for our system. We make this comparison because while obtaining a set of rules as solution is computationally expensive due to the need of longer evaluations, to evaluate a single rule not taking into account how it interacts with what the others cover \cite{freitas2002data} can lead to massive overlapping. Hence, we must study their accuracy despite of their advantages and disadvantages. In addition, we choose the most appropriate (fastest to converge and with best value) fitness after comparing the use of a most simpler-accuracy-measure one, and a complex one which takes into account the complexity of the individuals. Finally, we propose the approach with the best performance in terms of best fitness value. 
 
-The rest of the paper is organised as follows. In Section \ref{sec:SotA} we give an overview of the advances in GP applied to rule evolution and its applications; then, Section \ref{sec:problem} depicts the problem this work tries to solve, describing the available dataset and the proposed GP framework. The experimental set-up, as well as the different set of experiments that have been carried out are described in Section \ref{sec:experiments}. Section \ref{sec:gp} shows the obtained results from the application of GP to security rules extraction and, finally, the conclusions of this work along with some suggestions about how to continue our research are given in Section \ref{sec:future}.  
+The rest of the paper is organised as follows. In Section
+\ref{sec:SotA} we give an overview of the advances in GP applied to
+rule evolution and its applications; then, Section
+\ref{sec:methodology} described the proposed methodology, depicting
+the problem this work tries to solve and describing the available
+dataset and the proposed GP framework. The experimental set-up, as
+well as the different set of experiments that have been carried out
+are also described in that section. Section \ref{sec:gp} shows the
+obtained results from the application of GP to security rules
+extraction and, finally, the conclusions of this work along with some
+suggestions about how to continue our research are given in Section
+\ref{sec:future}.   
 
 \section{Related Work}
 \label{sec:SotA}
@@ -226,10 +261,16 @@ concept. In \cite{de2015corporate} there is a description of the
 market solutions that the main manufacturers have developed to such
 purpose. The level of security and privacy preservation offered by
 these applications is different depending on the solution.
-None of the reviewed solutions, but one, seem to offer a dynamic creation of rules in the database used for incident detection. The one called MUSES does implement rule inference and mentions the use of GP to perform this task. In this work we extend the description of the rule inference process, as well as the details of its implementation and the results after applying it to the data gathered with the very same MUSES application (see Section \ref{subsec:data}).
+None of the reviewed solutions, but one, seem to offer a dynamic
+creation of rules in the database used for incident detection. The one
+called MUSES does implement rule inference and mentions the use of GP
+to perform this task. In this work we extend the description of the
+rule inference process, as well as the details of its implementation
+and the results after applying it to the data gathered with the very
+same MUSES application (see Section \ref{subsec:data}). 
 
 
-Previous papers have commented on the issue of using quality data to obtain accurate and valuable extracted knowledge, which is specially difficult when dealing with datasets taken from real world problems, where the sensors cannot work properly at a certain time. % or the data can present imbalance.
+Previous papers have commented on the issue of using quality data to obtain accurate and valuable extracted knowledge, which is specially difficult when dealing with datasets taken from real world problems, where the sensors cannot work properly at a certain time.
 To avoid this, researchers have advanced the state of the art in the precision of the
 devices. For instance, in \cite{rios2015mobile}, the authors focus on
 the importance of having an accurate measure of the location of the
@@ -240,7 +281,7 @@ concluded that the efficiency of their system, along with the
 possibilities of the hardware in the devices, results in a location
 error of less than 50 meters with a 95\% confidence level. These
 promising results allow the companies to use the location of their
-employees to apply certain security policies.
+employees to apply certain security policies. %Pablo: Is this long paragraph necessary? If we can link it with our method, that's great, if not, I suggest deleting or reducing it.
 
 %Another barrier to obtain good quality knowledge discovering are datasets that present imbalance, because they normally bias the elaboration of classification rules or trees towards the majority class - the class with higher representation in the dataset - \cite{japkowicz2002class}. In this sense, solutions can be found in literature in order to reduce the bias while performing classification tasks, such as in \cite{chawla2005data} and \cite{sun2009classification}. However, as we have center our proposal in GP, we have studied Bhowan et al.'s work in \cite{bhowan2012developing}, where they present a comparison between many different types of fitness functions, testing on various unbalanced datasets, with different minority-class/majority-class ratios.
 
@@ -259,9 +300,12 @@ all fields but not exactly the one we focus on here. The authors
 studied three papers which use GP for classification with
 communications data, but mainly for intrusion detection and e-mail
 spamming. In \cite{Tsakonas2004195} the authors also extract rules with \textsc{IF \ldots THEN} structure through GP, although for medical purposes. Futhermore, Alex A. Freitas deeply studied the application of GP to Data Mining (DM) in \cite{freitas2002data}, providing the necessary knowledge and guidelines to design a GP framework for DM applications. Also, in \cite{DeFalco2002257}, a system which discovers
-rules for the PROBEN1 databases via GP is described and a new fitness is introduced. As happened in
-the survey of Espejo et al., from the six databases inside PROBEN1 and
-analysed by these authors, none is related to security. However, the authors' proposed fitness is indeed of interest for this research, and as such we compare the performance or our algorithm using two different fitness. Section \ref{subsec:solution} will describe in detail which solution has been built from what has been found in the work of Freitas.
+rules for the PROBEN1 databases via GP is described and a new fitness is introduced. PROBEN1 \cite{prechelt1994proben} is a collection of datasets from real world problems meant as benchmarks for the application of classification techniques. As happened in 
+the survey of Espejo et al., from six of the databases inside PROBEN1 and
+analysed by these authors, none is related to security. However, the
+authors' proposed fitness is indeed of interest for this research, and
+as such we compare the performance or our algorithm using two
+different fitness functions: the more classical approach that measures only the correctly classified instances (accuracy); and De Falco's et al. \cite{DeFalco2002257} suggestion, also taking into account the complexity of the solution. 
 
 %Once again, this paragraph does not follow the previous one. Maybe
 %move it one paragraph up, where you are talking about proper training
@@ -283,17 +327,14 @@ company the data comes from by processing the data. If this principle
 cannot be guaranteed, the data should not be released
 \cite{boillat2014handbook}. 
 
-\section{Problem Description}
-\label{sec:problem}
+\section{Methodology}
+\label{sec:methodology}
 
 As previously highlighted, the main idea behind corporate security
 policies, which are defined by the CSO, is to build a basic, fixed,
 and well defined set of rules, which take the form of \textsc{IF
   \ldots THEN} clauses. By applying them the company system decides if certain conditions are met in order to allow or
-deny access to an asset, whether is from the company or is accesed from it. % not only company assets. Also other
-                                % assets _while_ on the company VPN or
-                                % network - JJ
-                                % (Paloma) better? 
+deny access to an asset, whether is from the company or is accesed from it. 
 Therefore, these rules can be visualized as the actions, taking place in a precise environment, being classified as
 allowed or denied. In this sense and while facing a security breach
 from a BYOD system, the set of rules will be tested looking for
@@ -314,26 +355,19 @@ by allowing or denying employees' access to non-confidential
  % (Paloma) The whole paragraph?
 
 Our proposed solution is based on a novel GP framework dedicated for
-the BYOD context and capable of performing an automatic and wider discovery of classification rules. More precisely, our GP based framework will, first, extract all the possible values of every attribute in the data at hand and then make the ``RuleGeneticAlgorithm'' evolving. % (Paloma) Pablo, more fancy way of saying this?
+the BYOD context and capable of performing an automatic and wider discovery of classification rules. More precisely, our GP based framework will, first, extract all the possible values of every attribute in the data at hand and then make the GP algorithm evolving. 
 Specifically, in this context, we have decided to follow the more
-conventional approach in Genetic Algorithms, the Pittsburgh approach
+conventional approach in Genetic Programming, the Pittsburgh approach
 \cite{freitas2002data}, meaning that each individual is seen as a set
-of rules. The best individual is thus the set which rules covers the
-maximum patterns. The last step would be to present the rules to the
-CSO of the company and tune the algorithm according to the decision of
+of rules. However, in this work we have also implemented the Michigan approach, being the individual a single rule. The best individual is thus the one that obtains the best fitness, and it is obtained in two different ways, in order to finally choose the most efficient. The last step would be to present the rules to the CSO of the company and tune the algorithm according to the decision of
 finally including or not the set of rules in the main security
 policy. The description of the used data and further explicit details
-about our proposed solution are given in what is next. % What is BYOD
-                                % specific in this approach? What are
-                                % you using from the BYOD context? - JJ
+about our proposed solution are given in what is next.
 
 \subsection{Available Data}
 \label{subsec:data}
 
-We have used user data to perform the experiments for this
-work but Anonymised, in the sense that from all the attributes extracted from the user actions, the username is not included as a variable to build rules with. % User data is not specific. What kind of data? - JJ
-% (Paloma) Tried to extend it
- The set of data has been gathered from the trials that were performed
+ The set of used data has been gathered from the trials that were performed
  during the development of an FP7 European Project, called MUSES
  \cite{DBLP:conf/sac/MoraCGZJEBAH14}. In these trials, a group of
  users tested a smartphone and PC application meant for securing a
@@ -343,33 +377,19 @@ work but Anonymised, in the sense that from all the attributes extracted from th
  conditions are met in an ``event'' (an action performed by a user),
  the corresponding action could be allowed - nothing happened - or
  denied, where a warning appears explaining the rule that the user did not comply with and how to perform the action in a more secure way or environment.
-								% Are you going to validate those
-                                % warnings? To use them in the
-                                % training set?
-                                % (Paloma) This I didn't get
-                                % What is BYOD specific?
-                                % about them? - JJ
-                                % (Paloma) Tried to explain this
 
-The dataset contains a set of these ``events'' from which a number of attributes (variables) have been extracted or are given by the application itself. The attributes can be classified in different ways; one of them is based on whether they are directly read from the application or inferred after processing the read data. Therefore, we distinguish between:
+The dataset contains a set of these ``events'' from which a number of attributes (variables) have been extracted or are given by the application itself. User data has been also extracted but anonymised, in the sense that from all the attributes extracted from the user actions, the username is not included as a variable to build rules with. They were included, however, attributes such as the user role or the length of the password set by the user (never the password itself). The attributes can be classified in different ways; one of them is based on whether they are directly read from the application or inferred after processing the read data. Therefore, we distinguish between:
 \begin{itemize}
   \item Attributes given by the tested application: these attributes
     are related to the type of the event (action), its timestamp, or
     the application which originated the event, among others. 
   \item Attributes inferred from the information in the database: the information given by the aforementioned attributes, along with the rest of information already existing in the database, helps inferring other attibutes. These are, for instance: all extra information related to the origin, like the user position in the company or the device Operating System; the configuration of the device, such as WiFi or Bluetooth being enabled; and even lexical properties of the user password, in order to avoid storing the password itself or using it for classification or rule generation.
 \end{itemize}
-% A more interesting way of classifying them would be the fact that
-% they are BYOD specific or not. All of the examples that you have
-% mentioned do not seem to be BYOD specific. - JJ
-% (Paloma) Agree, will do
 
-The trials had a duration of a month plus a week, and a total of
+The trials had a duration of five weeks, and a total of 
 153270 events were registered in the database. We filtered those events that did not imply access to assets, meaning that they were not useful for
 knowledge extraction purposes, such as events of \textit{log in},
-\textit{log out}, or \textit{restarting the server}. % alternative
-                                % rephrasing: We filtered those events
-                                % that didn't imply access to assets,
-                                % such as... JJ
+\textit{log out}, or \textit{restarting the server}.
 The remaining was a 35\% (53296 instances) of the total, and were considered as \textit{important}
 because they did contain information about user actions such as
 opening files or sending emails in a certain connection environment,
@@ -381,23 +401,26 @@ With respect to the balance between the classes, the dataset is
 unbalanced with the following ratio: 49289 instances are labelled as
 GRANTED and 4007 are labelled as STRONGDENY. 
 
-\subsection{Proposed Solution}
+\subsection{Proposed Solutions}
 \label{subsec:solution}
+
 As previously highlighted, in this work we propose a system which is
 able to process a set of user actions that have been allowed or denied
-based on initial, simple rules, and discover new rules by exploring
+based on initial, simple rules, and discover new rules through GP by exploring
 the whole space of possible combinations among the attribute
-values. The proposed method uses GP to create a tree to model the
-different rules, given that the problem can be seen as a
+values. The coding of the individual might take two approaches \cite{freitas2002data}. On the one hand, following the Pittsburgh approach, the proposed method uses GP to create an individual tree to model a set of different rules, given that the problem can be seen as a
 classification one and therefore the model can be a decision tree
 \cite{safavian1990survey}. Then, the generated tree is a binary tree
 of expressions formed by two different types of nodes:
 % What you are _actually_ doing is re-discovering the original simple
-% rules. You have to justify in what way you are _generalizing_ from
+% rules.
+% (Paloma) No, I'm not.
+% You have to justify in what way you are _generalizing_ from
 % those simple rules - JJ
+% (Paloma) No, not generalising either.
 
 \begin{itemize}
-\item {\em Variable}: it is a logical expression formed by a name, an operator and a value. It is the equivalent to a ``primitive'' in the field of GP \cite{back1996evolutionary}.  \\
+\item {\em Variable}: it is a logical expression formed by a prefix, a name, an operator and a value. It is the equivalent to a ``primitive'' in the field of GP \cite{back1996evolutionary}. The operators depend on the type of variable, being \{=$>$, =\} in the case of binary and categorical attributes, and \{$<$, $<=$,=,$=>$, $>$\} for numeric ones. At the same time, the prefix can be \{AND, OR\}, and NOT can randomly appear before these. \\
     Examples:
    \begin{math}
      \left \{
@@ -408,19 +431,60 @@ of expressions formed by two different types of nodes:
    \end{array}
    \right .
    \end{math}
-\item {\em Action}: it is a leaf of the   tree and therefore, a ``terminal'' state. Each decision is the result of applying the rule, so it is limited to two terms which are \texttt{GRANTED} or \texttt{STRONGDENY}.
+\item {\em Action}: it is a leaf of the tree and therefore, a ``terminal'' state. Each decision is the result of applying the rule, so it is limited to two terms which are \texttt{GRANTED} or \texttt{STRONGDENY}.
 \end{itemize}
+
+On the other hand, in the Michigan approach the individual is coded as a single rule. In this case we have expressed the rule as a list of conditions, with a fixed class, and therefore the algorithm has to be executed once for each class.
 
 At the same time, the variables can be differentiated into three types, described as follows \cite{witten2005data}:
 
 \begin{itemize}
-\item {\em Binary Variable}: those with a boolean value, for instance, variables that are related with the device services switched on or off and important features such as the device having or not an antivirus installed.
-\item {\em Categorical Variable}: the ones with nominal values, where it is defined a list with the possible values it may have, in order to randomly pick up one in the creation of the rules.
-\item {\em Numerical Variable}: those with a numerical value, for which both maximum and minimum values are specified.
+\item {\em Binary Variable}: those with a boolean value, for instance, variables that are related with the device services switched on or off and important features such as the device having or not an antivirus installed. 
+\item {\em Categorical Variable}: the ones with nominal values, where it is defined a list with the possible values it may have, in order to randomly pick up one in the creation of the rules. 
+\item {\em Numerical Variable}: those with a numerical value, for which both maximum and minimum values are specified. 
 
 \end{itemize}
 
-The tree is translated to a set of rules starting from the leafs to the root node passing each time by the ancestors. An example of a rule can be presented as follows:
+Table \ref{tab:variables} details the variables, for each type, that have been used in the GP in order to create the rules. In addition, we differentiate between those variables that are BYOD specific, and those that come from the context. A variable that is BYOD specific means that its value strictly depends on the employee owning the device or being provided by the company, such as the device OS, if the device has been rooted, or the password length the user has configured. The same way, a variable that is the same no matter who owns the device, for instance, the user role or the type of the action (event) performed, we say is context specific.
+
+\begin{table*}
+\begin{center}
+\begin{tabular}{|l|l|l|l|}
+\hline
+Variable type                & Variable Name          & BYOD specific & Context Specific \\ \hline
+\multirow{8}{*}{Binary}      & BluetoothConnected     &               & \checkmark       \\ \cline{2-4} 
+                             & DeviceHasAccessibility & \checkmark    &                  \\ \cline{2-4} 
+                             & DeviceHasAntivirus     & \checkmark    &                  \\ \cline{2-4} 
+                             & DeviceHasPassword      & \checkmark    &                  \\ \cline{2-4} 
+                             & DeviceIsRooted         & \checkmark    &                  \\ \cline{2-4} 
+                             & MailHasAttachment      &               & \checkmark       \\ \cline{2-4} 
+                             & WifiConnected          &               & \checkmark       \\ \cline{2-4} 
+                             & WifiEnabled            &               & \checkmark       \\ \hline
+\multirow{8}{*}{Categorical} & AssetConfidentialLevel &               & \checkmark       \\ \cline{2-4} 
+                             & DeviceOS               & \checkmark    &                  \\ \cline{2-4} 
+                             & DeviceOwnedBy          & \checkmark    &                  \\ \cline{2-4} 
+                             & DeviceType             & \checkmark    &                  \\ \cline{2-4} 
+                             & EventLevel             &               & \checkmark       \\ \cline{2-4} 
+                             & EventType              &               & \checkmark       \\ \cline{2-4} 
+                             & UserRole               &               & \checkmark       \\ \cline{2-4} 
+                             & WifiEncryption         & \checkmark    &                  \\ \hline
+\multirow{2}{*}{Numerical}   & DeviceScreenTimeout    & \checkmark    &                  \\ \cline{2-4} 
+                             & PasswordLength         & \checkmark    &                  \\ \hline
+\end{tabular}
+\caption{A list of the variables that have been used to generate the
+  rules. Those variables that are BYOD specific are also specified.}
+\label{tab:variables}
+\end{center}
+\end{table*}
+
+In the case of an individual coded as a set of rules, the tree is
+translated to a set of rules starting from the leafs to the root node
+passing each time by the ancestors. However, an individual represented
+by a single rule, is coded as a list of conditions to which a class is
+assigned. Thus, an experiment following this last approach has to be
+run many times as classes there are. 
+
+An example of a rule can be presented as follows:
 %TODO Show this more fancy :P (Pablo)
 
 \begin{verbatim}
@@ -435,56 +499,87 @@ Rules presented in this way offer good readability which is key to understand th
 % You should rather say what is the relationship between these rules
 % and the original rules - JJ
 
-With regard to the fitness, in the application of GP to classification
+\subsection{Choosing a suitable fitness}
+
+In the application of GP to classification
 the most used metric to calculate it is the accuracy
 \cite{espejo2010survey}. The accuracy is normally obtained as the
 ratio of the correctly classified instances among the total of
-instances. To this end, in \cite{witten2005data} the authors use the
+instances. Witten et al. use in \cite{witten2005data} the
 concepts of true positive/negative and false positive/negative. The
 first refer to the instances classified correctly, and the latter are
 those instances that should be negative (positive) but are classified
 as positive (negative), therefore they are false positives
-(negatives). Using this nomenclature, a Fitness defined as the
-accuracy or \textit{coverage} would be expressed as follows: 
+(negatives). Using this nomenclature, a fitness function defined for
+accuracy would be expressed as follows: 
 
-% Saving this for later \cite{DeFalco2002257}
+\begin{equation}
+\label{eq:accuracy}
+f_{Acc} = (TP + TN) / T_{tr}
+\end{equation}
+
+This kind of fitness has to be maximized, given that the ideal value
+of $f_{c}$ is the whole training dataset, $T_{tr}$, and  has the
+advantage of not being computationally expensive, but it does not
+penalise the badly predicted instances (false positives and
+negatives), which in security environments such as this one can be
+very harmful. Furthermore, a false negative would mean that the system denies an event that should be allowed, but the worst case scenario is having a false positive, when a dangerous event is classified as allowed.
+To this end, in \cite{witten2005data} the authors define the coverage as:
 
 \begin{equation}
 \label{eq:coverage}
-f_{c} = TP + TN - (FP + FN)
+C_{ind} = TP + TN - (FP + FN)
 \end{equation}
-
-This kind of Fitness is used in maximisation problems, given that the ideal value of $f_{c}$ is the whole training dataset, $S_{tr}$. Additionally, to take into account the simplicity of the individuals, either they are a rule or a set of rules, in \cite{witten2005data} they introduce a measure of the generated trees complexity by this expression:
+Additionally, to take into account the complexity of the individuals,
+either they are a rule or a set of rules, in \cite{witten2005data}
+they introduce a measure of the generated trees complexity by this
+expression: 
 
 \begin{equation}
-f_{s} = N_{nodes} + depth
+S_{ind} = N_{nodes} + depth
 \end{equation}
 
-So that combining $f_{c}$, $f_{s}$ and introducing an $\alpha$ variable inside [0, 1] to tune up the degree of allowed complexity, the problem becomes now a matter of minimising this formula:
+So that combining $C_{ind}$, $S_{ind}$ and introducing an $\alpha$ variable inside [0, 1] to tune up the degree of allowed complexity, the problem becomes now a matter of minimising this formula:
 
 \begin{equation}
 \label{eq:complexFitness}
-Fitness F = (S_{tr} - f_{c}) + \alpha f_{s}
+f_{CS} = (T_{tr} - C_{ind}) + \alpha S_{ind}
 \end{equation}
 
-\section{Experiments Description}
+Therefore, in our experimental section we are going to compare both
+$f_{Acc}$ and $f_{CS}$, with different  alpha values, in order
+to check how they influence in the number of evaluations taken to find the solution (the less, the better) 
+and then decide which measure offers the best performance. % The best
+                                % performance from which point of
+                                % view? A different fitness? Why don't
+                                % you use that different one as
+                                % fitness? - JJ
+
+%Besides, this is actually a multi-objective problem. You have to
+%optimize _both_ to get the best set of rules. - JJ
+
+\subsection{Experimental Setup}
 \label{sec:experiments}
 
 % This is not a description of the experiment. The experiment
-% description is the set of steps needed to reproduce them - JJ
-Sub-tree crossover and 1-node mutation evolutionary operators have
+% description is the set of steps needed to reproduce it - JJ %PABLO: re-writing and organizing stuff
+Once the methods to compare have been explained, the rest of the experimental setup is described.
+
+The configurations that will be compared involve 2 different encoding of individuals (list vs. tree), 2 types of fitness ($f_{CS}$ and $f_{Acc}$), and different values for $\alpha$ in the case of $f_{Acc}$.
+
+With respect to the GP parameters, different decisions for experimental design have been taken into account. 
+First, sub-tree crossover and 1-node mutation evolutionary operators have
 been used, following our previous works that have used these operators
 obtaining good results \cite{EvoStar2014:GPBot}. In this case, the
 mutation randomly changes the complete variable of a node or mutate
-the complete value. Each configuration is executed 30 times, with a
-population of 32 individuals and a 2-tournament selector for a pool of
-16 parents.
-
+the complete value. A population of 32 individuals and a 2-tournament selector for a pool of
+16 parents have been used. These parameters have been also previously used in previous GP works \cite{EvoStar2014:GPBot}.
 
 Table \ref{tab:parameters} summarizes all the parameters used.
 
 \begin{table}
 \begin{center}
+\resizebox{7.5cm}{!}{
 \begin{tabular}{|c|c|}
 \hline
 {\em Parameter Name} & {\em Value} \\\hline
@@ -492,27 +587,44 @@ Population size & 32 \\\hline
 Crossover type & Sub-tree crossover \\ \hline
 Crossover rate & 0.5\\ \hline
 Mutation  & 1-node mutation\\ \hline
-Mutation step-size & 0.25 \\ \hline
 Selection & 2-tournament \\ \hline
 Replacement & Generational with elitism\\ \hline
-Stop criterion & 50 generations \\ \hline
-Maximum Tree Depth & 10 \\ \hline %PABLO: CONFIRM THIS!
-Runs per configuration & 30 \\ \hline
+Stopping criterion & 150 generations \\ \hline
+Maximum Tree Depth & 10 \\ \hline 
+Runs per configuration & 10 \\ \hline
+\multicolumn{2}{|c|}{{\em Compared configurations}} \\ \hline
+Individual representation & List VS Tree \\ \hline
+Fitness & $f_{CS}$ VS $f_{Acc}$ \\ \hline
+$\alpha$ for $f_{CS}$ & 0, 0.5, and 1 \\ \hline
+
 \end{tabular}
+}
 \caption{Parameters used in the experiments.}
 \label{tab:parameters}
 \end{center}
 \end{table}
 
-The used framework is OSGiLiath, a service-oriented evolutionary
-framework \cite{DBLP:journals/soco/Garcia-SanchezGCAG13}. The
-generated tree is converted to...
-%Please remenber to finish this - JJ
-% Still have to finish it - JJ
+During the fitness evaluation, the generated individual is converted
+into a string, which can become a single rule or set of rules
+depending on the approach. % But this is what you are going to
+                           % compare. You should make a lot of more
+                           % emphasis - JJ
+Then, the chosen fitness is evaluated for a particular rule -- the single rule or each one inside the set -- and over the 90\% of the data.
+For further reliability of the results, it is advised to perform
+10-fold cross-validation \cite{kohavi1995study}, and as such the WEKA
+Java Library \cite{HallWEKA09} has been used to generate the 10 folds
+or distributions of data into 90\% training (fitness evaluation) and
+10\% validation. This way, each experiment has been executed 10 times,
+each one with a different distribution of data.
 
-All the source code used in this
-work is available under a LGPL V3 License in
-\url{http://www.osgiliath.org}. 
+The algorithms have been executed in a cluster node with 16 Intel(R) Xeon(R) CPU E5520
+@2.27GHz processors, 16 GB RAM, CentOS 6.8 and Java Version 1.8.0\_80.
+
+The specific source code of the proposed method is available under a LGPL V3 License 
+at \url{https://github.com/fergunet/GPRuleRefinement}, as a module for 
+the framework OSGiLiath \cite{DBLP:journals/soco/Garcia-SanchezGCAG13} 
+\footnote{The source code of OSGiLiath is available as well with the same license, in \url{http://www.osgiliath.org}.}.
+
 
 %\subsection{Results from Classifiers}
 %\label{subsec:classifiers}
@@ -532,43 +644,230 @@ work is available under a LGPL V3 License in
 \section{Results from Genetic Programming application}
 \label{sec:gp}
 
-\begin{figure*}[h!tb]
-\centering
-\includegraphics[width=\textwidth]{img/tree_ind_diff_alpha.pdf}
-\caption{Best Fitness, calculated from Equation \ref{eq:complexFitness}, obtained for every fold or data partition, and for three different values of $\alpha$.}
-\label{fig:tree_ind_diff_alpha}
-\end{figure*}
+% A paper is a story, has a narrative. Introduce the section by
+% stating where in your narrative are right now. "Remember, dear
+% reader, that we wanted to compare the two proposed approaches
+% because... We are going to do so right here" - JJ
 
-\begin{figure*}[h!tb]
-\centering
-\includegraphics[width=\textwidth]{img/tree_ind_coverage.pdf}
-\caption{Best Fitness, calculated from Equation \ref{eq:coverage}, obtained for every fold or data partition.}
-\label{fig:tree_ind_coverage}
-\end{figure*}
+In this section we are going to study the two proposed approaches,
+each one presenting the results for the two used fitness functions
+described in Equations \ref{eq:accuracy} and \ref{eq:complexFitness}. In addition,
+an example of the individuals obtained will be presented, along with
+their advantages and disadvantages. Lastly, we will choose the best
+approach, justifying this choice. 
 
-\begin{figure*}[h!tb]
-\centering
-\includegraphics[width=\textwidth]{img/list_ind_diff_alpha.pdf}
-\caption{Best Fitness, calculated from Equation \ref{eq:complexFitness}, obtained for every fold or data partition, and for three different values of $\alpha$.}
-\label{fig:list_ind_diff_alpha}
-\end{figure*}
+\subsection{Pittsburgh approach}
 
-\begin{figure*}[h!tb]
-\centering
-\includegraphics[width=\textwidth]{img/list_ind_coverage.pdf}
-\caption{Best Fitness, calculated from Equation \ref{eq:coverage}, obtained for every fold or data partition.}
-\label{fig:list_ind_coverage}
-\end{figure*}
+The best obtained fitness when coding the individuals as sets of rules are detailed in Table \ref{tab:pittsburgh}. Because the algorithm has been executed 10 times, the data folded in a different way each, we obtained 10 best fitness, from which we present the worst case, the best case, and the median. It is important to point out that in the case of $F_{Acc}$ the best value is the maximum, whilst for $F_{CS}$, the best possible value is the minimum.
 
+\begin{table*}
+\begin{center}
+\begin{tabular}{cc|l|l|l|l|l|}
+\cline{3-7}
+                                                &                & Average & SD & Best       & Median & Worst \\ \hline
+\multicolumn{2}{|c|}{$F_{Acc}$}                                  & 0.925   & $<$0.001 & 0.926      & 0.925  & 0.924 \\ \hline
+\multicolumn{1}{|c|}{\multirow{3}{*}{$F_{CS}$}} & $\alpha$ = 0 *  & 7102.2  & 320.260 & 6198        & 7193   & 7253 \\ \cline{2-7} 
+\multicolumn{1}{|c|}{}                          & $\alpha$ = 0.5 & 7235.95 & 41.825 & 7149       & 7250   & 7274 \\ \cline{2-7} 
+\multicolumn{1}{|c|}{}                          & $\alpha$ = 1   & 7192.8  & 204.872 & 6620       & 7253.5 & 7298 \\ \hline
+\end{tabular}
+\caption{Best fitness obtained when the individual is coded as a set
+  of rules, following the Pittsburgh approach, and with 10-fold
+  cross-validation. Two different fitness functions have been used,
+  and for $\alpha$ values of 0, 0.5, and 1. Note that in the case of
+  $F_{Acc}$ higher is better, whilst for $F_{CS}$, the lower is
+  better. An $*$ indicates the  statistically significant best value
+  for $\alpha$.
+}
+\label{tab:pittsburgh}
+\end{center}
+\end{table*}
+
+
+In the case of $F_{Acc}$ for the Pittsburgh approach, since the
+distributions do not follow the normal, a non-parametric test
+(Kruskal-Wallis) has been used to asset the statistical significance
+\cite{DerracTests11}, obtaining a p-value of 0.0001. $\alpha$ = 0 is
+significantly different with $\alpha$ = 0.5 and $\alpha$ = 1, while
+there are not differences between the two former (p-value = 0.08).
+%this is an enumeration of results. What can you say about them? Do
+%they prove your initial hypothesis? - JJ
+% Please check these questions - JJ
+
+\begin{table*}
+\begin{center}
+\begin{tabular}{cc|l|l|l|l|l|l|l|}
+\cline{3-9}
+                                                &                & Average & SD & Best       & Median & Worst & FP (avg) & FN (avg)   \\ \hline
+\multicolumn{2}{|c|}{$F_{Acc}$}                                  & 0.925 & 0.004 & 0.929      & 0.926  & 0.917 & 400.3 & 0 \\ \hline
+\multicolumn{1}{|c|}{\multirow{3}{*}{$F_{CS}$}} & $\alpha$ = 0 *  & 0.926 & 0.006 & 0.941     & 0.926   & 0.917 & 390.7 & 1.7 \\ \cline{2-9} 
+\multicolumn{1}{|c|}{}                          & $\alpha$ = 0.5 & 0.925 & 0.004 & 0.929       & 0.926   & 0.917 & 400.5 & 0 \\ \cline{2-9} 
+\multicolumn{1}{|c|}{}                          & $\alpha$ = 1   & 0.922  & 0.008 & 0.929       & 0.924 & 0.902 & 398.1 & 0 \\ \hline
+\end{tabular}
+\caption{Best validation obtained for each case, for a different fitness function or configuration has been used, and for Pittsburgh approach. They are represented by their mean and median due to the 10-fold cross-validation used. An $*$ indicates the  statistically significant best value for $\alpha$. False positives (FP) and false negatives (FN) rates are also indicated.}
+\label{tab:pittsburghVAL}
+\end{center}
+\end{table*}
+
+Taking into consideration the infrastructure available for the experiments (see Section\ref{sec:experiments}), the execution times for the Pittsburgh approach are in Table \ref{tab:pittsburghTime}, detailed by their average value and standard deviation (sd). Values are expressed in miliseconds, and it can be seen that it mostly takes the same to execute all of them, given that the stopping criterion is to finish 150 generations.
+
+\begin{table*}
+\begin{center}
+\begin{tabular}{ll|l|l|}
+\cline{3-4}
+                                                &                & Time (ms) (avg) & Time (sd)   \\ \hline
+\multicolumn{2}{|l|}{$F_{Acc}$}                                  & 18298103.6      & 6478003.741 \\ \hline
+\multicolumn{1}{|l|}{\multirow{3}{*}{$F_{CS}$}} & $\alpha$ = 0   & 18655785.8      & 5969635.164 \\ \cline{2-4} 
+\multicolumn{1}{|l|}{}                          & $\alpha$ = 0.5 & 14697743.3      & 4071043.748 \\ \cline{2-4} 
+\multicolumn{1}{|l|}{}                          & $\alpha$ = 1   & 16992321.8      & 4155989.808 \\ \hline
+\end{tabular}
+\caption{Average execution time for each used fitness for the Pittsburgh approach.}
+\label{tab:pittsburghTime}
+\end{center}
+\end{table*}
+
+\subsection{Michigan approach}
+\label{subsec:michigan}
+
+\begin{table*}
+\begin{center}
+\begin{tabular}{cc|l|l|l|l|l|l|}
+\cline{3-8}
+                                                &                                 & Class      & Average & SD & Best & Median & Worst \\ \hline
+\multicolumn{2}{|c|}{\multirow{2}{*}{$F_{Acc}$}}                                  & GRANTED    & 0.426 & 0.13 & 0.471 & 0.466 & 0.055 \\ \cline{3-8} 
+\multicolumn{2}{|c|}{}                                                            & STRONGDENY & 0.09 & 0.131 & 0.463 & 0.048 & 0.043 \\ \hline
+\multicolumn{1}{|c|}{\multirow{6}{*}{$F_{CS}$}} & \multirow{2}{*}{$\alpha$ = 0}   & GRANTED    & 26473.2 & 646.948 & 25559 & 26274 & 27336 \\ \cline{3-8} 
+\multicolumn{1}{|c|}{}                          &                                 & STRONGDENY & 47036.2 & 647.29 & 46212 & 47120.5 & 47925 \\ \cline{2-8} 
+\multicolumn{1}{|c|}{}                          & \multirow{2}{*}{$\alpha$ = 0.5} & GRANTED    & 26702.6 & 436.553 & 26222 & 26757.5 & 27343 \\ \cline{3-8} 
+\multicolumn{1}{|c|}{}                          &                                 & STRONGDENY & 46928.6 & 664.005 & 46186 & 46624.5 & 47937 \\ \cline{2-8} 
+\multicolumn{1}{|c|}{}                          & \multirow{2}{*}{$\alpha$ = 1}   & GRANTED    & 26679.4 & 502.579 & 26085 & 26585 & 27333 \\ \cline{3-8} 
+\multicolumn{1}{|c|}{}                          &                                 & STRONGDENY & 46904.4 & 588.485 & 46210 & 46811 & 47926 \\ \hline
+\end{tabular}
+\caption{Best fitness obtained when the individual is coded as a
+  single rule, following the Michigan approach, and represented by
+  class. Data was divided in 10-folds to perform cross-validation. Two
+  different fitness have been used, and for $\alpha$ values of 0, 0.5,
+  and 1. Note that in the case of $F_{Acc}$ higher is better, whilst
+  for $F_{CS}$, lower is better.}
+\label{tab:michigan}
+\end{center}
+\end{table*}
+
+%We wanted to test different values of alpha because... (hypotesis you
+%want to prove). However... 
+No significant differences have been found between the results of
+applying the % Please revise grammar thoroughly - JJ
+three values of $\alpha$, for GRANTED and STRONGDENY. % which means,
+                                % in the context of this problem,
+                                % that... 
+In the case of comparing the three distributions % Distributions or
+                                % results for different values of
+                                % alpha? 
+for STRONGDENY, an ANOVA test has been applied instead Kruskal-Wallis,
+as these distributions follow a normal curve. % and results obtained
+                                % show that.... which means... 
+                                
+\begin{table*}
+\begin{center}
+\begin{tabular}{cc|l|l|l|l|l|l|l|l|}
+\cline{3-10}
+                                                &                                 & Class      & Average & SD & Best & Median & Worst & FP (avg) & FN (avg) \\ \hline
+\multicolumn{2}{|c|}{\multirow{2}{*}{$F_{Acc}$}}                                  & GRANTED    & 0.425 & 0.132 & 0.473 & 0.468 & 0.051 & 112.3  & 0 \\ \cline{3-10} 
+\multicolumn{2}{|c|}{}                                                            & STRONGDENY & 0.092 & 0.131 & 0.465 & 0.049 & 0.044 & 0 & 25.5 \\ \hline
+\multicolumn{1}{|c|}{\multirow{6}{*}{$F_{CS}$}} & \multirow{2}{*}{$\alpha$ = 0}   & GRANTED    & 0.466 & 0.003 & 0.471 & 0.467 & 0.459 & 110.6 & 0 \\ \cline{3-10} 
+\multicolumn{1}{|c|}{}                          &                                 & STRONGDENY & 0.024 & 0.014 & 0.044 & 0.024 & 0.003 & 0 & 473.8 \\ \cline{2-10} 
+\multicolumn{1}{|c|}{}                          & \multirow{2}{*}{$\alpha$ = 0.5} & GRANTED    & 0.466 & 0.004 & 0.473 & 0.464 & 0.461 & 116.9 & 0 \\ \cline{3-10} 
+\multicolumn{1}{|c|}{}                          &                                 & STRONGDENY & 0.029 & 0.013 & 0.047 & 0.032 & 0.011 & 0 & 188.8 \\ \cline{2-10} 
+\multicolumn{1}{|c|}{}                          & \multirow{2}{*}{$\alpha$ = 1}   & GRANTED    & 0.466 & 0.003 & 0.47 & 0.466 & 0.461 & 161.2 & 0 \\ \cline{3-10} 
+\multicolumn{1}{|c|}{}                          &                                 & STRONGDENY & 0.031 & 0.014 & 0.05 & 0.038 & 0.01 & 0 & 1274.5 \\ \hline
+\end{tabular}
+\caption{Best validation obtained for each case, for a different fitness function or configuration has been used, and for Michigan approach. They are represented by their mean and median due to the 10-fold cross-validation used. An $*$ indicates the  statistically significant best value for $\alpha$. False positives (FP) and false negatives (FN) rates are also indicated.}
+\label{tab:michiganVAL}
+\end{center}
+\end{table*}
+
+Furthermore, Tables \ref{tab:michigan} and \ref{tab:michiganVAL} show worse results for the class STRONGDENY than for the class GRANTED. If we analyse the ratio of instances in each class, we obtain that the majority class is indeed GRANTED, and it surpasses the STRONGDENY class in 13:1.
+
+Execution times (in average) can be consulted in Table \ref{tab:michiganTime}. It is important to understand, before making a comparison with results in Table \ref{tab:pittsburghTime} from the Pittsburgh approach, that for each different fitness or configuration of the fitness (different $\alpha$), in the Michigan approach the algorithm has to be executed twice, given that we obtain a single rule as a solution at the time we have two classes. This means that even though we can see the times described in Table \ref{tab:michiganTime} are around half the ones in Table \ref{tab:pittsburghTime}, the times for both classes should be added up together.
+
+\begin{table*}
+\begin{center}
+\begin{tabular}{lll|l|l|}
+\cline{4-5}
+                                                &                                                      &            & Time (ms) (avg) & Time (sd)   \\ \hline
+\multicolumn{2}{|l|}{\multirow{2}{*}{$F_{Acc}$}}                                                       & GRANTED    & 8425228         & 1300396.316 \\ \cline{3-5} 
+\multicolumn{2}{|l|}{}                                                                                 & STRONGDENY & 8066737.1       & 554270.509  \\ \hline
+\multicolumn{1}{|l|}{\multirow{6}{*}{$F_{CS}$}} & \multicolumn{1}{l|}{\multirow{2}{*}{$\alpha$ = 0}}   & GRANTED    & 8477672.1       & 968703.507  \\ \cline{3-5} 
+\multicolumn{1}{|l|}{}                          & \multicolumn{1}{l|}{}                                & STRONGDENY & 9186603         & 434653.670  \\ \cline{2-5} 
+\multicolumn{1}{|l|}{}                          & \multicolumn{1}{l|}{\multirow{2}{*}{$\alpha$ = 0.5}} & GRANTED    & 8190161.6       & 781166.295  \\ \cline{3-5} 
+\multicolumn{1}{|l|}{}                          & \multicolumn{1}{l|}{}                                & STRONGDENY & 8417774.8       & 671246.764  \\ \cline{2-5} 
+\multicolumn{1}{|l|}{}                          & \multicolumn{1}{l|}{\multirow{2}{*}{$\alpha$ = 1}}   & GRANTED    & 9274908.1       & 1309297.086 \\ \cline{3-5} 
+\multicolumn{1}{|l|}{}                          & \multicolumn{1}{l|}{}                                & STRONGDENY & 8955486.7       & 835676.926  \\ \hline
+\end{tabular}
+\caption{Average execution time for each used fitness for the Pittsburgh approach.}
+\label{tab:michiganTime}
+\end{center}
+\end{table*}
+
+\subsection{Examples of the best obtained individuals}
+\label{subsec:examples}
+
+Once the results have been analysed, here we present some examples of the individuals that have been obtained in the simulations, proving their readability and usefulness for the CSOs. In addition, we present the relation between the obtained solutions and the original rules that allowed to classify the dataset we have been working with.
+
+
+%\begin{figure*}[h!tb]
+%\centering
+%\includegraphics[width=\textwidth]{img/tree_ind_diff_alpha.pdf}
+%\caption{Best Fitness, calculated from Equation \ref{eq:complexFitness}, obtained for every fold or data partition, and for three different values of $\alpha$.}
+%\label{fig:tree_ind_diff_alpha}
+%\end{figure*}
+%
+%\begin{figure*}[h!tb]
+%\centering
+%\includegraphics[width=\textwidth]{img/tree_ind_coverage.pdf}
+%\caption{Best Fitness, calculated from Equation \ref{eq:coverage}, obtained for every fold or data partition.}
+%\label{fig:tree_ind_coverage}
+%\end{figure*}
+%
+%\begin{figure*}[h!tb]
+%\centering
+%\includegraphics[width=\textwidth]{img/list_ind_diff_alpha.pdf}
+%\caption{Best Fitness, calculated from Equation \ref{eq:complexFitness}, obtained for every fold or data partition, and for three different values of $\alpha$.}
+%\label{fig:list_ind_diff_alpha}
+%\end{figure*}
+%
+%\begin{figure*}[h!tb]
+%\centering
+%\includegraphics[width=\textwidth]{img/list_ind_coverage.pdf}
+%\caption{Best Fitness, calculated from Equation \ref{eq:coverage}, obtained for every fold or data partition.}
+%\label{fig:list_ind_coverage}
+%\end{figure*}
+
+% You can't introduce in the results section something completely
+% unrelated to the stated objective of the paper. Nowhere you have
+% said you were going to compare different types of fitness, or
+% different "alphas" - JJ
 
 \section{Conclusions and Future Work}
 \label{sec:future}
+
+% (Paloma) From now on, please take into consideration that finished sections will be sent for review. If they are not under review it's because they are not finished.
+
+As it has been seen in Sections \ref{subsec:michigan} and \ref{subsec:examples}, the highly imbalanced data set that we are
+using clearly biases the results towards the majority class 
+\cite{japkowicz2002class}, in this case, GRANTED. In this sense,
+solutions can be found in literature in order to reduce the bias while
+performing classification tasks, such as in \cite{chawla2005data} and
+\cite{sun2009classification}. Also, in \cite{bhowan2012developing},
+the authors present a comparison between many different types of
+fitness functions, testing on various unbalanced datasets, with
+different minority-class/majority-class ratios. For our future work we
+will implement these solutions to continue improving our system. 
 
 \section*{Acknowledgments.}
 
 This work has been supported in part by TIN2014-56494-C4-3-P (Spanish
 Ministry of Economy and Competitivity), PROY-PP2015-06 (Plan Propio
-2015 UGR).
+2015 UGR). %Is this one still working? - JJ
 
 \bibliographystyle{elsarticle-num}
 \bibliography{GPrules,geneura}
