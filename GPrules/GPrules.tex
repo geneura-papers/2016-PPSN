@@ -722,7 +722,25 @@ Taking into consideration the infrastructure available for the experiments (see 
 \multicolumn{1}{|l|}{}                          & $\alpha$ = 0.5 & 14697743.3      & 4071043.748 \\ \cline{2-4} 
 \multicolumn{1}{|l|}{}                          & $\alpha$ = 1   & 16992321.8      & 4155989.808 \\ \hline
 \end{tabular}
-\caption{Average execution time for each used fitness for the Pittsburgh approach.}
+\caption{Average execution time for every kind of fitness for the
+  Pittsburgh approach.}
+% You _really_ have to explain this a little bit more. First and
+% foremost, tables are for comparing and assessing things. You
+% probably want to compare times between the Pittsburgh and the
+% Michigan approach, so they should go together. And in general and as
+% said above, figures should be as self-contained as possible.
+% More issues
+% * I really have no idea why there are different times for GRANTED
+% and STRONGDENY. Are they different kind of fitness functions?
+% * The existence of the table itself. Are you really comparing times?
+% Is it critical in some way? If the objective is to minimize error
+% rates, as long as time is pretty much the same, it is not big deal.
+% * Avgs and std devs go together in the same column with ± and using as
+% many significant digits as needed. But this point is moot, because
+% the table should leave anyway. Please remember that tables are not
+% there to add one more paragraph saying "The results are on table
+% whatever". They are to support your point or objective and to
+% compare results. 
 \label{tab:pittsburghTime}
 \end{center}
 \end{table*}
