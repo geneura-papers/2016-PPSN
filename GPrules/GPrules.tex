@@ -505,7 +505,9 @@ In the application of GP to classification
 the most used metric to calculate it is the accuracy
 \cite{espejo2010survey}. The accuracy is normally obtained as the
 ratio of the correctly classified instances among the total of
-instances. Witten et al. use in \cite{witten2005data} the
+instances. %However, in our particular case, there is a strong
+           %asymetry between FP and FN. That is why... - JJ
+Witten et al. use in \cite{witten2005data} the
 concepts of true positive/negative and false positive/negative. The
 first refer to the instances classified correctly, and the latter are
 those instances that should be negative (positive) but are classified
@@ -557,6 +559,13 @@ and then decide which measure offers the best performance. % The best
 
 %Besides, this is actually a multi-objective problem. You have to
 %optimize _both_ to get the best set of rules. - JJ
+
+% And, eventually best results are obtained for alpha = 0. So depth
+% really does not matter. That can be introduced in different ways
+% that do not affect fitness, such as selective pressure - JJ
+
+% Please note also that you are not making any reference to the
+% STRONGDENY and GRANTED classes you include in the tables. 
 
 \subsection{Experimental Setup}
 \label{sec:experiments}
@@ -823,7 +832,10 @@ Execution times (in average) can be consulted in Table \ref{tab:michiganTime}. I
 \multicolumn{1}{|l|}{}                          & \multicolumn{1}{l|}{\multirow{2}{*}{$\alpha$ = 1}}   & GRANTED    & 9274908.1       & 1309297.086 \\ \cline{3-5} 
 \multicolumn{1}{|l|}{}                          & \multicolumn{1}{l|}{}                                & STRONGDENY & 8955486.7       & 835676.926  \\ \hline
 \end{tabular}
-\caption{Average execution time for each used fitness for the Pittsburgh approach.}
+\caption{Average execution time for each used fitness for the
+  Pittsburgh approach.}
+% Besides all I've said above, "sd" can't be labelled "time". You
+% should really put them in the same column. 
 \label{tab:michiganTime}
 \end{center}
 \end{table*}
