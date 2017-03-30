@@ -353,13 +353,23 @@ by allowing or denying employees' access to non-confidential
  situation that may be a threat. Hence, allowing the company security
  system to go beyond the limited set of known, pre-defined rules.  % This rather belong to the introduction - JJ
  % (Paloma) The whole paragraph?
+% What do you think? - JJ
 
 Our proposed solution is based on a novel GP framework dedicated for
 the BYOD context and capable of performing an automatic and wider discovery of classification rules. More precisely, our GP based framework will, first, extract all the possible values of every attribute in the data at hand and then make the GP algorithm evolving. 
 Specifically, in this context, we have decided to follow the more
 conventional approach in Genetic Programming, the Pittsburgh approach
 \cite{freitas2002data}, meaning that each individual is seen as a set
-of rules. However, in this work we have also implemented the Michigan approach, being the individual a single rule. The best individual is thus the one that obtains the best fitness, and it is obtained in two different ways, in order to finally choose the most efficient. The last step would be to present the rules to the CSO of the company and tune the algorithm according to the decision of
+of rules. However, in this work we have also implemented the Michigan
+approach, where every indidual is a single rule. % And we have done so
+                                % because... - JJ
+ The best individual is thus the one that obtains the best fitness,
+ and it is obtained in two different ways, in order to finally choose
+ the most efficient.  % This not clear at all, depends on how you
+                      % interpret "two different ways". Eventually,
+                      % you get two individuals, one for "GRANT" and
+                      % another for "DENY"? Is that it? - JJ
+The last step would be to present the rules to the CSO of the company and tune the algorithm according to the decision of
 finally including or not the set of rules in the main security
 policy. The description of the used data and further explicit details
 about our proposed solution are given in what is next.
@@ -399,7 +409,17 @@ GRANTED or STRONGDENY.
 
 With respect to the balance between the classes, the dataset is
 unbalanced with the following ratio: 49289 instances are labelled as
-GRANTED and 4007 are labelled as STRONGDENY. 
+GRANTED and 4007 are labelled as STRONGDENY. % If what follows this
+                                % full stop, that is, nothing, is what
+                                % you are going to do about it, it is
+                                % better to just not mention it. It
+                                % begs the question by rev. number 3:
+                                % How are you addressing this
+                                % unbalance in the paper? Will that
+                                % affect the choice of training
+                                % methods or the result? Please repeat
+                                % experiments, ALL of THEM, to address
+                                % this unbalance - JJ
 
 \subsection{Proposed Solutions}
 \label{subsec:solution}
@@ -408,7 +428,11 @@ As previously highlighted, in this work we propose a system which is
 able to process a set of user actions that have been allowed or denied
 based on initial, simple rules, and discover new rules through GP by exploring
 the whole space of possible combinations among the attribute
-values. The coding of the individual might take two approaches \cite{freitas2002data}. On the one hand, following the Pittsburgh approach, the proposed method uses GP to create an individual tree to model a set of different rules, given that the problem can be seen as a
+values. The coding of the individual might take two approaches
+\cite{freitas2002data}. On the one hand, following the Pittsburgh
+approach, the proposed method uses GP to create an individual tree to
+model a set of different rules, given that the problem can be seen as
+a 
 classification one and therefore the model can be a decision tree
 \cite{safavian1990survey}. Then, the generated tree is a binary tree
 of expressions formed by two different types of nodes:
@@ -418,9 +442,16 @@ of expressions formed by two different types of nodes:
 % You have to justify in what way you are _generalizing_ from
 % those simple rules - JJ
 % (Paloma) No, not generalising either.
+% Then what are you doing precisely? - JJ
 
 \begin{itemize}
-\item {\em Variable}: it is a logical expression formed by a prefix, a name, an operator and a value. It is the equivalent to a ``primitive'' in the field of GP \cite{back1996evolutionary}. The operators depend on the type of variable, being \{=$>$, =\} in the case of binary and categorical attributes, and \{$<$, $<=$,=,$=>$, $>$\} for numeric ones. At the same time, the prefix can be \{AND, OR\}, and NOT can randomly appear before these. \\
+\item {\em Variable}: it is a logical expression formed by a prefix, a
+  name, an operator and a value. It is the equivalent to a
+  ``primitive'' in the field of GP \cite{back1996evolutionary}. The
+  operators depend on the type of variable, being \{=$>$, =\} in the
+  case of binary and categorical attributes, and \{$<$, $<=$,=,$=>$,
+  $>$\} for numeric ones. At the same time, the prefix can be \{AND,
+  OR\}, and NOT can randomly appear before these. \\ 
     Examples:
    \begin{math}
      \left \{
@@ -478,11 +509,13 @@ Variable type                & Variable Name          & BYOD specific & Context 
 \end{table*}
 
 In the case of an individual coded as a set of rules, the tree is
-translated to a set of rules starting from the leafs to the root node
+translated to a set of rules starting from the leafs to the root
+node % set of rules repeated. Revise grammar and spelling - JJ
 passing each time by the ancestors. However, an individual represented
-by a single rule, is coded as a list of conditions to which a class is
+by a single rule is coded as a list of conditions to which a class is
 assigned. Thus, an experiment following this last approach has to be
-run many times as classes there are. 
+run many times as classes there are.  % revise grammar - JJ
+% And I really don't understand why you need to do that. - JJ
 
 An example of a rule can be presented as follows:
 %TODO Show this more fancy :P (Pablo)
@@ -498,6 +531,9 @@ Rules presented in this way offer good readability which is key to understand th
 % (Paloma) Shall we explain what a rooted device is?
 % You should rather say what is the relationship between these rules
 % and the original rules - JJ
+% Still can't see why you need to train several times. Can't you just
+% train once and obtain the best individuals at the end of training? -
+% JJ
 
 \subsection{Choosing a suitable fitness}
 
@@ -533,6 +569,8 @@ To this end, in \cite{witten2005data} the authors define the coverage as:
 C_{ind} = TP + TN - (FP + FN)
 \end{equation}
 Additionally, to take into account the complexity of the individuals,
+% which we are mentioning here for the first time and is thus the
+% first indication we care about it ... - JJ
 either they are a rule or a set of rules, in \cite{witten2005data}
 they introduce a measure of the generated trees complexity by this
 expression: 
@@ -650,7 +688,7 @@ the framework OSGiLiath \cite{DBLP:journals/soco/Garcia-SanchezGCAG13}
 %\section{Discussion}
 %\label{sec:discussion}
 
-\section{Results from Genetic Programming application}
+\section{Results from Genetic Programming application} 
 \label{sec:gp}
 
 % A paper is a story, has a narrative. Introduce the section by
@@ -663,6 +701,17 @@ described in Equations \ref{eq:accuracy} and \ref{eq:complexFitness}, as well as
 their advantages and disadvantages. Lastly, we will choose the best
 approach, justifying this choice. 
 
+% You are not examining different approaches and reporting results on
+% them. You are trying to solve a problem, for which you are testing
+% different approaches, and it should be very clear to you how to test
+% what solution is the best INDEPENDENTLY OF THE APPROACH, so you
+% might have to come up with a way of comparing solutions
+% independently of the fitness you are using. At any rate, the reader
+% is not interested in Pittsburgh and Michigan approaches _separately_
+% but on which one yields the best solution. Boils down to: don't
+% separate results, compare them, even less so in different
+% subsections.
+
 \subsection{$F_{Acc}$ vs. $F_{CS}$} % Not very convinced about the title, please suggest one better.
 \label{subsec:fitnesscomparison}
 
@@ -672,7 +721,6 @@ The aim of this comparison is to conclude which fitness function should be used,
 \label{subsec:approachcomparison}
 
 What we also have to determine is which kind of presented solution is better: showing the CSO a set of rules or a single rule for each class.
-
 
 %\subsection{Pittsburgh approach}
 %
@@ -822,6 +870,14 @@ What we also have to determine is which kind of presented solution is better: sh
 %\label{tab:michiganVAL}
 %\end{center}
 %\end{table*}
+%% Tables are for presenting information and to make the reader assess
+%% your method. In that sense, the Pittsburgh approach uses a single
+%% run to obtain a set of rules. The Michigan approach uses two
+%% runs. The reader does not care how those rules are obtained, even
+%% more so if you are not comparing how fast you find the STRONGDENY
+%% rule. First, you should report the results TOGETHER. Second,
+%% averages shold be for the running time of the run for STRONGDENY and
+%% the run for GRANT _together_, not each one separately.
 %
 %Furthermore, Tables \ref{tab:michigan} and \ref{tab:michiganVAL} show worse results for the class STRONGDENY than for the class GRANTED. If we analyse the ratio of instances in each class, we obtain that the majority class is indeed GRANTED, and it surpasses the STRONGDENY class in 13:1.
 %
