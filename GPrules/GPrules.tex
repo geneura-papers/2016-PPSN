@@ -353,13 +353,23 @@ by allowing or denying employees' access to non-confidential
  situation that may be a threat. Hence, allowing the company security
  system to go beyond the limited set of known, pre-defined rules.  % This rather belong to the introduction - JJ
  % (Paloma) The whole paragraph?
+% What do you think? - JJ
 
 Our proposed solution is based on a novel GP framework dedicated for
 the BYOD context and capable of performing an automatic and wider discovery of classification rules. More precisely, our GP based framework will, first, extract all the possible values of every attribute in the data at hand and then make the GP algorithm evolving. 
 Specifically, in this context, we have decided to follow the more
 conventional approach in Genetic Programming, the Pittsburgh approach
 \cite{freitas2002data}, meaning that each individual is seen as a set
-of rules. However, in this work we have also implemented the Michigan approach, being the individual a single rule. The best individual is thus the one that obtains the best fitness, and it is obtained in two different ways, in order to finally choose the most efficient. The last step would be to present the rules to the CSO of the company and tune the algorithm according to the decision of
+of rules. However, in this work we have also implemented the Michigan
+approach, where every indidual is a single rule. % And we have done so
+                                % because... - JJ
+ The best individual is thus the one that obtains the best fitness,
+ and it is obtained in two different ways, in order to finally choose
+ the most efficient.  % This not clear at all, depends on how you
+                      % interpret "two different ways". Eventually,
+                      % you get two individuals, one for "GRANT" and
+                      % another for "DENY"? Is that it? - JJ
+The last step would be to present the rules to the CSO of the company and tune the algorithm according to the decision of
 finally including or not the set of rules in the main security
 policy. The description of the used data and further explicit details
 about our proposed solution are given in what is next.
@@ -399,7 +409,17 @@ GRANTED or STRONGDENY.
 
 With respect to the balance between the classes, the dataset is
 unbalanced with the following ratio: 49289 instances are labelled as
-GRANTED and 4007 are labelled as STRONGDENY. 
+GRANTED and 4007 are labelled as STRONGDENY. % If what follows this
+                                % full stop, that is, nothing, is what
+                                % you are going to do about it, it is
+                                % better to just not mention it. It
+                                % begs the question by rev. number 3:
+                                % How are you addressing this
+                                % unbalance in the paper? Will that
+                                % affect the choice of training
+                                % methods or the result? Please repeat
+                                % experiments, ALL of THEM, to address
+                                % this unbalance - JJ
 
 \subsection{Proposed Solutions}
 \label{subsec:solution}
@@ -478,11 +498,13 @@ Variable type                & Variable Name          & BYOD specific & Context 
 \end{table*}
 
 In the case of an individual coded as a set of rules, the tree is
-translated to a set of rules starting from the leafs to the root node
+translated to a set of rules starting from the leafs to the root
+node % set of rules repeated. Revise grammar and spelling - JJ
 passing each time by the ancestors. However, an individual represented
-by a single rule, is coded as a list of conditions to which a class is
+by a single rule is coded as a list of conditions to which a class is
 assigned. Thus, an experiment following this last approach has to be
-run many times as classes there are. 
+run many times as classes there are.  % revise grammar - JJ
+% And I really don't understand why you need to do that. - JJ
 
 An example of a rule can be presented as follows:
 %TODO Show this more fancy :P (Pablo)
@@ -498,6 +520,9 @@ Rules presented in this way offer good readability which is key to understand th
 % (Paloma) Shall we explain what a rooted device is?
 % You should rather say what is the relationship between these rules
 % and the original rules - JJ
+% Still can't see why you need to train several times. Can't you just
+% train once and obtain the best individuals at the end of training? -
+% JJ
 
 \subsection{Choosing a suitable fitness}
 
