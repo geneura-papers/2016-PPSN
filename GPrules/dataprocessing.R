@@ -8,6 +8,7 @@ require(xtable)
 library(gridExtra)
 library(grid)
 library(lattice)
+library(Cairo)
 
 read_data <- function(directory) {
   allData <- do.call(rbind, lapply(list.files(path = directory, full.names = TRUE), read.table, sep = " "))
@@ -221,11 +222,11 @@ get_stats(get_vector(listIndAlpha1DenyData, "TIME"))
 
 Ftreea0 <- ggplot(treeIndAlpha0Data, aes(x = treeIndAlpha0Data$IT, y =BEST_F/47966)) +
   geom_line(aes(colour = factor(FOLD))) +
-  stat_summary(geom = "line") + scale_y_continuous(limits = c(0.1,0.5)) +
+  stat_summary(geom = "line") + scale_y_continuous(limits = c(0,0.5)) +
   xlab("Iterations (α = 0)") +
   ylab("Best Fitness") + theme(legend.position = "bottom")
-#theLegend <- get_legend(Ftreea0)
-Ftreea0 <- Fa0 + theme(legend.position = "none")
+theLegend <- get_legend(Ftreea0)
+Ftreea0 <- Ftreea0 + theme(legend.position = "none")
 Ftreea05 <- ggplot(treeIndAlpha05Data, aes(x = treeIndAlpha05Data$IT, y = treeIndAlpha05Data$BEST_F/47966)) +
   geom_line(aes(colour = factor(FOLD))) +
   stat_summary(geom = "line") + scale_y_continuous(limits = c(0.1,0.5)) +
@@ -237,8 +238,8 @@ Ftreea1 <- ggplot(treeIndAlpha1Data, aes(x = treeIndAlpha1Data$IT, y = treeIndAl
   xlab("Iterations (α = 1)") +
   ylab("Best Fitness") + theme(legend.position = "none")
 
-#grid.arrange(Ftreea0, Ftreea05, Ftreea1, theLegend, ncol = 3, nrow = 2, layout_matrix = cbind(c(1, 4), c(2, 4), c(3, 4)))
-grid.arrange(Ftreea0, Ftreea05, Ftreea1, ncol = 3)
+grid.arrange(Ftreea0, Ftreea05, Ftreea1, theLegend, ncol = 3, nrow = 2, layout_matrix = cbind(c(1, 4), c(2, 4), c(3, 4)))
+#grid.arrange(Ftreea0, Ftreea05, Ftreea1, ncol = 3)
 
 FtreeCov <- ggplot(treeIndCovData, aes(x = treeIndCovData$IT, y =BEST_F)) +
   geom_line(aes(colour = factor(FOLD))) +
@@ -295,44 +296,97 @@ grid.arrange(FlistallowAlpha0, FlistdenyAlpha0, FlistallowAlpha05, FlistdenyAlph
 # Boxplots
 # ---------
 
-treeBoxplotTime <- ggplot(treeIndALL, aes(treeIndALL$CONF, treeIndALL$TIME)) + stat_boxplot()
-listBoxplotTime <- ggplot(listIndALL, aes(listIndALL$CONF, listIndALL$TIME)) + stat_boxplot()
-grid.arrange(treeBoxplotTime, listBoxplotTime, ncol = 2)
+itvsFTreeCov <- ggplot(subset(treeIndCovData[,c("IT","BEST_F","FOLD")],IT%%5==0),aes(x=IT,y=BEST_F,group=IT)) +
+  geom_boxplot() +
+  scale_x_continuous(breaks = seq(from=0,to=150,by=10)) +
+  xlab("Iterations") +
+  ylab("FAcc") +
+  theme(axis.title.y = element_text(size = 8))
+itvsFTreeA0 <- ggplot(subset(treeIndAlpha0Data[,c("IT","BEST_F","FOLD")],IT%%5==0),aes(x=IT,y=BEST_F/47966,group=IT)) +
+  geom_boxplot() +
+  scale_x_continuous(breaks = seq(from=0,to=150,by=10)) +
+  xlab("Iterations") +
+  ylab("FCS (\u03B1 = 0)") +
+  theme(axis.title.y = element_text(size = 8))
+itvsFTreeA05 <- ggplot(subset(treeIndAlpha05Data[,c("IT","BEST_F","FOLD")],IT%%5==0),aes(x=IT,y=BEST_F/47966,group=IT)) +
+  geom_boxplot() +
+  scale_x_continuous(breaks = seq(from=0,to=150,by=10)) +
+  xlab("Iterations") +
+  ylab("FCS (\u03B1 = 0.5)") +
+  theme(axis.title.y = element_text(size = 8))
+itvsFTreeA1 <- ggplot(subset(treeIndAlpha1Data[,c("IT","BEST_F","FOLD")],IT%%5==0),aes(x=IT,y=BEST_F/47966,group=IT)) +
+  geom_boxplot() +
+  scale_x_continuous(breaks = seq(from=0,to=150,by=10)) +
+  xlab("Iterations") +
+  ylab("FCS (\u03B1 = 1)") +
+  theme(axis.title.y = element_text(size = 8))
 
-treeIndALL <- treeIndALL[treeIndALL$CONF != "Pittsburgh_FAcc",]
-treeBoxplotWF <- ggplot(treeIndALL, aes(treeIndALL$CONF, treeIndALL$BEST_F)) +
-  geom_boxplot(outlier.shape = NA) +
-  scale_y_log10()
-listIndALL <- listIndALL[listIndALL$CONF != "Michigan_FAcc_Allow",]
-listIndALL <- listIndALL[listIndALL$CONF != "Michigan_FAcc_Deny",]
-listBoxplotWF <- ggplot(listIndALL[listIndALL$CONF != "Michigan_FAcc_Allow" || listIndALL$CONF != "Michigan_FAcc_Deny",], aes(listIndALL$CONF, listIndALL$BEST_F)) +
-  geom_boxplot(outlier.shape = NA) +
-  scale_y_log10()
-grid.arrange(treeBoxplotWF, listBoxplotWF, ncol = 2)
+pittsburghItvsF <- grid.arrange(itvsFTreeCov, itvsFTreeA0, itvsFTreeA05, itvsFTreeA1, ncol = 1, nrow = 4)
+cairo_pdf("../img/pittsburghItvsF.pdf", width = 7, height = 6)
+grid.draw(pittsburghItvsF)
+dev.off()
 
-BtreeCov <- ggplot(bestFTreeCov, aes(bestFTreeCov$CONF, bestFTreeCov$BEST_F*100)) +
-  geom_boxplot(outlier.shape = NA) +
-  xlab("Experiment configuration") +
-  ylab("% correctly classified instances (FAcc*100)") +
-  ylim(0, 95)
-BtreeFCS <- ggplot(bestFTreeFCS, aes(bestFTreeFCS$CONF, bestFTreeFCS$BEST_F)) +
-  geom_boxplot(outlier.shape = NA) +
-  xlab("Experiment configuration") +
-  ylab("Best Fitness, FCS") +
-  ylim(6000, 48000)
-BlistCov <- ggplot(bestFListCov, aes(bestFListCov$CONF, bestFListCov$BEST_F*100)) +
-  geom_boxplot(outlier.shape = NA) +
-  xlab("Experiment configuration") +
-  ylab("% correctly classified instances (FAcc*100)") +
-  ylim(0, 95)
-BlistFCS <- ggplot(bestFListFCS, aes(bestFListFCS$CONF, bestFListFCS$BEST_F)) +
-  geom_boxplot(outlier.shape = NA) +
-  xlab("Experiment configuration") +
-  ylab("Best Fitness, FCS") +
-  ylim(6000, 48000)
+itvsFListCovAllow <- ggplot(subset(listIndCovAllowData[,c("IT","BEST_F","FOLD")],IT%%5==0),aes(x=IT,y=BEST_F,group=IT)) +
+  geom_boxplot() +
+  scale_x_continuous(breaks = seq(from=0,to=150,by=10)) +
+  xlab("Iterations") +
+  ylab("FAcc") +
+  theme(axis.title.y = element_text(size = 8))
+itvsFListA0Allow <- ggplot(subset(listIndAlpha0AllowData[,c("IT","BEST_F","FOLD")],IT%%5==0),aes(x=IT,y=BEST_F/47966,group=IT)) +
+  geom_boxplot() +
+  scale_x_continuous(breaks = seq(from=0,to=150,by=10)) +
+  xlab("Iterations") +
+  ylab("FCS (\u03B1 = 0)") +
+  theme(axis.title.y = element_text(size = 8))
+itvsFListA05Allow <- ggplot(subset(listIndAlpha05AllowData[,c("IT","BEST_F","FOLD")],IT%%5==0),aes(x=IT,y=BEST_F/47966,group=IT)) +
+  geom_boxplot() +
+  scale_x_continuous(breaks = seq(from=0,to=150,by=10)) +
+  xlab("Iterations") +
+  ylab("FCS (\u03B1 = 0.5)") +
+  theme(axis.title.y = element_text(size = 8))
+itvsFListA1Allow <- ggplot(subset(listIndAlpha1AllowData[,c("IT","BEST_F","FOLD")],IT%%5==0),aes(x=IT,y=BEST_F/47966,group=IT)) +
+  geom_boxplot() +
+  scale_x_continuous(breaks = seq(from=0,to=150,by=10)) +
+  xlab("Iterations") +
+  ylab("FCS (\u03B1 = 1)") +
+  theme(axis.title.y = element_text(size = 8))
 
-grid.arrange(BtreeCov, BlistCov, ncol = 2)
-grid.arrange(BtreeFCS, BlistFCS, ncol = 2)
+pittsburghItvsF2 <- grid.arrange(itvsFListCovAllow, itvsFListA0Allow, itvsFListA05Allow, itvsFListA1Allow, ncol = 1, nrow = 4)
+cairo_pdf("../img/michiganItvsF_allow.pdf", width = 7, height = 6)
+grid.draw(pittsburghItvsF2)
+dev.off()
+
+itvsFListCovDeny <- ggplot(subset(listIndCovDenyData[,c("IT","BEST_F","FOLD")],IT%%5==0),aes(x=IT,y=BEST_F,group=IT)) +
+  geom_boxplot() +
+  scale_x_continuous(breaks = seq(from=0,to=150,by=10)) +
+  xlab("Iterations") +
+  ylab("FAcc") +
+  theme(axis.title.y = element_text(size = 8))
+itvsFListA0Deny <- ggplot(subset(listIndAlpha0DenyData[,c("IT","BEST_F","FOLD")],IT%%5==0),aes(x=IT,y=BEST_F/47966,group=IT)) +
+  geom_boxplot() +
+  scale_x_continuous(breaks = seq(from=0,to=150,by=10)) +
+  xlab("Iterations") +
+  ylab("FCS (\u03B1 = 0)") +
+  theme(axis.title.y = element_text(size = 8))
+itvsFListA05Deny <- ggplot(subset(listIndAlpha05DenyData[,c("IT","BEST_F","FOLD")],IT%%5==0),aes(x=IT,y=BEST_F/47966,group=IT)) +
+  geom_boxplot() +
+  scale_x_continuous(breaks = seq(from=0,to=150,by=10)) +
+  xlab("Iterations") +
+  ylab("FCS (\u03B1 = 0.5)") +
+  theme(axis.title.y = element_text(size = 8))
+itvsFListA1Deny <- ggplot(subset(listIndAlpha1DenyData[,c("IT","BEST_F","FOLD")],IT%%5==0),aes(x=IT,y=BEST_F/47966,group=IT)) +
+  geom_boxplot() +
+  scale_x_continuous(breaks = seq(from=0,to=150,by=10)) +
+  xlab("Iterations") +
+  ylab("FCS (\u03B1 = 1)") +
+  theme(axis.title.y = element_text(size = 8))
+
+pittsburghItvsF3 <- grid.arrange(itvsFListCovDeny, itvsFListA0Deny, itvsFListA05Deny, itvsFListA1Deny, ncol = 1, nrow = 4)
+cairo_pdf("../img/michiganItvsF_deny.pdf", width = 7, height = 6)
+grid.draw(pittsburghItvsF3)
+dev.off()
+
+
 
 ggsave("../img/bestFTreeCov.pdf", plot = BtreeCov, units = "mm", width = 80, height = 100, scale = 1.5)
 ggsave("../img/bestFTreeFCS.pdf", plot = BtreeFCS, units = "mm", width = 70, height = 80, scale = 1.5)
