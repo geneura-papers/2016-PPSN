@@ -715,7 +715,7 @@ approach, justifying this choice.
 \subsection{$F_{Acc}$ vs. $F_{CS}$} % Not very convinced about the title, please suggest one better.
 \label{subsec:fitnesscomparison}
 
-The aim of this comparison is to conclude which fitness function should be used, discussing the results from the point of view of convergence, and that means finding which one reaches the best value faster. To study this have displayed the obtained fitness through the iterations for the Pittsburgh approach in Figure \ref{fig:pittsburghItvsF} and for the Michigan approach in Figures \ref{fig:michiganItvsF_allow} and \ref{fig:michiganItvsF_deny}. Figures for GRANTED and STRONGDENY classes are separated because the solution is a single rule instead of a set of rules, and the algorithm has to be executed once per class.
+The aim of this comparison is to conclude which fitness function should be used, discussing the results from the point of view of convergence, and that means finding which one reaches the best value faster. To study this have displayed the obtained fitness through the iterations for the Pittsburgh approach in Figure \ref{fig:pittsburghItvsF} and for the Michigan approach in Figures \ref{fig:michiganItvsF_allow} and \ref{fig:michiganItvsF_deny}. Figures for GRANTED and STRONGDENY classes are separated because the solution is a single rule instead of a set of rules, and therefore the algorithm has to be executed once per class. With regard to the best fitness obtained for each fitness function, they are similar in the same scope, which means that similar values are found for all values of $\alpha$ in $f_{CS}$ in the two approaches separately.
 
 \begin{figure*}[h!tb]
 \centering
@@ -724,7 +724,7 @@ The aim of this comparison is to conclude which fitness function should be used,
 \label{fig:pittsburghItvsF}
 \end{figure*}
 
-For the sake of clarity, $f_{CS}$ has been divided by the maximum amount -- the number of instances for training --. 
+For the sake of clarity, $f_{CS}$ has been divided by the maximum value -- the number of instances for training -- it might take. By looking at the Pittsburgh approach values in Figure \ref{fig:pittsburghItvsF}, we see that mostly all configurations tend to converge around iteration 40, but it seems that $f_{CS}$ with $\alpha = 0.5$ is the configuration that reaches the best solution faster, around the 30th iteration.
 
 \begin{figure*}[h!tb]
 	\centering
@@ -733,12 +733,16 @@ For the sake of clarity, $f_{CS}$ has been divided by the maximum amount -- the 
 	\label{fig:michiganItvsF_allow}
 \end{figure*}
 
+With regard to the Michigan approach, a higher variability is noticeable in Figures \ref{fig:michiganItvsF_allow} and \ref{fig:michiganItvsF_deny}, but in average we see that for $f_{CS}$ with $\alpha = 0$ or 1, the fitness do not converge until generation 120. The best ones are for $f_{Acc}$ and $f_{CS}$ with $\alpha = 0.5$, being the latter the one that converges faster, around the 50th iteration.
+
 \begin{figure*}[h!tb]
 	\centering
 	\includegraphics[width=0.8\textwidth]{img/michiganItvsF_deny.pdf}
 	\caption{Convergence of fitness for each one of the tested fitness functions, and for Michigan approach being executed for the STRONGDENY class. Note that $f_{Acc}$ has to be maximised, whereas $f_{CS}$ has to be minimised.}
 	\label{fig:michiganItvsF_deny}
 \end{figure*}
+
+We can advance that the best results might be obtained for $f_{CS}$ with $\alpha = 0.5$. However, as it can be seen that there is a considerable difference between the performance, in terms of best obtained fitness, of the two used approaches, we have to thoroughly compare them.
 
 \subsection{The Pittsburgh vs. Michigan approach} % Same, not convinced, as with anything I do now.
 \label{subsec:approachcomparison}
