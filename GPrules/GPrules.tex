@@ -715,7 +715,30 @@ approach, justifying this choice.
 \subsection{$F_{Acc}$ vs. $F_{CS}$} % Not very convinced about the title, please suggest one better.
 \label{subsec:fitnesscomparison}
 
-The aim of this comparison is to conclude which fitness function should be used, discussing the results from the point of view of convergence, and that means finding which one reaches the best value faster.
+The aim of this comparison is to conclude which fitness function should be used, discussing the results from the point of view of convergence, and that means finding which one reaches the best value faster. To study this have displayed the obtained fitness through the iterations for the Pittsburgh approach in Figure \ref{fig:pittsburghItvsF} and for the Michigan approach in Figures \ref{fig:michiganItvsF_allow} and \ref{fig:michiganItvsF_deny}. Figures for GRANTED and STRONGDENY classes are separated because the solution is a single rule instead of a set of rules, and the algorithm has to be executed once per class.
+
+\begin{figure*}[h!tb]
+\centering
+\includegraphics[width=0.8\textwidth]{img/pittsburghItvsF.pdf}
+\caption{Convergence of fitness for each one of the tested fitness functions, and for Pittsburgh approach. Note that $f_{Acc}$ has to be maximised, whereas $f_{CS}$ has to be minimised.}
+\label{fig:pittsburghItvsF}
+\end{figure*}
+
+For the sake of clarity, $f_{CS}$ has been divided by the maximum amount -- the number of instances for training --. 
+
+\begin{figure*}[h!tb]
+	\centering
+	\includegraphics[width=0.8\textwidth]{img/michiganItvsF_allow.pdf}
+	\caption{Convergence of fitness for each one of the tested fitness functions, and for Michigan approach being executed for the GRANTED class. Note that $f_{Acc}$ has to be maximised, whereas $f_{CS}$ has to be minimised.}
+	\label{fig:michiganItvsF_allow}
+\end{figure*}
+
+\begin{figure*}[h!tb]
+	\centering
+	\includegraphics[width=0.8\textwidth]{img/michiganItvsF_deny.pdf}
+	\caption{Convergence of fitness for each one of the tested fitness functions, and for Michigan approach being executed for the STRONGDENY class. Note that $f_{Acc}$ has to be maximised, whereas $f_{CS}$ has to be minimised.}
+	\label{fig:michiganItvsF_deny}
+\end{figure*}
 
 \subsection{The Pittsburgh vs. Michigan approach} % Same, not convinced, as with anything I do now.
 \label{subsec:approachcomparison}
@@ -909,35 +932,6 @@ What we also have to determine is which kind of presented solution is better: sh
 \label{subsec:examples}
 
 Once the results have been analysed, here we present some examples of the individuals that have been obtained in the simulations, proving their readability and usefulness for the CSOs. In addition, we present the relation between the obtained solutions and the original rules that allowed to classify the dataset we have been working with.
-
-
-%\begin{figure*}[h!tb]
-%\centering
-%\includegraphics[width=\textwidth]{img/tree_ind_diff_alpha.pdf}
-%\caption{Best Fitness, calculated from Equation \ref{eq:complexFitness}, obtained for every fold or data partition, and for three different values of $\alpha$.}
-%\label{fig:tree_ind_diff_alpha}
-%\end{figure*}
-%
-%\begin{figure*}[h!tb]
-%\centering
-%\includegraphics[width=\textwidth]{img/tree_ind_coverage.pdf}
-%\caption{Best Fitness, calculated from Equation \ref{eq:coverage}, obtained for every fold or data partition.}
-%\label{fig:tree_ind_coverage}
-%\end{figure*}
-%
-%\begin{figure*}[h!tb]
-%\centering
-%\includegraphics[width=\textwidth]{img/list_ind_diff_alpha.pdf}
-%\caption{Best Fitness, calculated from Equation \ref{eq:complexFitness}, obtained for every fold or data partition, and for three different values of $\alpha$.}
-%\label{fig:list_ind_diff_alpha}
-%\end{figure*}
-%
-%\begin{figure*}[h!tb]
-%\centering
-%\includegraphics[width=\textwidth]{img/list_ind_coverage.pdf}
-%\caption{Best Fitness, calculated from Equation \ref{eq:coverage}, obtained for every fold or data partition.}
-%\label{fig:list_ind_coverage}
-%\end{figure*}
 
 % You can't introduce in the results section something completely
 % unrelated to the stated objective of the paper. Nowhere you have
