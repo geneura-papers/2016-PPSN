@@ -385,10 +385,3 @@ pittsburghItvsF3 <- grid.arrange(itvsFListCovDeny, itvsFListA0Deny, itvsFListA05
 cairo_pdf("../img/michiganItvsF_deny.pdf", width = 7, height = 6)
 grid.draw(pittsburghItvsF3)
 dev.off()
-
-
-
-ggsave("../img/bestFTreeCov.pdf", plot = BtreeCov, units = "mm", width = 80, height = 100, scale = 1.5)
-ggsave("../img/bestFTreeFCS.pdf", plot = BtreeFCS, units = "mm", width = 70, height = 80, scale = 1.5)
-ggsave("../img/bestFListCov.pdf", plot = BlistCov, units = "mm", width = 80, height = 100, scale = 1.5)
-ggsave("../img/bestFListFCS.pdf", plot = BlistFCS, units = "mm", width = 120, height = 120, scale = 2)
