@@ -157,13 +157,15 @@ bestVListCovAllow$CONF <- as.factor(bestVListCovAllow$CONF)
 bestVListCovDeny$CONF <- as.factor(bestVListCovDeny$CONF)
 
 kruskal.test(bestFTreeFCS$BEST_VALUES ~ bestFTreeFCS$CONF, data = bestFTreeFCS)
-pairwise.wilcox.test(bestFTreeFCS$BEST_F, bestFTreeFCS$CONF, p.adjust.method = "bonferroni")
-pairwise.wilcox.test(bestFTreeFCS$BEST_F, bestFTreeFCS$CONF, p.adjust.method = "holm")
+pairwise.wilcox.test(bestFTreeFCS$BEST_VALUES, bestFTreeFCS$CONF, p.adjust.method = "bonferroni")
+pairwise.wilcox.test(bestFTreeFCS$BEST_VALUES, bestFTreeFCS$CONF, p.adjust.method = "holm")
 kruskal.test(bestVTreeFCS$BEST_VALUES ~ bestVTreeFCS$CONF, data = bestVTreeFCS)
-friedman.test(bestFTreeFCS$BEST_F, bestFTreeFCS$CONF)
+friedman.test(bestFTreeFCS$BEST_VALUES, bestFTreeFCS$CONF)
 
 kruskal.test(bestFListFCSAllow$BEST_VALUES ~ bestFListFCSAllow$CONF, data = bestFListFCSAllow)
+pairwise.wilcox.test(bestFListFCSAllow$BEST_VALUES, bestFListFCSAllow$CONF, p.adjust.method = "holm")
 kruskal.test(bestFListFCSDeny$BEST_VALUES ~ bestFListFCSDeny$CONF, data = bestFListFCSDeny)
+pairwise.wilcox.test(bestFListFCSDeny$BEST_VALUES, bestFListFCSDeny$CONF, p.adjust.method = "holm")
 kruskal.test(bestVListFCSAllow$BEST_VALUES ~ bestVListFCSAllow$CONF, data = bestVListFCSAllow)
 kruskal.test(bestVListFCSDeny$BEST_VALUES ~ bestVListFCSDeny$CONF, data = bestVListFCSDeny)
 
