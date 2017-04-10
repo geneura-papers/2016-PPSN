@@ -361,15 +361,11 @@ Specifically, in this context, we have decided to follow the more
 conventional approach in Genetic Programming, the Pittsburgh approach
 \cite{freitas2002data}, meaning that each individual is seen as a set
 of rules. However, in this work we have also implemented the Michigan
-approach, where every indidual is a single rule. % And we have done so
-                                % because... - JJ
- The best individual is thus the one that obtains the best fitness,
- and it is obtained in two different ways, in order to finally choose
- the most efficient.  % This not clear at all, depends on how you
-                      % interpret "two different ways". Eventually,
-                      % you get two individuals, one for "GRANT" and
-                      % another for "DENY"? Is that it? - JJ
-The last step would be to present the rules to the CSO of the company and tune the algorithm according to the decision of
+approach, where every indidual is a single rule. The aim of having these two different implementations is to choose the most efficient, in terms of time to find the solution, best fitness, accuracy in the validation phase, and readability.
+
+Indeed, each implementation has its advantages and disadvantages. To directly obtain a set of rules (Pittsburgh) able to classify instances of every existing class means that the algorithm has to be run once, while having the solution coded as a single rule (Michigan), we have to obtain as many rules as classes are defined, and so it yields to many executions of the algorithm. At the same time, obtaining a set of rules as solution is more computationally expensive due to the need of longer evaluations. Lastly, to evaluate a single rule not taking into account how it interacts with what the others cover \cite{freitas2002data}, it can lead to massive overlapping with the consequent loss of efficiency.
+
+The last step would be to present the rules -- solution -- to the CSO of the company and tune the algorithm according to the decision of
 finally including or not the set of rules in the main security
 policy. The description of the used data and further explicit details
 about our proposed solution are given in what is next.
@@ -747,7 +743,31 @@ We can advance that the best results might be obtained for $f_{CS}$ with $\alpha
 \subsection{The Pittsburgh vs. Michigan approach} % Same, not convinced, as with anything I do now.
 \label{subsec:approachcomparison}
 
-What we also have to determine is which kind of presented solution is better: showing the CSO a set of rules or a single rule for each class.
+What we also have to determine is which kind of presented solution is better: showing the CSO a set of rules or a single rule for each class. As already discussed in Section \ref{sec:methodology}, each one has their advantages and disadvantages, but now we directly compare the values obtained for both implementations. Table \ref{tab:PvsMfitness} shows the results from the evaluations with $f_{Acc}$ and also $f_{CS}$.
+
+\begin{table*}
+\centering
+\resizebox{16cm}{!}{
+\begin{tabular}{llll|l|l|l|l|}
+\cline{5-8}
+                                                                          &                                                         &                                                &                & Average              & Best  & Median & Worst \\ \hline
+\multicolumn{2}{|l|}{\multirow{4}{*}{Pittsburgh - individual eq. set of rules}}                                                     & \multicolumn{2}{l|}{$f_{Acc}$}                                  & 0.925 $\pm$ 0.043e-2 & 0.926 & 0.925  & 0.924 \\ \cline{3-8} 
+\multicolumn{2}{|l|}{}                                                                                                              & \multicolumn{1}{l|}{\multirow{3}{*}{$f_{CS}$}} & $\alpha$ = 0   & 0.138 $\pm$ 2.153e-2 & 0.097 & 0.149  & 0.151 \\ \cline{4-8} 
+\multicolumn{2}{|l|}{}                                                                                                              & \multicolumn{1}{l|}{}                          & $\alpha$ = 0.5 & 0.15 $\pm$ 0.103e-2  & 0.148 & 0.15   & 0.151 \\ \cline{4-8} 
+\multicolumn{2}{|l|}{}                                                                                                              & \multicolumn{1}{l|}{}                          & $\alpha$ = 1   & 0.148 $\pm$ 0.383e-2 & 0.139 & 0.15   & 0.151 \\ \hline
+\multicolumn{1}{|l|}{\multirow{8}{*}{Michigan - individual eq. one rule}} & \multicolumn{1}{l|}{\multirow{4}{*}{Class: GRANTED}}    & \multicolumn{2}{l|}{$f_{Acc}$}                                  & 0.468 $\pm$ 0.264e-2 & 0.47  & 0.468  & 0.463 \\ \cline{3-8} 
+\multicolumn{1}{|l|}{}                                                    & \multicolumn{1}{l|}{}                                   & \multicolumn{1}{l|}{\multirow{3}{*}{$f_{CS}$}} & $\alpha$ = 0   & 0.555 $\pm$ 1.086e-2 & 0.543 & 0.549  & 0.572 \\ \cline{4-8} 
+\multicolumn{1}{|l|}{}                                                    & \multicolumn{1}{l|}{}                                   & \multicolumn{1}{l|}{}                          & $\alpha$ = 0.5 & 0.553 $\pm$ 1.309e-2 & 0.535 & 0.55   & 0.57  \\ \cline{4-8} 
+\multicolumn{1}{|l|}{}                                                    & \multicolumn{1}{l|}{}                                   & \multicolumn{1}{l|}{}                          & $\alpha$ = 1   & 0.557 $\pm$ 1.231e-2 & 0.536 & 0.56   & 0.57  \\ \cline{2-8} 
+\multicolumn{1}{|l|}{}                                                    & \multicolumn{1}{l|}{\multirow{4}{*}{Class: STRONGDENY}} & \multicolumn{2}{l|}{$f_{Acc}$}                                  & 0.047 $\pm$ 0.404e-2 & 0.057 & 0.046  & 0.041 \\ \cline{3-8} 
+\multicolumn{1}{|l|}{}                                                    & \multicolumn{1}{l|}{}                                   & \multicolumn{1}{l|}{\multirow{3}{*}{$f_{CS}$}} & $\alpha$ = 0   & 0.982 $\pm$ 1.41e-2  & 0.964 & 0.979  & 0.999 \\ \cline{4-8} 
+\multicolumn{1}{|l|}{}                                                    & \multicolumn{1}{l|}{}                                   & \multicolumn{1}{l|}{}                          & $\alpha$ = 0.5 & 0.988 $\pm$ 1.12e-2  & 0.964 & 0.988  & 0.999 \\ \cline{4-8} 
+\multicolumn{1}{|l|}{}                                                    & \multicolumn{1}{l|}{}                                   & \multicolumn{1}{l|}{}                          & $\alpha$ = 1   & 0.979 $\pm$ 1.744e-2 & 0.963 & 0.969  & 1     \\ \hline
+\end{tabular}
+}
+\caption{Fitness comparison between Pittsburgh and Michigan approaches. Note that in the case of $f_{Acc}$, the best value is highest, whilst for $f_{CS}$, the lower is better. An $*$ indicates the  statistically significant best value for $\alpha$.}
+\label{tab:PvsMfitness}
+\end{table*}
 
 %\subsection{Pittsburgh approach}
 %

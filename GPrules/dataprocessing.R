@@ -38,6 +38,13 @@ get_vector <- function(myresults, attribute) {
   } else if (attribute == "TIME") {
     #return(x)
     return(((x/1000)/60)/60)
+  } else if (attribute == "BEST_F") {
+    y <- get_vector(myresults, "BEST_DEPTH")
+    z <- y+47966
+    print(z)
+    print(x/47966)
+    print(x/z)
+    return(x/z)
   } else {
     return(x) 
   }
@@ -173,7 +180,6 @@ kruskal.test(bestVListFCSDeny$BEST_VALUES ~ bestVListFCSDeny$CONF, data = bestVL
 # --------
 # Stats
 # --------
-
 get_stats(get_vector(treeIndCovData, "BEST_F"))
 get_stats(get_vector(treeIndAlpha0Data, "BEST_F"))
 get_stats(get_vector(treeIndAlpha05Data, "BEST_F"))
