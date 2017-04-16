@@ -766,7 +766,16 @@ What we also have to determine is which kind of presented solution is better: sh
 \multicolumn{1}{|l|}{}                                                    & \multicolumn{1}{l|}{}                                   & \multicolumn{1}{l|}{}                          & $\alpha$ = 1   & 0.979 $\pm$ 1.744e-2 & 0.963 & 0.969  & 1     \\ \hline
 \end{tabular}
 }
-\caption{Fitness comparison between Pittsburgh and Michigan approaches. Note that in the case of $f_{Acc}$, the best value is highest, whilst for $f_{CS}$, the lower is better. An $*$ indicates the  statistically significant best value for $\alpha$.}
+\caption{Fitness comparison between Pittsburgh and Michigan
+  approaches. Note that in the case of $f_{Acc}$, the best value is
+  highest, whilst for $f_{CS}$, the lower is better. An $*$ indicates
+  the  statistically significant best value for $\alpha$.}
+% You can't compare measures that not even evaluate different things,
+% but go in opposite directions (one is lower-is-better and the other
+% is bigger-is-better). Classes also have different levels, so no
+% comparison. Alphas have an influence in the measure, so you can't
+% compare them either. Either you use a single measure to compare all
+% of them, or this is simply not a comparison, by definition - JJ
 \label{tab:PvsMfitness}
 \end{table*}
 
