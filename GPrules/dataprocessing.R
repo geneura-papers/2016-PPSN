@@ -4,6 +4,7 @@ require(ggplot2)
 require(dplyr)
 require(reshape2)
 require(xtable)
+require(multcomp)
 
 library(gridExtra)
 library(grid)
@@ -38,13 +39,6 @@ get_vector <- function(myresults, attribute) {
   } else if (attribute == "TIME") {
     #return(x)
     return(((x/1000)/60)/60)
-  } else if (attribute == "BEST_F") {
-    y <- get_vector(myresults, "BEST_DEPTH")
-    z <- y+47966
-    print(z)
-    print(x/47966)
-    print(x/z)
-    return(x/z)
   } else {
     return(x) 
   }
@@ -157,12 +151,7 @@ bestVListFCSDeny <- rbind(create_dataframe(listIndAlpha0DenyData, listIndAlpha0D
 #latexTable <- rbind(bestFTreeCov, bestFTreeFCS, bestFListCov, bestFListFCS)
 #print(xtable(latexTable, digits = c(0, 7, 0)), type = "html")
 
-bestFTreeCov$CONF <- as.factor(bestFTreeCov$CONF)
-bestVTreeCov$CONF <- as.factor(bestVTreeCov$CONF)
-bestFListCovAllow$CONF <- as.factor(bestFListCovAllow$CONF)
-bestFListCovDeny$CONF <- as.factor(bestFListCovDeny$CONF)
-bestVListCovAllow$CONF <- as.factor(bestVListCovAllow$CONF)
-bestVListCovDeny$CONF <- as.factor(bestVListCovDeny$CONF)
+shapiro.test(bestFTreeFCS$BEST_VALUES)
 
 kruskal.test(bestFTreeFCS$BEST_VALUES ~ bestFTreeFCS$CONF, data = bestFTreeFCS)
 pairwise.wilcox.test(bestFTreeFCS$BEST_VALUES, bestFTreeFCS$CONF, p.adjust.method = "bonferroni")
@@ -176,6 +165,18 @@ kruskal.test(bestFListFCSDeny$BEST_VALUES ~ bestFListFCSDeny$CONF, data = bestFL
 pairwise.wilcox.test(bestFListFCSDeny$BEST_VALUES, bestFListFCSDeny$CONF, p.adjust.method = "holm")
 kruskal.test(bestVListFCSAllow$BEST_VALUES ~ bestVListFCSAllow$CONF, data = bestVListFCSAllow)
 kruskal.test(bestVListFCSDeny$BEST_VALUES ~ bestVListFCSDeny$CONF, data = bestVListFCSDeny)
+
+Group <- bestFTreeFCS$CONF
+Value <- bestFTreeFCS$BEST_VALUES
+
+data <- data.frame(Group, Value)
+
+fit <- aov(Value ~ Group, data)
+
+
+set.seed(20140123)
+Dunnet <- glht(fit, linfct=mcp(Group="Dunnett"))
+summary(Dunnet)
 
 # --------
 # Stats

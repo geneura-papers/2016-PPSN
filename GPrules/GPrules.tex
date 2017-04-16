@@ -716,7 +716,8 @@ The aim of this comparison is to conclude which fitness function should be used,
 \begin{figure*}[h!tb]
 \centering
 \includegraphics[width=0.8\textwidth]{img/pittsburghItvsF.pdf}
-\caption{Convergence of fitness for each one of the tested fitness functions, and for Pittsburgh approach. Note that $f_{Acc}$ has to be maximised, whereas $f_{CS}$ has to be minimised.}
+\caption{Convergence of fitness for each one of the tested fitness functions, and for Pittsburgh approach. Note that $f_{Acc}$ has to be maximised, whereas $f_{CS}$ has to be minimised.} % You know what I think about these graphs, from this one to the third. Using boxplots only makes them a bit more confusing. Boxplots should be used for comparing categories or factors. - JJ
+
 \label{fig:pittsburghItvsF}
 \end{figure*}
 
@@ -765,7 +766,16 @@ What we also have to determine is which kind of presented solution is better: sh
 \multicolumn{1}{|l|}{}                                                    & \multicolumn{1}{l|}{}                                   & \multicolumn{1}{l|}{}                          & $\alpha$ = 1   & 0.979 $\pm$ 1.744e-2 & 0.963 & 0.969  & 1     \\ \hline
 \end{tabular}
 }
-\caption{Fitness comparison between Pittsburgh and Michigan approaches. Note that in the case of $f_{Acc}$, the best value is highest, whilst for $f_{CS}$, the lower is better. An $*$ indicates the  statistically significant best value for $\alpha$.}
+\caption{Fitness comparison between Pittsburgh and Michigan
+  approaches. Note that in the case of $f_{Acc}$, the best value is
+  highest, whilst for $f_{CS}$, the lower is better. An $*$ indicates
+  the  statistically significant best value for $\alpha$.}
+% You can't compare measures that not even evaluate different things,
+% but go in opposite directions (one is lower-is-better and the other
+% is bigger-is-better). Classes also have different levels, so no
+% comparison. Alphas have an influence in the measure, so you can't
+% compare them either. Either you use a single measure to compare all
+% of them, or this is simply not a comparison, by definition - JJ
 \label{tab:PvsMfitness}
 \end{table*}
 
