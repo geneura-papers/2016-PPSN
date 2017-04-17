@@ -40,7 +40,7 @@ get_vector <- function(myresults, attribute) {
     #return(x)
     return(((x/1000)/60)/60)
   } else {
-    return(x) 
+    return(x/47966) 
   }
 }
 
@@ -222,6 +222,62 @@ get_stats(get_vector(listIndAlpha05AllowData, "TIME"))
 get_stats(get_vector(listIndAlpha05DenyData, "TIME"))
 get_stats(get_vector(listIndAlpha1AllowData, "TIME"))
 get_stats(get_vector(listIndAlpha1DenyData, "TIME"))
+
+# ---------
+# FP + FN
+# ---------
+
+treeIndCovFP <- c(400, 413, 400, 388, 444, 380, 383, 358, 406, 418)
+treeIndCovFN <- 0
+treeIndAlpha0FP <- c(148, 4133, 365, 240, 444, 217, 384, 385, 406, 415)
+treeIndAlpha0FN <- c(121, 0, 1, 0, 0, 35, 1, 0, 0, 5)
+treeIndAlpha05FP <- c(400, 413, 385, 379, 444, 380, 384, 385, 365, 419)
+treeIndAlpha05FN <- c(0, 0, 5, 10, 0, 0, 0, 0, 23, 0)
+treeIndAlpha1FP <- c(337, 413, 387, 389, 392, 377, 347, 299, 406, 419)
+treeIndAlpha1FN <- 0
+
+listIndCovAllowFP <- c(70, 74, 121, 157, 219, 90, 97, 192, 92, 125)
+listIndCovAllowFN <- 0
+listIndCovDenyFP <- 0
+listIndCovDenyFN <- c(1550, 1573, 1723, 1874, 899, 1699, 2337, 1731, 1131, 1841)
+listIndAlpha0AllowFP <- c(69, 208, 135, 70, 177, 77, 150, 88, 80, 81)
+listIndAlpha0AllowFN <- 0
+listIndAlpha0DenyFP <- 0
+listIndAlpha0DenyFN <- c(49, 21, 57, 21, 33, 22, 60, 8, 2, 10)
+listIndAlpha05AllowFP <- c(152, 67, 44, 36, 109, 164, 163, 118, 80, 88)
+listIndAlpha05AllowFN <- 0
+listIndAlpha05DenyFP <- 0
+listIndAlpha05DenyFN <- c(17, 111, 4, 45, 43, 59, 17, 16, 67, 9)
+listIndAlpha1AllowFP <- c(165, 138, 162, 36, 136, 97, 124, 172, 178, 34)
+listIndAlpha1AllowFN <- 0
+listIndAlpha1DenyFP <- 0
+listIndAlpha1DenyFN <- c(31, 1, 21, 5, 17, 91, 18, 15, 23, 0)
+
+get_stats(treeIndCovFP/5330)
+get_stats(treeIndCovFN/5330)
+get_stats(treeIndAlpha0FP/5330)
+get_stats(treeIndAlpha0FN/5330)
+get_stats(treeIndAlpha05FP/5330)
+get_stats(treeIndAlpha05FN/5330)
+get_stats(treeIndAlpha1FP/5330)
+get_stats(treeIndAlpha1FN/5330)
+
+get_stats(listIndCovAllowFP/5330)
+get_stats(listIndCovAllowFN/5330)
+get_stats(listIndCovDenyFP/5330)
+get_stats(listIndCovDenyFN/5330)
+get_stats(listIndAlpha0AllowFP/5330)
+get_stats(listIndAlpha0AllowFN/5330)
+get_stats(listIndAlpha0DenyFP/5330)
+get_stats(listIndAlpha0DenyFN/5330)
+get_stats(listIndAlpha05AllowFP/5330)
+get_stats(listIndAlpha05AllowFN/5330)
+get_stats(listIndAlpha05DenyFP/5330)
+get_stats(listIndAlpha05DenyFN/5330)
+get_stats(listIndAlpha1AllowFP/5330)
+get_stats(listIndAlpha1AllowFN/5330)
+get_stats(listIndAlpha1DenyFP/5330)
+get_stats(listIndAlpha1DenyFN/5330)
 
 # ---------
 # Graphs
