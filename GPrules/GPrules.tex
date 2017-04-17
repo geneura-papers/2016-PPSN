@@ -744,39 +744,33 @@ We can advance that the best results might be obtained for $f_{CS}$ with $\alpha
 \subsection{The Pittsburgh vs. Michigan approach} % Same, not convinced, as with anything I do now.
 \label{subsec:approachcomparison}
 
-What we also have to determine is which kind of presented solution is better: showing the CSO a set of rules or a single rule for each class. As already discussed in Section \ref{sec:methodology}, each one has their advantages and disadvantages, but now we directly compare the values obtained for both implementations. Table \ref{tab:PvsMfitness} shows the results from the evaluations with $f_{Acc}$ and also $f_{CS}$.
+What we also have to determine is which kind of presented solution is better: showing the CSO a set of rules or a single rule for each class. As already discussed in Section \ref{sec:methodology}, each one has their advantages and disadvantages, but now we directly compare the values obtained for both implementations. Table \ref{tab:PvsMvalidation} shows the results from the evaluations with $f_{Acc}$ and also $f_{CS}$.
 
 \begin{table*}
 \centering
-\resizebox{16cm}{!}{
-\begin{tabular}{llll|l|l|l|l|}
-\cline{5-8}
-                                                                          &                                                         &                                                &                & Average              & Best  & Median & Worst \\ \hline
-\multicolumn{2}{|l|}{\multirow{4}{*}{Pittsburgh - individual eq. set of rules}}                                                     & \multicolumn{2}{l|}{$f_{Acc}$}                                  & 0.925 $\pm$ 0.043e-2 & 0.926 & 0.925  & 0.924 \\ \cline{3-8} 
-\multicolumn{2}{|l|}{}                                                                                                              & \multicolumn{1}{l|}{\multirow{3}{*}{$f_{CS}$}} & $\alpha$ = 0   & 0.138 $\pm$ 2.153e-2 & 0.097 & 0.149  & 0.151 \\ \cline{4-8} 
-\multicolumn{2}{|l|}{}                                                                                                              & \multicolumn{1}{l|}{}                          & $\alpha$ = 0.5 & 0.15 $\pm$ 0.103e-2  & 0.148 & 0.15   & 0.151 \\ \cline{4-8} 
-\multicolumn{2}{|l|}{}                                                                                                              & \multicolumn{1}{l|}{}                          & $\alpha$ = 1   & 0.001 $\pm$ 0.085e-2 & $<$0.001 & 0.001   & 0.003 \\ \hline
-\multicolumn{1}{|l|}{\multirow{8}{*}{Michigan - individual eq. one rule}} & \multicolumn{1}{l|}{\multirow{4}{*}{Class: GRANTED}}    & \multicolumn{2}{l|}{$f_{Acc}$}                                  & 0.468 $\pm$ 0.264e-2 & 0.47  & 0.468  & 0.463 \\ \cline{3-8} 
-\multicolumn{1}{|l|}{}                                                    & \multicolumn{1}{l|}{}                                   & \multicolumn{1}{l|}{\multirow{3}{*}{$f_{CS}$}} & $\alpha$ = 0   & 0.446 $\pm$ 1.124e-2 & 0.43 & 0.453  & 0.463 \\ \cline{4-8} 
-\multicolumn{1}{|l|}{}                                                    & \multicolumn{1}{l|}{}                                   & \multicolumn{1}{l|}{}                          & $\alpha$ = 0.5 & 0.553 $\pm$ 1.309e-2 & 0.535 & 0.55   & 0.57  \\ \cline{4-8} 
-\multicolumn{1}{|l|}{}                                                    & \multicolumn{1}{l|}{}                                   & \multicolumn{1}{l|}{}                          & $\alpha$ = 1   & 0.557 $\pm$ 1.231e-2 & 0.536 & 0.56   & 0.57  \\ \cline{2-8} 
-\multicolumn{1}{|l|}{}                                                    & \multicolumn{1}{l|}{\multirow{4}{*}{Class: STRONGDENY}} & \multicolumn{2}{l|}{$f_{Acc}$}                                  & 0.047 $\pm$ 0.404e-2 & 0.057 & 0.046  & 0.041 \\ \cline{3-8} 
-\multicolumn{1}{|l|}{}                                                    & \multicolumn{1}{l|}{}                                   & \multicolumn{1}{l|}{\multirow{3}{*}{$f_{CS}$}} & $\alpha$ = 0   & 0.982 $\pm$ 1.41e-2  & 0.964 & 0.979  & 0.999 \\ \cline{4-8} 
-\multicolumn{1}{|l|}{}                                                    & \multicolumn{1}{l|}{}                                   & \multicolumn{1}{l|}{}                          & $\alpha$ = 0.5 & 0.988 $\pm$ 1.12e-2  & 0.964 & 0.988  & 0.999 \\ \cline{4-8} 
-\multicolumn{1}{|l|}{}                                                    & \multicolumn{1}{l|}{}                                   & \multicolumn{1}{l|}{}                          & $\alpha$ = 1   & 0.979 $\pm$ 1.744e-2 & 0.963 & 0.969  & 1     \\ \hline
+\resizebox{16.5cm}{!}{
+\begin{tabular}{llll|l|l|l|l|l|l|}
+\cline{5-10}
+                                                                                                                   &                                                                                                   &                                                &                & \multicolumn{6}{l|}{Validation measurement}                                                 \\ \cline{3-10} 
+                                                                                                                   & \multicolumn{1}{l|}{}                                                                             & \multicolumn{2}{l|}{Fitness function}                      & Average              & Best  & Median & Worst & FP                   & FN                   \\ \hline
+\multicolumn{2}{|l|}{\multirow{4}{*}{\begin{tabular}[c]{@{}l@{}}Pittsburgh:\\ Individual eq. set of rules\end{tabular}}}                                                                                               & \multicolumn{2}{l|}{$f_{Acc}$}                                  & 0.925 $\pm$ 0.379e-2 & 0.929 & 0.926  & 0.917 & 0.075 $\pm$ 0.045e-1 & 0                    \\ \cline{3-10} 
+\multicolumn{2}{|l|}{}                                                                                                                                                                                                 & \multicolumn{1}{l|}{\multirow{3}{*}{$f_{CS}$}} & $\alpha$ = 0   & 0.928 $\pm$ 1.308e-2 & 0.952 & 0.926  & 0.912 & 0.134 $\pm$ 2.262e-1 & 0.003 $\pm$ 0.072e-1 \\ \cline{4-10} 
+\multicolumn{2}{|l|}{}                                                                                                                                                                                                 & \multicolumn{1}{l|}{}                          & $\alpha$ = 0.5 & 0.924 $\pm$ 0.423e-2 & 0.929 & 0.926  & 0.917 & 0.074 $\pm$ 0.044e-1 & 0.001 $\pm$ 0.014e-1 \\ \cline{4-10} 
+\multicolumn{2}{|l|}{}                                                                                                                                                                                                 & \multicolumn{1}{l|}{}                          & $\alpha$ = 1   & 0.922 $\pm$ 0.59e-2  & 0.928 & 0.923  & 0.908 & 0.071 $\pm$ 0.071e-1 & 0                    \\ \hline
+\multicolumn{1}{|l|}{\multirow{8}{*}{\begin{tabular}[c]{@{}l@{}}Michigan:\\ Individual eq. one rule\end{tabular}}} & \multicolumn{1}{l|}{\multirow{4}{*}{\begin{tabular}[c]{@{}l@{}}Class:\\ GRANTED\end{tabular}}}    & \multicolumn{2}{l|}{$f_{Acc}$}                                  & 0.467 $\pm$ 0.143e-2 & 0.472 & 0.468  & 0.459 & 0.023 $\pm$ 0.095e-1 & 0                    \\ \cline{3-10} 
+\multicolumn{1}{|l|}{}                                                                                             & \multicolumn{1}{l|}{}                                                                             & \multicolumn{1}{l|}{\multirow{3}{*}{$f_{CS}$}} & $\alpha$ = 0   & 0.466 $\pm$ 0.441e-2 & 0.472 & 0.467  & 0.459 & 0.021 $\pm$ 0.094e-1 & 0                    \\ \cline{4-10} 
+\multicolumn{1}{|l|}{}                                                                                             & \multicolumn{1}{l|}{}                                                                             & \multicolumn{1}{l|}{}                          & $\alpha$ = 0.5 & 0.467 $\pm$ 0.305e-2 & 0.472 & 0.467  & 0.462 & 0.019 $\pm$ 0.088e-1 & 0                    \\ \cline{4-10} 
+\multicolumn{1}{|l|}{}                                                                                             & \multicolumn{1}{l|}{}                                                                             & \multicolumn{1}{l|}{}                          & $\alpha$ = 1   & 0.465 $\pm$ 0.43e-2  & 0.472 & 0.467  & 0.458 & 0.023 $\pm$ 0.099e-1 & 0                    \\ \cline{2-10} 
+\multicolumn{1}{|l|}{}                                                                                             & \multicolumn{1}{l|}{\multirow{4}{*}{\begin{tabular}[c]{@{}l@{}}Class:\\ STRONGDENY\end{tabular}}} & \multicolumn{2}{l|}{$f_{Acc}$}                                  & 0.046 $\pm$ 0.74e-2  & 0.065 & 0.045  & 0.037 & 0                    & 0.307 $\pm$ 0.745e-1 \\ \cline{3-10} 
+\multicolumn{1}{|l|}{}                                                                                             & \multicolumn{1}{l|}{}                                                                             & \multicolumn{1}{l|}{\multirow{3}{*}{$f_{CS}$}} & $\alpha$ = 0   & 0.025 $\pm$ 1.527e-2 & 0.045 & 0.023  & 0.003 & 0                    & 0.004 $\pm$ 0.039e-1 \\ \cline{4-10} 
+\multicolumn{1}{|l|}{}                                                                                             & \multicolumn{1}{l|}{}                                                                             & \multicolumn{1}{l|}{}                          & $\alpha$ = 0.5 & 0.02 $\pm$ 1.603e-2  & 0.061 & 0.015  & 0.002 & 0                    & 0.007 $\pm$ 0.063e-1 \\ \cline{4-10} 
+\multicolumn{1}{|l|}{}                                                                                             & \multicolumn{1}{l|}{}                                                                             & \multicolumn{1}{l|}{}                          & $\alpha$ = 1   & 0.025 $\pm$ 1.948e-2 & 0.047 & 0.036  & 0     & 0                    & 0.004 $\pm$ 0.049e-1 \\ \hline
 \end{tabular}
 }
-\caption{Fitness comparison between Pittsburgh and Michigan
-  approaches. Note that in the case of $f_{Acc}$, the best value is
-  highest, whilst for $f_{CS}$, the lower is better. An $*$ indicates
+\caption{Comparison between Pittsburgh and Michigan
+  approaches, in terms of their validation scores. Validation has been calculated as the accuracy in classifying a test dataset.An $*$ indicates
   the  statistically significant best value for $\alpha$.}
-% You can't compare measures that not even evaluate different things,
-% but go in opposite directions (one is lower-is-better and the other
-% is bigger-is-better). Classes also have different levels, so no
-% comparison. Alphas have an influence in the measure, so you can't
-% compare them either. Either you use a single measure to compare all
-% of them, or this is simply not a comparison, by definition - JJ
-\label{tab:PvsMfitness}
+\label{tab:PvsMvalidation}
 \end{table*}
 
 %\subsection{Pittsburgh approach}
