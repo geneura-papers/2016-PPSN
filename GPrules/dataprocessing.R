@@ -37,8 +37,40 @@ get_vector <- function(myresults, attribute) {
   if(attribute == "BEST_VALIDATION") {
     return(x/5330)
   } else if (attribute == "TIME") {
-    #return(x)
-    return(((x/1000)/60)/60)
+    return(x)
+    #return(((x/1000)/60)/60)
+  } else {
+    return(x/47966) 
+  }
+}
+
+get_vector2 <- function(myresults1, myresults2, attribute) {
+  x1 <- c(tail(myresults1[[attribute]][myresults1$FOLD == "fold0"], n=1),
+         tail(myresults1[[attribute]][myresults1$FOLD == "fold1"], n=1),
+         tail(myresults1[[attribute]][myresults1$FOLD == "fold2"], n=1),
+         tail(myresults1[[attribute]][myresults1$FOLD == "fold3"], n=1),
+         tail(myresults1[[attribute]][myresults1$FOLD == "fold4"], n=1),
+         tail(myresults1[[attribute]][myresults1$FOLD == "fold5"], n=1),
+         tail(myresults1[[attribute]][myresults1$FOLD == "fold6"], n=1),
+         tail(myresults1[[attribute]][myresults1$FOLD == "fold7"], n=1),
+         tail(myresults1[[attribute]][myresults1$FOLD == "fold8"], n=1),
+         tail(myresults1[[attribute]][myresults1$FOLD == "fold9"], n=1))
+  x2 <- c(tail(myresults2[[attribute]][myresults2$FOLD == "fold0"], n=1),
+          tail(myresults2[[attribute]][myresults2$FOLD == "fold1"], n=1),
+          tail(myresults2[[attribute]][myresults2$FOLD == "fold2"], n=1),
+          tail(myresults2[[attribute]][myresults2$FOLD == "fold3"], n=1),
+          tail(myresults2[[attribute]][myresults2$FOLD == "fold4"], n=1),
+          tail(myresults2[[attribute]][myresults2$FOLD == "fold5"], n=1),
+          tail(myresults2[[attribute]][myresults2$FOLD == "fold6"], n=1),
+          tail(myresults2[[attribute]][myresults2$FOLD == "fold7"], n=1),
+          tail(myresults2[[attribute]][myresults2$FOLD == "fold8"], n=1),
+          tail(myresults2[[attribute]][myresults2$FOLD == "fold9"], n=1))
+  x <- x1+x2
+  if(attribute == "BEST_VALIDATION") {
+    return(x/5330)
+  } else if (attribute == "TIME") {
+    return(x)
+    #return(((x/1000)/60)/60)
   } else {
     return(x/47966) 
   }
@@ -214,14 +246,10 @@ get_stats(get_vector(treeIndAlpha0Data, "TIME"))
 get_stats(get_vector(treeIndAlpha05Data, "TIME"))
 get_stats(get_vector(treeIndAlpha1Data, "TIME"))
 
-get_stats(get_vector(listIndCovAllowData, "TIME"))
-get_stats(get_vector(listIndCovDenyData, "TIME"))
-get_stats(get_vector(listIndAlpha0AllowData, "TIME"))
-get_stats(get_vector(listIndAlpha0DenyData, "TIME"))
-get_stats(get_vector(listIndAlpha05AllowData, "TIME"))
-get_stats(get_vector(listIndAlpha05DenyData, "TIME"))
-get_stats(get_vector(listIndAlpha1AllowData, "TIME"))
-get_stats(get_vector(listIndAlpha1DenyData, "TIME"))
+get_stats(get_vector2(listIndCovAllowData, listIndCovDenyData, "TIME"))
+get_stats(get_vector2(listIndAlpha0AllowData, listIndAlpha0DenyData, "TIME"))
+get_stats(get_vector2(listIndAlpha05AllowData, listIndAlpha05DenyData, "TIME"))
+get_stats(get_vector2(listIndAlpha1AllowData, listIndAlpha1DenyData, "TIME"))
 
 # ---------
 # FP + FN
