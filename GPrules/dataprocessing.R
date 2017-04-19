@@ -180,6 +180,27 @@ bestVListFCSDeny <- rbind(create_dataframe(listIndAlpha0DenyData, listIndAlpha0D
                       create_dataframe(listIndAlpha05DenyData, listIndAlpha05DenyData$CONF[1], "BEST_VALIDATION"),
                       create_dataframe(listIndAlpha1DenyData, listIndAlpha1DenyData$CONF[1], "BEST_VALIDATION"))
 
+bestTTreeCov <- create_dataframe(treeIndCovData, treeIndCovData$CONF[1], "TIME")
+bestTTreeFCS <- rbind(create_dataframe(treeIndAlpha0Data, treeIndAlpha0Data$CONF[1], "TIME"),
+                      create_dataframe(treeIndAlpha05Data, treeIndAlpha05Data$CONF[1], "TIME"),
+                      create_dataframe(treeIndAlpha1Data, treeIndAlpha1Data$CONF[1], "TIME"))
+bestTListCov <- rbind(create_dataframe(listIndCovAllowData, listIndCovAllowData$CONF[1], "TIME"),
+                      create_dataframe(listIndCovDenyData, listIndCovDenyData$CONF[1], "TIME"))
+bestTListFCS <- rbind(create_dataframe(listIndAlpha0AllowData, listIndAlpha0AllowData$CONF[1], "TIME"),
+                      create_dataframe(listIndAlpha05AllowData, listIndAlpha05AllowData$CONF[1], "TIME"),
+                      create_dataframe(listIndAlpha1AllowData, listIndAlpha1AllowData$CONF[1], "TIME"),
+                      create_dataframe(listIndAlpha0DenyData, listIndAlpha0DenyData$CONF[1], "TIME"),
+                      create_dataframe(listIndAlpha05DenyData, listIndAlpha05DenyData$CONF[1], "TIME"),
+                      create_dataframe(listIndAlpha1DenyData, listIndAlpha1DenyData$CONF[1], "TIME"))
+bestTListCovAllow <- create_dataframe(listIndCovAllowData, listIndCovAllowData$CONF[1], "TIME")
+bestTListFCSAllow <- rbind(create_dataframe(listIndAlpha0AllowData, listIndAlpha0AllowData$CONF[1], "TIME"),
+                           create_dataframe(listIndAlpha05AllowData, listIndAlpha05AllowData$CONF[1], "TIME"),
+                           create_dataframe(listIndAlpha1AllowData, listIndAlpha1AllowData$CONF[1], "TIME"))
+bestTListCovDeny <- create_dataframe(listIndCovDenyData, listIndCovDenyData$CONF[1], "TIME")
+bestTListFCSDeny <- rbind(create_dataframe(listIndAlpha0DenyData, listIndAlpha0DenyData$CONF[1], "TIME"),
+                          create_dataframe(listIndAlpha05DenyData, listIndAlpha05DenyData$CONF[1], "TIME"),
+                          create_dataframe(listIndAlpha1DenyData, listIndAlpha1DenyData$CONF[1], "TIME"))
+
 #latexTable <- rbind(bestFTreeCov, bestFTreeFCS, bestFListCov, bestFListFCS)
 #print(xtable(latexTable, digits = c(0, 7, 0)), type = "html")
 
@@ -251,8 +272,15 @@ pairwise.wilcox.test(bestFListFCSDeny$BEST_VALUES, bestFListFCSDeny$CONF, p.adju
 kruskal.test(bestVListFCSAllow$BEST_VALUES ~ bestVListFCSAllow$CONF, data = bestVListFCSAllow)
 kruskal.test(bestVListFCSDeny$BEST_VALUES ~ bestVListFCSDeny$CONF, data = bestVListFCSDeny)
 
+kruskal.test(bestTTreeFCS$BEST_VALUES ~ bestTTreeFCS$CONF, data = bestTTreeFCS)
+pairwise.wilcox.test(bestTTreeFCS$BEST_VALUES, bestTTreeFCS$CONF, p.adjust.method = "holm")
+kruskal.test(bestTListFCSAllow$BEST_VALUES ~ bestTListFCSAllow$CONF, data = bestTListFCSAllow)
+pairwise.wilcox.test(bestTListFCSAllow$BEST_VALUES, bestTListFCSAllow$CONF, p.adjust.method = "holm")
+kruskal.test(bestTListFCSDeny$BEST_VALUES ~ bestTListFCSDeny$CONF, data = bestTListFCSDeny)
+pairwise.wilcox.test(bestTListFCSDeny$BEST_VALUES, bestTListFCSDeny$CONF, p.adjust.method = "holm")
+
 Group <- bestFTreeFCS$CONF
-Value <- bestFTreeFCS$BEST_VALUES
+Value <- bestTTreeFCS$BEST_VALUES
 
 data <- data.frame(Group, Value)
 
