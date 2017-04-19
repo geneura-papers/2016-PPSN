@@ -732,7 +732,14 @@ We can advance that the best results might be obtained for $f_{CS}$ with $\alpha
 \subsection{The Pittsburgh vs. Michigan approach} % Same, not convinced, as with anything I do now.
 \label{subsec:approachcomparison}
 
-What we also have to determine is which kind of presented solution is better: showing the CSO a set of rules or a single rule for each class. As already discussed in Section \ref{sec:methodology}, each one has their advantages and disadvantages, but now we directly compare the values obtained for both implementations. Table \ref{tab:PvsMvalidation} shows the average, best, median, and worst results from the evaluations with $f_{Acc}$ and also $f_{CS}$.
+Once the variability of the obtained fitness has been studied, and always taking into account that those values come from their evaluation in a training subset of the data, now we \textit{validate} the proposed approaches with a test set. The way to evaluate this is similar to Equation \ref{eq:accuracy}, but using the test subset of the data:
+
+\begin{equation}
+\label{eq:VALaccuracy}
+v_{Acc} = (TP + TN) / T_{tst}
+\end{equation}
+
+And this measure will be the same no matter what approach has been taken nor which fitness function has been used to evaluate the individuals. Table \ref{tab:PvsMvalidation} shows the average, best, median, and worst results from the evaluations with $f_{Acc}$ and also $f_{CS}$.
 
 \begin{table*}
 \centering
@@ -763,13 +770,8 @@ What we also have to determine is which kind of presented solution is better: sh
 \label{tab:PvsMvalidation}
 \end{table*}
 
-As it can be also seen in Table \ref{tab:PvsMvalidation}, results obtained for class STRONGDENY in the Michigan approach are very poor comparing with the GRANTED class. This means that the highly imbalanced data set that we are using clearly biases the results towards the majority class \cite{japkowicz2002class}, and in this case there are 1 instance in the training set of data labelled as STRONGDENY for every 13 labelled as GRANTED. In this sense,
-solutions can be found in literature in order to reduce the bias while
-performing classification tasks, such as in \cite{chawla2005data} and
-\cite{sun2009classification}. Also, in \cite{bhowan2012developing},
-the authors present a comparison between many different types of
-fitness functions, testing on various unbalanced datasets, with
-different minority-class/majority-class ratios.
+As it can be also seen in Table \ref{tab:PvsMvalidation}, results obtained for class STRONGDENY in the Michigan approach are very poor comparing with the GRANTED class. This means that the highly imbalanced data set that we are using clearly biases the results towards the majority class \cite{japkowicz2002class}, and in this case there are 1 instance in the training set of data labelled as STRONGDENY for every 13 labelled as GRANTED. In this sense, solutions can be found in literature in order to reduce the bias while performing classification tasks, such as in \cite{chawla2005data} and \cite{sun2009classification}. Also, in \cite{bhowan2012developing},
+the authors present a comparison between many different types of fitness functions, testing on various unbalanced datasets, with different minority-class/majority-class ratios.
 
 \begin{table*}
 \centering
@@ -977,12 +979,7 @@ different minority-class/majority-class ratios.
 \subsection{Examples of the best obtained individuals}
 \label{subsec:examples}
 
-Once the results have been analysed, here we present some examples of the individuals that have been obtained in the simulations, proving their readability and usefulness for the CSOs. In addition, we present the relation between the obtained solutions and the original rules that allowed to classify the dataset we have been working with.
-
-% You can't introduce in the results section something completely
-% unrelated to the stated objective of the paper. Nowhere you have
-% said you were going to compare different types of fitness, or
-% different "alphas" - JJ
+What we also have to determine is which kind of presented solution is better: showing the CSO a set of rules or a single rule for each class. As already discussed in Section \ref{sec:methodology}, each one has their advantages and disadvantages, but now we directly compare some of the best individuals obtained for both implementations, proving their readability and usefulness for the CSOs. In addition, we present the relation between the obtained solutions and the original rules that allowed to classify the dataset we have been working with.
 
 \section{Conclusions and Future Work}
 \label{sec:future}

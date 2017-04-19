@@ -183,6 +183,50 @@ bestVListFCSDeny <- rbind(create_dataframe(listIndAlpha0DenyData, listIndAlpha0D
 #latexTable <- rbind(bestFTreeCov, bestFTreeFCS, bestFListCov, bestFListFCS)
 #print(xtable(latexTable, digits = c(0, 7, 0)), type = "html")
 
+# ---------
+# FP + FN
+# ---------
+
+treeIndCovFP <- c(400, 413, 400, 388, 444, 380, 383, 358, 406, 418)
+treeIndCovFN <- integer(10)
+treeIndAlpha0FP <- c(148, 4133, 365, 240, 444, 217, 384, 385, 406, 415)
+treeIndAlpha0FN <- c(121, 0, 1, 0, 0, 35, 1, 0, 0, 5)
+treeIndAlpha05FP <- c(400, 413, 385, 379, 444, 380, 384, 385, 365, 419)
+treeIndAlpha05FN <- c(0, 0, 5, 10, 0, 0, 0, 0, 23, 0)
+treeIndAlpha1FP <- c(337, 413, 387, 389, 392, 377, 347, 299, 406, 419)
+treeIndAlpha1FN <- integer(10)
+
+listIndCovAllowFP <- c(70, 74, 121, 157, 219, 90, 97, 192, 92, 125)
+listIndCovAllowFN <- integer(10)
+listIndCovDenyFP <- integer(10)
+listIndCovDenyFN <- c(1550, 1573, 1723, 1874, 899, 1699, 2337, 1731, 1131, 1841)
+listIndAlpha0AllowFP <- c(69, 208, 135, 70, 177, 77, 150, 88, 80, 81)
+listIndAlpha0AllowFN <- integer(10)
+listIndAlpha0DenyFP <- integer(10)
+listIndAlpha0DenyFN <- c(49, 21, 57, 21, 33, 22, 60, 8, 2, 10)
+listIndAlpha05AllowFP <- c(152, 67, 44, 36, 109, 164, 163, 118, 80, 88)
+listIndAlpha05AllowFN <- integer(10)
+listIndAlpha05DenyFP <- integer(10)
+listIndAlpha05DenyFN <- c(17, 111, 4, 45, 43, 59, 17, 16, 67, 9)
+listIndAlpha1AllowFP <- c(165, 138, 162, 36, 136, 97, 124, 172, 178, 34)
+listIndAlpha1AllowFN <- integer(10)
+listIndAlpha1DenyFP <- integer(10)
+listIndAlpha1DenyFN <- c(31, 1, 21, 5, 17, 91, 18, 15, 23, 0)
+
+bestFTreeFCS <- data.frame(bestFTreeFCS, c(treeIndAlpha0FP, treeIndAlpha05FP, treeIndAlpha1FP))
+bestFTreeFCS <- data.frame(bestFTreeFCS, c(treeIndAlpha0FN, treeIndAlpha05FN, treeIndAlpha1FN))
+colnames(bestFTreeFCS) <- c("BEST_VALUES", "CONF", "FP", "FN")
+bestFListFCSAllow <- data.frame(bestFListFCSAllow, c(listIndAlpha0AllowFP, listIndAlpha05AllowFP, listIndAlpha1AllowFP))
+bestFListFCSAllow <- data.frame(bestFListFCSAllow, c(listIndAlpha0AllowFN, listIndAlpha05AllowFN, listIndAlpha1AllowFN))
+colnames(bestFListFCSAllow) <- c("BEST_VALUES", "CONF", "FP", "FN")
+bestFListFCSDeny <- data.frame(bestFListFCSDeny, c(listIndAlpha0DenyFP, listIndAlpha05DenyFP, listIndAlpha1DenyFP))
+bestFListFCSDeny <- data.frame(bestFListFCSDeny, c(listIndAlpha0DenyFN, listIndAlpha05DenyFN, listIndAlpha1DenyFN))
+colnames(bestFListFCSDeny) <- c("BEST_VALUES", "CONF", "FP", "FN")
+
+# -------------------
+# Statistical tests
+# -------------------
+
 shapiro.test(bestFTreeFCS$BEST_VALUES)
 
 kruskal.test(bestFTreeFCS$BEST_VALUES ~ bestFTreeFCS$CONF, data = bestFTreeFCS)
@@ -190,6 +234,15 @@ pairwise.wilcox.test(bestFTreeFCS$BEST_VALUES, bestFTreeFCS$CONF, p.adjust.metho
 pairwise.wilcox.test(bestFTreeFCS$BEST_VALUES, bestFTreeFCS$CONF, p.adjust.method = "holm")
 kruskal.test(bestVTreeFCS$BEST_VALUES ~ bestVTreeFCS$CONF, data = bestVTreeFCS)
 friedman.test(bestFTreeFCS$BEST_VALUES, bestFTreeFCS$CONF)
+
+kruskal.test(bestFTreeFCS$FP ~ bestFTreeFCS$CONF, data = bestFTreeFCS)
+pairwise.wilcox.test(bestFTreeFCS$FP, bestFTreeFCS$CONF, p.adjust.method = "holm")
+kruskal.test(bestFTreeFCS$FN ~ bestFTreeFCS$CONF, data = bestFTreeFCS)
+pairwise.wilcox.test(bestFTreeFCS$FN, bestFTreeFCS$CONF, p.adjust.method = "holm")
+kruskal.test(bestFListFCSAllow$FP ~ bestFListFCSAllow$CONF, data = bestFListFCSAllow)
+pairwise.wilcox.test(bestFListFCSAllow$FP, bestFListFCSAllow$CONF, p.adjust.method = "holm")
+kruskal.test(bestFListFCSDeny$FN ~ bestFListFCSDeny$CONF, data = bestFListFCSDeny)
+pairwise.wilcox.test(bestFListFCSDeny$FN, bestFListFCSDeny$CONF, p.adjust.method = "holm")
 
 kruskal.test(bestFListFCSAllow$BEST_VALUES ~ bestFListFCSAllow$CONF, data = bestFListFCSAllow)
 pairwise.wilcox.test(bestFListFCSAllow$BEST_VALUES, bestFListFCSAllow$CONF, p.adjust.method = "holm")
@@ -250,36 +303,6 @@ get_stats(get_vector2(listIndCovAllowData, listIndCovDenyData, "TIME"))
 get_stats(get_vector2(listIndAlpha0AllowData, listIndAlpha0DenyData, "TIME"))
 get_stats(get_vector2(listIndAlpha05AllowData, listIndAlpha05DenyData, "TIME"))
 get_stats(get_vector2(listIndAlpha1AllowData, listIndAlpha1DenyData, "TIME"))
-
-# ---------
-# FP + FN
-# ---------
-
-treeIndCovFP <- c(400, 413, 400, 388, 444, 380, 383, 358, 406, 418)
-treeIndCovFN <- 0
-treeIndAlpha0FP <- c(148, 4133, 365, 240, 444, 217, 384, 385, 406, 415)
-treeIndAlpha0FN <- c(121, 0, 1, 0, 0, 35, 1, 0, 0, 5)
-treeIndAlpha05FP <- c(400, 413, 385, 379, 444, 380, 384, 385, 365, 419)
-treeIndAlpha05FN <- c(0, 0, 5, 10, 0, 0, 0, 0, 23, 0)
-treeIndAlpha1FP <- c(337, 413, 387, 389, 392, 377, 347, 299, 406, 419)
-treeIndAlpha1FN <- 0
-
-listIndCovAllowFP <- c(70, 74, 121, 157, 219, 90, 97, 192, 92, 125)
-listIndCovAllowFN <- 0
-listIndCovDenyFP <- 0
-listIndCovDenyFN <- c(1550, 1573, 1723, 1874, 899, 1699, 2337, 1731, 1131, 1841)
-listIndAlpha0AllowFP <- c(69, 208, 135, 70, 177, 77, 150, 88, 80, 81)
-listIndAlpha0AllowFN <- 0
-listIndAlpha0DenyFP <- 0
-listIndAlpha0DenyFN <- c(49, 21, 57, 21, 33, 22, 60, 8, 2, 10)
-listIndAlpha05AllowFP <- c(152, 67, 44, 36, 109, 164, 163, 118, 80, 88)
-listIndAlpha05AllowFN <- 0
-listIndAlpha05DenyFP <- 0
-listIndAlpha05DenyFN <- c(17, 111, 4, 45, 43, 59, 17, 16, 67, 9)
-listIndAlpha1AllowFP <- c(165, 138, 162, 36, 136, 97, 124, 172, 178, 34)
-listIndAlpha1AllowFN <- 0
-listIndAlpha1DenyFP <- 0
-listIndAlpha1DenyFN <- c(31, 1, 21, 5, 17, 91, 18, 15, 23, 0)
 
 get_stats(treeIndCovFP/5330)
 get_stats(treeIndCovFN/5330)
