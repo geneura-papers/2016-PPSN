@@ -249,47 +249,135 @@ colnames(bestFListFCSDeny) <- c("BEST_VALUES", "CONF", "FP", "FN")
 # -------------------
 
 shapiro.test(bestFTreeFCS$BEST_VALUES)
+shapiro.test(bestFListFCSAllow$BEST_VALUES)
+shapiro.test(bestFListFCSDeny$BEST_VALUES)
+
+# Besause not normal distribution:
 
 kruskal.test(bestFTreeFCS$BEST_VALUES ~ bestFTreeFCS$CONF, data = bestFTreeFCS)
-pairwise.wilcox.test(bestFTreeFCS$BEST_VALUES, bestFTreeFCS$CONF, p.adjust.method = "bonferroni")
 pairwise.wilcox.test(bestFTreeFCS$BEST_VALUES, bestFTreeFCS$CONF, p.adjust.method = "holm")
-kruskal.test(bestVTreeFCS$BEST_VALUES ~ bestVTreeFCS$CONF, data = bestVTreeFCS)
-friedman.test(bestFTreeFCS$BEST_VALUES, bestFTreeFCS$CONF)
+kruskal.test(bestFListFCSAllow$BEST_VALUES ~ bestFListFCSAllow$CONF, data = bestFListFCSAllow)
+pairwise.wilcox.test(bestFListFCSAllow$BEST_VALUES, bestFListFCSAllow$CONF, p.adjust.method = "holm")
+kruskal.test(bestFListFCSDeny$BEST_VALUES ~ bestFListFCSDeny$CONF, data = bestFListFCSDeny)
+pairwise.wilcox.test(bestFListFCSDeny$BEST_VALUES, bestFListFCSDeny$CONF, p.adjust.method = "holm")
+
+#---------------------------------------------------------------
+
+shapiro.test(bestFTreeFCS$FP)
+shapiro.test(bestFTreeFCS$FN)
+shapiro.test(bestFListFCSDeny$FN)
+
+# Besause not normal distribution:
 
 kruskal.test(bestFTreeFCS$FP ~ bestFTreeFCS$CONF, data = bestFTreeFCS)
 pairwise.wilcox.test(bestFTreeFCS$FP, bestFTreeFCS$CONF, p.adjust.method = "holm")
 kruskal.test(bestFTreeFCS$FN ~ bestFTreeFCS$CONF, data = bestFTreeFCS)
 pairwise.wilcox.test(bestFTreeFCS$FN, bestFTreeFCS$CONF, p.adjust.method = "holm")
-kruskal.test(bestFListFCSAllow$FP ~ bestFListFCSAllow$CONF, data = bestFListFCSAllow)
-pairwise.wilcox.test(bestFListFCSAllow$FP, bestFListFCSAllow$CONF, p.adjust.method = "holm")
 kruskal.test(bestFListFCSDeny$FN ~ bestFListFCSDeny$CONF, data = bestFListFCSDeny)
 pairwise.wilcox.test(bestFListFCSDeny$FN, bestFListFCSDeny$CONF, p.adjust.method = "holm")
 
-kruskal.test(bestFListFCSAllow$BEST_VALUES ~ bestFListFCSAllow$CONF, data = bestFListFCSAllow)
-pairwise.wilcox.test(bestFListFCSAllow$BEST_VALUES, bestFListFCSAllow$CONF, p.adjust.method = "holm")
-kruskal.test(bestFListFCSDeny$BEST_VALUES ~ bestFListFCSDeny$CONF, data = bestFListFCSDeny)
-pairwise.wilcox.test(bestFListFCSDeny$BEST_VALUES, bestFListFCSDeny$CONF, p.adjust.method = "holm")
+shapiro.test(bestFListFCSAllow$FP)
+qqnorm(bestFListFCSAllow$FP)
+
+# Besause normal distribution:
+
+anova(lm(bestFListFCSAllow$FP ~ bestFListFCSAllow$CONF, bestFListFCSAllow))
+TukeyHSD(aov(bestFListFCSAllow$FP ~ bestFListFCSAllow$CONF, bestFListFCSAllow))
+
+# Double check with Dunnett:
+
+Group <- bestFListFCSAllow$CONF
+Value <- bestFListFCSAllow$FP
+data <- data.frame(Group, Value)
+fit <- aov(Value ~ Group, data)
+set.seed(20140123)
+Dunnet <- glht(fit, linfct=mcp(Group="Dunnett"))
+summary(Dunnet)
+
+# Triple check with kruskal:
+
+kruskal.test(bestFListFCSAllow$FP ~ bestFListFCSAllow$CONF, data = bestFListFCSAllow)
+pairwise.wilcox.test(bestFListFCSAllow$FP, bestFListFCSAllow$CONF, p.adjust.method = "holm")
+
+#---------------------------------------------------------------
+
+shapiro.test(bestVTreeFCS$BEST_VALUES)
+
+# Besause not normal distribution:
+
+kruskal.test(bestVTreeFCS$BEST_VALUES ~ bestVTreeFCS$CONF, data = bestVTreeFCS)
+pairwise.wilcox.test(bestVTreeFCS$BEST_VALUES, bestVTreeFCS$CONF, p.adjust.method = "holm")
+
+shapiro.test(bestVListFCSAllow$BEST_VALUES)
+qqnorm(bestVListFCSAllow$BEST_VALUES)
+shapiro.test(bestVListFCSDeny$BEST_VALUES)
+qqnorm(bestVListFCSDeny$BEST_VALUES)
+
+# Besause normal distribution:
+
+anova(lm(bestVListFCSAllow$BEST_VALUES ~ bestVListFCSAllow$CONF, bestVListFCSAllow))
+TukeyHSD(aov(bestVListFCSAllow$BEST_VALUES ~ bestVListFCSAllow$CONF, bestVListFCSAllow))
+anova(lm(bestVListFCSDeny$BEST_VALUES ~ bestVListFCSDeny$CONF, bestVListFCSDeny))
+TukeyHSD(aov(bestVListFCSDeny$BEST_VALUES ~ bestVListFCSDeny$CONF, bestVListFCSDeny))
+
+# Double check with Dunnett:
+
+Group1 <- bestVListFCSAllow$CONF
+Value1 <- bestVListFCSAllow$BEST_VALUES
+Group2 <- bestVListFCSDeny$CONF
+Value2 <- bestVListFCSDeny$BEST_VALUES
+data1 <- data.frame(Group1, Value1)
+data2 <- data.frame(Group2, Value2)
+fit1 <- aov(Value1 ~ Group1, data1)
+fit2 <- aov(Value2 ~ Group2, data2)
+set.seed(20140123)
+Dunnet1 <- glht(fit1, linfct=mcp(Group1="Dunnett"))
+Dunnet2 <- glht(fit2, linfct=mcp(Group2="Dunnett"))
+summary(Dunnet1)
+summary(Dunnet2)
+
+# Triple check with kruskal:
+
 kruskal.test(bestVListFCSAllow$BEST_VALUES ~ bestVListFCSAllow$CONF, data = bestVListFCSAllow)
+pairwise.wilcox.test(bestVListFCSAllow$BEST_VALUES, bestVListFCSAllow$CONF, p.adjust.method = "holm")
 kruskal.test(bestVListFCSDeny$BEST_VALUES ~ bestVListFCSDeny$CONF, data = bestVListFCSDeny)
+pairwise.wilcox.test(bestVListFCSDeny$BEST_VALUES, bestVListFCSDeny$CONF, p.adjust.method = "holm")
+
+#---------------------------------------------------------------
+
+shapiro.test(bestTTreeFCS$BEST_VALUES)
+qqnorm(bestTTreeFCS$BEST_VALUES)
+
+# Besause normal distribution:
+
+anova(lm(bestTTreeFCS$BEST_VALUES ~ bestTTreeFCS$CONF, bestTTreeFCS))
+TukeyHSD(aov(bestTTreeFCS$BEST_VALUES ~ bestTTreeFCS$CONF, bestTTreeFCS))
+
+# Double check with Dunnett:
+
+Group <- bestTTreeFCS$CONF
+Value <- bestTTreeFCS$BEST_VALUES
+data <- data.frame(Group, Value)
+fit <- aov(Value ~ Group, data)
+set.seed(20140123)
+Dunnet <- glht(fit, linfct=mcp(Group="Dunnett"))
+summary(Dunnet)
+
+
+# Triple check with kruskal:
 
 kruskal.test(bestTTreeFCS$BEST_VALUES ~ bestTTreeFCS$CONF, data = bestTTreeFCS)
 pairwise.wilcox.test(bestTTreeFCS$BEST_VALUES, bestTTreeFCS$CONF, p.adjust.method = "holm")
+
+shapiro.test(bestTListFCSAllow$BEST_VALUES)
+shapiro.test(bestTListFCSDeny$BEST_VALUES)
+
+# Besause not normal distribution:
+
 kruskal.test(bestTListFCSAllow$BEST_VALUES ~ bestTListFCSAllow$CONF, data = bestTListFCSAllow)
 pairwise.wilcox.test(bestTListFCSAllow$BEST_VALUES, bestTListFCSAllow$CONF, p.adjust.method = "holm")
 kruskal.test(bestTListFCSDeny$BEST_VALUES ~ bestTListFCSDeny$CONF, data = bestTListFCSDeny)
 pairwise.wilcox.test(bestTListFCSDeny$BEST_VALUES, bestTListFCSDeny$CONF, p.adjust.method = "holm")
-
-Group <- bestFTreeFCS$CONF
-Value <- bestTTreeFCS$BEST_VALUES
-
-data <- data.frame(Group, Value)
-
-fit <- aov(Value ~ Group, data)
-
-
-set.seed(20140123)
-Dunnet <- glht(fit, linfct=mcp(Group="Dunnett"))
-summary(Dunnet)
 
 # --------
 # Stats
