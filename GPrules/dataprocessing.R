@@ -175,6 +175,10 @@ bestFListFCSDeny <- rbind(create_dataframe(listIndAlpha0DenyData, listIndAlpha0D
                       create_dataframe(listIndAlpha05DenyData, listIndAlpha05DenyData$CONF[1], "BEST_F"),
                       create_dataframe(listIndAlpha1DenyData, listIndAlpha1DenyData$CONF[1], "BEST_F"))
 
+bestVTree <- rbind(create_dataframe(treeIndCovData, treeIndCovData$CONF[1], "BEST_VALIDATION"),
+                   create_dataframe(treeIndAlpha0Data, treeIndAlpha0Data$CONF[1], "BEST_VALIDATION"),
+                   create_dataframe(treeIndAlpha05Data, treeIndAlpha05Data$CONF[1], "BEST_VALIDATION"),
+                   create_dataframe(treeIndAlpha1Data, treeIndAlpha1Data$CONF[1], "BEST_VALIDATION"))
 bestVTreeCov <- create_dataframe(treeIndCovData, treeIndCovData$CONF[1], "BEST_VALIDATION")
 bestVTreeFCS <- rbind(create_dataframe(treeIndAlpha0Data, treeIndAlpha0Data$CONF[1], "BEST_VALIDATION"),
                       create_dataframe(treeIndAlpha05Data, treeIndAlpha05Data$CONF[1], "BEST_VALIDATION"),
@@ -187,15 +191,27 @@ bestVListFCS <- rbind(create_dataframe(listIndAlpha0AllowData, listIndAlpha0Allo
                       create_dataframe(listIndAlpha0DenyData, listIndAlpha0DenyData$CONF[1], "BEST_VALIDATION"),
                       create_dataframe(listIndAlpha05DenyData, listIndAlpha05DenyData$CONF[1], "BEST_VALIDATION"),
                       create_dataframe(listIndAlpha1DenyData, listIndAlpha1DenyData$CONF[1], "BEST_VALIDATION"))
+bestVListAllow <- rbind(create_dataframe(listIndCovAllowData, listIndCovAllowData$CONF[1], "BEST_VALIDATION"),
+                        create_dataframe(listIndAlpha0AllowData, listIndAlpha0AllowData$CONF[1], "BEST_VALIDATION"),
+                        create_dataframe(listIndAlpha05AllowData, listIndAlpha05AllowData$CONF[1], "BEST_VALIDATION"),
+                        create_dataframe(listIndAlpha1AllowData, listIndAlpha1AllowData$CONF[1], "BEST_VALIDATION"))
 bestVListCovAllow <- create_dataframe(listIndCovAllowData, listIndCovAllowData$CONF[1], "BEST_VALIDATION")
 bestVListFCSAllow <- rbind(create_dataframe(listIndAlpha0AllowData, listIndAlpha0AllowData$CONF[1], "BEST_VALIDATION"),
                       create_dataframe(listIndAlpha05AllowData, listIndAlpha05AllowData$CONF[1], "BEST_VALIDATION"),
                       create_dataframe(listIndAlpha1AllowData, listIndAlpha1AllowData$CONF[1], "BEST_VALIDATION"))
+bestVListDeny <- rbind(create_dataframe(listIndCovDenyData, listIndCovDenyData$CONF[1], "BEST_VALIDATION"),
+                       create_dataframe(listIndAlpha0DenyData, listIndAlpha0DenyData$CONF[1], "BEST_VALIDATION"),
+                       create_dataframe(listIndAlpha05DenyData, listIndAlpha05DenyData$CONF[1], "BEST_VALIDATION"),
+                       create_dataframe(listIndAlpha1DenyData, listIndAlpha1DenyData$CONF[1], "BEST_VALIDATION"))
 bestVListCovDeny <- create_dataframe(listIndCovDenyData, listIndCovDenyData$CONF[1], "BEST_VALIDATION")
 bestVListFCSDeny <- rbind(create_dataframe(listIndAlpha0DenyData, listIndAlpha0DenyData$CONF[1], "BEST_VALIDATION"),
                       create_dataframe(listIndAlpha05DenyData, listIndAlpha05DenyData$CONF[1], "BEST_VALIDATION"),
                       create_dataframe(listIndAlpha1DenyData, listIndAlpha1DenyData$CONF[1], "BEST_VALIDATION"))
 
+bestTTree <- rbind(create_dataframe(treeIndCovData, treeIndCovData$CONF[1], "TIME"),
+                   create_dataframe(treeIndAlpha0Data, treeIndAlpha0Data$CONF[1], "TIME"),
+                   create_dataframe(treeIndAlpha05Data, treeIndAlpha05Data$CONF[1], "TIME"),
+                   create_dataframe(treeIndAlpha1Data, treeIndAlpha1Data$CONF[1], "TIME"))
 bestTTreeCov <- create_dataframe(treeIndCovData, treeIndCovData$CONF[1], "TIME")
 bestTTreeFCS <- rbind(create_dataframe(treeIndAlpha0Data, treeIndAlpha0Data$CONF[1], "TIME"),
                       create_dataframe(treeIndAlpha05Data, treeIndAlpha05Data$CONF[1], "TIME"),
@@ -208,10 +224,18 @@ bestTListFCS <- rbind(create_dataframe(listIndAlpha0AllowData, listIndAlpha0Allo
                       create_dataframe(listIndAlpha0DenyData, listIndAlpha0DenyData$CONF[1], "TIME"),
                       create_dataframe(listIndAlpha05DenyData, listIndAlpha05DenyData$CONF[1], "TIME"),
                       create_dataframe(listIndAlpha1DenyData, listIndAlpha1DenyData$CONF[1], "TIME"))
+bestTListAllow <- rbind(create_dataframe(listIndCovAllowData, listIndCovAllowData$CONF[1], "TIME"),
+                        create_dataframe(listIndAlpha0AllowData, listIndAlpha0AllowData$CONF[1], "TIME"),
+                        create_dataframe(listIndAlpha05AllowData, listIndAlpha05AllowData$CONF[1], "TIME"),
+                        create_dataframe(listIndAlpha1AllowData, listIndAlpha1AllowData$CONF[1], "TIME"))
 bestTListCovAllow <- create_dataframe(listIndCovAllowData, listIndCovAllowData$CONF[1], "TIME")
 bestTListFCSAllow <- rbind(create_dataframe(listIndAlpha0AllowData, listIndAlpha0AllowData$CONF[1], "TIME"),
                            create_dataframe(listIndAlpha05AllowData, listIndAlpha05AllowData$CONF[1], "TIME"),
                            create_dataframe(listIndAlpha1AllowData, listIndAlpha1AllowData$CONF[1], "TIME"))
+bestTListDeny <- rbind(create_dataframe(listIndCovDenyData, listIndCovDenyData$CONF[1], "TIME"),
+                       create_dataframe(listIndAlpha0DenyData, listIndAlpha0DenyData$CONF[1], "TIME"),
+                       create_dataframe(listIndAlpha05DenyData, listIndAlpha05DenyData$CONF[1], "TIME"),
+                       create_dataframe(listIndAlpha1DenyData, listIndAlpha1DenyData$CONF[1], "TIME"))
 bestTListCovDeny <- create_dataframe(listIndCovDenyData, listIndCovDenyData$CONF[1], "TIME")
 bestTListFCSDeny <- rbind(create_dataframe(listIndAlpha0DenyData, listIndAlpha0DenyData$CONF[1], "TIME"),
                           create_dataframe(listIndAlpha05DenyData, listIndAlpha05DenyData$CONF[1], "TIME"),
@@ -229,17 +253,9 @@ bestIndListFCS <- rbind(create_dataframe(listIndAlpha0AllowData, listIndAlpha0Al
                       create_dataframe(listIndAlpha0DenyData, listIndAlpha0DenyData$CONF[1], "X"),
                       create_dataframe(listIndAlpha05DenyData, listIndAlpha05DenyData$CONF[1], "X"),
                       create_dataframe(listIndAlpha1DenyData, listIndAlpha1DenyData$CONF[1], "X"))
-bestIndListCovAllow <- create_dataframe(listIndCovAllowData, listIndCovAllowData$CONF[1], "X")
-bestIndListFCSAllow <- rbind(create_dataframe(listIndAlpha0AllowData, listIndAlpha0AllowData$CONF[1], "X"),
-                           create_dataframe(listIndAlpha05AllowData, listIndAlpha05AllowData$CONF[1], "X"),
-                           create_dataframe(listIndAlpha1AllowData, listIndAlpha1AllowData$CONF[1], "X"))
-bestIndListCovDeny <- create_dataframe(listIndCovDenyData, listIndCovDenyData$CONF[1], "X")
-bestIndListFCSDeny <- rbind(create_dataframe(listIndAlpha0DenyData, listIndAlpha0DenyData$CONF[1], "X"),
-                          create_dataframe(listIndAlpha05DenyData, listIndAlpha05DenyData$CONF[1], "X"),
-                          create_dataframe(listIndAlpha1DenyData, listIndAlpha1DenyData$CONF[1], "X"))
 
-#latexTable <- rbind(bestFTreeCov, bestFTreeFCS, bestFListCov, bestFListFCS)
-#print(xtable(latexTable, digits = c(0, 7, 0)), type = "html")
+latexTable <- rbind(bestIndTreeCov, bestIndTreeFCS, bestIndListCov, bestIndListFCS)
+print(xtable(latexTable, digits = c(0, 7, 0)), type = "html")
 
 # ---------
 # FP + FN
@@ -271,15 +287,15 @@ listIndAlpha1AllowFN <- integer(10)
 listIndAlpha1DenyFP <- integer(10)
 listIndAlpha1DenyFN <- c(31, 1, 21, 5, 17, 91, 18, 15, 23, 0)
 
-bestFTreeFCS <- data.frame(bestFTreeFCS, c(treeIndAlpha0FP, treeIndAlpha05FP, treeIndAlpha1FP))
-bestFTreeFCS <- data.frame(bestFTreeFCS, c(treeIndAlpha0FN, treeIndAlpha05FN, treeIndAlpha1FN))
-colnames(bestFTreeFCS) <- c("BEST_VALUES", "CONF", "FP", "FN")
-bestFListFCSAllow <- data.frame(bestFListFCSAllow, c(listIndAlpha0AllowFP, listIndAlpha05AllowFP, listIndAlpha1AllowFP))
-bestFListFCSAllow <- data.frame(bestFListFCSAllow, c(listIndAlpha0AllowFN, listIndAlpha05AllowFN, listIndAlpha1AllowFN))
-colnames(bestFListFCSAllow) <- c("BEST_VALUES", "CONF", "FP", "FN")
-bestFListFCSDeny <- data.frame(bestFListFCSDeny, c(listIndAlpha0DenyFP, listIndAlpha05DenyFP, listIndAlpha1DenyFP))
-bestFListFCSDeny <- data.frame(bestFListFCSDeny, c(listIndAlpha0DenyFN, listIndAlpha05DenyFN, listIndAlpha1DenyFN))
-colnames(bestFListFCSDeny) <- c("BEST_VALUES", "CONF", "FP", "FN")
+bestVTree <- data.frame(bestVTree, c(treeIndCovFP, treeIndAlpha0FP, treeIndAlpha05FP, treeIndAlpha1FP))
+bestVTree <- data.frame(bestVTree, c(treeIndCovFN, treeIndAlpha0FN, treeIndAlpha05FN, treeIndAlpha1FN))
+colnames(bestVTree) <- c("BEST_VALUES", "CONF", "FP", "FN")
+bestVListAllow <- data.frame(bestVListAllow, c(listIndCovAllowFP, listIndAlpha0AllowFP, listIndAlpha05AllowFP, listIndAlpha1AllowFP))
+bestVListAllow <- data.frame(bestVListAllow, c(listIndCovAllowFN,listIndAlpha0AllowFN, listIndAlpha05AllowFN, listIndAlpha1AllowFN))
+colnames(bestVListAllow) <- c("BEST_VALUES", "CONF", "FP", "FN")
+bestVListDeny <- data.frame(bestVListDeny, c(listIndCovDenyFP, listIndAlpha0DenyFP, listIndAlpha05DenyFP, listIndAlpha1DenyFP))
+bestVListDeny <- data.frame(bestVListDeny, c(listIndCovDenyFN, listIndAlpha0DenyFN, listIndAlpha05DenyFN, listIndAlpha1DenyFN))
+colnames(bestVListDeny) <- c("BEST_VALUES", "CONF", "FP", "FN")
 
 # -------------------
 # Statistical tests
@@ -295,38 +311,38 @@ shapiro.test(bestFListFCSDeny$BEST_VALUES)
 
 kruskal.test(bestFTreeFCS$BEST_VALUES ~ bestFTreeFCS$CONF, data = bestFTreeFCS)
 pairwise.wilcox.test(bestFTreeFCS$BEST_VALUES, bestFTreeFCS$CONF, p.adjust.method = "holm")
-kruskal.test(bestFListFCSAllow$BEST_VALUES ~ bestFListFCSAllow$CONF, data = bestFListFCSAllow)
-pairwise.wilcox.test(bestFListFCSAllow$BEST_VALUES, bestFListFCSAllow$CONF, p.adjust.method = "holm")
+kruskal.test(bestFListFCSAllow$BEST_VALUES ~ bestFListFCSAllow$CONF, data = bestFListFCSAllow)         # ***
+pairwise.wilcox.test(bestFListFCSAllow$BEST_VALUES, bestFListFCSAllow$CONF, p.adjust.method = "holm")  # ***
 kruskal.test(bestFListFCSDeny$BEST_VALUES ~ bestFListFCSDeny$CONF, data = bestFListFCSDeny)
 pairwise.wilcox.test(bestFListFCSDeny$BEST_VALUES, bestFListFCSDeny$CONF, p.adjust.method = "holm")
 
 #----------------------------------------- FP + FN
 
-shapiro.test(bestFTreeFCS$FP)
-shapiro.test(bestFTreeFCS$FN)
-shapiro.test(bestFListFCSDeny$FN)
+shapiro.test(bestVTree$FP)
+shapiro.test(bestVTree$FN)
+shapiro.test(bestVListDeny$FN)
 
 # Besause not normal distribution:
 
-kruskal.test(bestFTreeFCS$FP ~ bestFTreeFCS$CONF, data = bestFTreeFCS)
-pairwise.wilcox.test(bestFTreeFCS$FP, bestFTreeFCS$CONF, p.adjust.method = "holm")
-kruskal.test(bestFTreeFCS$FN ~ bestFTreeFCS$CONF, data = bestFTreeFCS)
-pairwise.wilcox.test(bestFTreeFCS$FN, bestFTreeFCS$CONF, p.adjust.method = "holm")
-kruskal.test(bestFListFCSDeny$FN ~ bestFListFCSDeny$CONF, data = bestFListFCSDeny)
-pairwise.wilcox.test(bestFListFCSDeny$FN, bestFListFCSDeny$CONF, p.adjust.method = "holm")
+kruskal.test(bestVTree$FP ~ bestVTree$CONF, data = bestVTree)
+pairwise.wilcox.test(bestVTree$FP, bestVTree$CONF, p.adjust.method = "holm")
+kruskal.test(bestVTree$FN ~ bestVTree$CONF, data = bestVTreeFCS)
+pairwise.wilcox.test(bestVTree$FN, bestVTree$CONF, p.adjust.method = "holm")
+kruskal.test(bestVListDeny$FN ~ bestVListDeny$CONF, data = bestVListDeny)
+pairwise.wilcox.test(bestVListDeny$FN, bestVListDeny$CONF, p.adjust.method = "holm")
 
-shapiro.test(bestFListFCSAllow$FP)
-qqnorm(bestFListFCSAllow$FP)
+shapiro.test(bestVListAllow$FP)
+qqnorm(bestVListAllow$FP)
 
 # Besause normal distribution:
 
-anova(lm(bestFListFCSAllow$FP ~ bestFListFCSAllow$CONF, bestFListFCSAllow))
-TukeyHSD(aov(bestFListFCSAllow$FP ~ bestFListFCSAllow$CONF, bestFListFCSAllow))
+anova(lm(bestVListAllow$FP ~ bestVListAllow$CONF, bestVListAllow))
+TukeyHSD(aov(bestVListAllow$FP ~ bestVListAllow$CONF, bestVListAllow))
 
 # Double check with Dunnett:
 
-Group <- bestFListFCSAllow$CONF
-Value <- bestFListFCSAllow$FP
+Group <- bestVListFCSAllow$CONF
+Value <- bestVListFCSAllow$FP
 data <- data.frame(Group, Value)
 fit <- aov(Value ~ Group, data)
 set.seed(20140123)
@@ -335,29 +351,29 @@ summary(Dunnet)
 
 # Triple check with kruskal:
 
-kruskal.test(bestFListFCSAllow$FP ~ bestFListFCSAllow$CONF, data = bestFListFCSAllow)
-pairwise.wilcox.test(bestFListFCSAllow$FP, bestFListFCSAllow$CONF, p.adjust.method = "holm")
+kruskal.test(bestVListFCSAllow$FP ~ bestVListFCSAllow$CONF, data = bestVListFCSAllow)
+pairwise.wilcox.test(bestVListFCSAllow$FP, bestVListFCSAllow$CONF, p.adjust.method = "holm")
 
 #----------------------------------------- VALIDATION
 
-shapiro.test(bestVTreeFCS$BEST_VALUES)
+shapiro.test(bestVTree$BEST_VALUES)
 
 # Besause not normal distribution:
 
-kruskal.test(bestVTreeFCS$BEST_VALUES ~ bestVTreeFCS$CONF, data = bestVTreeFCS)
-pairwise.wilcox.test(bestVTreeFCS$BEST_VALUES, bestVTreeFCS$CONF, p.adjust.method = "holm")
+kruskal.test(bestVTree$BEST_VALUES ~ bestVTree$CONF, data = bestVTree)
+pairwise.wilcox.test(bestVTree$BEST_VALUES, bestVTree$CONF, p.adjust.method = "holm")
 
-shapiro.test(bestVListFCSAllow$BEST_VALUES)
-qqnorm(bestVListFCSAllow$BEST_VALUES)
-shapiro.test(bestVListFCSDeny$BEST_VALUES)
-qqnorm(bestVListFCSDeny$BEST_VALUES)
+shapiro.test(bestVListAllow$BEST_VALUES)
+qqnorm(bestVListAllow$BEST_VALUES)
+shapiro.test(bestVListDeny$BEST_VALUES)
+qqnorm(bestVListDeny$BEST_VALUES)
 
 # Besause normal distribution:
 
-anova(lm(bestVListFCSAllow$BEST_VALUES ~ bestVListFCSAllow$CONF, bestVListFCSAllow))
-TukeyHSD(aov(bestVListFCSAllow$BEST_VALUES ~ bestVListFCSAllow$CONF, bestVListFCSAllow))
-anova(lm(bestVListFCSDeny$BEST_VALUES ~ bestVListFCSDeny$CONF, bestVListFCSDeny))
-TukeyHSD(aov(bestVListFCSDeny$BEST_VALUES ~ bestVListFCSDeny$CONF, bestVListFCSDeny))
+anova(lm(bestVListAllow$BEST_VALUES ~ bestVListAllow$CONF, bestVListAllow))
+TukeyHSD(aov(bestVListAllow$BEST_VALUES ~ bestVListAllow$CONF, bestVListAllow))
+anova(lm(bestVListDeny$BEST_VALUES ~ bestVListDeny$CONF, bestVListDeny))
+TukeyHSD(aov(bestVListDeny$BEST_VALUES ~ bestVListDeny$CONF, bestVListDeny))
 
 # Double check with Dunnett:
 
@@ -384,18 +400,18 @@ pairwise.wilcox.test(bestVListFCSDeny$BEST_VALUES, bestVListFCSDeny$CONF, p.adju
 
 #----------------------------------------- TIME
 
-shapiro.test(bestTTreeFCS$BEST_VALUES)
-qqnorm(bestTTreeFCS$BEST_VALUES)
+shapiro.test(bestTTree$BEST_VALUES)
+qqnorm(bestTTree$BEST_VALUES)
 
 # Besause normal distribution:
 
-anova(lm(bestTTreeFCS$BEST_VALUES ~ bestTTreeFCS$CONF, bestTTreeFCS))
-TukeyHSD(aov(bestTTreeFCS$BEST_VALUES ~ bestTTreeFCS$CONF, bestTTreeFCS))
+anova(lm(bestTTree$BEST_VALUES ~ bestTTree$CONF, bestTTree))
+TukeyHSD(aov(bestTTree$BEST_VALUES ~ bestTTree$CONF, bestTTree))
 
 # Double check with Dunnett:
 
-Group <- bestTTreeFCS$CONF
-Value <- bestTTreeFCS$BEST_VALUES
+Group <- bestTTree$CONF
+Value <- bestTTree$BEST_VALUES
 data <- data.frame(Group, Value)
 fit <- aov(Value ~ Group, data)
 set.seed(20140123)
@@ -405,18 +421,18 @@ summary(Dunnet)
 
 # Triple check with kruskal:
 
-kruskal.test(bestTTreeFCS$BEST_VALUES ~ bestTTreeFCS$CONF, data = bestTTreeFCS)
-pairwise.wilcox.test(bestTTreeFCS$BEST_VALUES, bestTTreeFCS$CONF, p.adjust.method = "holm")
+kruskal.test(bestTTree$BEST_VALUES ~ bestTTree$CONF, data = bestTTree)
+pairwise.wilcox.test(bestTTree$BEST_VALUES, bestTTree$CONF, p.adjust.method = "holm")
 
-shapiro.test(bestTListFCSAllow$BEST_VALUES)
-shapiro.test(bestTListFCSDeny$BEST_VALUES)
+shapiro.test(bestTListAllow$BEST_VALUES)
+shapiro.test(bestTListDeny$BEST_VALUES)
 
 # Besause not normal distribution:
 
-kruskal.test(bestTListFCSAllow$BEST_VALUES ~ bestTListFCSAllow$CONF, data = bestTListFCSAllow)
-pairwise.wilcox.test(bestTListFCSAllow$BEST_VALUES, bestTListFCSAllow$CONF, p.adjust.method = "holm")
-kruskal.test(bestTListFCSDeny$BEST_VALUES ~ bestTListFCSDeny$CONF, data = bestTListFCSDeny)
-pairwise.wilcox.test(bestTListFCSDeny$BEST_VALUES, bestTListFCSDeny$CONF, p.adjust.method = "holm")
+kruskal.test(bestTListAllow$BEST_VALUES ~ bestTListAllow$CONF, data = bestTListAllow)
+pairwise.wilcox.test(bestTListAllow$BEST_VALUES, bestTListAllow$CONF, p.adjust.method = "holm")
+kruskal.test(bestTListDeny$BEST_VALUES ~ bestTListDeny$CONF, data = bestTListDeny)
+pairwise.wilcox.test(bestTListDeny$BEST_VALUES, bestTListDeny$CONF, p.adjust.method = "holm")
 
 # --------
 # Stats
