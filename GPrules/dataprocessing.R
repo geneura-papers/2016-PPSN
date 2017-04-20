@@ -24,7 +24,19 @@ get_legend<-function(myggplot){
 }
 
 get_vector <- function(myresults, attribute) {
-  x <- c(tail(myresults[[attribute]][myresults$FOLD == "fold0"], n=1),
+  if (attribute == "X") {
+    x <- c(as.character(tail(myresults[[attribute]][myresults$FOLD == "fold0"], n=1)),
+           as.character(tail(myresults[[attribute]][myresults$FOLD == "fold1"], n=1)),
+           as.character(tail(myresults[[attribute]][myresults$FOLD == "fold2"], n=1)),
+           as.character(tail(myresults[[attribute]][myresults$FOLD == "fold3"], n=1)),
+           as.character(tail(myresults[[attribute]][myresults$FOLD == "fold4"], n=1)),
+           as.character(tail(myresults[[attribute]][myresults$FOLD == "fold5"], n=1)),
+           as.character(tail(myresults[[attribute]][myresults$FOLD == "fold6"], n=1)),
+           as.character(tail(myresults[[attribute]][myresults$FOLD == "fold7"], n=1)),
+           as.character(tail(myresults[[attribute]][myresults$FOLD == "fold8"], n=1)),
+           as.character(tail(myresults[[attribute]][myresults$FOLD == "fold9"], n=1)))
+  } else {
+    x <- c(tail(myresults[[attribute]][myresults$FOLD == "fold0"], n=1),
          tail(myresults[[attribute]][myresults$FOLD == "fold1"], n=1),
          tail(myresults[[attribute]][myresults$FOLD == "fold2"], n=1),
          tail(myresults[[attribute]][myresults$FOLD == "fold3"], n=1),
@@ -34,14 +46,16 @@ get_vector <- function(myresults, attribute) {
          tail(myresults[[attribute]][myresults$FOLD == "fold7"], n=1),
          tail(myresults[[attribute]][myresults$FOLD == "fold8"], n=1),
          tail(myresults[[attribute]][myresults$FOLD == "fold9"], n=1))
-  if(attribute == "BEST_VALIDATION") {
-    return(x/5330)
-  } else if (attribute == "TIME") {
-    return(x)
-    #return(((x/1000)/60)/60)
-  } else {
-    return(x/47966) 
+    if(attribute == "BEST_VALIDATION") {
+      return(x/5330)
+    } else if (attribute == "TIME") {
+      return(x)
+      #return(((x/1000)/60)/60)
+    } else {
+      return(x) 
+    }
   }
+  return(x)
 }
 
 get_vector2 <- function(myresults1, myresults2, attribute) {
@@ -107,6 +121,8 @@ create_dataframe <- function(myresults, experimentName, attribute) {
   theDF <- data.frame(BEST_VALUES, CONF)
   return(theDF)
 }
+
+# Reading the CSVs
 
 treeIndAlpha0Data <- read_data("./tree_ind_alpha_0")
 treeIndAlpha0Data$CONF <- "Pitt_FCS_α0"
@@ -201,6 +217,27 @@ bestTListFCSDeny <- rbind(create_dataframe(listIndAlpha0DenyData, listIndAlpha0D
                           create_dataframe(listIndAlpha05DenyData, listIndAlpha05DenyData$CONF[1], "TIME"),
                           create_dataframe(listIndAlpha1DenyData, listIndAlpha1DenyData$CONF[1], "TIME"))
 
+bestIndTreeCov <- create_dataframe(treeIndCovData, treeIndCovData$CONF[1], "X")
+bestIndTreeFCS <- rbind(create_dataframe(treeIndAlpha0Data, treeIndAlpha0Data$CONF[1], "X"),
+                      create_dataframe(treeIndAlpha05Data, treeIndAlpha05Data$CONF[1], "X"),
+                      create_dataframe(treeIndAlpha1Data, treeIndAlpha1Data$CONF[1], "X"))
+bestIndListCov <- rbind(create_dataframe(listIndCovAllowData, listIndCovAllowData$CONF[1], "X"),
+                      create_dataframe(listIndCovDenyData, listIndCovDenyData$CONF[1], "X"))
+bestIndListFCS <- rbind(create_dataframe(listIndAlpha0AllowData, listIndAlpha0AllowData$CONF[1], "X"),
+                      create_dataframe(listIndAlpha05AllowData, listIndAlpha05AllowData$CONF[1], "X"),
+                      create_dataframe(listIndAlpha1AllowData, listIndAlpha1AllowData$CONF[1], "X"),
+                      create_dataframe(listIndAlpha0DenyData, listIndAlpha0DenyData$CONF[1], "X"),
+                      create_dataframe(listIndAlpha05DenyData, listIndAlpha05DenyData$CONF[1], "X"),
+                      create_dataframe(listIndAlpha1DenyData, listIndAlpha1DenyData$CONF[1], "X"))
+bestIndListCovAllow <- create_dataframe(listIndCovAllowData, listIndCovAllowData$CONF[1], "X")
+bestIndListFCSAllow <- rbind(create_dataframe(listIndAlpha0AllowData, listIndAlpha0AllowData$CONF[1], "X"),
+                           create_dataframe(listIndAlpha05AllowData, listIndAlpha05AllowData$CONF[1], "X"),
+                           create_dataframe(listIndAlpha1AllowData, listIndAlpha1AllowData$CONF[1], "X"))
+bestIndListCovDeny <- create_dataframe(listIndCovDenyData, listIndCovDenyData$CONF[1], "X")
+bestIndListFCSDeny <- rbind(create_dataframe(listIndAlpha0DenyData, listIndAlpha0DenyData$CONF[1], "X"),
+                          create_dataframe(listIndAlpha05DenyData, listIndAlpha05DenyData$CONF[1], "X"),
+                          create_dataframe(listIndAlpha1DenyData, listIndAlpha1DenyData$CONF[1], "X"))
+
 #latexTable <- rbind(bestFTreeCov, bestFTreeFCS, bestFListCov, bestFListFCS)
 #print(xtable(latexTable, digits = c(0, 7, 0)), type = "html")
 
@@ -248,6 +285,8 @@ colnames(bestFListFCSDeny) <- c("BEST_VALUES", "CONF", "FP", "FN")
 # Statistical tests
 # -------------------
 
+#----------------------------------------- FITNESS
+
 shapiro.test(bestFTreeFCS$BEST_VALUES)
 shapiro.test(bestFListFCSAllow$BEST_VALUES)
 shapiro.test(bestFListFCSDeny$BEST_VALUES)
@@ -261,7 +300,7 @@ pairwise.wilcox.test(bestFListFCSAllow$BEST_VALUES, bestFListFCSAllow$CONF, p.ad
 kruskal.test(bestFListFCSDeny$BEST_VALUES ~ bestFListFCSDeny$CONF, data = bestFListFCSDeny)
 pairwise.wilcox.test(bestFListFCSDeny$BEST_VALUES, bestFListFCSDeny$CONF, p.adjust.method = "holm")
 
-#---------------------------------------------------------------
+#----------------------------------------- FP + FN
 
 shapiro.test(bestFTreeFCS$FP)
 shapiro.test(bestFTreeFCS$FN)
@@ -299,7 +338,7 @@ summary(Dunnet)
 kruskal.test(bestFListFCSAllow$FP ~ bestFListFCSAllow$CONF, data = bestFListFCSAllow)
 pairwise.wilcox.test(bestFListFCSAllow$FP, bestFListFCSAllow$CONF, p.adjust.method = "holm")
 
-#---------------------------------------------------------------
+#----------------------------------------- VALIDATION
 
 shapiro.test(bestVTreeFCS$BEST_VALUES)
 
@@ -343,7 +382,7 @@ pairwise.wilcox.test(bestVListFCSAllow$BEST_VALUES, bestVListFCSAllow$CONF, p.ad
 kruskal.test(bestVListFCSDeny$BEST_VALUES ~ bestVListFCSDeny$CONF, data = bestVListFCSDeny)
 pairwise.wilcox.test(bestVListFCSDeny$BEST_VALUES, bestVListFCSDeny$CONF, p.adjust.method = "holm")
 
-#---------------------------------------------------------------
+#----------------------------------------- TIME
 
 shapiro.test(bestTTreeFCS$BEST_VALUES)
 qqnorm(bestTTreeFCS$BEST_VALUES)
