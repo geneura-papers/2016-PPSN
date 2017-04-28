@@ -130,6 +130,10 @@ treeIndAlpha05Data <- read_data("./tree_ind_alpha_0.5")
 treeIndAlpha05Data$CONF <- "Pit_FCS_α0.5"
 treeIndAlpha1Data <- read_data("./tree_ind_alpha_1")
 treeIndAlpha1Data$CONF <- "Pitt_FCS_α1"
+treeIndAlpha500Data <- read_data("./tree_ind_alpha_500")
+treeIndAlpha500Data$CONF <- "Pitt_FCS_α500"
+treeIndAlpha1kData <- read_data("./tree_ind_alpha_1000")
+treeIndAlpha1kData$CONF <- "Pitt_FCS_α1000"
 treeIndCovData <- read_data("./tree_ind_coverage")
 treeIndCovData$CONF <- "Pitt_FAcc"
 
@@ -150,14 +154,17 @@ listIndAlpha1AllowData$CONF <- "Mich_FCS_α1_Allow"
 listIndAlpha1DenyData <- read_data("./list_ind_alpha_1/150gen STRONGDENY")
 listIndAlpha1DenyData$CONF <- "Mich_FCS_α1_Deny"
 
-treeIndALL <- rbind(treeIndCovData, treeIndAlpha0Data, treeIndAlpha05Data, treeIndAlpha1Data)
+treeIndALL <- rbind(treeIndCovData, treeIndAlpha0Data, treeIndAlpha05Data,
+                    treeIndAlpha1Data, treeIndAlpha500Data, treeIndAlpha1kData)
 listIndALL <- rbind(listIndCovAllowData, listIndCovDenyData, listIndAlpha0AllowData, listIndAlpha0DenyData,
                     listIndAlpha05AllowData, listIndAlpha05DenyData, listIndAlpha1AllowData, listIndAlpha1DenyData)
 
 bestFTreeCov <- create_dataframe(treeIndCovData, treeIndCovData$CONF[1], "BEST_F")
 bestFTreeFCS <- rbind(create_dataframe(treeIndAlpha0Data, treeIndAlpha0Data$CONF[1], "BEST_F"),
                       create_dataframe(treeIndAlpha05Data, treeIndAlpha05Data$CONF[1], "BEST_F"),
-                      create_dataframe(treeIndAlpha1Data, treeIndAlpha1Data$CONF[1], "BEST_F"))
+                      create_dataframe(treeIndAlpha1Data, treeIndAlpha1Data$CONF[1], "BEST_F"),
+                      create_dataframe(treeIndAlpha500Data, treeIndAlpha500Data$CONF[1], "BEST_F"),
+                      create_dataframe(treeIndAlpha1kData, treeIndAlpha1kData$CONF[1], "BEST_F"))
 bestFListCov <- rbind(create_dataframe(listIndCovAllowData, listIndCovAllowData$CONF[1], "BEST_F"),
                       create_dataframe(listIndCovDenyData, listIndCovDenyData$CONF[1], "BEST_F"))
 bestFListFCS <- rbind(create_dataframe(listIndAlpha0AllowData, listIndAlpha0AllowData$CONF[1], "BEST_F"),
@@ -178,11 +185,15 @@ bestFListFCSDeny <- rbind(create_dataframe(listIndAlpha0DenyData, listIndAlpha0D
 bestVTree <- rbind(create_dataframe(treeIndCovData, treeIndCovData$CONF[1], "BEST_VALIDATION"),
                    create_dataframe(treeIndAlpha0Data, treeIndAlpha0Data$CONF[1], "BEST_VALIDATION"),
                    create_dataframe(treeIndAlpha05Data, treeIndAlpha05Data$CONF[1], "BEST_VALIDATION"),
-                   create_dataframe(treeIndAlpha1Data, treeIndAlpha1Data$CONF[1], "BEST_VALIDATION"))
+                   create_dataframe(treeIndAlpha1Data, treeIndAlpha1Data$CONF[1], "BEST_VALIDATION"),
+                   create_dataframe(treeIndAlpha500Data, treeIndAlpha500Data$CONF[1], "BEST_VALIDATION"),
+                   create_dataframe(treeIndAlpha1kData, treeIndAlpha1kData$CONF[1], "BEST_VALIDATION"))
 bestVTreeCov <- create_dataframe(treeIndCovData, treeIndCovData$CONF[1], "BEST_VALIDATION")
 bestVTreeFCS <- rbind(create_dataframe(treeIndAlpha0Data, treeIndAlpha0Data$CONF[1], "BEST_VALIDATION"),
                       create_dataframe(treeIndAlpha05Data, treeIndAlpha05Data$CONF[1], "BEST_VALIDATION"),
-                      create_dataframe(treeIndAlpha1Data, treeIndAlpha1Data$CONF[1], "BEST_VALIDATION"))
+                      create_dataframe(treeIndAlpha1Data, treeIndAlpha1Data$CONF[1], "BEST_VALIDATION"),
+                      create_dataframe(treeIndAlpha500Data, treeIndAlpha500Data$CONF[1], "BEST_VALIDATION"),
+                      create_dataframe(treeIndAlpha1kData, treeIndAlpha1kData$CONF[1], "BEST_VALIDATION"))
 bestVListCov <- rbind(create_dataframe(listIndCovAllowData, listIndCovAllowData$CONF[1], "BEST_VALIDATION"),
                       create_dataframe(listIndCovDenyData, listIndCovDenyData$CONF[1], "BEST_VALIDATION"))
 bestVListFCS <- rbind(create_dataframe(listIndAlpha0AllowData, listIndAlpha0AllowData$CONF[1], "BEST_VALIDATION"),
@@ -211,11 +222,15 @@ bestVListFCSDeny <- rbind(create_dataframe(listIndAlpha0DenyData, listIndAlpha0D
 bestTTree <- rbind(create_dataframe(treeIndCovData, treeIndCovData$CONF[1], "TIME"),
                    create_dataframe(treeIndAlpha0Data, treeIndAlpha0Data$CONF[1], "TIME"),
                    create_dataframe(treeIndAlpha05Data, treeIndAlpha05Data$CONF[1], "TIME"),
-                   create_dataframe(treeIndAlpha1Data, treeIndAlpha1Data$CONF[1], "TIME"))
+                   create_dataframe(treeIndAlpha1Data, treeIndAlpha1Data$CONF[1], "TIME"),
+                   create_dataframe(treeIndAlpha500Data, treeIndAlpha500Data$CONF[1], "TIME"),
+                   create_dataframe(treeIndAlpha1kData, treeIndAlpha1kData$CONF[1], "TIME"))
 bestTTreeCov <- create_dataframe(treeIndCovData, treeIndCovData$CONF[1], "TIME")
 bestTTreeFCS <- rbind(create_dataframe(treeIndAlpha0Data, treeIndAlpha0Data$CONF[1], "TIME"),
                       create_dataframe(treeIndAlpha05Data, treeIndAlpha05Data$CONF[1], "TIME"),
-                      create_dataframe(treeIndAlpha1Data, treeIndAlpha1Data$CONF[1], "TIME"))
+                      create_dataframe(treeIndAlpha1Data, treeIndAlpha1Data$CONF[1], "TIME"),
+                      create_dataframe(treeIndAlpha500Data, treeIndAlpha500Data$CONF[1], "TIME"),
+                      create_dataframe(treeIndAlpha1kData, treeIndAlpha1kData$CONF[1], "TIME"))
 bestTListCov <- rbind(create_dataframe(listIndCovAllowData, listIndCovAllowData$CONF[1], "TIME"),
                       create_dataframe(listIndCovDenyData, listIndCovDenyData$CONF[1], "TIME"))
 bestTListFCS <- rbind(create_dataframe(listIndAlpha0AllowData, listIndAlpha0AllowData$CONF[1], "TIME"),
@@ -244,7 +259,9 @@ bestTListFCSDeny <- rbind(create_dataframe(listIndAlpha0DenyData, listIndAlpha0D
 bestIndTreeCov <- create_dataframe(treeIndCovData, treeIndCovData$CONF[1], "X")
 bestIndTreeFCS <- rbind(create_dataframe(treeIndAlpha0Data, treeIndAlpha0Data$CONF[1], "X"),
                       create_dataframe(treeIndAlpha05Data, treeIndAlpha05Data$CONF[1], "X"),
-                      create_dataframe(treeIndAlpha1Data, treeIndAlpha1Data$CONF[1], "X"))
+                      create_dataframe(treeIndAlpha1Data, treeIndAlpha1Data$CONF[1], "X"),
+                      create_dataframe(treeIndAlpha500Data, treeIndAlpha500Data$CONF[1], "X"),
+                      create_dataframe(treeIndAlpha1kData, treeIndAlpha1kData$CONF[1], "X"))
 bestIndListCov <- rbind(create_dataframe(listIndCovAllowData, listIndCovAllowData$CONF[1], "X"),
                       create_dataframe(listIndCovDenyData, listIndCovDenyData$CONF[1], "X"))
 bestIndListFCS <- rbind(create_dataframe(listIndAlpha0AllowData, listIndAlpha0AllowData$CONF[1], "X"),
@@ -254,8 +271,8 @@ bestIndListFCS <- rbind(create_dataframe(listIndAlpha0AllowData, listIndAlpha0Al
                       create_dataframe(listIndAlpha05DenyData, listIndAlpha05DenyData$CONF[1], "X"),
                       create_dataframe(listIndAlpha1DenyData, listIndAlpha1DenyData$CONF[1], "X"))
 
-latexTable <- rbind(bestIndTreeCov, bestIndTreeFCS, bestIndListCov, bestIndListFCS)
-print(xtable(latexTable, digits = c(0, 7, 0)), type = "html")
+#latexTable <- rbind(bestIndTreeCov, bestIndTreeFCS, bestIndListCov, bestIndListFCS)
+#print(xtable(latexTable, digits = c(0, 7, 0)), type = "html")
 
 # ---------
 # FP + FN
@@ -500,6 +517,24 @@ get_stats(listIndAlpha1AllowFP/5330)
 get_stats(listIndAlpha1AllowFN/5330)
 get_stats(listIndAlpha1DenyFP/5330)
 get_stats(listIndAlpha1DenyFN/5330)
+
+# ----------------------
+# Individual cleansing
+# ----------------------
+
+x <- as.character(bestIndTreeCov$BEST_VALUES[1])
+m <- unlist(strsplit(x, "\\|"))
+n <- 1:length(m)-1
+for(i in n) {
+  n2 <- i+1:length(m)
+  for(j in n2) {
+    if (identical(m[i], m[j])) {
+      print("Found:")
+      print(i)
+      print(j)
+    } 
+  }
+}
 
 # ---------
 # Graphs

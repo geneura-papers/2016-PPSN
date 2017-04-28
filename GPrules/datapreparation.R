@@ -16,6 +16,8 @@ add_fold_column <- function(directory) {
 add_fold_column("./tree_ind_alpha_0")
 add_fold_column("./tree_ind_alpha_0.5")
 add_fold_column("./tree_ind_alpha_1")
+add_fold_column("./tree_ind_alpha_500")
+add_fold_column("./tree_ind_alpha_1000")
 add_fold_column("./tree_ind_coverage")
 
 add_fold_column("./list_ind_alpha_0/150gen GRANTED")
