@@ -542,23 +542,33 @@ for(i in n) {
 
 Ftreea0 <- ggplot(treeIndAlpha0Data, aes(x = treeIndAlpha0Data$IT, y =BEST_F/47966)) +
   geom_line(aes(colour = factor(FOLD))) +
-  stat_summary(geom = "line") + scale_y_continuous(limits = c(0,0.5)) +
+  stat_summary(geom = "line") + scale_y_continuous(limits = c(0,1)) +
   xlab("Iterations (α = 0)") +
   ylab("Best Fitness") + theme(legend.position = "bottom")
 theLegend <- get_legend(Ftreea0)
 Ftreea0 <- Ftreea0 + theme(legend.position = "none")
 Ftreea05 <- ggplot(treeIndAlpha05Data, aes(x = treeIndAlpha05Data$IT, y = treeIndAlpha05Data$BEST_F/47966)) +
   geom_line(aes(colour = factor(FOLD))) +
-  stat_summary(geom = "line") + scale_y_continuous(limits = c(0.1,0.5)) +
+  stat_summary(geom = "line") + scale_y_continuous(limits = c(0.1,1)) +
   xlab("Iterations (α = 0.5)") +
   ylab("Best Fitness") + theme(legend.position = "none")
 Ftreea1 <- ggplot(treeIndAlpha1Data, aes(x = treeIndAlpha1Data$IT, y = treeIndAlpha1Data$BEST_F/47966)) +
   geom_line(aes(colour = factor(FOLD))) +
-  stat_summary(geom = "line") + scale_y_continuous(limits = c(0.1,0.5)) +
+  stat_summary(geom = "line") + scale_y_continuous(limits = c(0.1,1)) +
   xlab("Iterations (α = 1)") +
   ylab("Best Fitness") + theme(legend.position = "none")
+Ftreea500 <- ggplot(treeIndAlpha500Data, aes(x = treeIndAlpha500Data$IT, y = treeIndAlpha500Data$BEST_F/48466)) +
+  geom_line(aes(colour = factor(FOLD))) +
+  stat_summary(geom = "line") + scale_y_continuous(limits = c(0.1,1)) +
+  xlab("Iterations (α = 500)") +
+  ylab("Best Fitness") + theme(legend.position = "none")
+Ftreea1k <- ggplot(treeIndAlpha1kData, aes(x = treeIndAlpha1kData$IT, y = treeIndAlpha1kData$BEST_F/48966)) +
+  geom_line(aes(colour = factor(FOLD))) +
+  stat_summary(geom = "line") + scale_y_continuous(limits = c(0.1,1)) +
+  xlab("Iterations (α = 1k)") +
+  ylab("Best Fitness") + theme(legend.position = "none")
 
-grid.arrange(Ftreea0, Ftreea05, Ftreea1, theLegend, ncol = 3, nrow = 2, layout_matrix = cbind(c(1, 4), c(2, 4), c(3, 4)))
+grid.arrange(Ftreea0, Ftreea05, Ftreea1, Ftreea500, Ftreea1k, theLegend, ncol = 5, nrow = 2, layout_matrix = cbind(c(1, 6), c(2, 6), c(3, 6), c(4, 6), c(5, 6)))
 #grid.arrange(Ftreea0, Ftreea05, Ftreea1, ncol = 3)
 
 FtreeCov <- ggplot(treeIndCovData, aes(x = treeIndCovData$IT, y =BEST_F)) +
