@@ -49,8 +49,8 @@ get_vector <- function(myresults, attribute) {
     if(attribute == "BEST_VALIDATION") {
       return(x/5330)
     } else if (attribute == "TIME") {
-      #return(x)
-      return(((x/1000)/60)/60)
+      return(x)
+      #return(((x/1000)/60)/60)
     } else {
       return(x) 
     }
@@ -83,8 +83,8 @@ get_vector2 <- function(myresults1, myresults2, attribute) {
   if(attribute == "BEST_VALIDATION") {
     return(x/5330)
   } else if (attribute == "TIME") {
-    #return(x)
-    return(((x/1000)/60)/60)
+    return(x)
+    #return(((x/1000)/60)/60)
   } else {
     return(x/47966) 
   }
