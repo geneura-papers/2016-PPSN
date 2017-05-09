@@ -49,8 +49,8 @@ get_vector <- function(myresults, attribute) {
     if(attribute == "BEST_VALIDATION") {
       return(x/5330)
     } else if (attribute == "TIME") {
-      return(x)
-      #return(((x/1000)/60)/60)
+      #return(x)
+      return(((x/1000)/60)/60)
     } else {
       return(x) 
     }
@@ -83,8 +83,8 @@ get_vector2 <- function(myresults1, myresults2, attribute) {
   if(attribute == "BEST_VALIDATION") {
     return(x/5330)
   } else if (attribute == "TIME") {
-    return(x)
-    #return(((x/1000)/60)/60)
+    #return(x)
+    return(((x/1000)/60)/60)
   } else {
     return(x/47966) 
   }
@@ -280,12 +280,16 @@ bestIndListFCS <- rbind(create_dataframe(listIndAlpha0AllowData, listIndAlpha0Al
 
 treeIndCovFP <- c(400, 413, 400, 388, 444, 380, 383, 358, 406, 418)
 treeIndCovFN <- integer(10)
-treeIndAlpha0FP <- c(148, 4133, 365, 240, 444, 217, 384, 385, 406, 415)
-treeIndAlpha0FN <- c(121, 0, 1, 0, 0, 35, 1, 0, 0, 5)
-treeIndAlpha05FP <- c(400, 413, 385, 379, 444, 380, 384, 385, 365, 419)
-treeIndAlpha05FN <- c(0, 0, 5, 10, 0, 0, 0, 0, 23, 0)
-treeIndAlpha1FP <- c(337, 413, 387, 389, 392, 377, 347, 299, 406, 419)
+treeIndAlpha0FP <- c(400, 413, 387, 389, 444, 197, 384, 385, 406, 419)
+treeIndAlpha0FN <- c(0, 0, 0, 0, 0, 95, 0, 0, 0, 0)
+treeIndAlpha05FP <- c(393, 413, 387, 359, 444, 380, 384, 385, 406, 419)
+treeIndAlpha05FN <- integer(10)
+treeIndAlpha1FP <- c(400, 412, 387, 389, 444, 380, 384, 385, 406, 419)
 treeIndAlpha1FN <- integer(10)
+treeIndAlpha500FP <- c(367, 385, 363, 364, 412, 348, 366, 349, 377, 397)
+treeIndAlpha500FN <- integer(10)
+treeIndAlpha1kFP <- c(380, 298, 272, 358, 405, 343, 352, 366, 352, 397)
+treeIndAlpha1kFN <- integer(10)
 
 listIndCovAllowFP <- c(70, 74, 121, 157, 219, 90, 97, 192, 92, 125)
 listIndCovAllowFN <- integer(10)
@@ -304,8 +308,8 @@ listIndAlpha1AllowFN <- integer(10)
 listIndAlpha1DenyFP <- integer(10)
 listIndAlpha1DenyFN <- c(31, 1, 21, 5, 17, 91, 18, 15, 23, 0)
 
-bestVTree <- data.frame(bestVTree, c(treeIndCovFP, treeIndAlpha0FP, treeIndAlpha05FP, treeIndAlpha1FP))
-bestVTree <- data.frame(bestVTree, c(treeIndCovFN, treeIndAlpha0FN, treeIndAlpha05FN, treeIndAlpha1FN))
+bestVTree <- data.frame(bestVTree, c(treeIndCovFP, treeIndAlpha0FP, treeIndAlpha05FP, treeIndAlpha1FP, treeIndAlpha500FP, treeIndAlpha1kFP))
+bestVTree <- data.frame(bestVTree, c(treeIndCovFN, treeIndAlpha0FN, treeIndAlpha05FN, treeIndAlpha1FN, treeIndAlpha500FN, treeIndAlpha1kFN))
 colnames(bestVTree) <- c("BEST_VALUES", "CONF", "FP", "FN")
 bestVListAllow <- data.frame(bestVListAllow, c(listIndCovAllowFP, listIndAlpha0AllowFP, listIndAlpha05AllowFP, listIndAlpha1AllowFP))
 bestVListAllow <- data.frame(bestVListAllow, c(listIndCovAllowFN,listIndAlpha0AllowFN, listIndAlpha05AllowFN, listIndAlpha1AllowFN))
@@ -458,6 +462,8 @@ get_stats(get_vector(treeIndCovData, "BEST_F"))
 get_stats(get_vector(treeIndAlpha0Data, "BEST_F"))
 get_stats(get_vector(treeIndAlpha05Data, "BEST_F"))
 get_stats(get_vector(treeIndAlpha1Data, "BEST_F"))
+get_stats(get_vector(treeIndAlpha500Data, "BEST_F"))
+get_stats(get_vector(treeIndAlpha1kData, "BEST_F"))
 
 get_stats(get_vector(listIndCovAllowData, "BEST_F"))
 get_stats(get_vector(listIndCovDenyData, "BEST_F"))
@@ -472,6 +478,8 @@ get_stats(get_vector(treeIndCovData, "BEST_VALIDATION"))
 get_stats(get_vector(treeIndAlpha0Data, "BEST_VALIDATION"))
 get_stats(get_vector(treeIndAlpha05Data, "BEST_VALIDATION"))
 get_stats(get_vector(treeIndAlpha1Data, "BEST_VALIDATION"))
+get_stats(get_vector(treeIndAlpha500Data, "BEST_VALIDATION"))
+get_stats(get_vector(treeIndAlpha1kData, "BEST_VALIDATION"))
 
 get_stats(get_vector(listIndCovAllowData, "BEST_VALIDATION"))
 get_stats(get_vector(listIndCovDenyData, "BEST_VALIDATION"))
@@ -486,6 +494,8 @@ get_stats(get_vector(treeIndCovData, "TIME"))
 get_stats(get_vector(treeIndAlpha0Data, "TIME"))
 get_stats(get_vector(treeIndAlpha05Data, "TIME"))
 get_stats(get_vector(treeIndAlpha1Data, "TIME"))
+get_stats(get_vector(treeIndAlpha500Data, "TIME"))
+get_stats(get_vector(treeIndAlpha1kData, "TIME"))
 
 get_stats(get_vector2(listIndCovAllowData, listIndCovDenyData, "TIME"))
 get_stats(get_vector2(listIndAlpha0AllowData, listIndAlpha0DenyData, "TIME"))
@@ -500,6 +510,10 @@ get_stats(treeIndAlpha05FP/5330)
 get_stats(treeIndAlpha05FN/5330)
 get_stats(treeIndAlpha1FP/5330)
 get_stats(treeIndAlpha1FN/5330)
+get_stats(treeIndAlpha500FP/5330)
+get_stats(treeIndAlpha500FN/5330)
+get_stats(treeIndAlpha1kFP/5330)
+get_stats(treeIndAlpha1kFN/5330)
 
 get_stats(listIndCovAllowFP/5330)
 get_stats(listIndCovAllowFN/5330)
@@ -650,8 +664,20 @@ itvsFTreeA1 <- ggplot(subset(treeIndAlpha1Data[,c("IT","BEST_F","FOLD")],IT%%5==
   xlab("Iterations") +
   ylab("FCS (\u03B1 = 1)") +
   theme(axis.title.y = element_text(size = 8))
+itvsFTreeA500 <- ggplot(subset(treeIndAlpha500Data[,c("IT","BEST_F","FOLD")],IT%%5==0),aes(x=IT,y=BEST_F/48466,group=IT)) +
+  geom_boxplot() +
+  scale_x_continuous(breaks = seq(from=0,to=150,by=10)) +
+  xlab("Iterations") +
+  ylab("FCS (\u03B1 = 500)") +
+  theme(axis.title.y = element_text(size = 8))
+itvsFTreeA1k <- ggplot(subset(treeIndAlpha1kData[,c("IT","BEST_F","FOLD")],IT%%5==0),aes(x=IT,y=BEST_F/48966,group=IT)) +
+  geom_boxplot() +
+  scale_x_continuous(breaks = seq(from=0,to=150,by=10)) +
+  xlab("Iterations") +
+  ylab("FCS (\u03B1 = 1)") +
+  theme(axis.title.y = element_text(size = 8))
 
-pittsburghItvsF <- grid.arrange(itvsFTreeCov, itvsFTreeA0, itvsFTreeA05, itvsFTreeA1, ncol = 1, nrow = 4)
+pittsburghItvsF <- grid.arrange(itvsFTreeCov, itvsFTreeA0, itvsFTreeA05, itvsFTreeA1, itvsFTreeA500, itvsFTreeA1k, ncol = 1, nrow = 6)
 cairo_pdf("../img/pittsburghItvsF.pdf", width = 7, height = 6)
 grid.draw(pittsburghItvsF)
 dev.off()
