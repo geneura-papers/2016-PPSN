@@ -271,6 +271,13 @@ bestIndListFCS <- rbind(create_dataframe(listIndAlpha0AllowData, listIndAlpha0Al
                       create_dataframe(listIndAlpha05DenyData, listIndAlpha05DenyData$CONF[1], "X"),
                       create_dataframe(listIndAlpha1DenyData, listIndAlpha1DenyData$CONF[1], "X"))
 
+bestSTree <- rbind(create_dataframe(treeIndCovData, treeIndCovData$CONF[1], "BEST_SIZE"),
+                   create_dataframe(treeIndAlpha0Data, treeIndAlpha0Data$CONF[1], "BEST_SIZE"),
+                   create_dataframe(treeIndAlpha05Data, treeIndAlpha05Data$CONF[1], "BEST_SIZE"),
+                   create_dataframe(treeIndAlpha1Data, treeIndAlpha1Data$CONF[1], "BEST_SIZE"),
+                   create_dataframe(treeIndAlpha500Data, treeIndAlpha500Data$CONF[1], "BEST_SIZE"),
+                   create_dataframe(treeIndAlpha1kData, treeIndAlpha1kData$CONF[1], "BEST_SIZE"))
+
 #latexTable <- rbind(bestIndTreeCov, bestIndTreeFCS, bestIndListCov, bestIndListFCS)
 #print(xtable(latexTable, digits = c(0, 7, 0)), type = "html")
 
@@ -531,6 +538,13 @@ get_stats(listIndAlpha1AllowFP/5330)
 get_stats(listIndAlpha1AllowFN/5330)
 get_stats(listIndAlpha1DenyFP/5330)
 get_stats(listIndAlpha1DenyFN/5330)
+
+get_stats(get_vector(treeIndCovData, "BEST_SIZE"))
+get_stats(get_vector(treeIndAlpha0Data, "BEST_SIZE"))
+get_stats(get_vector(treeIndAlpha05Data, "BEST_SIZE"))
+get_stats(get_vector(treeIndAlpha1Data, "BEST_SIZE"))
+get_stats(get_vector(treeIndAlpha500Data, "BEST_SIZE"))
+get_stats(get_vector(treeIndAlpha1kData, "BEST_SIZE"))
 
 # ----------------------
 # Individual cleansing
