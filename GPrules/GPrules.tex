@@ -762,9 +762,7 @@ This measure will be the same no matter what approach has been taken nor which f
 			\multicolumn{1}{|l|}{}                                                                                             & \multicolumn{1}{l|}{}                                                                             & \multicolumn{1}{l|}{}                          & $\alpha$ = 1   & 0.025 $\pm$ 1.948e-2 & 0.047 & 0.036  & 0     & 0 & 0.004 $\pm$ 0.049e-1 \\ \hline
 		\end{tabular}
 	}
-	\caption{Comparison between Pittsburgh and Michigan
-		approaches, in terms of their validation scores. Validation has been calculated as the accuracy in classifying a test dataset. An $*$ indicates
-		the  statistically significant best value for $\alpha$.}
+	\caption{Comparison between Pittsburgh and Michigan approaches, in terms of their validation scores. Validation has been calculated as the accuracy in classifying a test dataset. False positives and false negatives are also indicated, as one of our goals is to reduce the number of false positives. The best value is not indicated given that we did not find statistically significant differences.}
 	\label{tab:PvsMvalidation}
 \end{table*}
 
@@ -804,6 +802,8 @@ This measure will be the same no matter what approach has been taken nor which f
 As it can be also seen in Table \ref{tab:PvsMvalidation}, results obtained for class STRONGDENY in the Michigan approach are very poor comparing with the GRANTED class. This means that the highly imbalanced data set that we are using clearly biases the results towards the majority class \cite{japkowicz2002class}, and in this case there are 1 instance in the training set of data labelled as STRONGDENY for every 13 labelled as GRANTED. In this sense, solutions can be found in literature in order to reduce the bias while performing classification tasks, such as in \cite{chawla2005data} and \cite{sun2009classification}. Also, in \cite{bhowan2012developing},
 the authors present a comparison between many different types of fitness functions, testing on various unbalanced datasets, with different minority-class/majority-class ratios.
 
+To evaluate computation costs of the two approaches, and taking into consideration the infrastructure available for the experiments (see Section\ref{sec:experiments}), the execution times are presented in Table \ref{tab:PvsMtime}, detailed by their average value and standard deviation (sd), along weith the best, worst, and median values. Values are expressed in hours. Values for the Michigan approach are not separated by class this time, because in order to have the two rules - one for each class -- the CSO would have to wait for both executions.
+
 \begin{table*}
 	\centering
 	\begin{tabular}{lll|l|l|l|l|}
@@ -819,8 +819,7 @@ the authors present a comparison between many different types of fitness functio
 		\multicolumn{1}{|l|}{}                                                                                                   & \multicolumn{1}{l|}{}                          & $\alpha$ = 0.5 & 9.435 $\pm$ 0.348  & 9.039  & 9.401  & 10.281 \\ \cline{3-7} 
 		\multicolumn{1}{|l|}{}                                                                                                   & \multicolumn{1}{l|}{}                          & $\alpha$ = 1   & 9.612 $\pm$ 0.508  & 8.946  & 9.509  & 10.38  \\ \hline
 	\end{tabular}
-	\caption{Comparison between Pittsburgh and Michigan
-		approaches, in terms of their execution time. For the Michigan approach, times for executing the algorithm once for the GRANTED class and another for the STRONGDENY are presented together. An $*$ indicates the  statistically significant best value for $\alpha$.}
+	\caption{Comparison between Pittsburgh and Michiganapproaches, in terms of their execution time. For the Michigan approach, times for executing the algorithm once for the GRANTED class and another for the STRONGDENY are presented together. The best value is not indicated given that we did not find statistically significant differences.}
 	\label{tab:PvsMtime}
 \end{table*}
 
