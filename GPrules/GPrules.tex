@@ -803,7 +803,7 @@ At the same time, there are not statistically significant differences in the res
 %\label{tab:PvsMvalidation}
 %\end{table*}
 
-To evaluate computation costs of the two approaches, and taking into consideration the infrastructure available for the experiments (see Section\ref{sec:experiments}), the execution times are presented in Table \ref{tab:PvsMtime}, detailed by their average value and standard deviation (sd), along weith the best, worst, and median values. Values are expressed in hours. Values for the Michigan approach are not separated by class this time, because in order to have the two rules - one for each class -- the CSO would have to wait for both executions.
+To evaluate computation costs of the two approaches, and taking into consideration the infrastructure available for the experiments (see Section\ref{sec:experiments}), we present the execution times in Table \ref{tab:PvsMtime}, detailed by their average value and standard deviation, along weith the best, worst, and median values. Time is expressed in hours, for the sake of clarification. In addition, the values for the Michigan approach are not separated by class this time, because in order to have the two rules - one for each class -- the CSO would have to wait for both executions.
 
 \begin{table*}
 	\centering
@@ -820,8 +820,29 @@ To evaluate computation costs of the two approaches, and taking into considerati
 		\multicolumn{1}{|l|}{}                                                                                                   & \multicolumn{1}{l|}{}                          & $\alpha$ = 0.5 & 9.435 $\pm$ 0.348  & 9.039  & 9.401  & 10.281 \\ \cline{3-7} 
 		\multicolumn{1}{|l|}{}                                                                                                   & \multicolumn{1}{l|}{}                          & $\alpha$ = 1   & 9.612 $\pm$ 0.508  & 8.946  & 9.509  & 10.38  \\ \hline
 	\end{tabular}
-	\caption{Comparison between Pittsburgh and Michiganapproaches, in terms of their execution time. For the Michigan approach, times for executing the algorithm once for the GRANTED class and another for the STRONGDENY are presented together. The best value is not indicated given that we did not find statistically significant differences.}
+	\caption{Comparison between Pittsburgh and Michigan approaches, in terms of their execution time. For the Michigan approach, times for executing the algorithm once for the GRANTED class and another for the STRONGDENY are presented together. The best value is not indicated given that we did not find statistically significant differences.}
 	\label{tab:PvsMtime}
+\end{table*}
+
+In this table we see similar times in both approaches. Actually, we did not find any statistically significant difference between the cases.
+
+\begin{table*}
+	\centering
+	\begin{tabular}{lll|l|l|l|l|}
+		\cline{4-7}
+		&                                                &                & \multicolumn{4}{l|}{Best individual size (h)}     \\ \cline{2-7} 
+		\multicolumn{1}{l|}{}                                                                                                    & \multicolumn{2}{l|}{Fitness function}                           & Average            & Best   & Median & Worst  \\ \hline
+		\multicolumn{1}{|l|}{\multirow{4}{*}{\begin{tabular}[c]{@{}l@{}}Pittsburgh:\\ Individual eq. set of rules\end{tabular}}} & \multicolumn{2}{l|}{$f_{Acc}$}                                  &  $\pm$  &   &  &  \\ \cline{2-7} 
+		\multicolumn{1}{|l|}{}                                                                                                   & \multicolumn{1}{l|}{\multirow{3}{*}{$f_{CS}$}} & $\alpha$ = 0   &  $\pm$  &  &  &  \\ \cline{3-7} 
+		\multicolumn{1}{|l|}{}                                                                                                   & \multicolumn{1}{l|}{}                          & $\alpha$ = 0.5 &  $\pm$  &   &   &  \\ \cline{3-7} 
+		\multicolumn{1}{|l|}{}                                                                                                   & \multicolumn{1}{l|}{}                          & $\alpha$ = 1   &  $\pm$  &  &  &  \\ \hline
+		\multicolumn{1}{|l|}{\multirow{4}{*}{\begin{tabular}[c]{@{}l@{}}Michigan:\\ Individual eq. one rule\end{tabular}}}       & \multicolumn{2}{l|}{$f_{Acc}$}                                  &  $\pm$  &  &   &  \\ \cline{2-7} 
+		\multicolumn{1}{|l|}{}                                                                                                   & \multicolumn{1}{l|}{\multirow{3}{*}{$f_{CS}$}} & $\alpha$ = 0   &  $\pm$   &   &  &  \\ \cline{3-7} 
+		\multicolumn{1}{|l|}{}                                                                                                   & \multicolumn{1}{l|}{}                          & $\alpha$ = 0.5 &  $\pm$   &   &   &  \\ \cline{3-7} 
+		\multicolumn{1}{|l|}{}                                                                                                   & \multicolumn{1}{l|}{}                          & $\alpha$ = 1   &  $\pm$   &   &   &   \\ \hline
+	\end{tabular}
+	\caption{Comparison between Pittsburgh and Michigan approaches, in terms of the size -- number of rules -- of the best individuals. For the Pittsburgh approach, the size is the depth of the tree, whilst in the Michigan approach it is the length of the list. The best value is not indicated given that we did not find statistically significant differences.}
+	\label{tab:PvsMsize}
 \end{table*}
 
 % Esta se deja comentada por si piden más resultados
