@@ -694,7 +694,7 @@ approach, justifying this choice.
 % separate results, compare them, even less so in different
 % subsections.
 
-\subsection{$F_{Acc}$ vs. $F_{CS}$} % Not very convinced about the title, please suggest one better.
+\subsection{$F_{Acc}$ vs. $F_{CS}$} 
 \label{subsec:fitnesscomparison}
 
 The aim of this comparison is to conclude which fitness function should be used, discussing the results from the point of view of convergence, and that means finding which one reaches the best value faster. To study this have displayed the obtained fitness through the iterations for the Pittsburgh approach in Figure \ref{fig:pittsburghItvsF} and for the Michigan approach in Figures \ref{fig:michiganItvsF_allow} and \ref{fig:michiganItvsF_deny}. Figures for GRANTED and STRONGDENY classes are separated because the solution is a single rule instead of a set of rules, and therefore the algorithm has to be executed once per class. With regard to the best fitness obtained for each fitness function, they are similar in the same scope, which means that similar values are found for all values of $\alpha$ in $f_{CS}$ in the two approaches separately.
@@ -727,7 +727,7 @@ With regard to the Michigan approach, a higher variability is noticeable in Figu
 
 We can advance that the best results might be obtained for $f_{CS}$ with $\alpha = 0.5$. However, as it can be seen that there is a considerable difference between the performance, in terms of best obtained fitness, of the two used approaches, we have to thoroughly compare them.
 
-\subsection{The Pittsburgh vs. Michigan approach} % Same, not convinced, as with anything I do now.
+\subsection{The Pittsburgh vs. Michigan approach} 
 \label{subsec:approachcomparison}
 
 Once the variability of the obtained fitness has been studied, and always taking into account that those values come from their evaluation in a training subset of the data, now we \textit{validate} the proposed approaches with a test set. The way to evaluate this is similar to Equation \ref{eq:accuracy}, but using the test subset of the data:
@@ -756,15 +756,19 @@ This measure will be the same no matter what approach has been taken nor which f
 			\multicolumn{1}{|l|}{}                                                                                             & \multicolumn{1}{l|}{}                                                                             & \multicolumn{1}{l|}{\multirow{3}{*}{$f_{CS}$}} & $\alpha$ = 0   & 0.466 $\pm$ 0.441e-2 & 0.472 & 0.467  & 0.459 & 0.021 $\pm$ 0.094e-1 & 0                    \\ \cline{4-10} 
 			\multicolumn{1}{|l|}{}                                                                                             & \multicolumn{1}{l|}{}                                                                             & \multicolumn{1}{l|}{}                          & $\alpha$ = 0.5 & 0.467 $\pm$ 0.305e-2 & 0.472 & 0.467  & 0.462 & 0.019 $\pm$ 0.088e-1 & 0                    \\ \cline{4-10} 
 			\multicolumn{1}{|l|}{}                                                                                             & \multicolumn{1}{l|}{}                                                                             & \multicolumn{1}{l|}{}                          & $\alpha$ = 1   & 0.465 $\pm$ 0.43e-2  & 0.472 & 0.467  & 0.458 & 0.023 $\pm$ 0.099e-1 & 0                    \\ \cline{2-10} 
-			\multicolumn{1}{|l|}{}                                                                                             & \multicolumn{1}{l|}{\multirow{4}{*}{\begin{tabular}[c]{@{}l@{}}Class:\\ STRONGDENY\end{tabular}}} & \multicolumn{2}{l|}{$f_{Acc}$}                                  & 0.046 $\pm$ 0.74e-2  & 0.065 & 0.045  & 0.037 & 0 & 0.307 $\pm$ 0.745e-1 \\ \cline{3-10} 
+			\multicolumn{1}{|l|}{}                                                                                             & \multicolumn{1}{l|}{\multirow{4}{*}{\begin{tabular}[c]{@{}l@{}}Class:\\ STRONGDENY\end{tabular}}} & \multicolumn{2}{l|}{$f_{Acc}$}                                  & 0.046$*$ $\pm$ 0.74e-2  & 0.065 & 0.045  & 0.037 & 0 & 0.307 $\pm$ 0.745e-1 \\ \cline{3-10} 
 			\multicolumn{1}{|l|}{}                                                                                             & \multicolumn{1}{l|}{}                                                                             & \multicolumn{1}{l|}{\multirow{3}{*}{$f_{CS}$}} & $\alpha$ = 0   & 0.025 $\pm$ 1.527e-2 & 0.045 & 0.023  & 0.003 & 0 & 0.004 $\pm$ 0.039e-1 \\ \cline{4-10} 
 			\multicolumn{1}{|l|}{}                                                                                             & \multicolumn{1}{l|}{}                                                                             & \multicolumn{1}{l|}{}                          & $\alpha$ = 0.5 & 0.02 $\pm$ 1.603e-2  & 0.061 & 0.015  & 0.002 & 0 & 0.007 $\pm$ 0.063e-1 \\ \cline{4-10} 
 			\multicolumn{1}{|l|}{}                                                                                             & \multicolumn{1}{l|}{}                                                                             & \multicolumn{1}{l|}{}                          & $\alpha$ = 1   & 0.025 $\pm$ 1.948e-2 & 0.047 & 0.036  & 0     & 0 & 0.004 $\pm$ 0.049e-1 \\ \hline
 		\end{tabular}
 	}
-	\caption{Comparison between Pittsburgh and Michigan approaches, in terms of their validation scores. Validation has been calculated as the accuracy in classifying a test dataset. False positives and false negatives are also indicated, as one of our goals is to reduce the number of false positives. The best value is not indicated given that we did not find statistically significant differences.}
+	\caption{Comparison between Pittsburgh and Michigan approaches, in terms of their validation scores. Validation has been calculated as the accuracy in classifying a test dataset. False positives and false negatives are also indicated, as one of our goals is to reduce the number of false positives. An $*$ indicates the  statistically significant best value for $\alpha$, but only in the cases were we found statistically significant differences.}
 	\label{tab:PvsMvalidation}
 \end{table*}
+
+In Section \ref{subsec:fitnesscomparison} that the performance in the fitness of the Michigan approach was worse than that of Pittsburgh, and now it is more clear, given that the accuracy over the test set is not even 50\%. This difference means that the highly imbalanced data set that we are using clearly biases the results towards the majority class \cite{japkowicz2002class}, and in this case there are 1 instance in the training set of data labelled as STRONGDENY for every 13 labelled as GRANTED. In this sense, solutions can be found in literature in order to reduce the bias while performing classification tasks, such as in \cite{chawla2005data} and \cite{sun2009classification}. Also, in \cite{bhowan2012developing}, the authors present a comparison between many different types of fitness functions, testing on various unbalanced datasets, with different minority-class/majority-class ratios.
+
+At the same time, there are not statistically significant differences in the results for the GRANTED class (Pr(>F) = 0.5538 > 0'05). However, in the case of the STRONGDENY class, using $f_{CS}$ significantly decreases the accuracy over the test set. With regard to how many FP and FN are obtained in every approach, we see in Table \ref{tab:PvsMvalidation} that for the Pittsburgh approach we generally obtain low rates or 0 -- ideal -- false negatives, and around 7\% rate of false positives -- almost 400 in average for our test set --. On the other hand, best rates are found for the Michigan approach, where the rate of FP is, at most, 2.8\% -- around 113 instances in average --. And even if there were FN found, the average for the used test set is 29 instances out of 5330, which is a very low number and again, it is less worse to have FN than FP. Also, this imbalance in the FP and FN values are also caused by the imbalance in the dataset.
 
 % Esta se deja comentada por si piden más resultados
 
@@ -798,9 +802,6 @@ This measure will be the same no matter what approach has been taken nor which f
 %  the  statistically significant best value for $\alpha$.}
 %\label{tab:PvsMvalidation}
 %\end{table*}
-
-As it can be also seen in Table \ref{tab:PvsMvalidation}, results obtained for class STRONGDENY in the Michigan approach are very poor comparing with the GRANTED class. This means that the highly imbalanced data set that we are using clearly biases the results towards the majority class \cite{japkowicz2002class}, and in this case there are 1 instance in the training set of data labelled as STRONGDENY for every 13 labelled as GRANTED. In this sense, solutions can be found in literature in order to reduce the bias while performing classification tasks, such as in \cite{chawla2005data} and \cite{sun2009classification}. Also, in \cite{bhowan2012developing},
-the authors present a comparison between many different types of fitness functions, testing on various unbalanced datasets, with different minority-class/majority-class ratios.
 
 To evaluate computation costs of the two approaches, and taking into consideration the infrastructure available for the experiments (see Section\ref{sec:experiments}), the execution times are presented in Table \ref{tab:PvsMtime}, detailed by their average value and standard deviation (sd), along weith the best, worst, and median values. Values are expressed in hours. Values for the Michigan approach are not separated by class this time, because in order to have the two rules - one for each class -- the CSO would have to wait for both executions.
 
