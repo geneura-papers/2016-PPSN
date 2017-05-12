@@ -182,12 +182,16 @@ bestFListFCSDeny <- rbind(create_dataframe(listIndAlpha0DenyData, listIndAlpha0D
                       create_dataframe(listIndAlpha05DenyData, listIndAlpha05DenyData$CONF[1], "BEST_F"),
                       create_dataframe(listIndAlpha1DenyData, listIndAlpha1DenyData$CONF[1], "BEST_F"))
 
+#bestVTree <- rbind(create_dataframe(treeIndCovData, treeIndCovData$CONF[1], "BEST_VALIDATION"),
+#                   create_dataframe(treeIndAlpha0Data, treeIndAlpha0Data$CONF[1], "BEST_VALIDATION"),
+#                   create_dataframe(treeIndAlpha05Data, treeIndAlpha05Data$CONF[1], "BEST_VALIDATION"),
+#                   create_dataframe(treeIndAlpha1Data, treeIndAlpha1Data$CONF[1], "BEST_VALIDATION"),
+#                   create_dataframe(treeIndAlpha500Data, treeIndAlpha500Data$CONF[1], "BEST_VALIDATION"),
+#                   create_dataframe(treeIndAlpha1kData, treeIndAlpha1kData$CONF[1], "BEST_VALIDATION"))
 bestVTree <- rbind(create_dataframe(treeIndCovData, treeIndCovData$CONF[1], "BEST_VALIDATION"),
                    create_dataframe(treeIndAlpha0Data, treeIndAlpha0Data$CONF[1], "BEST_VALIDATION"),
                    create_dataframe(treeIndAlpha05Data, treeIndAlpha05Data$CONF[1], "BEST_VALIDATION"),
-                   create_dataframe(treeIndAlpha1Data, treeIndAlpha1Data$CONF[1], "BEST_VALIDATION"),
-                   create_dataframe(treeIndAlpha500Data, treeIndAlpha500Data$CONF[1], "BEST_VALIDATION"),
-                   create_dataframe(treeIndAlpha1kData, treeIndAlpha1kData$CONF[1], "BEST_VALIDATION"))
+                   create_dataframe(treeIndAlpha1Data, treeIndAlpha1Data$CONF[1], "BEST_VALIDATION"))
 bestVTreeCov <- create_dataframe(treeIndCovData, treeIndCovData$CONF[1], "BEST_VALIDATION")
 bestVTreeFCS <- rbind(create_dataframe(treeIndAlpha0Data, treeIndAlpha0Data$CONF[1], "BEST_VALIDATION"),
                       create_dataframe(treeIndAlpha05Data, treeIndAlpha05Data$CONF[1], "BEST_VALIDATION"),
@@ -319,8 +323,10 @@ listIndAlpha1AllowFN <- integer(10)
 listIndAlpha1DenyFP <- integer(10)
 listIndAlpha1DenyFN <- c(31, 1, 21, 5, 17, 91, 18, 15, 23, 0)
 
-bestVTree <- data.frame(bestVTree, c(treeIndCovFP, treeIndAlpha0FP, treeIndAlpha05FP, treeIndAlpha1FP, treeIndAlpha500FP, treeIndAlpha1kFP))
-bestVTree <- data.frame(bestVTree, c(treeIndCovFN, treeIndAlpha0FN, treeIndAlpha05FN, treeIndAlpha1FN, treeIndAlpha500FN, treeIndAlpha1kFN))
+#bestVTree <- data.frame(bestVTree, c(treeIndCovFP, treeIndAlpha0FP, treeIndAlpha05FP, treeIndAlpha1FP, treeIndAlpha500FP, treeIndAlpha1kFP))
+#bestVTree <- data.frame(bestVTree, c(treeIndCovFN, treeIndAlpha0FN, treeIndAlpha05FN, treeIndAlpha1FN, treeIndAlpha500FN, treeIndAlpha1kFN))
+bestVTree <- data.frame(bestVTree, c(treeIndCovFP, treeIndAlpha0FP, treeIndAlpha05FP, treeIndAlpha1FP))
+bestVTree <- data.frame(bestVTree, c(treeIndCovFN, treeIndAlpha0FN, treeIndAlpha05FN, treeIndAlpha1FN))
 colnames(bestVTree) <- c("BEST_VALUES", "CONF", "FP", "FN")
 bestVListAllow <- data.frame(bestVListAllow, c(listIndCovAllowFP, listIndAlpha0AllowFP, listIndAlpha05AllowFP, listIndAlpha1AllowFP))
 bestVListAllow <- data.frame(bestVListAllow, c(listIndCovAllowFN,listIndAlpha0AllowFN, listIndAlpha05AllowFN, listIndAlpha1AllowFN))
@@ -456,8 +462,12 @@ summary(Dunnet)
 kruskal.test(bestTTree$BEST_VALUES ~ bestTTree$CONF, data = bestTTree)
 pairwise.wilcox.test(bestTTree$BEST_VALUES, bestTTree$CONF, p.adjust.method = "holm")
 
+both <- bestTListAllow
+both$BEST_VALUES <- both$BEST_VALUES+bestTListDeny$BEST_VALUES
+
 shapiro.test(bestTListAllow$BEST_VALUES)
 shapiro.test(bestTListDeny$BEST_VALUES)
+shapiro.test(both$BEST_VALUES)
 
 # Besause not normal distribution:
 
@@ -465,6 +475,8 @@ kruskal.test(bestTListAllow$BEST_VALUES ~ bestTListAllow$CONF, data = bestTListA
 pairwise.wilcox.test(bestTListAllow$BEST_VALUES, bestTListAllow$CONF, p.adjust.method = "holm")
 kruskal.test(bestTListDeny$BEST_VALUES ~ bestTListDeny$CONF, data = bestTListDeny)
 pairwise.wilcox.test(bestTListDeny$BEST_VALUES, bestTListDeny$CONF, p.adjust.method = "holm")
+kruskal.test(both$BEST_VALUES ~ both$CONF, data = both)
+pairwise.wilcox.test(both$BEST_VALUES, both$CONF, p.adjust.method = "holm")
 
 # --------
 # Stats
