@@ -824,26 +824,24 @@ To evaluate computation costs of the two approaches, and taking into considerati
 	\label{tab:PvsMtime}
 \end{table*}
 
-In this table we see that best times are obtained when $f_{CS}$ is used. More precisely, in the Pittsburgh approach, the distributions follow the normal and after performing the ANOVA test, we can say that the shorter execution time (the best) is found for $\alpha$ = 0.5 with statistical significance (p-value of 0.008623). In the case of the Michigan approach, we again find statistical differences (p-value of 5.537e-05) between the results, and thus we can say that the best result is obtained when we use $f_{CS}$ with an $\alpha$ value of 0.
+In this table we see that best times are obtained when $f_{CS}$ is used. More precisely, in the Pittsburgh approach, the distributions follow the normal and after performing the ANOVA test, we can say that the shorter execution time (the best) is found for $\alpha$ = 0.5 with statistical significance (p-value of 0.008623). In the case of the Michigan approach, we again find statistical differences (p-value of 5.537e-05) between the results, and thus we can say that the best result is obtained when we use $f_{CS}$ with an $\alpha$ value of 0. It seems that the time does decrease when $\alpha$ is different than 0, meaning that the depth of the tree is taken into account during the evaluation of the fitness. To study this effect, we have to look at the sizes of the best individuals obtained for each configuration, which are displayed in Table \ref{tab:PvsMsize}.
 
 \begin{table*}
 	\centering
 	\begin{tabular}{lll|l|l|l|l|}
 		\cline{4-7}
-		&                                                &                & \multicolumn{4}{l|}{Best individual size (h)}     \\ \cline{2-7} 
+		&                                                &                & \multicolumn{4}{l|}{Best individual size}     \\ \cline{2-7} 
 		\multicolumn{1}{l|}{}                                                                                                    & \multicolumn{2}{l|}{Fitness function}                           & Average            & Best   & Median & Worst  \\ \hline
 		\multicolumn{1}{|l|}{\multirow{4}{*}{\begin{tabular}[c]{@{}l@{}}Pittsburgh:\\ Individual eq. set of rules\end{tabular}}} & \multicolumn{2}{l|}{$f_{Acc}$}                                  & 60.2 $\pm$ 10.922 & 47 & 60 & 79 \\ \cline{2-7} 
 		\multicolumn{1}{|l|}{}                                                                                                   & \multicolumn{1}{l|}{\multirow{3}{*}{$f_{CS}$}} & $\alpha$ = 0   & 60 $\pm$ 11.086 & 43 & 60 & 83 \\ \cline{3-7} 
 		\multicolumn{1}{|l|}{}                                                                                                   & \multicolumn{1}{l|}{}                          & $\alpha$ = 0.5 & 40 $\pm$ 4.447 & 35 & 40  & 47 \\ \cline{3-7} 
-		\multicolumn{1}{|l|}{}                                                                                                   & \multicolumn{1}{l|}{}                          & $\alpha$ = 1   & 36.2 $\pm$ 3.011 & 31 & 37 & 39 \\ \hline
-		\multicolumn{1}{|l|}{\multirow{4}{*}{\begin{tabular}[c]{@{}l@{}}Michigan:\\ Individual eq. one rule\end{tabular}}}       & \multicolumn{2}{l|}{$f_{Acc}$}                                  &  $\pm$  &  &   &  \\ \cline{2-7} 
-		\multicolumn{1}{|l|}{}                                                                                                   & \multicolumn{1}{l|}{\multirow{3}{*}{$f_{CS}$}} & $\alpha$ = 0   &  $\pm$   &   &  &  \\ \cline{3-7} 
-		\multicolumn{1}{|l|}{}                                                                                                   & \multicolumn{1}{l|}{}                          & $\alpha$ = 0.5 &  $\pm$   &   &   &  \\ \cline{3-7} 
-		\multicolumn{1}{|l|}{}                                                                                                   & \multicolumn{1}{l|}{}                          & $\alpha$ = 1   &  $\pm$   &   &   &   \\ \hline
+		\multicolumn{1}{|l|}{}                                                                                                   & \multicolumn{1}{l|}{}                          & $\alpha$ = 1$*$   & 36.2 $\pm$ 3.011 & 31 & 37 & 39 \\ \hline
 	\end{tabular}
-	\caption{Comparison between Pittsburgh and Michigan approaches, in terms of the size -- number of rules -- of the best individuals. For the Pittsburgh approach, the size is the size of the tree, whilst in the Michigan approach it is the length of the list. The best value is not indicated given that we did not find statistically significant differences.}
+	\caption{Size of the best individuals for the Pittsburgh approach, where the size is the size of the tree. In the Michigan approach, the size is the length of the list -- number of conditions in the rule -- and always equal to 10. An $*$ indicates the  statistically significant best value for $\alpha$.}
 	\label{tab:PvsMsize}
 \end{table*}
+
+In this table we only show the results for the Pittsburgh approach, given that the sizes of the trees do change in GP, but the size of a list -- number of conditions in the rule -- does not, and in this case is always 10. Certainly, the size of the trees diminishes when the value of $\alpha$ grows. Since the distributions do not follow the normal, a non-parametric test (Kruskal-Wallis) has been used to asset the statistical significance \cite{DerracTests11}, obtaining a p-value of 1.679e-10. Then, the smaller individual is found for $f_{CS}$, and $\alpha$ = 1.
 
 % Esta se deja comentada por si piden más resultados
 
@@ -867,189 +865,6 @@ In this table we see that best times are obtained when $f_{CS}$ is used. More pr
 %\caption{Comparison between Pittsburgh and Michigan
 %  approaches, in terms of their execution time. For the Michigan approach, times for executing the algorithm once for the GRANTED class and another for the STRONGDENY are presented together. An $*$ indicates the  statistically significant best value for $\alpha$.}
 %\label{tab:PvsMtime}
-%\end{table*}
-
-%\subsection{Pittsburgh approach}
-%
-%The best obtained fitness when coding the individuals as sets of rules are detailed in Table \ref{tab:pittsburgh}. Because the algorithm has been executed 10 times, the data folded in a different way each, we obtained 10 best fitness, from which we present the worst case, the best case, and the median. It is important to point out that in the case of $F_{Acc}$ the best value is the maximum, whilst for $F_{CS}$, the best possible value is the minimum.
-%
-%\begin{table*}
-%\begin{center}
-%\begin{tabular}{cc|l|l|l|l|l|}
-%\cline{3-7}
-%                                                &                & Average & SD & Best       & Median & Worst \\ \hline
-%\multicolumn{2}{|c|}{$F_{Acc}$}                                  & 0.925   & $<$0.001 & 0.926      & 0.925  & 0.924 \\ \hline
-%\multicolumn{1}{|c|}{\multirow{3}{*}{$F_{CS}$}} & $\alpha$ = 0 *  & 7102.2  & 320.260 & 6198        & 7193   & 7253 \\ \cline{2-7} 
-%\multicolumn{1}{|c|}{}                          & $\alpha$ = 0.5 & 7235.95 & 41.825 & 7149       & 7250   & 7274 \\ \cline{2-7} 
-%\multicolumn{1}{|c|}{}                          & $\alpha$ = 1   & 7192.8  & 204.872 & 6620       & 7253.5 & 7298 \\ \hline
-%\end{tabular}
-%\caption{Best fitness obtained when the individual is coded as a set
-%  of rules, following the Pittsburgh approach, and with 10-fold
-%  cross-validation. Two different fitness functions have been used,
-%  and for $\alpha$ values of 0, 0.5, and 1. Note that in the case of
-%  $F_{Acc}$ higher is better, whilst for $F_{CS}$, the lower is
-%  better. An $*$ indicates the  statistically significant best value
-%  for $\alpha$.
-%}
-%\label{tab:pittsburgh}
-%\end{center}
-%\end{table*}
-%% I have been looking at these tables for a while and I can't make head or tails of them. Let's see what I don't understand individually, then collectively
-%% 3 and 4: I need units. Facc lists an average of 0.925 and then 7100. I have no idea if they can be compared with each other. Best and median, of what? You can use the top left corner to "title" the table. Also, you have to say in the caption what we are looking for. Are we comparing Facc with Fcs? In 4, i would expand FN and FP maybe merge columns. I can do that, no problem. But I still need the units. I am not sure we want to put that as a result. Maybe as a conclusion we could say that all errors are false positives, which, in principle, might be good: you are keeping company secrets alright.
-%% Then, all together. I really don't know what you are representing here. One says "fitness" other "validation". Both say Pittsburgh. If you are comparing different representations, the tables should be merged, because you are comparing different representations. Besides, one has the FP/FN and the other does not. If you are comparing results for both representations, either you include them in both or you don't. If the results are pretty much the same, don't include them and just name them, along with saying that all data can be taken from the repo. You can publish it in FigShare too. 
-%
-%In the case of $F_{Acc}$ for the Pittsburgh approach, since the
-%distributions do not follow the normal, a non-parametric test
-%(Kruskal-Wallis) has been used to asset the statistical significance
-%\cite{DerracTests11}, obtaining a p-value of 0.0001. $\alpha$ = 0 is
-%significantly different with $\alpha$ = 0.5 and $\alpha$ = 1, while
-%there are not differences between the two former (p-value = 0.08).
-%%this is an enumeration of results. What can you say about them? Do
-%%they prove your initial hypothesis? - JJ
-%% Please check these questions - JJ
-%
-%\begin{table*}
-%\begin{center}
-%\begin{tabular}{cc|l|l|l|l|l|l|l|}
-%\cline{3-9}
-%                                                &                & Average & SD & Best       & Median & Worst & FP (avg) & FN (avg)   \\ \hline
-%\multicolumn{2}{|c|}{$F_{Acc}$}                                  & 0.925 & 0.004 & 0.929      & 0.926  & 0.917 & 400.3 & 0 \\ \hline
-%\multicolumn{1}{|c|}{\multirow{3}{*}{$F_{CS}$}} & $\alpha$ = 0 *  & 0.926 & 0.006 & 0.941     & 0.926   & 0.917 & 390.7 & 1.7 \\ \cline{2-9} 
-%\multicolumn{1}{|c|}{}                          & $\alpha$ = 0.5 & 0.925 & 0.004 & 0.929       & 0.926   & 0.917 & 400.5 & 0 \\ \cline{2-9} 
-%\multicolumn{1}{|c|}{}                          & $\alpha$ = 1   & 0.922  & 0.008 & 0.929       & 0.924 & 0.902 & 398.1 & 0 \\ \hline
-%\end{tabular}
-%\caption{Best validation obtained for each case, for a different fitness function or configuration has been used, and for Pittsburgh approach. They are represented by their mean and median due to the 10-fold cross-validation used. An $*$ indicates the  statistically significant best value for $\alpha$. False positives (FP) and false negatives (FN) rates are also indicated.}
-%\label{tab:pittsburghVAL}
-%\end{center}
-%\end{table*}
-%
-%Taking into consideration the infrastructure available for the experiments (see Section\ref{sec:experiments}), the execution times for the Pittsburgh approach are in Table \ref{tab:pittsburghTime}, detailed by their average value and standard deviation (sd). Values are expressed in miliseconds, and it can be seen that it mostly takes the same to execute all of them, given that the stopping criterion is to finish 150 generations.
-%
-%\begin{table*}
-%\begin{center}
-%\begin{tabular}{ll|l|l|}
-%\cline{3-4}
-%                                                &                & Time (ms) (avg) & Time (sd)   \\ \hline
-%\multicolumn{2}{|l|}{$F_{Acc}$}                                  & 18298103.6      & 6478003.741 \\ \hline
-%\multicolumn{1}{|l|}{\multirow{3}{*}{$F_{CS}$}} & $\alpha$ = 0   & 18655785.8      & 5969635.164 \\ \cline{2-4} 
-%\multicolumn{1}{|l|}{}                          & $\alpha$ = 0.5 & 14697743.3      & 4071043.748 \\ \cline{2-4} 
-%\multicolumn{1}{|l|}{}                          & $\alpha$ = 1   & 16992321.8      & 4155989.808 \\ \hline
-%\end{tabular}
-%\caption{Average execution time for every kind of fitness function for the
-%  Pittsburgh approach.}
-%% You _really_ have to explain this a little bit more. First and
-%% foremost, tables are for comparing and assessing things. You
-%% probably want to compare times between the Pittsburgh and the
-%% Michigan approach, so they should go together. And in general and as
-%% said above, figures should be as self-contained as possible.
-%% More issues
-%% * I really have no idea why there are different times for GRANTED
-%% and STRONGDENY. Are they different kind of fitness functions?
-%% * The existence of the table itself. Are you really comparing times?
-%% Is it critical in some way? If the objective is to minimize error
-%% rates, as long as time is pretty much the same, it is not big deal.
-%% * Avgs and std devs go together in the same column with ± and using as
-%% many significant digits as needed. But this point is moot, because
-%% the table should leave anyway. Please remember that tables are not
-%% there to add one more paragraph saying "The results are on table
-%% whatever". They are to support your point or objective and to
-%% compare results. 
-%\label{tab:pittsburghTime}
-%\end{center}
-%\end{table*}
-%
-%\subsection{Michigan approach}
-%\label{subsec:michigan}
-%
-%\begin{table*}
-%\begin{center}
-%\begin{tabular}{cc|l|l|l|l|l|l|}
-%\cline{3-8}
-%                                                &                                 & Class      & Average & SD & Best & Median & Worst \\ \hline
-%\multicolumn{2}{|c|}{\multirow{2}{*}{$F_{Acc}$}}                                  & GRANTED    & 0.427 & 0.003 & 0.47 & 0.468 & 0.463 \\ \cline{3-8} 
-%\multicolumn{2}{|c|}{}                                                            & STRONGDENY & 0.047 & 0.004 & 0.057 & 0.046 & 0.041 \\ \hline
-%\multicolumn{1}{|c|}{\multirow{6}{*}{$F_{CS}$}} & \multirow{2}{*}{$\alpha$ = 0}   & GRANTED    & 21407.3 & 646.948 & 22200 & 21711 & 20630 \\ \cline{3-8} 
-%\multicolumn{1}{|c|}{}                          &                                 & STRONGDENY & 47087.6 & 647.29 & 47939 & 46941 & 46220 \\ \cline{2-8} 
-%\multicolumn{1}{|c|}{}                          & \multirow{2}{*}{$\alpha$ = 0.5} & GRANTED    & 26517.8 & 436.553 & 27360 & 26402.5 & 25685 \\ \cline{3-8} 
-%\multicolumn{1}{|c|}{}                          &                                 & STRONGDENY & 47372.9 & 664.005 & 47932 & 47403 & 46247 \\ \cline{2-8} 
-%\multicolumn{1}{|c|}{}                          & \multirow{2}{*}{$\alpha$ = 1}   & GRANTED    & 26724 & 502.579 & 27317 & 26853 & 25696 \\ \cline{3-8} 
-%\multicolumn{1}{|c|}{}                          &                                 & STRONGDENY & 46949.3 & 588.485 & 47967 & 46455 & 46189 \\ \hline
-%\end{tabular}
-%\caption{Best fitness obtained when the individual is coded as a
-%  single rule, following the Michigan approach, and represented by
-%  class. Data was divided in 10-folds to perform cross-validation. Two
-%  different fitness have been used, and for $\alpha$ values of 0, 0.5,
-%  and 1. Note that in the case of $F_{Acc}$ higher is better, whilst
-%  for $F_{CS}$, lower is better.}
-%\label{tab:michigan}
-%\end{center}
-%\end{table*}
-%
-%%We wanted to test different values of alpha because... (hypotesis you
-%%want to prove). However... 
-%No significant differences have been found between the results of
-%applying the % Please revise grammar thoroughly - JJ
-%three values of $\alpha$, for GRANTED and STRONGDENY. % which means,
-%                                % in the context of this problem,
-%                                % that... 
-%In the case of comparing the three distributions % Distributions or
-%                                % results for different values of
-%                                % alpha? 
-%for STRONGDENY, an ANOVA test has been applied instead Kruskal-Wallis,
-%as these distributions follow a normal curve. % and results obtained
-%                                % show that.... which means... 
-%                                
-%\begin{table*}
-%\begin{center}
-%\begin{tabular}{cc|l|l|l|l|l|l|l|l|}
-%\cline{3-10}
-%                                                &                                 & Class      & Average & SD & Best & Median & Worst & FP (avg) & FN (avg) \\ \hline
-%\multicolumn{2}{|c|}{\multirow{2}{*}{$F_{Acc}$}}                                  & GRANTED    & 0.467 & 0.004 & 0.472 & 0.468 & 0.459 & 112.3  & 0 \\ \cline{3-10} 
-%\multicolumn{2}{|c|}{}                                                            & STRONGDENY & 0.046 & 0.007 & 0.065 & 0.045 & 0.037 & 0 & 25.5 \\ \hline
-%\multicolumn{1}{|c|}{\multirow{6}{*}{$F_{CS}$}} & \multirow{2}{*}{$\alpha$ = 0}   & GRANTED    & 0.466 & 0.004 & 0.472 & 0.467 & 0.459 & 110.6 & 0 \\ \cline{3-10} 
-%\multicolumn{1}{|c|}{}                          &                                 & STRONGDENY & 0.024 & 0.015 & 0.045 & 0.023 & 0.003 & 0 & 473.8 \\ \cline{2-10} 
-%\multicolumn{1}{|c|}{}                          & \multirow{2}{*}{$\alpha$ = 0.5} & GRANTED    & 0.467 & 0.003 & 0.472 & 0.467 & 0.462 & 116.9 & 0 \\ \cline{3-10} 
-%\multicolumn{1}{|c|}{}                          &                                 & STRONGDENY & 0.02 & 0.016 & 0.061 & 0.015 & 0.002 & 0 & 188.8 \\ \cline{2-10} 
-%\multicolumn{1}{|c|}{}                          & \multirow{2}{*}{$\alpha$ = 1}   & GRANTED    & 0.465 & 0.004 & 0.472 & 0.466 & 0.458 & 161.2 & 0 \\ \cline{3-10} 
-%\multicolumn{1}{|c|}{}                          &                                 & STRONGDENY & 0.025 & 0.019 & 0.047 & 0.036 & 0 & 0 & 1274.5 \\ \hline
-%\end{tabular}
-%\caption{Best validation obtained for each case, for a different fitness function or configuration has been used, and for Michigan approach. They are represented by their mean and median due to the 10-fold cross-validation used. An $*$ indicates the  statistically significant best value for $\alpha$. False positives (FP) and false negatives (FN) rates are also indicated.}
-%\label{tab:michiganVAL}
-%\end{center}
-%\end{table*}
-%% Tables are for presenting information and to make the reader assess
-%% your method. In that sense, the Pittsburgh approach uses a single
-%% run to obtain a set of rules. The Michigan approach uses two
-%% runs. The reader does not care how those rules are obtained, even
-%% more so if you are not comparing how fast you find the STRONGDENY
-%% rule. First, you should report the results TOGETHER. Second,
-%% averages shold be for the running time of the run for STRONGDENY and
-%% the run for GRANT _together_, not each one separately.
-%
-%Furthermore, Tables \ref{tab:michigan} and \ref{tab:michiganVAL} show worse results for the class STRONGDENY than for the class GRANTED. If we analyse the ratio of instances in each class, we obtain that the majority class is indeed GRANTED, and it surpasses the STRONGDENY class in 13:1.
-%
-%Execution times (in average) can be consulted in Table \ref{tab:michiganTime}. It is important to understand, before making a comparison with results in Table \ref{tab:pittsburghTime} from the Pittsburgh approach, that for each different fitness or configuration of the fitness (different $\alpha$), in the Michigan approach the algorithm has to be executed twice, given that we obtain a single rule as a solution at the time we have two classes. This means that even though we can see the times described in Table \ref{tab:michiganTime} are around half the ones in Table \ref{tab:pittsburghTime}, the times for both classes should be added up together.
-%
-%\begin{table*}
-%\begin{center}
-%\begin{tabular}{lll|l|l|}
-%\cline{4-5}
-%                                                &                                                      &            & Time (ms) (avg) & Time (sd)   \\ \hline
-%\multicolumn{2}{|l|}{\multirow{2}{*}{$F_{Acc}$}}                                                       & GRANTED    & 8425228         & 1300396.316 \\ \cline{3-5} 
-%\multicolumn{2}{|l|}{}                                                                                 & STRONGDENY & 8066737.1       & 554270.509  \\ \hline
-%\multicolumn{1}{|l|}{\multirow{6}{*}{$F_{CS}$}} & \multicolumn{1}{l|}{\multirow{2}{*}{$\alpha$ = 0}}   & GRANTED    & 8477672.1       & 968703.507  \\ \cline{3-5} 
-%\multicolumn{1}{|l|}{}                          & \multicolumn{1}{l|}{}                                & STRONGDENY & 9186603         & 434653.670  \\ \cline{2-5} 
-%\multicolumn{1}{|l|}{}                          & \multicolumn{1}{l|}{\multirow{2}{*}{$\alpha$ = 0.5}} & GRANTED    & 8190161.6       & 781166.295  \\ \cline{3-5} 
-%\multicolumn{1}{|l|}{}                          & \multicolumn{1}{l|}{}                                & STRONGDENY & 8417774.8       & 671246.764  \\ \cline{2-5} 
-%\multicolumn{1}{|l|}{}                          & \multicolumn{1}{l|}{\multirow{2}{*}{$\alpha$ = 1}}   & GRANTED    & 9274908.1       & 1309297.086 \\ \cline{3-5} 
-%\multicolumn{1}{|l|}{}                          & \multicolumn{1}{l|}{}                                & STRONGDENY & 8955486.7       & 835676.926  \\ \hline
-%\end{tabular}
-%\caption{Average execution time for each used fitness for the
-%  Pittsburgh approach.}
-%% Besides all I've said above, "sd" can't be labelled "time". You
-%% should really put them in the same column. 
-%\label{tab:michiganTime}
-%\end{center}
 %\end{table*}
 
 \subsection{Examples of the best obtained individuals}

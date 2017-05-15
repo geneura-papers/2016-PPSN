@@ -478,6 +478,13 @@ pairwise.wilcox.test(bestTListDeny$BEST_VALUES, bestTListDeny$CONF, p.adjust.met
 kruskal.test(both$BEST_VALUES ~ both$CONF, data = both)
 pairwise.wilcox.test(both$BEST_VALUES, both$CONF, p.adjust.method = "holm")
 
+#----------------------------------------- SIZE
+
+shapiro.test(bestSTree$BEST_VALUES)
+
+kruskal.test(bestSTree$BEST_VALUES ~ bestSTree$CONF, data = bestSTree)
+pairwise.wilcox.test(bestSTree$BEST_VALUES, bestSTree$CONF, p.adjust.method = "holm")# Besause not normal distribution:
+
 # --------
 # Stats
 # --------
@@ -561,6 +568,15 @@ get_stats(get_vector(treeIndAlpha05Data, "BEST_SIZE"))
 get_stats(get_vector(treeIndAlpha1Data, "BEST_SIZE"))
 get_stats(get_vector(treeIndAlpha500Data, "BEST_SIZE"))
 get_stats(get_vector(treeIndAlpha1kData, "BEST_SIZE"))
+
+get_stats(get_vector(listIndCovAllowData, "BEST_SIZE"))
+get_stats(get_vector(listIndCovDenyData, "BEST_SIZE"))
+get_stats(get_vector(listIndAlpha0AllowData, "BEST_SIZE"))
+get_stats(get_vector(listIndAlpha0DenyData, "BEST_SIZE"))
+get_stats(get_vector(listIndAlpha05AllowData, "BEST_SIZE"))
+get_stats(get_vector(listIndAlpha05DenyData, "BEST_SIZE"))
+get_stats(get_vector(listIndAlpha1AllowData, "BEST_SIZE"))
+get_stats(get_vector(listIndAlpha1DenyData, "BEST_SIZE"))
 
 # ----------------------
 # Individual cleansing
