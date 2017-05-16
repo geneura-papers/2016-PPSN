@@ -456,8 +456,10 @@ of expressions formed by two different types of nodes:
    \end{array}
    \right .
    \end{math}
-\item {\em Action}: it is a leaf of the tree and therefore, a ``terminal'' state. Each decision is the result of applying the rule, so it is limited to two terms which are \texttt{GRANTED} or \texttt{STRONGDENY}.
+\item {\em Action}: it is a leaf of the tree and therefore, a ``terminal'' state. Each decision is the result of applying the rule, so it is limited to two terms which are \texttt{GRANTED} or \texttt{STRONGDENY}. Only one leaf must hung from a parent (variable) node.
 \end{itemize}
+
+Rules are constructed starting from each leaf of the tree and iterating to the upper parents, or variables, reading their data as string. Therefore, the number of rules of the set produced by the tree is equal to the number of its leafs. % PABLO: IDK if we should uncomment next paragraph: It is worth mentioning that some rules may contradict others during the evolution.
 
 On the other hand, in the Michigan approach the individual is coded as a single rule. In this case we have expressed the rule as a list of conditions, with a fixed class, obtaining just one rule for execution. Therefore, in order to cover all classes, the algorithm has to be executed once for each class; in our case, GRANTED, allowed actions, and STRONGDENY, for the denied actions.
 
