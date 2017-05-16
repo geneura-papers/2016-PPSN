@@ -36,12 +36,12 @@ University of C\'adiz, Spain.}
 The constant improvement in the computational abilities and features of the personal devices has favoured the application of the concept of ``Bring Your Own Device'' (BYOD) to the corporate world, making the companies to
 create policies geared towards enabling these devices as company tools. 
 This philosophy grants
-employees to bring and use their personal devices at
+employees the right to bring and use their personal devices at
 the company premises, on virtual private networks or otherwise, while
 on company work. Despite the significant advantages of this policy
 such as reducing overheads and increasing work productivity, 
 the
-access to internal network and the assets it holds by these personal
+access to the internal network and the assets it holds by these personal
 devices, whose corporate control is forcefully limited, exposes the companies to
 security threats such as leak of confidential data and access by
 unauthorised users. 
@@ -704,12 +704,28 @@ The aim of this comparison is to conclude which fitness function should be used,
 \begin{figure*}[h!tb]
 \centering
 \includegraphics[width=0.8\textwidth]{img/pittsburghItvsF.pdf}
-\caption{Convergence of fitness for each one of the tested fitness functions, and for Pittsburgh approach. Note that $f_{Acc}$ has to be maximised, whereas $f_{CS}$ has to be minimised.} % You know what I think about these graphs, from this one to the third. Using boxplots only makes them a bit more confusing. Boxplots should be used for comparing categories or factors. - JJ
+\caption{Convergence of fitness for each one of the tested fitness
+  functions, and for Pittsburgh approach. Note that $f_{Acc}$ has to
+  be maximised, whereas $f_{CS}$ has to be minimised.} % You know what
+                                % I think about these graphs, from
+                                % this one to the third. Using
+                                % boxplots only makes them a bit more
+                                % confusing. Boxplots should be used
+                                % for comparing categories or
+                                % factors. - JJ 
 
 \label{fig:pittsburghItvsF}
 \end{figure*}
 
-For the sake of clarity, $f_{CS}$ has been divided by the maximum value -- the number of instances for training -- it might take. By looking at the Pittsburgh approach values in Figure \ref{fig:pittsburghItvsF}, we see that mostly all configurations tend to converge around iteration 40, but it seems that $f_{CS}$ with $\alpha = 0.5$ is the configuration that reaches the best solution faster, around the 30th iteration.
+For the sake of clarity, $f_{CS}$ has been divided by the maximum
+value -- the number of instances for training -- it might take. By
+looking at the Pittsburgh approach values in Figure
+\ref{fig:pittsburghItvsF}, we see that mostly all configurations tend
+% Don't "see", "show". You don't know what the reader "sees". You know
+% what you "show". - JJ
+to converge around iteration 40, but it seems that $f_{CS}$ with
+$\alpha = 0.5$ is the configuration that reaches the best solution
+faster, around the 30th iteration.  
 
 \begin{figure*}[h!tb]
 	\centering
@@ -727,19 +743,32 @@ With regard to the Michigan approach, a higher variability is noticeable in Figu
 	\label{fig:michiganItvsF_deny}
 \end{figure*}
 
-We can advance that the best results might be obtained for $f_{CS}$ with $\alpha = 0.5$. However, as it can be seen that there is a considerable difference between the performance, in terms of best obtained fitness, of the two used approaches, we have to thoroughly compare them.
+We can advance that the best results might be obtained for $f_{CS}$
+with $\alpha = 0.5$. However, as it can be seen that there is a
+considerable difference between the performance, in terms of best
+obtained fitness, of the two used approaches, we have to thoroughly
+compare them. % Sentence is too long.
 
 \subsection{The Pittsburgh vs. Michigan approach} 
 \label{subsec:approachcomparison}
 
-Once the variability of the obtained fitness has been studied, and always taking into account that those values come from their evaluation in a training subset of the data, now we \textit{validate} the proposed approaches with a test set. The way to evaluate this is similar to Equation \ref{eq:accuracy}, but using the test subset of the data:
+Once the variability of the obtained fitness has been studied, and
+always taking into account that those values come from their
+evaluation in a training subset of the data, now we \textit{validate}
+the proposed approaches with a test set. %You validate with a
+                                %validation set. You test with a test
+                                %set - JJ
+ The way to evaluate this is similar to Equation \ref{eq:accuracy}, but using the test subset of the data:
 
 \begin{equation}
 \label{eq:VALaccuracy}
 v_{Acc} = (TP + TN) / T_{tst}
 \end{equation}
 
-This measure will be the same no matter what approach has been taken nor which fitness function has been used to evaluate the individuals. Table \ref{tab:PvsMvalidation} shows the average, best, median, and worst results from the evaluations with $f_{Acc}$ and also $f_{CS}$.
+This measure will be the same independently of the approach or fitness
+function has used to evaluate the individuals. Table
+\ref{tab:PvsMvalidation} shows the average, best, median, and worst
+results from the evaluations with $f_{Acc}$ and also $f_{CS}$. 
 
 \begin{table*}
 	\centering
