@@ -36,18 +36,18 @@ University of C\'adiz, Spain.}
 The constant improvement in the computational abilities and features of the personal devices has favoured the application of the concept of ``Bring Your Own Device'' (BYOD) to the corporate world, making the companies to
 create policies geared towards enabling these devices as company tools. 
 This philosophy grants
-employees to bring and use their personal devices at
+employees the right to bring and use their personal devices at
 the company premises, on virtual private networks or otherwise, while
 on company work. Despite the significant advantages of this policy
 such as reducing overheads and increasing work productivity, 
 the
-access to internal network and the assets it holds by these personal
+access to the internal network and the assets it holds by these personal
 devices, whose corporate control is forcefully limited, exposes the companies to
 security threats such as leak of confidential data and access by
 unauthorised users. 
 To handle these kinds of threats, we propose a way of detecting and controlling abnormal user
 access by establishing a policy based on classification rules with the less false positives as possible. Our
-approach for the problem of BYOD security uses Genetic Programming
+approach for the problem of BYOD security uses Genetic Programming %our approach is not to solve the problem of BYOD security, but the specific problem of BLABLA in BYOD security. Pablo
 (GP), since GP is 
 capable of discovering of novel and interesting threat classification
 rules, with the additional feature of presenting the new rules in an
@@ -56,7 +56,7 @@ easily understandable way. % These rules are a re-formulation of the
 We obtain good dataset coverage 
 after the simulation results over real data, and after testing
 different fitness functions and configurations in the way of coding the individuals.
-Through these comparisons, we can establish a proof of concept to demonstrate the viability, effectiveness, and applicability of the GP approach, in certain conditions, to the BYOD security context. 
+Through these comparisons, we can establish a proof of concept to demonstrate the viability, effectiveness, and applicability of the GP approach, in certain conditions, to the BYOD security context. %... for the BLABLA problem? (as I mentioned above) Pablo
 \end{abstract}
 
 
@@ -87,7 +87,7 @@ has become a very popular practise, integrated into companies
 In the corporate world, the BYOD
 practice refers to allowing employees to use their
 personal laptops, smartphones, tablets, and other mobile devices
-for work-related tasks, but not necessarily while being in the workplace This has many
+for work-related tasks, but not necessarily while being in the workplace. This has many
 advantages \cite{singh2012byod}; among them we mention saving costs --
 since the company saves money on high-priced devices that
 it would normally be required to purchase for their employees --, and
@@ -157,7 +157,8 @@ situation.
 The aim of this paper is to propose a novel technique for extracting
 BYOD security rules from activation instances that might help the CSO in the definition and refinement
 of security policies that, eventually, classify an upcoming
-event or user action as permitted or not permitted. The objective, thus, is to obtain a way of correctly classifying the most incoming events as possible, avoiding mostly the false positives, which means that events that should be non permitted must never be. This could be used
+event or user action as permitted or not permitted. The objective, thus, is to obtain a way of correctly classifying the most incoming events as possible, avoiding mostly the false positives, which means that events that should be non permitted must never be. %Pablo: some cool reference to add here?
+This could be used
 in two different scenarios. In the first one a CSO has hand-coded a set of security
 policies and wants to simplify or generalise them. The second scenario 
 would simply dispense with rules and have the CSO decide, by hand, which
@@ -199,14 +200,15 @@ of classification rules from the BYOD context data, obtaining good fitness, and 
 rules in a way that is helpful for a CSO. We demonstrate so by using
 the developed framework with a real-world dataset, and comparing two
 ways of coding the individuals -- as a set of rules, or as a single
-rule -- so that we are able to choose the best approach for our system. We make this comparison because while obtaining a set of rules as solution is computationally expensive due to the need of longer evaluations, to evaluate a single rule not taking into account how it interacts with what the others cover \cite{freitas2002data} can lead to massive overlapping. Hence, we must study their accuracy despite of their advantages and disadvantages. In addition, we choose the most appropriate (fastest to converge and with best value) fitness after comparing the use of a most simpler-accuracy-measure one, and a complex one which takes into account the complexity of the individuals. Finally, we propose the approach with the best performance in terms of best fitness value. 
+rule -- so that we are able to choose the best approach for our system. We make this comparison because while obtaining a set of rules as solution is computationally expensive due to the need of longer evaluations, to evaluate a single rule not taking into account how it interacts with what the others cover \cite{freitas2002data} can lead to massive overlapping. Hence, we must study their accuracy despite of their advantages and disadvantages. In addition, we choose the most appropriate (fastest to converge and with best value) fitness after comparing the use of a most simpler-accuracy-measure one, %simpler-accuracy-measure is gramatically correct? It is a very loooong word :P Pablo
+and a complex one which takes into account the complexity of the individuals. Finally, we propose the approach with the best performance in terms of best fitness value. 
 
 The rest of the paper is organised as follows. In Section
 \ref{sec:SotA} we give an overview of the advances in GP applied to
 rule evolution and its applications; then, Section
-\ref{sec:methodology} described the proposed methodology, depicting
+\ref{sec:methodology} describes the proposed methodology, depicting
 the problem this work tries to solve and describing the available
-dataset and the proposed GP framework. The experimental set-up, as
+dataset and the proposed GP framework. The experimental setup, as %Pablo: I've seen more times the "setup" definition rather than "set-up"
 well as the different set of experiments that have been carried out
 are also described in that section. Section \ref{sec:gp} shows and discusses the
 obtained results from the application of GP to security rules
@@ -456,10 +458,12 @@ of expressions formed by two different types of nodes:
    \end{array}
    \right .
    \end{math}
-\item {\em Action}: it is a leaf of the tree and therefore, a ``terminal'' state. Each decision is the result of applying the rule, so it is limited to two terms which are \texttt{GRANTED} or \texttt{STRONGDENY}.
+\item {\em Action}: it is a leaf of the tree and therefore, a ``terminal'' state. Each decision is the result of applying the rule, so it is limited to two terms which are \texttt{GRANTED} or \texttt{STRONGDENY}. Only one leaf must hung from a parent (variable) node.
 \end{itemize}
 
-On the other hand, in the Michigan approach the individual is coded as a single rule. In this case we have expressed the rule as a list of conditions, with a fixed class, obtaining just one rule for execution. Therefore, in order to cover all classes, the algorithm has to be executed once for each class; in our case, GRANTED, allowed actions, and STRONGDENY, for the denied actions.
+Rules are constructed starting from each leaf of the tree and iterating to the upper parents, or variables, reading their data as string. Therefore, the number of rules of the set produced by the tree is equal to the number of its leafs. % PABLO: IDK if we should uncomment next paragraph: It is worth mentioning that some rules may contradict others during the evolution.
+
+On the other hand, in the Michigan approach the individual is coded as a single rule. In this case we have expressed the rule as a list of conditions, with a fixed class, obtaining just one rule for execution. That means we are not using GP in this case, because the generated individual is not a tree, but a vector, so we are applying a regular Genetic Algorithm (GA) instead. Therefore, in order to cover all classes, the algorithm has to be executed once for each class; in our case, GRANTED, allowed actions, and STRONGDENY, for the denied actions.
 
 Indeed, each implementation has its advantages and disadvantages. To directly obtain a set of rules (Pittsburgh) able to classify instances of every existing class means that the algorithm has to be run once, while having the solution coded as a single rule (Michigan), we have to obtain as many rules as classes are defined, and so it yields to many executions of the algorithm. At the same time, obtaining a set of rules as solution is more computationally expensive due to the need of longer evaluations. Lastly, to evaluate a single rule not taking into account how it interacts with what the others cover \cite{freitas2002data}, it can lead to massive overlapping with the consequent loss of efficiency.
 
@@ -702,12 +706,28 @@ The aim of this comparison is to conclude which fitness function should be used,
 \begin{figure*}[h!tb]
 \centering
 \includegraphics[width=0.8\textwidth]{img/pittsburghItvsF.pdf}
-\caption{Convergence of fitness for each one of the tested fitness functions, and for Pittsburgh approach. Note that $f_{Acc}$ has to be maximised, whereas $f_{CS}$ has to be minimised.} % You know what I think about these graphs, from this one to the third. Using boxplots only makes them a bit more confusing. Boxplots should be used for comparing categories or factors. - JJ
+\caption{Convergence of fitness for each one of the tested fitness
+  functions, and for Pittsburgh approach. Note that $f_{Acc}$ has to
+  be maximised, whereas $f_{CS}$ has to be minimised.} % You know what
+                                % I think about these graphs, from
+                                % this one to the third. Using
+                                % boxplots only makes them a bit more
+                                % confusing. Boxplots should be used
+                                % for comparing categories or
+                                % factors. - JJ 
 
 \label{fig:pittsburghItvsF}
 \end{figure*}
 
-For the sake of clarity, $f_{CS}$ has been divided by the maximum value -- the number of instances for training -- it might take. By looking at the Pittsburgh approach values in Figure \ref{fig:pittsburghItvsF}, we see that mostly all configurations tend to converge around iteration 40, but it seems that $f_{CS}$ with $\alpha = 0.5$ is the configuration that reaches the best solution faster, around the 30th iteration.
+For the sake of clarity, $f_{CS}$ has been divided by the maximum
+value -- the number of instances for training -- it might take. By
+looking at the Pittsburgh approach values in Figure
+\ref{fig:pittsburghItvsF}, we see that mostly all configurations tend
+% Don't "see", "show". You don't know what the reader "sees". You know
+% what you "show". - JJ
+to converge around iteration 40, but it seems that $f_{CS}$ with
+$\alpha = 0.5$ is the configuration that reaches the best solution
+faster, around the 30th iteration.  
 
 \begin{figure*}[h!tb]
 	\centering
@@ -725,19 +745,32 @@ With regard to the Michigan approach, a higher variability is noticeable in Figu
 	\label{fig:michiganItvsF_deny}
 \end{figure*}
 
-We can advance that the best results might be obtained for $f_{CS}$ with $\alpha = 0.5$. However, as it can be seen that there is a considerable difference between the performance, in terms of best obtained fitness, of the two used approaches, we have to thoroughly compare them.
+We can advance that the best results might be obtained for $f_{CS}$
+with $\alpha = 0.5$. However, as it can be seen that there is a
+considerable difference between the performance, in terms of best
+obtained fitness, of the two used approaches, we have to thoroughly
+compare them. % Sentence is too long.
 
 \subsection{The Pittsburgh vs. Michigan approach} 
 \label{subsec:approachcomparison}
 
-Once the variability of the obtained fitness has been studied, and always taking into account that those values come from their evaluation in a training subset of the data, now we \textit{validate} the proposed approaches with a test set. The way to evaluate this is similar to Equation \ref{eq:accuracy}, but using the test subset of the data:
+Once the variability of the obtained fitness has been studied, and
+always taking into account that those values come from their
+evaluation in a training subset of the data, now we \textit{validate}
+the proposed approaches with a test set. %You validate with a
+                                %validation set. You test with a test
+                                %set - JJ
+ The way to evaluate this is similar to Equation \ref{eq:accuracy}, but using the test subset of the data:
 
 \begin{equation}
 \label{eq:VALaccuracy}
 v_{Acc} = (TP + TN) / T_{tst}
 \end{equation}
 
-This measure will be the same no matter what approach has been taken nor which fitness function has been used to evaluate the individuals. Table \ref{tab:PvsMvalidation} shows the average, best, median, and worst results from the evaluations with $f_{Acc}$ and also $f_{CS}$.
+This measure will be the same independently of the approach or fitness
+function has used to evaluate the individuals. Table
+\ref{tab:PvsMvalidation} shows the average, best, median, and worst
+results from the evaluations with $f_{Acc}$ and also $f_{CS}$. 
 
 \begin{table*}
 	\centering
