@@ -46,9 +46,8 @@ devices, whose corporate control is forcefully limited, exposes the companies to
 security threats such as leak of confidential data and access by
 unauthorised users. 
 To handle these kinds of threats, we propose a way of detecting and controlling abnormal user
-access by establishing a policy based on classification rules with the less false positives as possible. Our
-approach for the problem of BYOD security uses Genetic Programming %our approach is not to solve the problem of BYOD security, but the specific problem of BLABLA in BYOD security. Pablo
-(GP), since GP is 
+access by establishing a policy based on classification rules, mainly focused on having the less false positives as possible. Our
+approach to address the problem of automatically obtaining classification rules to improve BYOD security uses Genetic Programming (GP), since GP is 
 capable of discovering of novel and interesting threat classification
 rules, with the additional feature of presenting the new rules in an
 easily understandable way. % These rules are a re-formulation of the
@@ -56,7 +55,7 @@ easily understandable way. % These rules are a re-formulation of the
 We obtain good dataset coverage 
 after the simulation results over real data, and after testing
 different fitness functions and configurations in the way of coding the individuals.
-Through these comparisons, we can establish a proof of concept to demonstrate the viability, effectiveness, and applicability of the GP approach, in certain conditions, to the BYOD security context. %... for the BLABLA problem? (as I mentioned above) Pablo
+Through these comparisons, we can establish a proof of concept to demonstrate the viability, effectiveness, and applicability of the GP approach, in certain conditions, to the BYOD security context for the automatic discovery of rules. 
 \end{abstract}
 
 
@@ -200,8 +199,7 @@ of classification rules from the BYOD context data, obtaining good fitness, and 
 rules in a way that is helpful for a CSO. We demonstrate so by using
 the developed framework with a real-world dataset, and comparing two
 ways of coding the individuals -- as a set of rules, or as a single
-rule -- so that we are able to choose the best approach for our system. We make this comparison because while obtaining a set of rules as solution is computationally expensive due to the need of longer evaluations, to evaluate a single rule not taking into account how it interacts with what the others cover \cite{freitas2002data} can lead to massive overlapping. Hence, we must study their accuracy despite of their advantages and disadvantages. In addition, we choose the most appropriate (fastest to converge and with best value) fitness after comparing the use of a most simpler-accuracy-measure one, %simpler-accuracy-measure is gramatically correct? It is a very loooong word :P Pablo
-and a complex one which takes into account the complexity of the individuals. Finally, we propose the approach with the best performance in terms of best fitness value. 
+rule -- so that we are able to choose the best approach for our system. We make this comparison because while obtaining a set of rules as solution is computationally expensive due to the need of longer evaluations, to evaluate a single rule not taking into account how it interacts with what the others cover \cite{freitas2002data} can lead to massive overlapping. Hence, we must study their accuracy despite of their advantages and disadvantages. In addition, we choose the most appropriate (fastest to converge and with best value) fitness after comparing the use of a most simpler one that only measures the accuracy, and a complex one which takes into account the complexity of the individuals. Finally, we propose the approach with the best performance in terms of best fitness value. 
 
 The rest of the paper is organised as follows. In Section
 \ref{sec:SotA} we give an overview of the advances in GP applied to
