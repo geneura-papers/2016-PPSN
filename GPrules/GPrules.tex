@@ -459,7 +459,7 @@ of expressions formed by two different types of nodes:
 \item {\em Action}: it is a leaf of the tree and therefore, a ``terminal'' state. Each decision is the result of applying the rule, so it is limited to two terms which are \texttt{GRANTED} or \texttt{STRONGDENY}. Only one leaf must hung from a parent (variable) node.
 \end{itemize}
 
-Rules are constructed starting from each leaf of the tree and iterating to the upper parents, or variables, reading their data as string. Therefore, the number of rules of the set produced by the tree is equal to the number of its leafs. % PABLO: IDK if we should uncomment next paragraph: It is worth mentioning that some rules may contradict others during the evolution.
+Rules are constructed starting from each leaf of the tree and iterating to the upper parents, or variables, reading their data as string. Therefore, the number of rules of the set produced by the tree is equal to the number of its leafs. It is worth mentioning that some rules may contradict others during the evolution. This is not a problem because those rules will not cover any instance and thus they will not contribute to the fitness value.
 
 On the other hand, in the Michigan approach the individual is coded as a single rule. In this case we have expressed the rule as a list of conditions, with a fixed class, obtaining just one rule for execution. That means we are not using GP in this case, because the generated individual is not a tree, but a vector, so we are applying a regular Genetic Algorithm (GA) instead. Therefore, in order to cover all classes, the algorithm has to be executed once for each class; in our case, GRANTED, allowed actions, and STRONGDENY, for the denied actions.
 
@@ -720,10 +720,7 @@ The aim of this comparison is to conclude which fitness function should be used,
 For the sake of clarity, $f_{CS}$ has been divided by the maximum
 value -- the number of instances for training -- it might take. By
 looking at the Pittsburgh approach values in Figure
-\ref{fig:pittsburghItvsF}, we see that mostly all configurations tend
-% Don't "see", "show". You don't know what the reader "sees". You know
-% what you "show". - JJ
-to converge around iteration 40, but it seems that $f_{CS}$ with
+\ref{fig:pittsburghItvsF}, we show that mostly all configurations tend to converge around iteration 40, but it seems that $f_{CS}$ with
 $\alpha = 0.5$ is the configuration that reaches the best solution
 faster, around the 30th iteration.  
 
@@ -744,10 +741,8 @@ With regard to the Michigan approach, a higher variability is noticeable in Figu
 \end{figure*}
 
 We can advance that the best results might be obtained for $f_{CS}$
-with $\alpha = 0.5$. However, as it can be seen that there is a
-considerable difference between the performance, in terms of best
-obtained fitness, of the two used approaches, we have to thoroughly
-compare them. % Sentence is too long.
+with $\alpha = 0.5$. However, there is a considerable difference between the performance, in terms of best
+obtained fitness, of the two used approaches. In this way, we have to thoroughly compare them. In the next section we do so by chosing the validation coverage and the ratio of false positives and negatives as independent measurements. 
 
 \subsection{The Pittsburgh vs. Michigan approach} 
 \label{subsec:approachcomparison}
@@ -755,9 +750,7 @@ compare them. % Sentence is too long.
 Once the variability of the obtained fitness has been studied, and
 always taking into account that those values come from their
 evaluation in a training subset of the data, now we \textit{validate}
-the proposed approaches with a test set. %You validate with a
-                                %validation set. You test with a test
-                                %set - JJ
+the proposed approaches with a validation set, similar to the test set used in classification problems \cite{witten2005data}. 
  The way to evaluate this is similar to Equation \ref{eq:accuracy}, but using the test subset of the data:
 
 \begin{equation}
@@ -922,9 +915,9 @@ In general, what we have seen in the individuals obtained by the Pittsburgh appr
 % We have done this and that in this paper and met objective 1 and 2 or answered research question 1 and 2; however, we think that question 3 has not been answered properly
 % We think we could answer question 3 properly if we did this and that. Which is left as future work.
 
-In this work, we wanted to help companies adopting the BYOD philosophy by developing a tool that is able to discover rules using a GP approach, from the users behaviour when interacting with their devices, at the time it minimises the false negatives, so that a dangerous action is never taken as permitted. To this end, we have studied different ways to implement a methodology based on GP, by two approaches: Pittsburgh, in which the individuals are coded as set or rules; and Michigan, where the individuals are a single rule, and thus a rule for every class has to be generated. In addition, two different fitness functions have been used to study their effect over the validation accuracy rate and the number of false positives and negatives.
+In this work, we wanted to help companies adopting the BYOD philosophy by developing a tool that is able to discover rules using a GP approach, from the users behaviour when interacting with their devices, at the time it minimises the false positives, so that a dangerous action is never taken as permitted. To this end, we have studied different ways to implement a methodology based on GP, by two approaches: Pittsburgh, in which the individuals are coded as set or rules; and Michigan, where the individuals are a single rule, and thus a rule for every class has to be generated. In addition, two different fitness functions have been used to study their effect over the validation accuracy rate and the number of false positives and negatives.
 
-The results make a fine proof of concept, as we obtained readable rules and promising rates for the number of false negatives (around 7\%).
+The results make a fine proof of concept, as we obtained readable rules and promising rates for the number of false positives (around 7\%).
 
 For our future work we will implement these solutions to continue improving our system.
 
