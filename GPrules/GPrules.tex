@@ -523,6 +523,7 @@ Rules presented in this way offer good readability which is key to understand th
 % Still can't see why you need to train several times. Can't you just
 % train once and obtain the best individuals at the end of training? -
 % JJ
+% (Paloma) No, you train for every fold.
 
 \subsection{Choosing a suitable fitness}
 \label{subsec:chossingfitness}
@@ -533,6 +534,7 @@ the most used metric to calculate it is the accuracy
 ratio of the correctly classified instances among the total of
 instances. %However, in our particular case, there is a strong
            %asymetry between FP and FN. That is why... - JJ
+           % (Paloma) ????
 Witten et al. use in \cite{witten2005data} the
 concepts of true positive/negative and false positive/negative. The
 first refer to the instances classified correctly, and the latter are
