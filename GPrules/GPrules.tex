@@ -699,7 +699,7 @@ approach, justifying this choice.
 \subsection{$F_{Acc}$ vs. $F_{CS}$} 
 \label{subsec:fitnesscomparison}
 
-The aim of this comparison is to conclude which fitness function should be used, discussing the results from the point of view of convergence, and that means finding which one reaches the best value faster. To study this have displayed the obtained fitness through the iterations for the Pittsburgh approach in Figure \ref{fig:pittsburghItvsF} and for the Michigan approach in Figures \ref{fig:michiganItvsF_allow} and \ref{fig:michiganItvsF_deny}. Figures for GRANTED and STRONGDENY classes are separated because the solution is a single rule instead of a set of rules, and therefore the algorithm has to be executed once per class. With regard to the best fitness obtained for each fitness function, they are similar in the same scope, which means that similar values are found for all values of $\alpha$ in $f_{CS}$ in the two approaches separately.
+The aim of this comparison is to conclude which fitness function should be used, discussing the results from the point of view of convergence, and that means finding which one reaches the best value faster. To study this we have displayed the obtained fitness through the iterations for the Pittsburgh approach in Figure \ref{fig:pittsburghItvsF} and for the Michigan approach in Figures \ref{fig:michiganItvsF_allow} and \ref{fig:michiganItvsF_deny}. Figures for GRANTED and STRONGDENY classes are separated because the solution is a single rule instead of a set of rules, and therefore the algorithm has to be executed once per class. With regard to the best fitness obtained for each fitness function, they are similar in the same scope, which means that similar values are found for all values of $\alpha$ in $f_{CS}$ in the two approaches separately.
 
 \begin{figure*}[h!tb]
 \centering
@@ -903,9 +903,16 @@ In this table we only show the results for the Pittsburgh approach, given that t
 
 What we also have to determine is which kind of presented solution is better: showing the CSO a set of rules or a single rule for each class. As already discussed in Section \ref{sec:methodology}, each one has their advantages and disadvantages, but now we directly compare some of the best individuals obtained for both implementations, proving their readability and usefulness for the CSOs. In addition, we present the relation between the obtained solutions and the original rules that allowed to classify the dataset we have been working with.
 
-As we have executed the experiments performing a 10-fold cross-validation, in order to study the best individuals for each configuration we need to consider the values of the validation accuracies per fold, and then choose the best one. What we have seen in the Pittsburgh obtained individuals is that most of the rules in the set classify for the GRANTED class, and less than 13\% are classifying for the STRONGDENY class. Again, the effect of the imbalance in the dataset is present. Actually, in some cases the set of rules only classify to GRANTED, and this can be seen as a ``whitelist'', meaning that everything that is not specify by these rules will be automatically denied.
+As we have executed the experiments performing a 10-fold cross-validation, in order to study the best individuals for each configuration we need to consider the values of the validation accuracies per fold, and then choose the best one. In Figure \ref{fig:bestInd_fCS_a0} we show an example of best individual, in this case obtained when using $f_{CS}$ as the fitness function with an $\alpha$ value of 0. The tree in this figure represents a set of 16 rules, two of them classifying to the STRONGDENY class, whilst the rest classify towards the GRANTED class. 
 
+\begin{figure*}[h!tb]
+	\centering
+	\includegraphics[width=0.8\textwidth]{img/bestInd_fCS_a0.pdf}
+	\caption{An example of best individual obtained when using $f_{CS}$ as the fitness function with an $\alpha$ value of 0. This tree represents a set of 16 rules, two of them classifying to the STRONGDENY class, whilst the rest classify towards the GRANTED class.}
+	\label{fig:bestInd_fCS_a0}
+\end{figure*}
 
+In general, what we have seen in the individuals obtained by the Pittsburgh approach is that most of the rules in the set classify for the GRANTED class, and less than 13\% are classifying for the STRONGDENY class. Again, the effect of the imbalance in the dataset is present. Actually, in some cases the set of rules only classify to GRANTED, and this can be seen as a ``whitelist'', meaning that everything that is not specify by these rules will be automatically denied. 
 
 \section{Conclusions and Future Work}
 \label{sec:future}
