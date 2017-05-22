@@ -421,20 +421,14 @@ able to process a set of user actions that have been allowed or denied
 based on initial, simple rules, and discover new rules through GP by exploring
 the whole space of possible combinations among the attribute
 values. The coding of the individual might take two approaches, named \textit{Pittsburgh} and \textit{Michigan}
-\cite{freitas2002data}. On the one hand, following the Pittsburgh
-approach, the proposed method uses GP to create an individual tree to
+\cite{freitas2002data}.
+
+The Pittsburgh uses GP to create an individual tree that
 model a set of different rules, given that the problem can be seen as
 a 
 classification one and therefore the model can be a decision tree
 \cite{safavian1990survey}. Then, the generated tree is a binary tree
 of expressions formed by two different types of nodes:
-% What you are _actually_ doing is re-discovering the original simple
-% rules.
-% (Paloma) No, I'm not.
-% You have to justify in what way you are _generalizing_ from
-% those simple rules - JJ
-% (Paloma) No, not generalising either.
-% Then what are you doing precisely? - JJ
 
 \begin{itemize}
 \item {\em Variable}: it is a logical expression formed by a prefix, a
@@ -459,11 +453,32 @@ of expressions formed by two different types of nodes:
 
 Rules are constructed starting from each leaf of the tree and iterating to the upper parents, or variables, reading their data as string. Therefore, the number of rules of the set produced by the tree is equal to the number of its leafs. It is worth mentioning that some rules may contradict others during the evolution. This is not a problem because those rules will not cover any instance and thus they will not contribute to the fitness value.
 
-On the other hand, in the Michigan approach the individual is coded as a single rule. In this case we have expressed the rule as a list of conditions, with a fixed class, obtaining just one rule for execution. That means we are not using GP in this case, because the generated individual is not a tree, but a vector, so we are applying a regular Genetic Algorithm (GA) instead. Therefore, in order to cover all classes, the algorithm has to be executed once for each class; in our case, GRANTED, allowed actions, and STRONGDENY, for the denied actions.
+The second approach tested, called Michigan approach, assigns a single
+rule to every individual. In this paper we have expressed the rule as
+a list of conditions, with a fixed class, obtaining just one rule for
+execution. That means we are not using GP in this case, because the
+generated individual is not a tree, but a vector, so we are applying a
+regular Genetic Algorithm (GA) instead. Therefore, in order to cover
+all classes, the algorithm has to be executed once for each class; in
+our case, GRANTED, allowed actions, and STRONGDENY, for the denied
+actions. 
 
-Indeed, each implementation has its advantages and disadvantages. To directly obtain a set of rules (Pittsburgh) able to classify instances of every existing class means that the algorithm has to be run once, while having the solution coded as a single rule (Michigan), we have to obtain as many rules as classes are defined, and so it yields to many executions of the algorithm. At the same time, obtaining a set of rules as solution is more computationally expensive due to the need of longer evaluations. Lastly, to evaluate a single rule not taking into account how it interacts with what the others cover \cite{freitas2002data}, it can lead to massive overlapping with the consequent loss of efficiency.
+Indeed, each approach has its advantages and disadvantages. To
+directly obtain a set of rules (Pittsburgh) able to classify instances
+of every existing class means that the algorithm has to be run once,
+while having the solution coded as a single rule (Michigan), we have
+to obtain as many rules as classes are defined, and so it yields to
+many executions of the algorithm. % yields to? - JJ
+At the same time, obtaining a set of rules as solution is more
+computationally expensive due to the need of longer
+evaluations. Lastly, to evaluate a single rule not taking into account
+how it interacts with what the others cover \cite{freitas2002data}, it
+can lead to massive overlapping with the consequent loss of
+efficiency. 
 
-Furthermore, the variables can be differentiated into three types, described as follows \cite{witten2005data}:
+% This could go above, where you talk about variables - JJ
+Furthermore, the variables can be differentiated into three types, 
+described as follows \cite{witten2005data}:
 
 \begin{itemize}
 \item {\em Binary Variable}: those with a boolean value, for instance, variables that are related with the device services switched on or off and important features such as the device having or not an antivirus installed. 
@@ -533,6 +548,8 @@ ratio of the correctly classified instances among the total of
 instances. %However, in our particular case, there is a strong
            %asymetry between FP and FN. That is why... - JJ
            % (Paloma) ????
+% If you are going to mention imbalance between FP and FN this would
+% be the place to introduce it. 
 Witten et al. use in \cite{witten2005data} the
 concepts of true positive/negative and false positive/negative. The
 first refer to the instances classified correctly, and the latter are
@@ -654,7 +671,8 @@ The algorithms have been executed in a cluster node with 16 Intel(R) Xeon(R) CPU
 The specific source code of the proposed method is available under a LGPL V3 License 
 at \url{https://github.com/fergunet/GPRuleRefinement}, as a module for 
 the framework OSGiLiath \cite{DBLP:journals/soco/Garcia-SanchezGCAG13} 
-\footnote{The source code of OSGiLiath is available as well with the same license, in \url{http://www.osgiliath.org}.}.
+\footnote{The source code of OSGiLiath is available with the same
+  license  as well, at \url{http://www.osgiliath.org}.}.
 
 
 %\subsection{Results from Classifiers}
