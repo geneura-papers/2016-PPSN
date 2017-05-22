@@ -261,13 +261,9 @@ market solutions that the main manufacturers have developed to such
 purpose. The level of security and privacy preservation offered by
 these applications is different depending on the solution.
 None of the reviewed solutions, but one, seem to offer a dynamic
-creation of rules in the database used for incident detection. The one
-called MUSES does implement rule inference and mentions the use of GP
-to perform this task. % REESCRIBIR el párrafo que sigue:
-In this work we extend the description of the
-rule inference process, as well as the details of its implementation
-and the results after applying it to the data gathered with the very
-same MUSES application (see Section \ref{subsec:data}). 
+creation of rules in the database used for incident detection. Our work is part of the project called MUSES, as one of its aims is implementing rule inference using GP, among other techniques. In this work we extend the description of the
+rule inference process through GP, as well as the details of its implementation
+and the results after applying it to a set of data gathered during the project. 
 
 
 Previous papers have commented on the issue of using quality data to obtain accurate and valuable extracted knowledge, which is specially difficult when dealing with datasets taken from real world problems, where the sensors cannot work properly at a certain time.
@@ -794,7 +790,7 @@ results from the evaluations with $f_{Acc}$ and also $f_{CS}$.
 
 In Section \ref{subsec:fitnesscomparison} that the performance in the fitness of the Michigan approach was worse than that of Pittsburgh, and now it is more clear, given that the accuracy over the test set is not even 50\%. This difference means that the highly imbalanced data set that we are using clearly biases the results towards the majority class \cite{japkowicz2002class}, and in this case there are 1 instance in the training set of data labelled as STRONGDENY for every 13 labelled as GRANTED. In this sense, solutions can be found in literature in order to reduce the bias while performing classification tasks, such as in \cite{chawla2005data} and \cite{sun2009classification}. Also, in \cite{bhowan2012developing}, the authors present a comparison between many different types of fitness functions, testing on various unbalanced datasets, with different minority-class/majority-class ratios.
 
-At the same time, and because the distributions for the Michigan approach follow the normal, an ANOVA test has been performed in every class \cite{DerracTests11}, obtaining a p-value of 0.5538 for the GRANTED class, meaning that there are not statistically significant differences in the results. However, in the case of the STRONGDENY class, using $f_{CS}$ significantly (p-value of 0.001736) decreases the accuracy over the test set. With regard to how many FP and FN are obtained in every approach, we see in Table \ref{tab:PvsMvalidation} that for the Pittsburgh approach we generally obtain low rates or 0 -- ideal -- false negatives, and around 7\% rate of false positives -- almost 400 in average for our test set --. On the other hand, best rates are found for the Michigan approach, where the rate of FP is, at most, 2.8\% -- around 113 instances in average --. And even if there were FN found, the average for the used test set is 29 instances out of 5330, which is a very low number and again, it is less worse to have FN than FP. Also, this imbalance in the FP and FN values are also caused by the imbalance in the dataset.
+At the same time, and because the distributions for the Michigan approach follow the normal, an ANOVA test has been performed in every class \cite{DerracTests11}, obtaining a p-value of 0.5538 for the GRANTED class, meaning that there are not statistically significant differences in the results. However, in the case of the STRONGDENY class, using $f_{CS}$ significantly (p-value of 0.001736) decreases the accuracy over the test set. With regard to how many FP and FN are obtained in every approach, we see in Table \ref{tab:PvsMvalidation} that for the Pittsburgh approach we generally obtain low rates or 0 -- ideal -- false negatives, and around 7\% rate of false positives -- almost 400 in average for our test set --. On the other hand, best rates are found for the Michigan approach, where the rate of FP is, at most, 2.8\% -- around 113 instances in average --. And even if there were FN found, the average for the used test set is 29 instances out of 5330, which is a very low number and again, it is less worse to have FN than FP. Also, this imbalance in the FP and FN values is also caused by the imbalance in the dataset.
 
 % Esta se deja comentada por si piden más resultados
 
