@@ -915,11 +915,11 @@ In general, what we have seen in the individuals obtained by the Pittsburgh appr
 
 In this work, we wanted to help companies adopting the BYOD philosophy by developing a tool that is able to discover rules using a GP approach, from the users behaviour when interacting with their devices, at the time it minimises the false positives, so that a dangerous action is never taken as permitted. To this end, we have studied different ways to implement a methodology based on GP, by two approaches: Pittsburgh, in which the individuals are coded as set or rules; and Michigan, where the individuals are a single rule, and thus a rule for every class has to be generated. In addition, two different fitness functions have been used to study their effect over the validation accuracy rate and the number of false positives and negatives.
 
-The results make a fine proof of concept, as we obtained readable rules and promising rates for the number of false positives (around 7\%).
+The results make a fine proof of concept, as we obtained readable rules and promising rates for the number of false positives (around 7\%). However, as the ideal value for both false positives and negatives is 0, there is room for improvement. A possible way to achieve better values for FP and FN is to set up the problem as a multiobjective one, so that we try to minimise $f_{CS}$, but also FP and FN.
+
+On the other hand, the imbalance of the dataset should be taken into account, given that it affects to the results in terms of obtained accuracy in the validation process and the ratio among classes in the obtained individuals. A typical way of approaching this problem is to use balancing techniques, such as ``oversampling'' \cite{smote_02}, in which sintetic instances of the minority class -- STRONGDENY -- are created and introduced in the dataset, until there are approximately the same number of instances than in the majority class -- GRANTED --.
 
 For our future work we will implement these solutions to continue improving our system.
-
-% Will set up the problem as a multiobjective one
 
 \section*{Acknowledgments.}
 
