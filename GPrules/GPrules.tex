@@ -808,7 +808,20 @@ results from the evaluations with $f_{Acc}$ and also $f_{CS}$.
 	\label{tab:PvsMvalidation}
 \end{table*}
 
-In Section \ref{subsec:fitnesscomparison} that the performance in the fitness of the Michigan approach was worse than that of Pittsburgh, and now it is more clear, given that the accuracy over the test set is not even 50\%. This difference means that the highly imbalanced data set that we are using clearly biases the results towards the majority class \cite{japkowicz2002class}, and in this case there are 1 instance in the training set of data labelled as STRONGDENY for every 13 labelled as GRANTED. In this sense, solutions can be found in literature in order to reduce the bias while performing classification tasks, such as in \cite{chawla2005data} and \cite{sun2009classification}. Also, in \cite{bhowan2012developing}, the authors present a comparison between many different types of fitness functions, testing on various unbalanced datasets, with different minority-class/majority-class ratios.
+In Section \ref{subsec:fitnesscomparison} that the performance in the
+fitness of the Michigan approach was worse than that of Pittsburgh,
+and now it is more clear, given that the accuracy over the test set is
+not even 50\%. This difference means that the highly imbalanced data
+set that we are using clearly biases the results towards the majority
+class \cite{japkowicz2002class}, and in this case there are 1 instance
+in the training set of data labelled as STRONGDENY for every 13
+labelled as GRANTED. In this sense, solutions can be found in
+literature in order to reduce the bias while performing classification
+tasks, such as in \cite{chawla2005data} and
+\cite{sun2009classification}. Also, in \cite{bhowan2012developing},
+the authors present a comparison between many different types of
+fitness functions, testing on various unbalanced datasets, with
+different minority-class/majority-class ratios. 
 
 At the same time, and because the distributions for the Michigan approach follow the normal, an ANOVA test has been performed in every class \cite{DerracTests11}, obtaining a p-value of 0.5538 for the GRANTED class, meaning that there are not statistically significant differences in the results. However, in the case of the STRONGDENY class, using $f_{CS}$ significantly (p-value of 0.001736) decreases the accuracy over the test set. With regard to how many FP and FN are obtained in every approach, we see in Table \ref{tab:PvsMvalidation} that for the Pittsburgh approach we generally obtain low rates or 0 -- ideal -- false negatives, and around 7\% rate of false positives -- almost 400 in average for our test set --. On the other hand, best rates are found for the Michigan approach, where the rate of FP is, at most, 2.8\% -- around 113 instances in average --. And even if there were FN found, the average for the used test set is 29 instances out of 5330, which is a very low number and again, it is less worse to have FN than FP. Also, this imbalance in the FP and FN values is also caused by the imbalance in the dataset.
 
@@ -933,13 +946,49 @@ In general, what we have seen in the individuals obtained by the Pittsburgh appr
 % We have done this and that in this paper and met objective 1 and 2 or answered research question 1 and 2; however, we think that question 3 has not been answered properly
 % We think we could answer question 3 properly if we did this and that. Which is left as future work.
 
-In this work, we wanted to help companies adopting the BYOD philosophy by developing a tool that is able to discover rules using a GP approach, from the users behaviour when interacting with their devices, at the time it minimises the false positives, so that a dangerous action is never taken as permitted. To this end, we have studied different ways to implement a methodology based on GP, by two approaches: Pittsburgh, in which the individuals are coded as set or rules; and Michigan, where the individuals are a single rule, and thus a rule for every class has to be generated. In addition, two different fitness functions have been used to study their effect over the validation accuracy rate and the number of false positives and negatives.
+In this work, we wanted to help companies adopting the BYOD philosophy
+by developing a tool that is able to discover rules using a GP
+approach, from the users behaviour when interacting with their
+devices, at the time it minimises the false positives, so that a
+dangerous action is never taken as permitted. To this end, we have
+studied different ways to implement a methodology based on GP, by two
+approaches: Pittsburgh, in which the individuals are coded as set or
+rules; and Michigan, where the individuals are a single rule, and thus
+a rule for every class has to be generated. In addition, two different
+fitness functions have been used to study their effect over the
+validation accuracy rate and the number of false positives and
+negatives. 
 
-The results make a fine proof of concept, as we obtained readable rules and promising rates for the number of false positives (around 7\%). However, as the ideal value for both false positives and negatives is 0, there is room for improvement. A possible way to achieve better values for FP and FN is to set up the problem as a multiobjective one, so that we try to minimise $f_{CS}$, but also FP and FN.
+The results make a fine proof of concept, %of what concept?
+as we obtained readable
+rules %shown in section XXXX - JJ
+and promising rates for the number of false positives (around
+7\%). However, since the ideal value for both false positives and
+negatives is 0, there is room for improvement. % These conclusions
+                                % should be extended. Time needed?
+                                % Was it a challenge for GP? In which
+                                % way? 
+% What follows is future work
+A possible way to
+achieve better values for FP and FN is to set up the problem as a
+multiobjective one, so that we try to minimise $f_{CS}$, but also FP
+and FN. 
 
-On the other hand, the imbalance of the dataset should be taken into account, given that it affects to the results in terms of obtained accuracy in the validation process and the ratio among classes in the obtained individuals. A typical way of approaching this problem is to use balancing techniques, such as ``oversampling'' \cite{smote_02}, in which sintetic instances of the minority class -- STRONGDENY -- are created and introduced in the dataset, until there are approximately the same number of instances than in the majority class -- GRANTED --.
 
-For our future work we will implement these solutions to continue improving our system.
+On the other hand, the imbalance of the dataset should be taken into
+account, given that it affects to the results in terms of obtained
+accuracy in the validation process and the ratio among classes in the
+obtained individuals. A typical way of approaching this problem is to
+use balancing techniques, such as ``oversampling'' \cite{smote_02}, in
+which sintetic instances of the minority class -- STRONGDENY -- are
+created and introduced in the dataset, until there are approximately
+the same number of instances than in the majority class -- GRANTED
+--. 
+
+For our future work we will implement these solutions to continue
+improving our system. %this is far too little. Possible improvements
+                      %to the GP parameters? Way to obtain new
+                      %datasets? Extensions to other kind of problems?
 
 \section*{Acknowledgments.}
 
