@@ -331,7 +331,7 @@ cannot be guaranteed, the data should not be released
 As previously highlighted, the main idea behind corporate security
 policies, which are defined by the CSO, is to build a basic, fixed,
 and well defined set of rules, which take the form of \textsc{IF
-  \ldots THEN} clauses. By applying them the company system decides if certain conditions are met in order to allow or
+  \ldots THEN} clauses. By applying them, the company system decides if certain conditions are met in order to allow or
 deny access to an asset, whether is from the company or is accesed from it. 
 Therefore, these rules can be visualized as the actions, taking place in a precise environment, being classified as
 allowed or denied. In this sense and while facing a security breach
@@ -437,7 +437,7 @@ of expressions formed by two different types of nodes:
   operators depend on the type of variable, being \{=$>$\} (an arrow, as in ``takes the value of'') in the
   case of categorical attributes, \{=\} for binary attributes, and \{$<$, $<=$,=,$=>$,
   $>$\} for numeric ones. At the same time, the prefix can be \{AND,
-  OR\}, and NOT can randomly appear before these. \\ 
+  OR\}, and NOT can appear before these. \\ %Pablo: removed the "randomly" word because it may confuse the reader
     Examples:
    \begin{math}
      \left \{
@@ -451,7 +451,7 @@ of expressions formed by two different types of nodes:
 \item {\em Action}: it is a leaf of the tree and therefore, a ``terminal'' state. Each decision is the result of applying the rule, so it is limited to two terms which are \texttt{GRANTED} or \texttt{STRONGDENY}. Only one leaf must hung from a parent (variable) node.
 \end{itemize}
 
-Rules are constructed starting from each leaf of the tree and iterating to the upper parents, or variables, reading their data as string. Therefore, the number of rules of the set produced by the tree is equal to the number of its leafs. It is worth mentioning that some rules may contradict others during the evolution. This is not a problem because those rules will not cover any instance and thus they will not contribute to the fitness value.
+Rules are constructed starting from each leaf of the tree and iterating to the upper parents, or variables, reading their data as string. Therefore, the number of rules of the set produced by the tree is equal to the number of its leafs. It is worth mentioning that some variables may contradict others during the evolution. This is not a problem because those rules will not cover any instance and thus they will not contribute to the fitness value. %PABLO: changed "rules" to "variables", please Paloma, confirm that it is ok
 
 The second approach tested, called Michigan approach, assigns a single
 rule to every individual. In this paper we have expressed the rule as
@@ -472,7 +472,7 @@ can lead to massive overlapping with the consequent loss of
 efficiency. 
 
 % This could go above, where you talk about variables - JJ
-% (Paloma) I don't agree, because both approaches have this in common. If we move this before explaining the secons approach, it may break the reading. Let's wait for Pablo's opinion
+% (Paloma) I don't agree, because both approaches have this in common. If we move this before explaining the secons approach, it may break the reading. Let's wait for Pablo's opinion Pablo: maybe we can add to this phrase: "With respect to the variables, both approaches use..." to remark that the variables are the same, well... in both approaches :P
 Furthermore, the variables can be differentiated into three types, 
 described as follows \cite{witten2005data}:
 
@@ -538,7 +538,7 @@ Rules presented in this way offer good readability which is key to understand th
 \label{subsec:chossingfitness}
 
 In the application of GP to classification
-the most used metric to calculate it is the accuracy
+the most used metric to calculate it is the accuracy %Pablo: the most used "it" is? With "it"? (serious question, IDK not much about some grammatical expressions :P)
 \cite{espejo2010survey}. The accuracy is normally obtained as the
 ratio of the correctly classified instances among the total of
 instances. %However, in our particular case, there is a strong
@@ -561,7 +561,7 @@ f_{Acc} = (TP + TN) / T_{tr}
 \end{equation}
 
 This kind of fitness has to be maximized, given that the ideal value
-of $f_{c}$ is the whole training dataset, $T_{tr}$, and  has the
+of $f_{Acc}$ is the whole training dataset, $T_{tr}$, and  has the %Pablo: it was written f_c instead f_acc
 advantage of not being computationally expensive, but it does not
 penalise the badly predicted instances (false positives and
 negatives), which in security environments such as this one can be
@@ -615,12 +615,9 @@ The configurations that will be compared involve 2 different encoding of individ
 With respect to the GP parameters, different decisions for experimental design have been taken into account. 
 First, sub-tree crossover and 1-node mutation evolutionary operators have
 been used, following our previous works that have used these operators
-obtaining good results \cite{EvoStar2014:GPBot}. In this case, the
-mutation randomly changes the complete variable of a node or mutate
-the complete value. A population of 32 individuals and a 2-tournament selector for a pool of
-16 parents have been used. These parameters have been also previously used in previous GP works \cite{EvoStar2014:GPBot}.
-
-Table \ref{tab:parameters} summarizes all the parameters used.
+obtaining good results \cite{EvoStar2014:GPBot}. In this case, during the
+mutation operation, there is a 50\% of probabilty to change the complete variable (prefix, name, operator and value) or only the value. A population of 32 individuals and a 2-tournament selector for a pool of
+16 parents have been used. These parameters have been also previously used in previous GP works \cite{EvoStar2014:GPBot}. Table \ref{tab:parameters} summarizes all the parameters used.
 
 \begin{table}
 \begin{center}
@@ -651,12 +648,12 @@ $\alpha$ for $f_{CS}$ & 0, 0.5, and 1 \\ \hline
 
 During the fitness evaluation, the generated individual is converted
 into a string, which can become a single rule or set of rules
-depending on the approach. % But this is what you are going to
+depending on the approach, as previously described. % But this is what you are going to
                            % compare. You should make a lot of more
                            % emphasis - JJ
 Then, the chosen fitness is evaluated for a particular rule -- the single rule or each one inside the set -- and over the 90\% of the data.
 For further reliability of the results, it is advised to perform
-10-fold cross-validation \cite{kohavi1995study}, and as such the WEKA
+10-fold cross-validation \cite{kohavi1995study}, and as such the WEKA %Pablo: it is worth mentioning WEKA here? (well, in fact, I wrote this paragraph, but Paloma decides)
 Java Library \cite{HallWEKA09} has been used to generate the 10 folds
 or distributions of data into 90\% training (fitness evaluation) and
 10\% validation. This way, each experiment has been executed 10 times,
@@ -695,7 +692,8 @@ the framework OSGiLiath \cite{DBLP:journals/soco/Garcia-SanchezGCAG13}
 % reader, that we wanted to compare the two proposed approaches
 % because... We are going to do so right here" - JJ
 
-As our purpose in this paper is to obtain a system which proposes to a CSO useful security rules that improve the existing ones, and present them in an understandable way and as fast as possible, in this section we compare the results from using two fitness functions
+As our purpose in this paper is to obtain a system which proposes to a CSO useful security rules that improve the existing ones, and present them in an understandable way and as fast as possible, %Pablo: are we playing with fire with this sentence? Some reviewer may say "there are faster methods than GP". We can remove it, or use it mentioning the time difference from both approaches
+in this section we compare the results from using two fitness functions
 described in Equations \ref{eq:accuracy} and \ref{eq:complexFitness}, as well as the two approaches taken -- Pittsburgh and Michigan --. In addition, an example of the individuals obtained will be presented in order to understand how the different approaches affect them, along with
 their advantages and disadvantages.
 Lastly, we will choose the best
