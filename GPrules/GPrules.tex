@@ -697,7 +697,8 @@ the framework OSGiLiath \cite{DBLP:journals/soco/Garcia-SanchezGCAG13}
 
 As our purpose in this paper is to obtain a system which proposes to a CSO useful security rules that improve the existing ones, and present them in an understandable way and as fast as possible, in this section we compare the results from using two fitness functions
 described in Equations \ref{eq:accuracy} and \ref{eq:complexFitness}, as well as the two approaches taken -- Pittsburgh and Michigan --. In addition, an example of the individuals obtained will be presented, along with
-their advantages and disadvantages. Lastly, we will choose the best
+their advantages and disadvantages. %Pablo: between "presented," and "along" I would add something like "to understand how our approach works/our individuals behave" or something like that.
+Lastly, we will choose the best
 approach, justifying this choice. 
 
 % You are not examining different approaches and reporting results on
@@ -714,7 +715,7 @@ approach, justifying this choice.
 \subsection{$F_{Acc}$ vs. $F_{CS}$} 
 \label{subsec:fitnesscomparison}
 
-The aim of this comparison is to conclude which fitness function should be used, discussing the results from the point of view of convergence, and that means finding which one reaches the best value faster. To study this we have displayed the obtained fitness through the iterations for the Pittsburgh approach in Figure \ref{fig:pittsburghItvsF} and for the Michigan approach in Figures \ref{fig:michiganItvsF_allow} and \ref{fig:michiganItvsF_deny}. Figures for GRANTED and STRONGDENY classes are separated because the solution is a single rule instead of a set of rules, and therefore the algorithm has to be executed once per class. With regard to the best fitness obtained for each fitness function, they are similar in the same scope, which means that similar values are found for all values of $\alpha$ in $f_{CS}$ in the two approaches separately.
+The aim of this comparison is to conclude which fitness function should be used, discussing the results from the point of view of convergence, and that means finding which one reaches the best value faster. To study this we have displayed the obtained fitness through the iterations for the Pittsburgh approach in Figure \ref{fig:pittsburghItvsF} and for the Michigan approach in Figures \ref{fig:michiganItvsF_allow} and \ref{fig:michiganItvsF_deny}. Figures for GRANTED and STRONGDENY classes are separated because the solution is a single rule instead of a set of rules, and therefore the algorithm has to be executed once per class. With regard to the best fitness obtained for each fitness function, they are similar in the same scope, which means that similar values are found for all values of $\alpha$ in $f_{CS}$ in the two approaches separately. %Pablo: maybe rewrite last phrase to be more understandable, for example in the style of "the different values of alpha did not present significant differences"
 
 \begin{figure*}[h!tb]
 \centering
@@ -746,7 +747,8 @@ faster, around the 30th iteration.
 	\label{fig:michiganItvsF_allow}
 \end{figure*}
 
-With regard to the Michigan approach, a higher variability is noticeable in Figures \ref{fig:michiganItvsF_allow} and \ref{fig:michiganItvsF_deny}, but in average we see that for $f_{CS}$ with $\alpha = 0$ or 1, the fitness do not converge until generation 120. The best ones are for $f_{Acc}$ and $f_{CS}$ with $\alpha = 0.5$, being the latter the one that converges faster, around the 50th iteration.
+With respect %Pablo: changed to "respect" because with regard was used not so long ago. Also, more respect imply a more Ali-G-ied paper.
+to the Michigan approach, a higher variability is noticeable in Figures \ref{fig:michiganItvsF_allow} and \ref{fig:michiganItvsF_deny}, but in average we see that for $f_{CS}$ with $\alpha = 0$ or 1, the fitness do not converge until generation 120. The best ones are for $f_{Acc}$ and $f_{CS}$ with $\alpha = 0.5$, being the latter the one that converges faster, around the 50th iteration.
 
 \begin{figure*}[h!tb]
 	\centering
@@ -805,7 +807,7 @@ results from the evaluations with $f_{Acc}$ and also $f_{CS}$.
 	\label{tab:PvsMvalidation}
 \end{table*}
 
-In Section \ref{subsec:fitnesscomparison} we showed that the performance in the
+In Section \ref{subsec:fitnesscomparison} we have shown that the performance in the
 fitness of the Michigan approach was worse than that of Pittsburgh,
 and now it is more clear, given that the accuracy over the test set is
 not even 50\%. This difference means that the highly imbalanced data
@@ -818,9 +820,10 @@ tasks, such as in \cite{chawla2005data} and
 \cite{sun2009classification}. Also, in \cite{bhowan2012developing},
 the authors present a comparison between many different types of
 fitness functions, testing on various unbalanced datasets, with
-different minority-class/majority-class ratios. 
+different minority-class/majority-class ratios. %Pablo: maybe mention those references again in future work part?
 
-At the same time, and because the distributions for the Michigan approach follow the normal, an ANOVA test has been performed in every class \cite{DerracTests11}, obtaining a p-value of 0.5538 for the GRANTED class, meaning that there are not statistically significant differences in the results. However, in the case of the STRONGDENY class, using $f_{CS}$ significantly (p-value of 0.001736) decreases the accuracy over the test set. With regard to how many FP and FN are obtained in every approach, we see in Table \ref{tab:PvsMvalidation} that for the Pittsburgh approach we generally obtain low rates or 0 -- ideal -- false negatives, and around 7\% rate of false positives -- almost 400 in average for our test set --. On the other hand, best rates are found for the Michigan approach, where the rate of FP is, at most, 2.8\% -- around 113 instances in average --. And even if there were FN found, the average for the used test set is 29 instances out of 5330, which is a very low number and again, it is less worse to have FN than FP. Also, this imbalance in the FP and FN values is also caused by the imbalance in the dataset.
+At the same time, and because the distributions for the Michigan approach follow the normal, an ANOVA test has been performed in every class \cite{DerracTests11}, obtaining a p-value of 0.5538 for the GRANTED class, meaning that there are not statistically significant differences in the results. However, in the case of the STRONGDENY class, using $f_{CS}$ significantly (p-value of 0.001736) decreases the accuracy over the test set. With regard to how many FP and FN are obtained in every approach, we see in Table \ref{tab:PvsMvalidation} that for the Pittsburgh approach we generally obtain low rates or 0 -- ideal -- false negatives, and around 7\% rate of false positives -- almost 400 in average for our test set --. On the other hand, best rates are found for the Michigan approach, where the rate of FP is, at most, 2.8\% -- around 113 instances in average --. And even if there were FN found, the average for the used test set is 29 instances out of 5330, which is a very low number and again, %Pablo: instead using "again", maybe write something like "and as we explained before, in this BYOS scenario"
+it is less worse to have FN than FP. Also, this imbalance in the FP and FN values is also caused by the imbalance in the dataset.
 
 % Esta se deja comentada por si piden más resultados
 
@@ -876,7 +879,7 @@ To evaluate computation costs of the two approaches, and taking into considerati
 	\label{tab:PvsMtime}
 \end{table*}
 
-In this table we see that best times are obtained when $f_{CS}$ is used. More precisely, in the Pittsburgh approach, the distributions follow the normal and after performing the ANOVA test, we can say that the shorter execution time (the best) is found for $\alpha$ = 0.5 with statistical significance (p-value of 0.008623). In the case of the Michigan approach, we again find statistical differences (p-value of 5.537e-05) between the results, and thus we can say that the best result is obtained when we use $f_{CS}$ with an $\alpha$ value of 0. It seems that the time does decrease when $\alpha$ is different than 0, meaning that the depth of the tree is taken into account during the evaluation of the fitness. To study this effect, we have to look at the sizes of the best individuals obtained for each configuration, which are displayed in Table \ref{tab:PvsMsize}.
+In this table we see that best times are obtained when $f_{CS}$ is used. More precisely, in the Pittsburgh approach, the distributions follow the normal and after performing the ANOVA test, we can say that the shorter execution time (the best) is found for $\alpha$ = 0.5 with statistical significance (p-value of 0.008623). In the case of the Michigan approach, we again find statistical differences (p-value of 5.537e-05) between the results, and thus we can say that the best execution time is obtained when we use $f_{CS}$ with an $\alpha$ value of 0. It seems that the time does decrease when $\alpha$ is different than 0, meaning that the depth of the tree is taken into account during the evaluation of the fitness. To study this effect, we have to look at the sizes of the best individuals obtained for each configuration, which are displayed in Table \ref{tab:PvsMsize}.
 
 \begin{table*}
 	\centering
@@ -924,7 +927,7 @@ In this table we only show the results for the Pittsburgh approach, given that t
 
 What we also have to determine is which kind of presented solution is better: showing the CSO a set of rules or a single rule for each class. As already discussed in Section \ref{sec:methodology}, each one has their advantages and disadvantages, but now we directly compare some of the best individuals obtained for both implementations, proving their readability and usefulness for the CSOs. In addition, we present the relation between the obtained solutions and the original rules that allowed to classify the dataset we have been working with.
 
-As we have executed the experiments performing a 10-fold cross-validation, in order to study the best individuals for each configuration we need to consider the values of the validation accuracies per fold, and then choose the best one. In Figure \ref{fig:bestInd_fCS_a0} we show an example of best individual, in this case obtained when using $f_{CS}$ as the fitness function with an $\alpha$ value of 0. The tree in this figure represents a set of 16 rules, two of them classifying to the STRONGDENY class, whilst the rest classify towards the GRANTED class. 
+As we have executed the experiments performing a 10-fold cross-validation, in order to study the best individuals for each configuration we need to consider the values of the validation accuracies per fold, and then choose the best one. In Figure \ref{fig:bestInd_fCS_a0} we show an example of best individual, in this case obtained when using $f_{CS}$ as the fitness function with an $\alpha$ value of 0. The tree in this figure represents a set of 16 rules, two of them classifying to the STRONGDENY class, whilst the rest classify towards the GRANTED class. %Pablo: maybe to add something interesting about the tree. For example, the STRONGDENY rules imply that the consultancy users are very important, and the not simple events may be dangerous
 
 \begin{figure*}[h!tb]
 	\centering
@@ -975,14 +978,14 @@ fitness functions have been used to study their effect over the
 validation accuracy rate and the number of false positives and
 negatives.
 
-The results in Section \ref{sec:gp} make a fine proof of concept for a tool that helps the CSO of a company discovering dangerous situations through the presentation of GP generated rules. We obtained promising rates for the number of false positives (around
+The results in Section \ref{sec:gp} make a fine proof of concept of a tool that helps the CSO of a company discovering dangerous situations through the presentation of GP generated rules. We obtained promising rates for the number of false positives (around
 7\%), and good coverage over the validation data set is shown in Section \ref{subsec:approachcomparison}. However, since the ideal value for both false positives and negatives is 0, there is room for improvement. In addition, in section \ref{subsec:examples} we show that the individuals are presented in a readable form, but the ratio between rules classifying to one or another class is too much biased towards the GRANTED class. 
 
 With regard to the execution time, the solution we propose takes between 16 and 17 hours, in the worst case and taking into account the used infrastructure, to obtain the best individual. Although these times could be acceptable, in the sense that the CSO would have new rules everyday, they can still be reduced.  
                                 % Was it a challenge for GP? In which
                                 % way?
                                 % (Paloma) Yes? Maybe? Hope so? I don't know :( Pablo what do you think? 
-% What follows is future work
+% What follows is future work %Pablo: yes, I would move this paragraph at the end, and maybe add again the references you mentioned earlier in section 4.2
 A possible way to
 achieve better values for FP and FN is to set up the problem as a
 multiobjective one, so that we try to minimise $f_{CS}$, but also FP
@@ -1007,7 +1010,7 @@ improving our system. Furthermore, we will extend the approach to other problems
 
 This work has been supported in part by TIN2014-56494-C4-3-P (Spanish
 Ministry of Economy and Competitivity), PROY-PP2015-06 (Plan Propio
-2015 UGR). %Is this one still working? - JJ
+2015 UGR). %Is this one still working? - JJ Pablo: and also, should we add MUSES, even if it was finished? (in fact, the results were generated there and part of the paper was written during the contract :P)
 
 \bibliographystyle{elsarticle-num}
 \bibliography{GPrules,geneura}
