@@ -156,7 +156,12 @@ possible combination of events that might lead to a dangerous
 situation. 
 
 The aim of this paper is to propose a novel technique for extracting
-BYOD security rules from activation instances that might help the CSO in the definition and refinement
+BYOD security rules from activation instances % suggest: examples
+                                % instead of activation
+                                % instances. Maybe suppress BYOD. It's
+                                % a technique for extracting rules,
+                                % you are _applying_ it to BYOD - JJ
+that might help the CSO in the definition and refinement
 of security policies that, eventually, classify an upcoming
 event or user action as permitted or not permitted. The objective, thus, is to obtain a way of correctly classifying the most incoming events as possible, avoiding mostly the false positives \cite{pietraszek2005data}. By false positives, we mean that events that should be non permitted should never receive an ``ok'', that is, a GRANTED. 
 This could be used
@@ -288,6 +293,7 @@ developing new security rules via GP, % But this is a very hard
                                 % claim. It should go to the
                                 % introduction!!! - JJ
                                 % (Paloma) Will study this)
+% Delete comment above when accepted or rejected - JJ
  even as this method has been
 indeed applied to classification -- from which classification rules
 can be obtained -- , as described by Espejo et al. in
@@ -303,7 +309,10 @@ the survey of Espejo et al., from six of the databases inside PROBEN1 and
 analysed by these authors, none is related to security. However, the
 authors' proposed fitness is indeed of interest for this research, and
 as such we compare the performance or our algorithm using two
-different fitness functions: the more classical approach that measures only the correctly classified instances (accuracy); and De Falco's et al. \cite{DeFalco2002257} suggestion, also taking into account the complexity of the solution. 
+different fitness functions: the more classical approach that measures
+only the correctly classified instances (accuracy); and De Falco's et
+al. \cite{DeFalco2002257} suggestion, also taking into account the
+complexity of the solution.  
 
 %Once again, this paragraph does not follow the previous one. Maybe
 %move it one paragraph up, where you are talking about proper training
@@ -323,7 +332,13 @@ all their behavioural data. And even after anonymising the resulting
 dataset, one can still, in certain cases, identify a user of the
 company the data comes from by processing the data. If this principle
 cannot be guaranteed, the data should not be released
-\cite{boillat2014handbook}. 
+\cite{boillat2014handbook}.
+% This paragraph is not the state of the art in your methods or
+% problem. You are eventually not releasing data, either. Suggestions:
+% 1. Eliminate it
+% 2. Eliminate it and add a note in the "future work" section saying
+% that future data sets will be released by ourselves.
+% As above, erase when accepted or rejected - JJ
 
 \section{Methodology}
 \label{sec:methodology}
