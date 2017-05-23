@@ -463,12 +463,7 @@ all classes, the algorithm has to be executed once for each class; in
 our case, GRANTED, allowed actions, and STRONGDENY, for the denied
 actions. 
 
-Indeed, each approach has its advantages and disadvantages. To
-directly obtain a set of rules (Pittsburgh) able to classify instances
-of every existing class means that the algorithm has to be run once,
-while having the solution coded as a single rule (Michigan), we have
-to obtain as many rules as classes are defined, and so it yields to
-many executions of the algorithm. % yields to? - JJ
+Indeed, each approach has its advantages and disadvantages. The Pittsburgh approach allows to directly obtain a set of rules able to classify instances of every existing class, meanwhile Michigan approach's solution is coded as a single rule, so that we obtain as many rules as classes are defined. The possibility of having many rules for every class instead of just one, more general, per class might seem to better help the CSO in detecting specific dangerous situations.
 At the same time, obtaining a set of rules as solution is more
 computationally expensive due to the need of longer
 evaluations. Lastly, to evaluate a single rule not taking into account
@@ -477,6 +472,7 @@ can lead to massive overlapping with the consequent loss of
 efficiency. 
 
 % This could go above, where you talk about variables - JJ
+% (Paloma) I don't agree, because both approaches have this in common. If we move this before explaining the secons approach, it may break the reading. Let's wait for Pablo's opinion
 Furthermore, the variables can be differentiated into three types, 
 described as follows \cite{witten2005data}:
 
@@ -550,6 +546,7 @@ instances. %However, in our particular case, there is a strong
            % (Paloma) ????
 % If you are going to mention imbalance between FP and FN this would
 % be the place to introduce it. 
+% (Paloma) But why?? We are introducing the concepts, is it normal then to directly talk about the results so soon? :\
 Witten et al. use in \cite{witten2005data} the
 concepts of true positive/negative and false positive/negative. The
 first refer to the instances classified correctly, and the latter are
