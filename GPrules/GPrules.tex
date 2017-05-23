@@ -805,7 +805,7 @@ results from the evaluations with $f_{Acc}$ and also $f_{CS}$.
 	\label{tab:PvsMvalidation}
 \end{table*}
 
-In Section \ref{subsec:fitnesscomparison} that the performance in the
+In Section \ref{subsec:fitnesscomparison} we showed that the performance in the
 fitness of the Michigan approach was worse than that of Pittsburgh,
 and now it is more clear, given that the accuracy over the test set is
 not even 50\%. This difference means that the highly imbalanced data
@@ -966,30 +966,27 @@ In this work, we wanted to help companies adopting the BYOD philosophy
 by developing a tool that is able to discover rules using a GP
 approach, from the users behaviour when interacting with their
 devices, at the time it minimises the false positives, so that a
-dangerous action is never taken as permitted. To this end, we have
-studied different ways to implement a methodology based on GP, by two
+dangerous action is never taken as permitted. To this end, in Section \ref{sec:methodology} we have
+presented different ways to implement a methodology based on GP, by two
 approaches: Pittsburgh, in which the individuals are coded as set or
 rules; and Michigan, where the individuals are a single rule, and thus
 a rule for every class has to be generated. In addition, two different
 fitness functions have been used to study their effect over the
 validation accuracy rate and the number of false positives and
-negatives. 
+negatives.
 
-The results make a fine proof of concept, %of what concept?
-as we obtained readable
-rules %shown in section XXXX - JJ
-and promising rates for the number of false positives (around
-7\%). However, since the ideal value for both false positives and
-negatives is 0, there is room for improvement. % These conclusions
-                                % should be extended. Time needed?
+The results in Section \ref{sec:gp} make a fine proof of concept for a tool that helps the CSO of a company discovering dangerous situations through the presentation of GP generated rules. We obtained promising rates for the number of false positives (around
+7\%), and good coverage over the validation data set is shown in Section \ref{subsec:approachcomparison}. However, since the ideal value for both false positives and negatives is 0, there is room for improvement. In addition, in section \ref{subsec:examples} we show that the individuals are presented in a readable form, but the ratio between rules classifying to one or another class is too much biased towards the GRANTED class. 
+
+With regard to the execution time, the solution we propose takes between 16 and 17 hours, in the worst case and taking into account the used infrastructure, to obtain the best individual. Although these times could be acceptable, in the sense that the CSO would have new rules everyday, they can still be reduced.  
                                 % Was it a challenge for GP? In which
-                                % way? 
+                                % way?
+                                % (Paloma) Yes? Maybe? Hope so? I don't know :( Pablo what do you think? 
 % What follows is future work
 A possible way to
 achieve better values for FP and FN is to set up the problem as a
 multiobjective one, so that we try to minimise $f_{CS}$, but also FP
-and FN. 
-
+and FN. Additionally we will try to reduce the execution time by adapting the algorithm parameters, for instance, the number of generations, as has been shown in Section \ref{subsec:fitnesscomparison} that in some cases 50 generations is enough. Other enhancements could be to study every tree individual and to directly not evaluate the fitness for the contradictory rules of each one. 
 
 On the other hand, the imbalance of the dataset should be taken into
 account, given that it affects to the results in terms of obtained
@@ -1002,7 +999,7 @@ the same number of instances than in the majority class -- GRANTED
 --. 
 
 For our future work we will implement these solutions to continue
-improving our system. %this is far too little. Possible improvements
+improving our system. Furthermore, we will extend the approach to other problems where data is available. For example, particularisations of the BYOD problem as it could be Internet navigation during work hours. We will explore network traffic from public data repositories, such as \url{http://www.secrepo.com/#3p\_network}, and try to apply our approach.   %this is far too little. Possible improvements
                       %to the GP parameters? Way to obtain new
                       %datasets? Extensions to other kind of problems?
 
