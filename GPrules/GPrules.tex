@@ -940,7 +940,7 @@ In this table we only show the results for the Pittsburgh approach, given that t
 
 What we also have to determine is which kind of presented solution is better: showing the CSO a set of rules or a single rule for each class. As already discussed in Section \ref{sec:methodology}, each one has their advantages and disadvantages, but now we directly compare some of the best individuals obtained for both implementations, proving their readability and usefulness for the CSOs. In addition, we present the relation between the obtained solutions and the original rules that allowed to classify the dataset we have been working with.
 
-As we have executed the experiments performing a 10-fold cross-validation, in order to study the best individuals for each configuration we need to consider the values of the validation accuracies per fold, and then choose the best one. In Figure \ref{fig:bestInd_fCS_a0} we show an example of best individual, in this case obtained when using $f_{CS}$ as the fitness function with an $\alpha$ value of 0. The tree in this figure represents a set of 16 rules, two of them classifying to the STRONGDENY class, whilst the rest classify towards the GRANTED class. %Pablo: maybe to add something interesting about the tree. For example, the STRONGDENY rules imply that the consultancy users are very important, and the not simple events may be dangerous
+As we have executed the experiments performing a 10-fold cross-validation, in order to study the best individuals for each configuration we need to consider the values of the validation accuracies per fold, and then choose the best one. In Figure \ref{fig:bestInd_fCS_a0} we show an example of best individual, in this case obtained when using $f_{CS}$ as the fitness function with an $\alpha$ value of 0. The tree in this figure represents a set of 16 rules, two of them classifying to the STRONGDENY class, whilst the rest classify towards the GRANTED class. The ones that classify to STRONGDENY have been highlighted and presented in string form in the figure. %Pablo: maybe to add something interesting about the tree. For example, the STRONGDENY rules imply that the consultancy users are very important, and the not simple events may be dangerous
 
 \begin{figure*}[h!tb]
 	\centering
@@ -949,14 +949,11 @@ As we have executed the experiments performing a 10-fold cross-validation, in or
           $f_{CS}$ as the fitness function with an $\alpha$ value of
           0. This tree represents a set of 16 rules, two of them
           classifying to the STRONGDENY class, whilst the rest
-          classify towards the GRANTED class.} %Please explain. left
-                                %is yes and right is no? Or the other
-                                %way round?
-% Can you write down the whole rules generated for STRONGDENY? For
-% instance, OR user_role=CONSULTANCY appears twice, the second time
-% negated. Are all trees guaranteed to reach al leaves? - JJ
+          classify towards the GRANTED class.} 
 	\label{fig:bestInd_fCS_a0}
 \end{figure*}
+
+The STRONGDENY rules imply that the developers are more probably to get a GRANTED in their actions, and this conclusion makes sense because because they are more familiar with system security. Also, from the second rule we can infer that the complex events -- not simple -- and the devices owned by the users and not the company may be dangerous.
 
 In general, what we have seen in the individuals obtained by the
 Pittsburgh approach is that most of the rules in the set classify for
