@@ -414,9 +414,9 @@ changing security properties, or installing apps. Altogether, there
 are 38 attributes, plus the class, which can take two possible values:
 GRANTED or STRONGDENY. 
 
-With respect to the balance between the classes, the dataset is
-unbalanced with the following ratio: 49289 instances are labelled as
-GRANTED and 4007 are labelled as STRONGDENY. % If what follows this
+%With respect to the balance between the classes, the dataset is
+%unbalanced with the following ratio: 49289 instances are labelled as
+%GRANTED and 4007 are labelled as STRONGDENY. % If what follows this
                                 % full stop, that is, nothing, is what
                                 % you are going to do about it, it is
                                 % better to just not mention it. It
@@ -780,8 +780,8 @@ obtained fitness, of the two used approaches. In this way, we have to thoroughly
 Once the variability of the obtained fitness has been studied, and
 always taking into account that those values come from their
 evaluation in a training subset of the data, now we \textit{validate}
-the proposed approaches with a validation set, similar to the test set used in classification problems \cite{witten2005data}. 
- The way to evaluate this is similar to Equation \ref{eq:accuracy}, but using the test subset of the data:
+the proposed approaches with a validation set, similar to the validation set used in classification problems \cite{witten2005data}. 
+ The way to evaluate this is similar to Equation \ref{eq:accuracy}, but using the validation subset of the data:
 
 \begin{equation}
 \label{eq:VALaccuracy}
@@ -816,13 +816,13 @@ results from the evaluations with $f_{Acc}$ and also $f_{CS}$.
 			\multicolumn{1}{|l|}{}                                                                                             & \multicolumn{1}{l|}{}                                                                             & \multicolumn{1}{l|}{}                          & $\alpha$ = 1   & 0.025 $\pm$ 1.948e-2 & 0.047 & 0.036  & 0     & 0 & 0.004 $\pm$ 0.049e-1 \\ \hline
 		\end{tabular}
 	}
-	\caption{Comparison between Pittsburgh and Michigan approaches, in terms of their validation scores. Validation has been calculated as the accuracy in classifying a test dataset. False positives and false negatives are also indicated, as one of our goals is to reduce the number of false positives. An $*$ indicates the  statistically significant best value for $\alpha$, but only in the cases were we found statistically significant differences.}
+	\caption{Comparison between Pittsburgh and Michigan approaches, in terms of their validation scores. Validation has been calculated as the accuracy in classifying a validation dataset. False positives and false negatives are also indicated, as one of our goals is to reduce the number of false positives. An $*$ indicates the  statistically significant best value for $\alpha$, but only in the cases were we found statistically significant differences.}
 	\label{tab:PvsMvalidation}
 \end{table*}
 
 In Section \ref{subsec:fitnesscomparison} we have shown that the performance in the
 fitness of the Michigan approach was worse than that of Pittsburgh,
-and now it is more clear, given that the accuracy over the test set is
+and now it is more clear, given that the accuracy over the validation set is
 not even 50\%. This difference means that the highly imbalanced data
 set that we are using clearly biases the results towards the majority
 class \cite{japkowicz2002class}, and in this case there are 1 instance
@@ -833,10 +833,9 @@ tasks, such as in \cite{chawla2005data} and
 \cite{sun2009classification}. Also, in \cite{bhowan2012developing},
 the authors present a comparison between many different types of
 fitness functions, testing on various unbalanced datasets, with
-different minority-class/majority-class ratios. %Pablo: maybe mention those references again in future work part?
+different minority-class/majority-class ratios. 
 
-At the same time, and because the distributions for the Michigan approach follow the normal, an ANOVA test has been performed in every class \cite{DerracTests11}, obtaining a p-value of 0.5538 for the GRANTED class, meaning that there are not statistically significant differences in the results. However, in the case of the STRONGDENY class, using $f_{CS}$ significantly (p-value of 0.001736) decreases the accuracy over the test set. With regard to how many FP and FN are obtained in every approach, we see in Table \ref{tab:PvsMvalidation} that for the Pittsburgh approach we generally obtain low rates or 0 -- ideal -- false negatives, and around 7\% rate of false positives -- almost 400 in average for our test set --. On the other hand, best rates are found for the Michigan approach, where the rate of FP is, at most, 2.8\% -- around 113 instances in average --. And even if there were FN found, the average for the used test set is 29 instances out of 5330, which is a very low number and again, %Pablo: instead using "again", maybe write something like "and as we explained before, in this BYOS scenario"
-it is less worse to have FN than FP. Also, this imbalance in the FP and FN values is also caused by the imbalance in the dataset.
+At the same time, and because the distributions for the Michigan approach follow the normal, an ANOVA test has been performed in every class \cite{DerracTests11}, obtaining a p-value of 0.5538 for the GRANTED class, meaning that there are not statistically significant differences in the results. However, in the case of the STRONGDENY class, using $f_{CS}$ significantly (p-value of 0.001736) decreases the accuracy over the validation set. With regard to how many FP and FN are obtained in every approach, we see in Table \ref{tab:PvsMvalidation} that for the Pittsburgh approach we generally obtain low rates or 0 -- ideal -- false negatives, and around 7\% rate of false positives -- almost 400 in average for our validation set --. On the other hand, best rates are found for the Michigan approach, where the rate of FP is, at most, 2.8\% -- around 113 instances in average --. And even if there were FN found, the average for the used validation set is 29 instances out of 5330, which is a very low number and as we explained before, in this BYOD scenario it is less worse to have FN than FP. Also, this imbalance in the FP and FN values is also caused by the imbalance in the dataset.
 
 % Esta se deja comentada por si piden más resultados
 
