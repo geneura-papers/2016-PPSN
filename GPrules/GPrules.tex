@@ -458,7 +458,7 @@ of expressions formed by two different types of nodes:
 \item {\em Action}: it is a leaf of the tree and therefore, a ``terminal'' state. Each decision is the result of applying the rule, so it is limited to two terms which are \texttt{GRANTED} or \texttt{STRONGDENY}. Only one leaf must hung from a parent (variable) node.
 \end{itemize}
 
-Rules are constructed starting from each leaf of the tree and iterating to the upper parents, or variables, reading their data as string. Therefore, the number of rules of the set produced by the tree is equal to the number of its leafs. It is worth mentioning that some variables may contradict others during the evolution. This is not a problem because those rules will not cover any instance and thus they will not contribute to the fitness value. %PABLO: changed "rules" to "variables", please Paloma, confirm that it is ok
+Rules are constructed starting from each leaf of the tree and iterating to the upper parents, or variables, reading their data as string. Therefore, the number of rules of the set produced by the tree is equal to the number of its leafs. It is worth mentioning that some rules might have contradictory conditions inside them during the evolution. This is not a problem because those rules will not cover any instance and thus they will not contribute to the fitness value. 
 
 The second approach tested, called Michigan approach, assigns a single
 rule to every individual. In this paper we have expressed the rule as
@@ -478,9 +478,7 @@ how it interacts with what the others cover \cite{freitas2002data}, it
 can lead to massive overlapping with the consequent loss of
 efficiency. 
 
-% This could go above, where you talk about variables - JJ
-% (Paloma) I don't agree, because both approaches have this in common. If we move this before explaining the secons approach, it may break the reading. Let's wait for Pablo's opinion Pablo: maybe we can add to this phrase: "With respect to the variables, both approaches use..." to remark that the variables are the same, well... in both approaches :P
-Furthermore, the variables can be differentiated into three types, 
+With respect to the variables, both approaches use three different types, 
 described as follows \cite{witten2005data}:
 
 \begin{itemize}
@@ -545,7 +543,7 @@ Rules presented in this way offer good readability which is key to understand th
 \label{subsec:chossingfitness}
 
 In the application of GP to classification
-the most used metric to calculate it is the accuracy %Pablo: the most used "it" is? With "it"? (serious question, IDK not much about some grammatical expressions :P)
+the most used metric to evaluate the individuals, i.e. the fitness function, is the accuracy
 \cite{espejo2010survey}. The accuracy is normally obtained as the
 ratio of the correctly classified instances among the total of
 instances. %However, in our particular case, there is a strong
@@ -661,6 +659,7 @@ depending on the approach, as previously described. % But this is what you are g
 Then, the chosen fitness is evaluated for a particular rule -- the single rule or each one inside the set -- and over the 90\% of the data.
 For further reliability of the results, it is advised to perform
 10-fold cross-validation \cite{kohavi1995study}, and as such the WEKA %Pablo: it is worth mentioning WEKA here? (well, in fact, I wrote this paragraph, but Paloma decides)
+% (Paloma) Uhm, maybe it's not THAT necessary, but it does not bother either... i don't know xD 
 Java Library \cite{HallWEKA09} has been used to generate the 10 folds
 or distributions of data into 90\% training (fitness evaluation) and
 10\% validation. This way, each experiment has been executed 10 times,
@@ -699,8 +698,7 @@ the framework OSGiLiath \cite{DBLP:journals/soco/Garcia-SanchezGCAG13}
 % reader, that we wanted to compare the two proposed approaches
 % because... We are going to do so right here" - JJ
 
-As our purpose in this paper is to obtain a system which proposes to a CSO useful security rules that improve the existing ones, and present them in an understandable way and as fast as possible, %Pablo: are we playing with fire with this sentence? Some reviewer may say "there are faster methods than GP". We can remove it, or use it mentioning the time difference from both approaches
-in this section we compare the results from using two fitness functions
+As our purpose in this paper is to obtain a system which proposes to a CSO useful security rules that improve the existing ones, and present them in an understandable way, in this section we compare the results from using two fitness functions
 described in Equations \ref{eq:accuracy} and \ref{eq:complexFitness}, as well as the two approaches taken -- Pittsburgh and Michigan --. In addition, an example of the individuals obtained will be presented in order to understand how the different approaches affect them, along with
 their advantages and disadvantages.
 Lastly, we will choose the best
@@ -924,7 +922,7 @@ In this table we only show the results for the Pittsburgh approach, given that t
 
 What we also have to determine is which kind of presented solution is better: showing the CSO a set of rules or a single rule for each class. As already discussed in Section \ref{sec:methodology}, each one has their advantages and disadvantages, but now we directly compare some of the best individuals obtained for both implementations, proving their readability and usefulness for the CSOs. In addition, we present the relation between the obtained solutions and the original rules that allowed to classify the dataset we have been working with.
 
-As we have executed the experiments performing a 10-fold cross-validation, in order to study the best individuals for each configuration we need to consider the values of the validation accuracies per fold, and then choose the best one. In Figure \ref{fig:bestInd_fCS_a0} we show an example of best individual, in this case obtained when using $f_{CS}$ as the fitness function with an $\alpha$ value of 0. The tree in this figure represents a set of 16 rules, two of them classifying to the STRONGDENY class, whilst the rest classify towards the GRANTED class. The ones that classify to STRONGDENY have been highlighted and presented in string form in the figure. %Pablo: maybe to add something interesting about the tree. For example, the STRONGDENY rules imply that the consultancy users are very important, and the not simple events may be dangerous
+As we have executed the experiments performing a 10-fold cross-validation, in order to study the best individuals for each configuration we need to consider the values of the validation accuracies per fold, and then choose the best one. In Figure \ref{fig:bestInd_fCS_a0} we show an example of best individual, in this case obtained when using $f_{CS}$ as the fitness function with an $\alpha$ value of 0. The tree in this figure represents a set of 16 rules, two of them classifying to the STRONGDENY class, whilst the rest classify towards the GRANTED class. The ones that classify to STRONGDENY have been highlighted and presented in string form in the figure.
 
 \begin{figure*}[h!tb]
 	\centering
@@ -937,7 +935,7 @@ As we have executed the experiments performing a 10-fold cross-validation, in or
 	\label{fig:bestInd_fCS_a0}
 \end{figure*}
 
-The STRONGDENY rules imply that the developers are more probably to get a GRANTED in their actions, and this conclusion makes sense because because they are more familiar with system security. Also, from the second rule we can infer that the complex events -- not simple -- and the devices owned by the users and not the company may be dangerous.
+The STRONGDENY rules in Figure \ref{fig:bestInd_fCS_a0} imply that the developers are more probably to get a GRANTED in their actions, and this conclusion makes sense because because they are supposed to be more familiar with system security. Also, from the second rule we can infer that the complex events -- not simple -- and the devices owned by the users and not the company may be dangerous. The root condition, which appears in every rule and therefore means is very important, is related to the time that the the device takes to enter into sleep mode (screen turns off). This kind of information can be used by the CSOs to develop new security rules for the system.
 
 In general, what we have seen in the individuals obtained by the
 Pittsburgh approach is that most of the rules in the set classify for
@@ -999,9 +997,7 @@ fitness functions, testing on various unbalanced datasets, with
 different minority-class/majority-class ratios.
 
 For our future work we will implement these solutions to continue
-improving our system. Furthermore, we will extend the approach to other problems where data is available. For example, particularisations of the BYOD problem as it could be Internet navigation during work hours. We will explore network traffic from public data repositories, such as \url{http://www.secrepo.com/#3p\_network}, and try to apply our approach.   %this is far too little. Possible improvements
-                      %to the GP parameters? Way to obtain new
-                      %datasets? Extensions to other kind of problems?
+improving our system. Furthermore, we will extend the approach to other problems where data is available. For example, particularisations of the BYOD problem as it could be Internet navigation during work hours. We will explore network traffic from public data repositories, such as \url{http://www.secrepo.com/#3p\_network}, and try to apply our approach. 
 
 \section*{Acknowledgments.}
 
