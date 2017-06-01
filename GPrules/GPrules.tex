@@ -39,7 +39,7 @@ Device'' (BYOD) concept in the corporate world, making the companies to
 create policies geared towards enabling these devices as company tools. 
 This philosophy grants
 employees the right to bring and use their personal devices at
-the company premises, on virtual private networks or otherwise, while
+the company premises, on virtual private networks, or otherwise, while
 on company work. Despite the significant advantages of this policy
 such as reducing overheads and increasing work productivity, 
 the
@@ -48,7 +48,7 @@ devices, whose corporate control is forcefully limited, exposes the companies to
 security threats such as leak of confidential data and access by
 unauthorised users. 
 To handle these kinds of threats, we propose a way of detecting and controlling abnormal user
-access by establishing a policy based on classification rules, mainly focused on having the less false positives as possible. Our
+access by establishing a policy based on classification rules that allow or deny an action, and mainly focused on having the less false positives as possible. Our
 approach to address the problem of automatically obtaining classification rules to improve BYOD security uses Genetic Programming (GP), since GP is 
 capable of discovering of novel and interesting threat classification
 rules, with the additional feature of presenting the new rules in an
@@ -62,8 +62,7 @@ Through these comparisons, we can establish a proof of concept to demonstrate th
 
 
 \begin{keyword}
-%TODO: Keywords
-Bring Your Own Device, Security, Genetic Programming, Rules Extraction. 
+Bring Your Own Device, Security, Corporate Security Policy, Genetic Programming, Rule Extraction. 
 \end{keyword}
 
 \end{frontmatter}
@@ -93,7 +92,7 @@ advantages \cite{singh2012byod}; among them we mention saving costs --
 since the company saves money on high-priced devices that
 it would normally be required to purchase for their employees --, and
 increasing flexibility and worker productivity as employees will not
-be asked to haul around while on the road multiple devices to satisfy both their personal and
+be asked to haul around multiple devices to satisfy both their personal and
 work needs, having everything they need in one device anytime and
 anywhere. 
 Other advantages are tied to the increase of worker satisfaction, attracting the best candidates, and the increase of engagement in the workplace and after hours \cite{singh2012byod}. 
@@ -135,20 +134,20 @@ leakage, improper decommissioning, phishing that is focused on a
 specifig group or company\footnote{Also known as \textit{spear
     phishing}.}, 
 surveillance, and many
-others possible threats\cite{lennon2012changing}. These threats have become the
+other possible threats\cite{lennon2012changing}. These threats have become the
 companies main security concern, which makes a challenge to
 assure a compromise between pushing personal devices towards
 professional use while coping with their own stringent and complex
 security requirements. This trend is inevitable as enterprises are
 faced with questions of whether and how to manage this situation \cite{thomson2012byod}; and
 thus every department must be involved in establishing security
-policies and procedures to minimize the company's risks.
+policies and procedures to minimise the company's risks.
 
 To this end, the Corporate Security Policies (CSPs) \cite{Kaeo:2003:DNS:1201807}, 
 approved by the company's Chief Security Officer (CSO) are the core at
 the  identification of threats and the construction of a set of security rules. The description of these jobs include protecting
 company assets by defining permissions to be considered for every
-different action to be performed inside or outside the company's work
+different performed action inside or outside the company's work
 space, and eventually coming from the employees personal
 devices. Nonetheless, CSOs build the set of CSPs based on their
 expertise, and as such, they have the limitation of not knowing every
@@ -159,7 +158,7 @@ The aim of this paper is to propose a novel technique for extracting
 inference rules from past behaviour instances 
 that might help the CSO in a BYOD environment in the definition and refinement
 of security policies that, eventually, classify an upcoming
-event or user action as permitted or not permitted. The objective, thus, is to obtain a way of correctly classifying the most incoming events as possible, avoiding mostly the false positives \cite{pietraszek2005data}. By false positives, we mean that events that should be non permitted should never receive an ``ok'', that is, a GRANTED. 
+event or user action as permitted or not permitted. The objective, thus, is to obtain a way of correctly classifying the most incoming events as possible, avoiding mostly the false positives \cite{pietraszek2005data}. By false positives, we mean that events that must not be permitted should never receive an ``ok'', that is, a GRANTED. 
 This could be used
 in two different scenarios. In the first one a CSO has hand-coded a set of security
 policies and wants to simplify or generalise them. The second scenario 
@@ -181,14 +180,13 @@ This is why we have decided to use Genetic Programming (GP) for dealing with the
 discovering novel, interesting knowledge and rules from large
 amounts of data \cite{freitas2002data}, given that the up-to-date approaches are based in general pre-defined of manually defined rules \cite{ali2015analysis}. Considered part of the so-called \emph{Evolutionary
   Algorithms} \cite{back1996evolutionary}, GP is an optimization
-technique inspired by natural evolution. One of the multiple uses of GP is that of classification, by making the
-solutions to a problem internally encoded as trees, which themselves can be
-seen as decision tree classifiers \cite{safavian1990survey}.
+technique inspired by natural evolution. One of the advantages of GP is that by making the
+solutions to a problem internally encoded as trees, they themselves can be
+seen as decision tree classifiers \cite{safavian1990survey} and can be expressed as a set of rules.
 
-To the best of our knowledge, there is no tool that helps CSOs in
+To the best of our knowledge, there is still not a tool that helps CSOs in
 developing new security rules via GP, even as this method has been
-indeed applied to classification -- from which classification rules
-can be obtained -- , as described by Espejo et al. in
+indeed applied to classification, as described by Espejo et al. in
 \cite{espejo2010survey}. In fact, their survey theoretically supports our
 decision of applying GP to obtain security rules in a BYOD
 environment.
@@ -200,17 +198,18 @@ this into account, GP can be used to generate these classification
 trees, optimising an objective function called {\em fitness}. In this case the
 fitness can be defined as the accuracy of a rule or set of rules, being this the most
 used metric in classification \cite{witten2005data}, along with the
-classification error. But since there are other metrics that influence
+classification error. But since there are other metrics that influence in
 ``how good'' a rule or a set of rules is, such as the depth of the
-created tree or the number of nodes it has
+created tree, the number of nodes it has, or the obtained false positives
 \cite{back1996evolutionary}, it would be of convenience to use them in
 the definition of the fitness. 
+
 Our proposed GP framework is capable of performing an automatic discovery
-of classification rules from the BYOD context data, obtaining good fitness, and presenting the
+of classification rules from the BYOD context data, obtaining good fitness values, and presenting the
 rules in a way that is helpful for a CSO. We demonstrate so by using
 the developed framework with a real-world dataset, and comparing two
 ways of coding the individuals -- as a set of rules, or as a single
-rule -- so that we are able to choose the best approach for our system. We make this comparison because while obtaining a set of rules as solution is computationally expensive due to the need of longer evaluations, to evaluate a single rule not taking into account how it interacts with what the others cover \cite{freitas2002data} can lead to massive overlapping. Hence, we must study their accuracy despite of their advantages and disadvantages. In addition, we choose the most appropriate (fastest to converge and with best value) fitness after comparing the use of a most simpler one that only measures the accuracy, and a complex one which takes into account the complexity of the individuals. Finally, we propose the approach with the best performance in terms of best fitness value. 
+rule -- so that we are able to choose the best approach for our system. We make this comparison because while obtaining a set of rules as a solution is computationally expensive due to the need of longer evaluations, to present and evaluate a single rule not taking into account how it interacts with what the others cover \cite{freitas2002data} can lead to massive overlapping. Hence, we must study their accuracy despite of their advantages and disadvantages. In addition, we choose the most appropriate (fastest to converge and with best value) fitness after comparing the use of a most simpler one that only measures the accuracy, and a complex one which takes into account the complexity of the individuals. Finally, we propose the approach with the best performance in terms of best coverage over a validation set. 
 
 The rest of the paper is organised as follows. In Section
 \ref{sec:SotA} we give an overview of the advances in GP applied to
@@ -340,7 +339,7 @@ policies, which are defined by the CSO, is to build a basic, fixed,
 and well defined set of rules, which take the form of \textsc{IF
   \ldots THEN} clauses. By applying them, the company system decides if certain conditions are met in order to allow or
 deny access to an asset, whether is from the company or is accesed from it. 
-Therefore, these rules can be visualized as the actions, taking place in a precise environment, being classified as
+Therefore, these rules can be visualised as the actions, taking place in a precise environment, being classified as
 allowed or denied. In this sense and while facing a security breach
 from a BYOD system, the set of rules will be tested looking for
 matches between the access' characteristics and the rules' premises --
@@ -381,13 +380,13 @@ about our proposed solution are given in what is next.
  \cite{DBLP:conf/sac/MoraCGZJEBAH14}. In these trials, a group of
  users tested a smartphone and PC application meant for securing a
  BYOD environment. The application generates warnings when the users
- acts in a dangerous way. Technically, these warnings are triggered by
+ act in a dangerous way. Technically, these warnings are triggered by
  a set of initial and pre-defined rules, so that when certain
  conditions are met in an ``event'' (an action performed by a user),
  the corresponding action could be allowed - nothing happened - or
  denied, where a warning appears explaining the rule that the user did not comply with and how to perform the action in a more secure way or environment.
 
-The dataset contains a set of these ``events'' from which a number of attributes (variables) have been extracted or are given by the application itself. User data has been also extracted but anonymised, in the sense that from all the attributes extracted from the user actions, the username is not included as a variable to build rules with. They were included, however, attributes such as the user role or the length of the password set by the user (never the password itself). The attributes can be classified in different ways; one of them is based on whether they are directly read from the application or inferred after processing the read data. Therefore, we distinguish between:
+The dataset contains a set of these ``events'' from which a number of attributes (variables) have been extracted or are given by the application itself. User data has been also extracted but anonymised, in the sense that from all the attributes extracted from the user actions, the username is not included as a variable to build rules with. The attributes can be classified in different ways; one of them is based on whether they are directly read from the application or inferred after processing the read data. Therefore, we distinguish between:
 \begin{itemize}
   \item Attributes given by the tested application: these attributes
     are related to the type of the event (action), its timestamp, or
@@ -462,7 +461,7 @@ Rules are constructed starting from each leaf of the tree and iterating to the u
 
 The second approach tested, called Michigan approach, assigns a single
 rule to every individual. In this paper we have expressed the rule as
-a list of conditions, with a fixed class, obtaining just one rule for
+a list of conditions, with a fixed class, obtaining just one rule per
 execution. That means we are not using GP in this case, because the
 generated individual is not a tree, but a vector, so we are applying a
 regular Genetic Algorithm (GA) instead. Therefore, in order to cover
@@ -474,7 +473,7 @@ Indeed, each approach has its advantages and disadvantages. The Pittsburgh appro
 At the same time, obtaining a set of rules as solution is more
 computationally expensive due to the need of longer
 evaluations. Lastly, to evaluate a single rule not taking into account
-how it interacts with what the others cover \cite{freitas2002data}, it
+how it interacts with what the others cover \cite{freitas2002data}
 can lead to massive overlapping with the consequent loss of
 efficiency. 
 
@@ -490,11 +489,12 @@ described as follows \cite{witten2005data}:
 
 Table \ref{tab:variables} details the variables, for each type, that have been used in the GP in order to create the rules. In addition, we differentiate between those variables that are BYOD specific, and those that come from the context. A variable that is BYOD specific means that its value strictly depends on the employee owning the device or being provided by the company, such as the device OS, if the device has been rooted, or the password length the user has configured. The same way, a variable that is the same no matter who owns the device, for instance, the user role or the type of the action (event) performed, we say is context specific.
 
-\begin{table*}
+\begin{table}
 \begin{center}
+	\resizebox{8cm}{!}{
 \begin{tabular}{|l|l|l|l|}
 \hline
-Variable type                & Variable Name          & BYOD specific & Context Specific \\ \hline
+Variable type                & Variable Name          & BYOD & Context \\ \hline
 \multirow{8}{*}{Binary}      & BluetoothConnected     &               & \checkmark       \\ \cline{2-4} 
                              & DeviceHasAccessibility & \checkmark    &                  \\ \cline{2-4} 
                              & DeviceHasAntivirus     & \checkmark    &                  \\ \cline{2-4} 
@@ -514,14 +514,14 @@ Variable type                & Variable Name          & BYOD specific & Context 
 \multirow{2}{*}{Numerical}   & DeviceScreenTimeout    & \checkmark    &                  \\ \cline{2-4} 
                              & PasswordLength         & \checkmark    &                  \\ \hline
 \end{tabular}
+}
 \caption{A list of the variables that have been used to generate the
   rules. Those variables that are BYOD specific are also specified.}
 \label{tab:variables}
 \end{center}
-\end{table*}
+\end{table}
 
-An example of a rule can be presented as follows:
-%TODO Show this more fancy :P (Pablo)
+At the end of the process, either as part of a set of rules or just being a single rule, they can be presented as follows:
 
 \begin{verbatim}
 device_has_antivirus=false AND
@@ -554,7 +554,7 @@ instances. %However, in our particular case, there is a strong
 % (Paloma) But why?? We are introducing the concepts, is it normal then to directly talk about the results so soon? :\
 Witten et al. use in \cite{witten2005data} the
 concepts of true positive/negative and false positive/negative. The
-first refer to the instances classified correctly, and the latter are
+first refers to the correctly classified instances, and the latter are
 those instances that should be negative (positive) but are classified
 as positive (negative), therefore they are false positives
 (negatives). Using this nomenclature -- true negative (TN) and true positive (TP) --, a fitness function defined for
@@ -565,8 +565,8 @@ accuracy would be expressed as follows:
 f_{Acc} = (TP + TN) / T_{tr}
 \end{equation}
 
-This kind of fitness has to be maximized, given that the ideal value
-of $f_{Acc}$ is the whole training dataset, $T_{tr}$, and  has the %Pablo: it was written f_c instead f_acc
+This kind of fitness has to be maximised, given that the ideal value
+of $f_{Acc}$ is the whole training dataset, $T_{tr}$. Equation \ref{eq:accuracy} has the 
 advantage of not being computationally expensive, but it does not
 penalise the badly predicted instances (false positives and
 negatives), which in security environments such as this one can be
@@ -615,18 +615,18 @@ And finally decide which fitness function offers, taking into account these meas
 
 Once the methods to compare have been explained, the rest of the experimental setup is described.
 
-The configurations that will be compared involve 2 different encoding of individuals (Pittsburgh tree individuals vs. Michigan list individuals), 2 types of fitness ($f_{CS}$ and $f_{Acc}$), and different values for $\alpha$ in the case of $f_{Acc}$.
+The configurations that will be compared involve two different encoding of individuals (Pittsburgh tree individuals vs. Michigan list individuals), two types of fitness ($f_{CS}$ and $f_{Acc}$), and three different values for $\alpha$ in the case of $f_{Acc}$.
 
 With respect to the GP parameters, different decisions for experimental design have been taken into account. 
 First, sub-tree crossover and 1-node mutation evolutionary operators have
 been used, following our previous works that have used these operators
 obtaining good results \cite{EvoStar2014:GPBot}. In this case, during the
 mutation operation, there is a 50\% of probabilty to change the complete variable (prefix, name, operator and value) or only the value. A population of 32 individuals and a 2-tournament selector for a pool of
-16 parents have been used. These parameters have been also previously used in previous GP works \cite{EvoStar2014:GPBot}. Table \ref{tab:parameters} summarizes all the parameters used.
+16 parents have been used. These parameters have been also previously used in previous GP works \cite{EvoStar2014:GPBot}. Table \ref{tab:parameters} summarises all the parameters used.
 
 \begin{table}
 \begin{center}
-\resizebox{7.5cm}{!}{
+\resizebox{8cm}{!}{
 \begin{tabular}{|c|c|}
 \hline
 {\em Parameter Name} & {\em Value} \\\hline
