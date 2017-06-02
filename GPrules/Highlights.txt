@@ -1,0 +1,5 @@
+A new method for security rules extraction using Genetic Programming is presented.
+Different fitness functions are compared in order to maximize the validation coverage.
+Two representations of the individuals are compared to minimize the false positives.
+The methodology is applied over real data from a Bring Your Own Device scenario.
+Results show that readable rules can be obtained with least false positives/negatives.
