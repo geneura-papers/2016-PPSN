@@ -1,4 +1,4 @@
-\documentclass[a4paper,10pt,twocolumn,preprint,3p]{elsarticle}
+\documentclass[preprint]{elsarticle}
 
 \usepackage[latin1]{inputenc}
 \usepackage{amssymb}
@@ -22,8 +22,8 @@
 \ead{pablo.garciasanchez@uca.es}
 \author[ugr]{J.J. Merelo}
 \ead{jmerelo@geneura.ugr.es}
-\author[isgt]{Zeineb Chelly}
-\ead{zeinebchelly@yahoo.fr}
+\author[isgt]{Zaineb Chelly}
+\ead{chelly.zaineb@gmail.com}
 
 \address[ugr]{Department of Computer Architecture and Computer Technology, ETSIIT and CITIC \\
 \url{http://citic.ugr.es} University of Granada, Granada, Spain. Tel: +34958241778. Fax: +34958248993}
@@ -62,7 +62,7 @@ Through these comparisons, we can establish a proof of concept to demonstrate th
 
 
 \begin{keyword}
-Bring Your Own Device, Security, Corporate Security Policy, Genetic Programming, Rule Extraction. 
+Bring Your Own Device; Security; Corporate Security Policy; Genetic Programming; Rule Extraction. 
 \end{keyword}
 
 \end{frontmatter}
@@ -775,7 +775,7 @@ the proposed approaches with a validation set, similar to the validation set use
 
 \begin{equation}
 \label{eq:VALaccuracy}
-v_{Acc} = (TP + TN) / T_{tst}
+v_{Acc} = (TP + TN) / T_{val}
 \end{equation}
 
 This measure will be the same independently of the approach or fitness
@@ -783,9 +783,9 @@ function has used to evaluate the individuals. Table
 \ref{tab:PvsMvalidation} shows the average, best, median, and worst
 results from the evaluations with $f_{Acc}$ and also $f_{CS}$. 
 
-\begin{table*}
+\begin{table}
 	\centering
-	\resizebox{16.5cm}{!}{
+	\resizebox{13cm}{!}{
 		\begin{tabular}{llll|l|l|l|l|l|l|}
 			\cline{5-10}
 			&  &  &  & \multicolumn{6}{l|}{Validation measurement} \\ 
@@ -800,15 +800,15 @@ results from the evaluations with $f_{Acc}$ and also $f_{CS}$.
 			\multicolumn{1}{|l|}{}                                                                                             & \multicolumn{1}{l|}{}                                                                             & \multicolumn{1}{l|}{\multirow{3}{*}{$f_{CS}$}} & $\alpha$ = 0   & 0.466 $\pm$ 0.441e-2 & 0.472 & 0.467  & 0.459 & 0.021 $\pm$ 0.094e-1 & 0                    \\ \cline{4-10} 
 			\multicolumn{1}{|l|}{}                                                                                             & \multicolumn{1}{l|}{}                                                                             & \multicolumn{1}{l|}{}                          & $\alpha$ = 0.5 & 0.467 $\pm$ 0.305e-2 & 0.472 & 0.467  & 0.462 & 0.019 $\pm$ 0.088e-1 & 0                    \\ \cline{4-10} 
 			\multicolumn{1}{|l|}{}                                                                                             & \multicolumn{1}{l|}{}                                                                             & \multicolumn{1}{l|}{}                          & $\alpha$ = 1   & 0.465 $\pm$ 0.43e-2  & 0.472 & 0.467  & 0.458 & 0.023 $\pm$ 0.099e-1 & 0                    \\ \cline{2-10} 
-			\multicolumn{1}{|l|}{}                                                                                             & \multicolumn{1}{l|}{\multirow{4}{*}{\begin{tabular}[c]{@{}l@{}}Class:\\ STRONGDENY\end{tabular}}} & \multicolumn{2}{l|}{$f_{Acc}$}                                  & 0.046$*$ $\pm$ 0.74e-2  & 0.065 & 0.045  & 0.037 & 0 & 0.307 $\pm$ 0.745e-1 \\ \cline{3-10} 
+			\multicolumn{1}{|l|}{}                                                                                             & \multicolumn{1}{l|}{\multirow{4}{*}{\begin{tabular}[c]{@{}l@{}}Class:\\ STRONGDENY\end{tabular}}} & \multicolumn{2}{l|}{$f_{Acc}$}                                  & 0.046\textbf{$*$} $\pm$ 0.74e-2  & 0.065 & 0.045  & 0.037 & 0 & 0.307 $\pm$ 0.745e-1 \\ \cline{3-10} 
 			\multicolumn{1}{|l|}{}                                                                                             & \multicolumn{1}{l|}{}                                                                             & \multicolumn{1}{l|}{\multirow{3}{*}{$f_{CS}$}} & $\alpha$ = 0   & 0.025 $\pm$ 1.527e-2 & 0.045 & 0.023  & 0.003 & 0 & 0.004 $\pm$ 0.039e-1 \\ \cline{4-10} 
 			\multicolumn{1}{|l|}{}                                                                                             & \multicolumn{1}{l|}{}                                                                             & \multicolumn{1}{l|}{}                          & $\alpha$ = 0.5 & 0.02 $\pm$ 1.603e-2  & 0.061 & 0.015  & 0.002 & 0 & 0.007 $\pm$ 0.063e-1 \\ \cline{4-10} 
 			\multicolumn{1}{|l|}{}                                                                                             & \multicolumn{1}{l|}{}                                                                             & \multicolumn{1}{l|}{}                          & $\alpha$ = 1   & 0.025 $\pm$ 1.948e-2 & 0.047 & 0.036  & 0     & 0 & 0.004 $\pm$ 0.049e-1 \\ \hline
 		\end{tabular}
 	}
-	\caption{Comparison between Pittsburgh and Michigan approaches, in terms of their validation scores. Validation has been calculated as the accuracy in classifying a validation dataset. False positives and false negatives are also indicated, as one of our goals is to reduce the number of false positives. An $*$ indicates the  statistically significant best value for $\alpha$, but only in the cases were we found statistically significant differences.}
+	\caption{Comparison between Pittsburgh and Michigan approaches, in terms of their validation scores. Validation has been calculated as the accuracy in classifying a validation dataset. False positives and false negatives are also indicated, as one of our goals is to reduce the number of false positives. An \textbf{$*$} indicates the  statistically significant best value for $\alpha$, but only in the cases were we found statistically significant differences.}
 	\label{tab:PvsMvalidation}
-\end{table*}
+\end{table}
 
 In Section \ref{subsec:fitnesscomparison} we have shown that the performance in the
 fitness of the Michigan approach was worse than that of Pittsburgh,
@@ -857,20 +857,22 @@ To evaluate computation costs of the two approaches, and taking into considerati
 
 \begin{table*}
 	\centering
+	\resizebox{10.5cm}{!}{
 	\begin{tabular}{lll|l|l|l|l|}
 		\cline{4-7}
 		&                                                &                & \multicolumn{4}{l|}{Time measurement (h)}     \\ \cline{2-7} 
 		\multicolumn{1}{l|}{}                                                                                                    & \multicolumn{2}{l|}{Fitness function}                           & Average            & Best   & Median & Worst  \\ \hline
 		\multicolumn{1}{|l|}{\multirow{4}{*}{\begin{tabular}[c]{@{}l@{}}Pittsburgh:\\ Individual eq. set of rules\end{tabular}}} & \multicolumn{2}{l|}{$f_{Acc}$}                                  & 18.371 $\pm$ 7.178 & 8.545  & 17.366 & 31.366 \\ \cline{2-7} 
 		\multicolumn{1}{|l|}{}                                                                                                   & \multicolumn{1}{l|}{\multirow{3}{*}{$f_{CS}$}} & $\alpha$ = 0   & 14.424 $\pm$ 2.938 & 7.016 & 14.352  & 17.43 \\ \cline{3-7} 
-		\multicolumn{1}{|l|}{}                                                                                                   & \multicolumn{1}{l|}{}                          & $\alpha$ = 0.5$*$ & 11.934 $\pm$ 2.22 & 8.267  & 11.609  & 16.166 \\ \cline{3-7} 
+		\multicolumn{1}{|l|}{}                                                                                                   & \multicolumn{1}{l|}{}                          & $\alpha$ = 0.5\textbf{$*$} & 11.934 $\pm$ 2.22 & 8.267  & 11.609  & 16.166 \\ \cline{3-7} 
 		\multicolumn{1}{|l|}{}                                                                                                   & \multicolumn{1}{l|}{}                          & $\alpha$ = 1   & 13.176 $\pm$ 1.923 & 9.283 & 13.424 & 16.517 \\ \hline
 		\multicolumn{1}{|l|}{\multirow{4}{*}{\begin{tabular}[c]{@{}l@{}}Michigan:\\ Individual eq. one rule\end{tabular}}}       & \multicolumn{2}{l|}{$f_{Acc}$}                                  & 10.627 $\pm$ 0.187 & 10.307 & 10.64  & 10.956 \\ \cline{2-7} 
-		\multicolumn{1}{|l|}{}                                                                                                   & \multicolumn{1}{l|}{\multirow{3}{*}{$f_{CS}$}} & $\alpha$ = 0$*$   & 9.342 $\pm$ 0.3    & 8.993  & 9.261  & 9.854  \\ \cline{3-7} 
+		\multicolumn{1}{|l|}{}                                                                                                   & \multicolumn{1}{l|}{\multirow{3}{*}{$f_{CS}$}} & $\alpha$ = 0\textbf{$*$}   & 9.342 $\pm$ 0.3    & 8.993  & 9.261  & 9.854  \\ \cline{3-7} 
 		\multicolumn{1}{|l|}{}                                                                                                   & \multicolumn{1}{l|}{}                          & $\alpha$ = 0.5 & 9.435 $\pm$ 0.348  & 9.039  & 9.401  & 10.281 \\ \cline{3-7} 
 		\multicolumn{1}{|l|}{}                                                                                                   & \multicolumn{1}{l|}{}                          & $\alpha$ = 1   & 9.612 $\pm$ 0.508  & 8.946  & 9.509  & 10.38  \\ \hline
 	\end{tabular}
-	\caption{Comparison between Pittsburgh and Michigan approaches, in terms of their execution time. For the Michigan approach, times for executing the algorithm once for the GRANTED class and another for the STRONGDENY are presented together. An $*$ indicates the  statistically significant best value for $\alpha$, but only in the cases were we found statistically significant differences.}
+}
+	\caption{Comparison between Pittsburgh and Michigan approaches, in terms of their execution time. For the Michigan approach, times for executing the algorithm once for the GRANTED class and another for the STRONGDENY are presented together. An \textbf{$*$} indicates the  statistically significant best value for $\alpha$, but only in the cases were we found statistically significant differences.}
 	\label{tab:PvsMtime}
 \end{table*}
 
@@ -878,6 +880,7 @@ In this table we see that best times are obtained when $f_{CS}$ is used. More pr
 
 \begin{table*}
 	\centering
+	\resizebox{10.5cm}{!}{
 	\begin{tabular}{lll|l|l|l|l|}
 		\cline{4-7}
 		&                                                &                & \multicolumn{4}{l|}{Best individual size}     \\ \cline{2-7} 
@@ -885,9 +888,10 @@ In this table we see that best times are obtained when $f_{CS}$ is used. More pr
 		\multicolumn{1}{|l|}{\multirow{4}{*}{\begin{tabular}[c]{@{}l@{}}Pittsburgh:\\ Individual eq. set of rules\end{tabular}}} & \multicolumn{2}{l|}{$f_{Acc}$}                                  & 60.2 $\pm$ 10.922 & 47 & 60 & 79 \\ \cline{2-7} 
 		\multicolumn{1}{|l|}{}                                                                                                   & \multicolumn{1}{l|}{\multirow{3}{*}{$f_{CS}$}} & $\alpha$ = 0   & 60 $\pm$ 11.086 & 43 & 60 & 83 \\ \cline{3-7} 
 		\multicolumn{1}{|l|}{}                                                                                                   & \multicolumn{1}{l|}{}                          & $\alpha$ = 0.5 & 40 $\pm$ 4.447 & 35 & 40  & 47 \\ \cline{3-7} 
-		\multicolumn{1}{|l|}{}                                                                                                   & \multicolumn{1}{l|}{}                          & $\alpha$ = 1$*$   & 36.2 $\pm$ 3.011 & 31 & 37 & 39 \\ \hline
+		\multicolumn{1}{|l|}{}                                                                                                   & \multicolumn{1}{l|}{}                          & $\alpha$ = 1\textbf{$*$}   & 36.2 $\pm$ 3.011 & 31 & 37 & 39 \\ \hline
 	\end{tabular}
-	\caption{Size of the best individuals for the Pittsburgh approach, where the size is the size of the tree. In the Michigan approach, the size is the length of the list -- number of conditions in the rule -- and always equal to 10. An $*$ indicates the  statistically significant best value for $\alpha$.}
+	}
+	\caption{Size of the best individuals for the Pittsburgh approach, where the size is the size of the tree. In the Michigan approach, the size is the length of the list -- number of conditions in the rule -- and always equal to 10. An \textbf{$*$} indicates the  statistically significant best value for $\alpha$.}
 	\label{tab:PvsMsize}
 \end{table*}
 
@@ -926,7 +930,7 @@ As we have executed the experiments performing a 10-fold cross-validation, in or
 
 \begin{figure*}[h!tb]
 	\centering
-	\includegraphics[width=0.8\textwidth]{img/bestInd_fCS_a0.pdf}
+	\includegraphics[width=0.95\textwidth]{img/bestInd_fCS_a0.pdf}
 	\caption{An example of best individual obtained when using
           $f_{CS}$ as the fitness function with an $\alpha$ value of
           0. This tree represents a set of 16 rules, two of them
