@@ -487,7 +487,7 @@ FUNCTION {format.names}
   numnames 'namesleft :=
     { namesleft #0 > }
     { s nameptr
-      "{vv~}{ll}{, f.}{, jj}" format.name$
+      "{f.~}{vv~}{ll}{, jj}" format.name$
     't :=
       nameptr #1 >
         {
@@ -627,7 +627,7 @@ FUNCTION {format.date}
     }
     { month empty$
         'year
-        { month "" * year * }
+        { month " " * year * }
       if$
     }
   if$
@@ -635,7 +635,7 @@ FUNCTION {format.date}
     'skip$
     {
       before.all 'output.state :=
-    "" swap$ * "" *
+    " (" swap$ * ")" *
     }
   if$
 }
@@ -643,7 +643,7 @@ FUNCTION {format.date}
 FUNCTION{format.year}
 { year duplicate$ empty$
     { "empty year in " cite$ * warning$ pop$ "" }
-    { " " swap$ * "." * }
+    { "(" swap$ * ")" * }
   if$
 }
 
@@ -822,7 +822,7 @@ FUNCTION {format.vol.num.pages}
   number empty$
     'skip$
     {
-      "~(" number * ");" * *
+      "~(" number * ")" * *
       volume empty$
         { "there's a number but no volume in " cite$ * warning$ }
         'skip$
