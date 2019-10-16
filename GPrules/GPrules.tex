@@ -19,27 +19,42 @@
 
 \begin{document}
 %
-\title{Automatic rule extraction using Genetic Programming in a ``Bring Your Own Device'' scenario\thanks{This work has been supported in part by SPIP2017-02116, EphemeCH TIN2014-56494-C4-3-P, DeepBio TIN2017-85727-C4-2-P and TEC2015-68752, and European project MUSES (FP7-318508). }}
+\title{Automatic rule extraction using Genetic Programming in a
+  ``Bring Your Own Device'' scenario}
+
+ \author{A\inst{1}
+ \and
+ B\inst{1}
+ \and
+ C\inst{1}
+ \and
+ D\inst{1}
+}
+
+\institute{%
+   University Z\\
+   \email{an@ema.il}
+}
+
 %
 %\titlerunning{Abbreviated paper title}
 % If the paper title is too long for the running head, you can set
 % an abbreviated paper title here
 %
-\author{Paloma de las Cuevas\inst{1}\orcidID{0000-0002-5599-3981} \and
-Pablo Garc\'ia-S\'anchez\inst{2}\orcidID{0000-0003-4644-2894} \and
-Zaineb Chelly Dagdia\inst{3,4}\orcidID{0000-0002-2551-6586} \and
-Mar\'ia-Isabel Garc\'{\i}a-Arenas\inst{1}\orcidID{0000-0002-5576-4417} \and
-Juan Juli\'an Merelo\inst{1}\orcidID{0000-0001-8956-5304}}
+% \author{Paloma de las Cuevas\inst{1}\orcidID{0000-0002-5599-3981} \and
+% Pablo Garc\'ia-S\'anchez\inst{2}\orcidID{0000-0003-4644-2894} \and
+% Zaineb Chelly Dagdia\inst{3,4}\orcidID{0000-0002-2551-6586} \and
+% Mar\'ia-Isabel Garc\'{\i}a-Arenas\inst{1}\orcidID{0000-0002-5576-4417} \and
+% Juan Juli\'an Merelo\inst{1}\orcidID{0000-0001-8956-5304}}
 %
-\authorrunning{P. de las Cuevas et al.}
 % First names are abbreviated in the running head.
 % If there are more than two authors, 'et al.' is used.
 %
-\institute{Department of Computer Architecture and Computer Technology, ETSIIT and CITIC, University of Granada, Granada, Spain \email{\{palomacd,mgarenas,jmerelo\}@ugr.es}\and
-Department of Computer Engineering, ESI, University of C\'adiz, Spain \email{pablo.garciasanchez@uca.es} \and
-Universit\'{e} de Lorraine, CNRS, Inria, LORIA, F-54000 Nancy, France \and
-LARODEC, Institut Sup\'erieur de Gestion de Tunis,  Tunisia \email{chelly.zaineb@gmail.com}
-}
+% \institute{Department of Computer Architecture and Computer Technology, ETSIIT and CITIC, University of Granada, Granada, Spain \email{\{palomacd,mgarenas,jmerelo\}@ugr.es}\and
+% Department of Computer Engineering, ESI, University of C\'adiz, Spain \email{pablo.garciasanchez@uca.es} \and
+% Universit\'{e} de Lorraine, CNRS, Inria, LORIA, F-54000 Nancy, France \and
+% LARODEC, Institut Sup\'erieur de Gestion de Tunis,  Tunisia \email{chelly.zaineb@gmail.com}
+% }
 %
 \maketitle              % typeset the header of the contribution
 %
@@ -255,11 +270,13 @@ concept. In \cite{de2015corporate} there is a description of the
 market solutions that the main manufacturers have developed to such
 purpose. The level of security and privacy preservation offered by
 these applications is different depending on the solution.
-None of the reviewed solutions, but one, seem to offer a dynamic
-creation of rules in the database used for incident detection. Our work is part of the project called MUSES, as one of its aims is implementing rule inference using GP, among other techniques. In this work we extend the description of the
-rule inference process through GP, as well as the details of its implementation
-and the results after applying it to a set of data gathered during the project. 
 
+% None of the reviewed solutions, but one, seem to offer a dynamic
+% creation of rules in the database used for incident detection. Our work is part of the project called MUSES, as one of its aims is implementing rule inference using GP, among other techniques. In this work we extend the description of the
+% rule inference process through GP, as well as the details of its implementation
+% and the results after applying it to a set of data gathered during the project. 
+% ---- Commented out for anonymity and also because it does not belong
+% here -- 
 
 Previous papers have commented on the issue of using quality data to obtain accurate and valuable extracted knowledge, which is specially difficult when dealing with datasets taken from real world problems, where the sensors cannot work properly at a certain time.
 To avoid this, researchers have advanced the state of the art in the precision of the
@@ -293,22 +310,24 @@ complexity of the solution.
 %Once again, this paragraph does not follow the previous one. Maybe
 %move it one paragraph up, where you are talking about proper training
 %data. 
-Finally, the lack of BYOD-related security databases is a hindrance for the
-proliferation of research in this field. As seen, there actually exist
-a number of datasets related to malware, e-mail spamming, or URL
-requests \footnote{http://www.secrepo.com/}, but none about the use
-that people make of their smartphones. This situation clearly exists
-due to privacy considerations. Miller et al. \cite{Miller201253}
-firmly state that the issue of privacy is even more important than the
-security issue, although it does not receive the same
-attention. Furthermore, when the MDM solution is described in
-\cite{ali2015analysis}, the authors mention the privacy concerns the
-employees may have due to the processing that the company makes over
-all their behavioural data. And even after anonymising the resulting
-dataset, one can still, in certain cases, identify a user of the
-company the data comes from by processing the data. If this principle
-cannot be guaranteed, the data should not be released
-\cite{boillat2014handbook}.
+% ----------------- Commented out as it should have been from the
+% beginning ------------------------------------------------------
+% Finally, the lack of BYOD-related security databases is a hindrance for the
+% proliferation of research in this field. As seen, there actually exist
+% a number of datasets related to malware, e-mail spamming, or URL
+% requests, but none about the use
+% that people make of their smartphones. This situation clearly exists
+% due to privacy considerations. Miller et al. \cite{Miller201253}
+% firmly state that the issue of privacy is even more important than the
+% security issue, although it does not receive the same
+% attention. Furthermore, when the MDM solution is described in
+% \cite{ali2015analysis}, the authors mention the privacy concerns the
+% employees may have due to the processing that the company makes over
+% all their behavioural data. And even after anonymising the resulting
+% dataset, one can still, in certain cases, identify a user of the
+% company the data comes from by processing the data. If this principle
+% cannot be guaranteed, the data should not be released
+% \cite{boillat2014handbook}.
 % This paragraph is not the state of the art in your methods or
 % problem. You are eventually not releasing data, either. Suggestions:
 % 1. Eliminate it
@@ -357,7 +376,7 @@ finally including or not the set of rules in the main security
 policy. The description of the used data and further explicit details
 about our proposed solution are given in what is next.
 
-\subsection{Available Data}
+%\subsection{Available Data}
 \label{subsec:data}
 
  The set of used data has been gathered from the trials that were performed
@@ -404,7 +423,7 @@ GRANTED or STRONGDENY.
                                 % experiments, ALL of THEM, to address
                                 % this unbalance - JJ
 
-\subsection{Proposed Solution}
+%\subsection{Proposed Solution}
 \label{subsec:solution}
 
 As previously highlighted, in this work we propose a system which is
@@ -517,7 +536,7 @@ device_is_rooted=true THEN=STRONGDENY
 
 Rules presented in this way offer good readability which is key to understand the relation between the attributes and how the described situation may, or may not, be dangerous. In the example, the system would have inferred that an action from a device without antivirus, a short password, and rooted or belonging to an administration employee, should be denied.
 
-\subsection{Choosing a suitable fitness}
+%\subsection{Choosing a suitable fitness}
 \label{subsec:chossingfitness}
 
 In the application of GP to classification
@@ -582,7 +601,7 @@ And finally decide which fitness function offers, taking into account these meas
 % Please note also that you are not making any reference to the
 % STRONGDENY and GRANTED classes you include in the tables. 
 
-\subsection{Experimental Setup}
+%\subsection{Experimental Setup}
 \label{sec:experiments}
 
 Once the methods to compare have been explained, the rest of the experimental setup is described.
@@ -595,7 +614,7 @@ been used, following our previous works that have used these operators
 obtaining good results \cite{EvoStar2014:GPBot}. In this case, during the
 mutation operation, there is a 50\% of probabilty to change the complete variable (prefix, name, operator and value) or only the value. A population of 32 individuals and a 2-tournament selector for a pool of
 16 parents have been used. These parameters have been also previously used in previous GP works \cite{EvoStar2014:GPBot}. Table \ref{tab:parameters} summarises all the parameters used.
-
+%
 \begin{table}
 \begin{center}
 \caption{Parameters used in the experiments.}
@@ -616,7 +635,7 @@ Runs per configuration & 10 \\ \hline
 Individual representation & Pittsburgh vs. Michigan \\ \hline
 Fitness & $f_{CS}$ VS $f_{Acc}$ \\ \hline
 $\alpha$ for $f_{CS}$ & 0, 0.5, and 1 \\ \hline
-
+%
 \end{tabular}
 }
 \label{tab:parameters}
@@ -666,7 +685,7 @@ approach, justifying this choice.
 % separate results, compare them, even less so in different
 % subsections.
 
-\subsection{$F_{Acc}$ vs. $F_{CS}$} 
+%\subsection{$F_{Acc}$ vs. $F_{CS}$} 
 \label{subsec:fitnesscomparison}
 
 The aim of this comparison is to conclude which fitness function should be used, discussing the results from the point of view of convergence, and that means finding which one reaches the best value faster. To study this we have displayed the obtained fitness through the iterations for the Pittsburgh approach in Figure \ref{fig:pittsburghItvsF} and for the Michigan approach in Figures \ref{fig:michiganItvsF_allow} and \ref{fig:michiganItvsF_deny}. Figures for GRANTED and STRONGDENY classes are separated because the solution is a single rule instead of a set of rules, and therefore the algorithm has to be executed once per class. With regard to the best fitness obtained for each fitness function, they are similar in the same scope, which means that the different values of $\alpha$ in $f_{CS}$ did not present significant differences in the two approaches separately.
@@ -707,7 +726,7 @@ We can advance that the best results might be obtained for $f_{CS}$
 with $\alpha = 0.5$. However, there is a considerable difference between the performance, in terms of best
 obtained fitness, of the two used approaches. In this way, we have to thoroughly compare them. In the next section we do so by chosing the validation coverage and the ratio of false positives and negatives as independent measurements. 
 
-\subsection{The Pittsburgh vs. Michigan approach} 
+%\subsection{The Pittsburgh vs. Michigan approach} 
 \label{subsec:approachcomparison}
 
 Once the variability of the obtained fitness has been studied, and
@@ -864,37 +883,38 @@ In this table we only show the results for the Pittsburgh approach, given that t
 %\label{tab:PvsMtime}
 %\end{table*}
 
-\subsection{Examples of the best obtained individuals}
-\label{subsec:examples}
+% -------- Eliminates this to save space ----------------
+% \subsection{Examples of the best obtained individuals}
+% \label{subsec:examples}
 
-What we also have to determine is which kind of presented solution is better: showing the CSO a set of rules or a single rule for each class. As already discussed in Section \ref{sec:methodology}, each one has their advantages and disadvantages, but now we directly compare some of the best individuals obtained for both implementations, proving their readability and usefulness for the CSOs. In addition, we present the relation between the obtained solutions and the original rules that allowed to classify the dataset we have been working with.
+% What we also have to determine is which kind of presented solution is better: showing the CSO a set of rules or a single rule for each class. As already discussed in Section \ref{sec:methodology}, each one has their advantages and disadvantages, but now we directly compare some of the best individuals obtained for both implementations, proving their readability and usefulness for the CSOs. In addition, we present the relation between the obtained solutions and the original rules that allowed to classify the dataset we have been working with.
 
-As we have executed the experiments performing a 10-fold cross-validation, in order to study the best individuals for each configuration we need to consider the values of the validation accuracies per fold, and then choose the best one. In Figure \ref{fig:bestInd_fCS_a0} we show an example of best individual, in this case obtained when using $f_{CS}$ as the fitness function with an $\alpha$ value of 0. The tree in this figure represents a set of 16 rules, two of them classifying to the STRONGDENY class, whilst the rest classify towards the GRANTED class. The ones that classify to STRONGDENY have been highlighted and presented in string form in the figure.
+% As we have executed the experiments performing a 10-fold cross-validation, in order to study the best individuals for each configuration we need to consider the values of the validation accuracies per fold, and then choose the best one. In Figure \ref{fig:bestInd_fCS_a0} we show an example of best individual, in this case obtained when using $f_{CS}$ as the fitness function with an $\alpha$ value of 0. The tree in this figure represents a set of 16 rules, two of them classifying to the STRONGDENY class, whilst the rest classify towards the GRANTED class. The ones that classify to STRONGDENY have been highlighted and presented in string form in the figure.
 
-\begin{figure*}[h!tb]
-	\centering
-	\includegraphics[width=\textwidth]{img/bestInd_fCS_a0.pdf}
-	\caption{An example of best individual obtained when using
-          $f_{CS}$ as the fitness function with an $\alpha$ value of
-          0. This tree represents a set of 16 rules, two of them
-          classifying to the STRONGDENY class, whilst the rest
-          classify towards the GRANTED class.} 
-	\label{fig:bestInd_fCS_a0}
-\end{figure*}
+% \begin{figure*}[h!tb]
+% 	\centering
+% 	\includegraphics[width=\textwidth]{img/bestInd_fCS_a0.pdf}
+% 	\caption{An example of best individual obtained when using
+%           $f_{CS}$ as the fitness function with an $\alpha$ value of
+%           0. This tree represents a set of 16 rules, two of them
+%           classifying to the STRONGDENY class, whilst the rest
+%           classify towards the GRANTED class.} 
+% 	\label{fig:bestInd_fCS_a0}
+% \end{figure*}
 
-The STRONGDENY rules in Figure \ref{fig:bestInd_fCS_a0} imply that the developers are more probably to get a GRANTED in their actions, and this conclusion makes sense because because they are supposed to be more familiar with system security. Also, from the second rule we can infer that the complex events -- not simple -- and the devices owned by the users and not the company may be dangerous. The root condition, which appears in every rule and therefore means is very important, is related to the time that the the device takes to enter into sleep mode (screen turns off). This kind of information can be used by the CSOs to develop new security rules for the system.
+% The STRONGDENY rules in Figure \ref{fig:bestInd_fCS_a0} imply that the developers are more probably to get a GRANTED in their actions, and this conclusion makes sense because because they are supposed to be more familiar with system security. Also, from the second rule we can infer that the complex events -- not simple -- and the devices owned by the users and not the company may be dangerous. The root condition, which appears in every rule and therefore means is very important, is related to the time that the the device takes to enter into sleep mode (screen turns off). This kind of information can be used by the CSOs to develop new security rules for the system.
 
-In general, what we have seen in the individuals obtained by the
-Pittsburgh approach is that most of the rules in the set classify for
-the GRANTED class, and less than 13\% are classifying for the
-STRONGDENY class. Again, the effect of the imbalance in the dataset is
-present. Actually, in some cases the set of rules only classify to
-GRANTED, and this can be seen as a ``whitelist'', meaning that
-everything that is not specify by these rules will be automatically
-denied.
+% In general, what we have seen in the individuals obtained by the
+% Pittsburgh approach is that most of the rules in the set classify for
+% the GRANTED class, and less than 13\% are classifying for the
+% STRONGDENY class. Again, the effect of the imbalance in the dataset is
+% present. Actually, in some cases the set of rules only classify to
+% GRANTED, and this can be seen as a ``whitelist'', meaning that
+% everything that is not specify by these rules will be automatically
+% denied.
 
-%Maybe some comment on the root rule, which is the most discriminating
-%one. Or some insight from the rules you could give the CSO - JJ
+% %Maybe some comment on the root rule, which is the most discriminating
+% %one. Or some insight from the rules you could give the CSO - JJ
 
 \section{Conclusions and Future Work}
 \label{sec:future}
