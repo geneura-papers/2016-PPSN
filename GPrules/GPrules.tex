@@ -1,81 +1,57 @@
-\documentclass[preprint,12pt]{elsarticle}
+% This is samplepaper.tex, a sample chapter demonstrating the
+% LLNCS macro package for Springer Computer Science proceedings;
+% Version 2.20 of 2017/10/04
 %
+\documentclass[runningheads]{llncs}
+%
+\usepackage{graphicx}
 \usepackage[latin1]{inputenc}
 \usepackage{amssymb}
-\usepackage{graphicx}
 \usepackage{amsmath}
 \usepackage{url}
 \usepackage{multirow}
+% Used for displaying a sample figure. If possible, figure files should
+% be included in EPS format.
+%
+% If you use the hyperref package, please uncomment the following line
+% to display URLs in blue roman font according to Springer's eBook style:
+% \renewcommand\UrlFont{\color{blue}\rmfamily}
 
-
-\journal{Computers and Security}
 \begin{document}
-
-\begin{frontmatter}
-
-\title{Automatic rule extraction using Genetic Programming in a ``Bring Your Own Device'' scenario
+%
+\title{Automatic rule extraction using Genetic Programming in a ``Bring Your Own Device'' scenario\thanks{This work has been supported in part by SPIP2017-02116, EphemeCH TIN2014-56494-C4-3-P, DeepBio TIN2017-85727-C4-2-P and TEC2015-68752, and European project MUSES (FP7-318508). }}
+%
+%\titlerunning{Abbreviated paper title}
+% If the paper title is too long for the running head, you can set
+% an abbreviated paper title here
+%
+\author{Paloma de las Cuevas\inst{1}\orcidID{0000-0002-5599-3981} \and
+Pablo Garc\'ia-S\'anchez\inst{2}\orcidID{0000-0003-4644-2894} \and
+Zaineb Chelly Dagdia\inst{3,4}\orcidID{0000-0002-2551-6586} \and
+Mar\'ia-Isabel Garc\'{\i}a-Arenas\inst{1}\orcidID{0000-0002-5576-4417} \and
+Juan Juli\'an Merelo\inst{1}\orcidID{0000-0001-8956-5304}}
+%
+\authorrunning{P. de las Cuevas et al.}
+% First names are abbreviated in the running head.
+% If there are more than two authors, 'et al.' is used.
+%
+\institute{Department of Computer Architecture and Computer Technology, ETSIIT and CITIC, University of Granada, Granada, Spain \email{\{palomacd,mgarenas,jmerelo\}@ugr.es}\and
+Department of Computer Engineering, ESI, University of C\'adiz, Spain \email{pablo.garciasanchez@uca.es} \and
+Universit\'{e} de Lorraine, CNRS, Inria, LORIA, F-54000 Nancy, France \and
+LARODEC, Institut Sup\'erieur de Gestion de Tunis,  Tunisia \email{chelly.zaineb@gmail.com}
 }
-
-
-\author[ugr]{Paloma de las Cuevas}
-\ead{palomacd@ugr.es}
-\author[uca]{Pablo Garc\'ia-S\'anchez}
-\ead{pablo.garciasanchez@uca.es}
-\author[abe,laro]{Zaineb Chelly Dagdia}
-\ead{zaineb.chelly@aber.ac.uk, chelly.zaineb@gmail.com}
-\author[ugr]{Mar\'ia-Isabel Garc\'{\i}a-Arenas}
-\ead{mgarenas@ugr.es}
-\author[ugr]{Juan Juli\'an Merelo}
-\ead{jmerelo@geneura.ugr.es}
-
-
-\address[ugr]{Department of Computer Architecture and Computer Technology, ETSIIT and CITIC, University of Granada, Granada, Spain.}
-\address[uca]{Department of Computer Engineering, ESI, University of C\'adiz, Spain}
-\address[abe] { Department of Computer Science, Aberystwyth University, Aberystwyth, UK}
-\address[laro]{ LARODEC, Institut Sup\'erieur de Gestion de Tunis, Tunis, Tunisia}
-
-%\authorrunning{Short form of author list} % if too long for running head
-
-%\institute{Paloma De las Cuevas \at
-%              Department of Computer Architecture and Computer Technology, ETSIIT and CITIC \\
-%              \url{http://citic.ugr.es} University of Granada, Granada, Spain.\\
-%              Tel.: +34958241778\\
-%              Fax: +34958248993\\
-%              \email{palomacd@ugr.es}           %  \\
-%%             \emph{Present address:} of F. Author  %  if needed
-%           \and
-%           Pablo Garc\'{\i}a-S\'anchez \at
-%              Department of Computer Engineering, School of Engineering \\
-%              University of C\'adiz, Spain. \\
-%              \email{pablo.garciasanchez@uca.es}
-%           \and
-%	   Zaineb Chelly Dagdia \at
-%              Department of Computer Science, Aberystwyth University, \\Aberystwyth, United Kingdom  \\
-%              and LARODEC, Institut Sup\'erieur de Gestion de Tunis, Tunis, Tunisia, \\
-%              \email{zaineb.chelly@aber.ac.uk, chelly.zaineb@gmail.com}
-%	   \and
-%           M.I. Garc\'{\i}a-Arenas \at
-%              Department of Computer Architecture and Computer Technology, ETSIIT and CITIC \\
-%              University of Granada, Granada, Spain.\\
-%              \email{mgarenas@ugr.es}
-%          \and
-%          J.J. Merelo \at
-%              Department of Computer Architecture and Computer Technology, ETSIIT and CITIC \\
-%              University of Granada, Granada, Spain.\\
-%              \email{jmerelo@geneura.ugr.es}
-%}
-
-
+%
+\maketitle              % typeset the header of the contribution
+%
 \begin{abstract}
 The constant enhancement of personal devices has inspired the adoption of the ``Bring Your Own Device'' (BYOD) concept in the corporate world, granting the employees to continue working even not being at the company premises or on virtual private networks. Despite the significant advantages of this policy such as increasing work productivity,  these accesses to the internal network and the assets it holds exposes the companies to security threats such as leak of confidential data and unauthorised access. The security policy rules needed to control this are usually fixed and proposed by the Chief Security Officer (CSO). In this work we propose a way to automatically obtain rules to improve BYOD security using Genetic Programming (GP), since GP is capable of discovering novel and interesting classification rules, with the additional feature of presenting them in an understandable way. We obtain good dataset coverage and small ratios of false positives and negatives in the simulation results over real data, after testing different fitness functions and configurations in the way of coding the individuals. Through these comparisons, we can establish a proof of concept to demonstrate the viability, and applicability of the GP approach to the BYOD security context for automatic rule discovery.
-
-\begin{keyword}
-Bring Your Own Device \sep Security \sep Corporate Security Policy \sep Genetic Programming \sep Rule Extraction
-\end{keyword}
-
+\keywords{Bring Your Own Device \and Security \and Corporate Security Policy \and Genetic Programming \and Rule Extraction.}
 \end{abstract}
+%
+%
+%
 
-\end{frontmatter}
+
 
 \section{Introduction}
 \label{sec:intro}
@@ -104,7 +80,7 @@ increasing flexibility and worker productivity as employees will not
 be asked to haul around multiple devices to satisfy both their personal and
 work needs, having everything they need in one device anytime and
 anywhere. 
-Other advantages are tied to the increase of worker satisfaction, attracting the best candidates, and the increase of engagement in the workplace and after hours \cite{singh2012byod}. 
+Other advantages are tied to the increase of worker satisfaction, attracting the best candidates, and the increase of engagement in the workplace and after hours \cite{singh2012byod,Doargajudhur2019BYODimpact}. 
 
 %These advantages have made BYOD policies gain traction in the education
 %sector with an increasing number of schools around the world choosing
@@ -134,7 +110,7 @@ Other advantages are tied to the increase of worker satisfaction, attracting the
 
 However, there exists a big disadvantage concerning security, since
 potentially unsecured devices from unaware users might interact with
-important company assets. Therefore, the main issue in the adaptation to a BYOD scenario is to obtain a high level
+important company assets \cite{Man2018BYODchallenges}. Therefore, the main issue in the adaptation to a BYOD scenario is to obtain a high level
 of security, while maintaining user privacy \cite{miller2012byod}.
 Clearly the uncontrolled access to internal networks by the
 personal devices, for which companies have control limits
@@ -147,7 +123,7 @@ other possible threats \cite{lennon2012changing}. These threats have become the
 companies main security concern, which makes a challenge to
 assure a compromise between pushing personal devices towards
 professional use while coping with their own stringent and complex
-security requirements. This trend is inevitable as enterprises are
+security requirements \cite{Man2018BYODchallenges}. This trend is inevitable as enterprises are
 faced with questions of whether and how to manage this situation \cite{thomson2012byod}; and
 thus every department must be involved in establishing security
 policies and procedures to minimise the company's risks.
@@ -239,7 +215,7 @@ suggestions about how to continue our research are given in Section
 Since BYOD policies started to appear in companies' day-to-day policies  a lot
 of research has been done about the advantages and disadvantages of
 this approach \cite{singh2012byod}, as well as about how to properly implement it in order to
-respect privacy while trying to secure the resources \cite{scarfo2012new, ali2015analysis, de2015corporate}.
+respect privacy while trying to secure the resources \cite{scarfo2012new,ali2015analysis,de2015corporate}.
 These issues can be approached in different ways; Scarfo
 differentiates in \cite{scarfo2012new} two main ones: allowing the
 device to connect via desktop or application virtualisation, meaning
@@ -970,13 +946,9 @@ different minority-class/majority-class ratios.
 For our future work we will implement these solutions to continue
 improving our system. Furthermore, we will extend the approach to other problems where data is available. For example, particularisations of the BYOD problem as it could be Internet navigation during work hours. We will explore network traffic from public data repositories, such as \url{http://www.secrepo.com/#3p\_network}, and try to apply our approach. 
 
-\section*{Acknowledgments}
-
-This work has been supported in part by SPIP2017-02116, EphemeCH TIN2014-56494-C4-3-P, DeepBio TIN2017-85727-C4-2-P and TEC2015-68752, and European project MUSES (FP7-318508). 
 
 
-\section*{References}
-\bibliographystyle{elsarticle-num}      
+\bibliographystyle{splncs04}      
 \bibliography{GPrules,geneura}   
 
 
