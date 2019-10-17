@@ -444,7 +444,8 @@ $f_{Acc}$ and $f_{CS}$, with different  alpha values, to check two statements:
 
 \begin{itemize}
 	\item How they influence in the number of evaluations taken to find the best solution.
-	\item Which fitness function contributes best to obtain the less FP and FN as possible.
+	\item Which fitness function is able to minimize false
+          positives and negatives.
 \end{itemize}
 
 And finally decide which fitness function offers, taking into account these measures, the best performance. 
@@ -504,8 +505,7 @@ depending on the approach, as previously described. % But this is what you are g
                            % emphasis - JJ
 Then, the chosen fitness is evaluated for a particular rule -- the single rule or each one inside the set -- and over the 90\% of the data.
 For further reliability of the results, it is advised to perform
-10-fold cross-validation, and as such the WEKA %Pablo: it is worth mentioning WEKA here? (well, in fact, I wrote this paragraph, but Paloma decides)
-% (Paloma) Uhm, maybe it's not THAT necessary, but it does not bother either... i don't know xD 
+10-fold cross-validation, and as such the WEKA 
 Java Library \cite{HallWEKA09} has been used to generate the 10 folds
 or distributions of data into 90\% training (fitness evaluation) and
 10\% validation. This way, each experiment has been executed 10 times,
@@ -781,9 +781,6 @@ devices imply a certain degree of unsafety. The root, and thus most important, c
 % GRANTED, and this can be seen as a ``whitelist'', meaning that
 % everything that is not specify by these rules will be automatically
 % denied.
-
-% %Maybe some comment on the root rule, which is the most discriminating
-% %one. Or some insight from the rules you could give the CSO - JJ
 
 \section{Conclusions and Future Work}
 \label{sec:future}
