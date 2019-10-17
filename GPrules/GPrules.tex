@@ -697,7 +697,21 @@ To evaluate computation costs of the two approaches, and taking into considerati
 	\label{tab:PvsMtime}
 \end{table*}
 
-In this table we see that best times are obtained when $f_{CS}$ is used. More precisely, in the Pittsburgh approach, the distributions follow the normal and after performing the ANOVA test, we can say that the shorter execution time (the best) is found for $\alpha$ = 0.5 with statistical significance (p-value of 0.008623). In the case of the Michigan approach, we again find statistical differences (p-value of 5.537e-05) between the results, and thus we can say that the best execution time is obtained when we use $f_{CS}$ with an $\alpha$ value of 0. It seems that the time does decrease when $\alpha$ is different than 0, meaning that the depth of the tree is taken into account during the evaluation of the fitness. To study this effect, we have to look at the sizes of the best individuals obtained for each configuration, which are displayed in Table \ref{tab:PvsMsize}.
+In this table we see that best times are obtained when $f_{CS}$ is
+used. More precisely, in the Pittsburgh approach, the distributions
+follow the normal and after performing the ANOVA test, we can say that
+the shorter execution time (the best) is found for $\alpha$ = 0.5 with
+statistical significance (p-value of 0.008623). In the case of the
+Michigan approach, we again find statistical differences (p-value of
+5.537e-05) between the results, and thus we can say that the best
+execution time is obtained when we use $f_{CS}$ with an $\alpha$ value
+of 0. It seems that the time does decrease when $\alpha$ is different
+than 0, meaning that the depth of the tree has an influence on the
+evaluation of the fitness.
+
+To study this effect, we have to look at
+the sizes of the best individuals obtained for each configuration,
+which are displayed in Table \ref{tab:PvsMsize}. 
 
 \begin{table*}[h!tb]
 	\centering
@@ -716,7 +730,18 @@ In this table we see that best times are obtained when $f_{CS}$ is used. More pr
 	\label{tab:PvsMsize}
 \end{table*}
 
-In this table we only show the results for the Pittsburgh approach, given that the sizes of the trees do change in GP, but the size of a list -- number of conditions in the rule -- does not, and in this case is always 10. Certainly, the size of the trees diminishes when the value of $\alpha$ grows. Since the distributions do not follow the normal, a non-parametric test (Kruskal-Wallis) has been used to asset the statistical significance \cite{DerracTests11}, obtaining a p-value of 1.679e-10. Then, the smaller individual is found for $f_{CS}$, and $\alpha$ = 1.
+In this table we only show the results for the Pittsburgh approach,
+given that the sizes of the trees do change in GP, but the size of a
+list -- number of conditions in the rule -- does not, and in this case
+is always 10. Certainly, the size of the trees decreases when the
+value of $\alpha$ grows. Since the distributions do not follow the
+normal, a non-parametric test (Kruskal-Wallis) has been used to asset
+the statistical significance \cite{DerracTests11}, obtaining a p-value
+of 1.679e-10. Then, the smaller individual is found for $f_{CS}$, and
+$\alpha$ = 1. In the context of this problem, a smaller number of
+rules increases their explainability, which is why this particular
+value and fitness function will have to be considered if that is a
+priority. 
 
 % Esta se deja comentada por si piden más resultados
 
@@ -771,7 +796,12 @@ the developers are more probably to get a GRANTED in their actions,
 and this conclusion makes sense because because they are supposed to
 be more familiar with system security. Also, from the second rule we
 can infer that the complex events -- not simple -- and the BYOD
-devices imply a certain degree of unsafety. The root, and thus most important, condition, is related to the time that the the device takes to enter into sleep mode (screen turns off). 
+devices imply a certain degree of unsafety. The root, and thus most
+important, condition, is related to the time that the the device takes
+to enter into sleep mode (screen turns off).
+
+% We haven't really answered the question: is it better a set of rules
+% or a single rule - JJ
 
 % In general, what we have seen in the individuals obtained by the
 % Pittsburgh approach is that most of the rules in the set classify for
