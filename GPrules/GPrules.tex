@@ -551,6 +551,11 @@ convergence, and that means finding which one reaches the best value
 faster. % How does visualizing fitness contribute to that? - JJ
 To study this we have displayed the obtained fitness through the iterations for the Pittsburgh approach in Figure \ref{fig:pittsburghItvsF} and for the Michigan approach in Figures \ref{fig:michiganItvsF_allow} and \ref{fig:michiganItvsF_deny}. Figures for GRANTED and STRONGDENY classes are separated because the solution is a single rule instead of a set of rules, and therefore the algorithm has to be executed once per class. With regard to the best fitness obtained for each fitness function, they are similar in the same scope, which means that the different values of $\alpha$ in $f_{CS}$ did not present significant differences in the two approaches separately.
 
+% I really don't see what these charts are useful for. First, they are
+% incorrect, since they should go from 0 to the values. Second, they
+% are not useful to compare among fitness, or among different
+% approaches. What do you want people to see here? That fitness is
+% optimized? That's a given... - JJ
 \begin{figure*}[h!tb]
 \centering
 \includegraphics[width=0.8\textwidth]{img/pittsburghItvsF.pdf}
@@ -559,7 +564,7 @@ To study this we have displayed the obtained fitness through the iterations for 
   be maximized, whereas $f_{CS}$ has to be minimized.}
 \label{fig:pittsburghItvsF}
 \end{figure*}
-
+%
 For the sake of clarity, $f_{CS}$ has been divided by the maximum
 value -- the number of instances for training -- it might take. By
 looking at the Pittsburgh approach values in Figure
@@ -645,39 +650,6 @@ labelled as GRANTED. Thus, the results we have obtained are biased towards the m
 class \cite{japkowicz2002class}. 
 
 At the same time, and because the distributions for the Michigan approach follow the normal, an ANOVA test has been performed in every class \cite{DerracTests11}, obtaining a p-value of 0.5538 for the GRANTED class, meaning that there are not statistically significant differences in the results. However, in the case of the STRONGDENY class, using $f_{CS}$ significantly (p-value of 0.001736) decreases the accuracy over the validation set. With regard to how many FP and FN are obtained in every approach, we see in Table \ref{tab:PvsMvalidation} that for the Pittsburgh approach we generally obtain low rates or 0 -- ideal -- false negatives, and around 7\% rate of false positives -- almost 400 in average for our validation set --. On the other hand, best rates are found for the Michigan approach, where the rate of FP is, at most, 2.8\% -- around 113 instances in average --. And even if there were FN found, the average for the used validation set is 29 instances out of 5330, which is a very low number and as we explained before, in this BYOD scenario it is less worse to have FN than FP. Also, this imbalance in the FP and FN values is also caused by the imbalance in the dataset.
-
-% Esta se deja comentada por si piden más resultados
-
-%\begin{table*}
-%\centering
-%\resizebox{16.5cm}{!}{
-%\begin{tabular}{llll|l|l|l|l|l|l|}
-%\cline{5-10}
-%  &  &  &  & \multicolumn{6}{l|}{Validation measurement} \\ 
-%  \cline{3-10} 
-%  & \multicolumn{1}{l|}{}  & \multicolumn{2}{l|}{Fitness function}  & Average & Best & Median & Worst & FP & FN \\
-%  \hline
-%\multicolumn{2}{|l|}{\multirow{6}{*}{\begin{tabular}[c]{@{}l@{}}Pittsburgh:\\ Individual eq. set of rules\end{tabular}}}  & \multicolumn{2}{l|}{$f_{Acc}$}                                  & 0.925 $\pm$ 0.379e-2 & 0.929 & 0.926  & 0.917 & 0.075 $\pm$ 0.045e-1 & 0                    \\ \cline{3-10} 
-%\multicolumn{2}{|l|}{}                                                                                                                                                                                                 & \multicolumn{1}{l|}{\multirow{3}{*}{$f_{CS}$}} & $\alpha$ = 0   & 0.926 $\pm$ 0.744e-2 & 0.945 & 0.926  & 0.917 & 0.072 $\pm$ 1.272e-2 & 0.002 $\pm$ 0.564e-2 \\ \cline{4-10} 
-%\multicolumn{2}{|l|}{}                                                                                                                                                                                                 & \multicolumn{1}{l|}{}                          & $\alpha$ = 0.5 & 0.924 $\pm$ 0.371e-2 & 0.929 & 0.924  & 0.917 & 0.074 $\pm$ 0.451e-2 & 0 \\ \cline{4-10} 
-%\multicolumn{2}{|l|}{}                                                                                                                                                                                                 & \multicolumn{1}{l|}{}                          & $\alpha$ = 1   & 0.925 $\pm$ 0.384e-2  & 0.929 & 0.926  & 0.917 & 0.075 $\pm$ 0.378e-2 & 0                    \\ \cline{4-10}
-%\multicolumn{2}{|l|}{}                                                                                                                                                                                                 & \multicolumn{1}{l|}{}                          & $\alpha$ = 500   & 0.867 $\pm$ 0.337e-2  & 0.871 & 0.867  & 0.86 & 0.07 $\pm$ 0.382e-2 & 0                    \\ \cline{4-10}
-%\multicolumn{2}{|l|}{}                                                                                                                                                                                                 & \multicolumn{1}{l|}{}                          & $\alpha$ = 1000   & 0.867 $\pm$ 0.438e-2  & 0.871 & 0.868  & 0.859 & 0.066 $\pm$ 0.772e-2 & 0                    \\ \hline
-%\multicolumn{1}{|l|}{\multirow{8}{*}{\begin{tabular}[c]{@{}l@{}}Michigan:\\ Individual eq. one rule\end{tabular}}} & \multicolumn{1}{l|}{\multirow{4}{*}{\begin{tabular}[c]{@{}l@{}}Class:\\ GRANTED\end{tabular}}}    & \multicolumn{2}{l|}{$f_{Acc}$}                                  & 0.467 $\pm$ 0.143e-2 & 0.472 & 0.468  & 0.459 & 0.023 $\pm$ 0.095e-1 & 0                    \\ \cline{3-10} 
-%\multicolumn{1}{|l|}{}                                                                                             & \multicolumn{1}{l|}{}                                                                             & \multicolumn{1}{l|}{\multirow{3}{*}{$f_{CS}$}} & $\alpha$ = 0   & 0.466 $\pm$ 0.441e-2 & 0.472 & 0.467  & 0.459 & 0.021 $\pm$ 0.094e-1 & 0                    \\ \cline{4-10} 
-%\multicolumn{1}{|l|}{}                                                                                             & \multicolumn{1}{l|}{}                                                                             & \multicolumn{1}{l|}{}                          & $\alpha$ = 0.5 & 0.467 $\pm$ 0.305e-2 & 0.472 & 0.467  & 0.462 & 0.019 $\pm$ 0.088e-1 & 0                    \\ \cline{4-10} 
-%\multicolumn{1}{|l|}{}                                                                                             & \multicolumn{1}{l|}{}                                                                             & \multicolumn{1}{l|}{}                          & $\alpha$ = 1   & 0.465 $\pm$ 0.43e-2  & 0.472 & 0.467  & 0.458 & 0.023 $\pm$ 0.099e-1 & 0                    \\ \cline{2-10} 
-%\multicolumn{1}{|l|}{}                                                                                             & \multicolumn{1}{l|}{\multirow{4}{*}{\begin{tabular}[c]{@{}l@{}}Class:\\ STRONGDENY\end{tabular}}} & \multicolumn{2}{l|}{$f_{Acc}$}                                  & 0.046 $\pm$ 0.74e-2  & 0.065 & 0.045  & 0.037 & 0 & 0.307 $\pm$ 0.745e-1 \\ \cline{3-10} 
-%\multicolumn{1}{|l|}{}                                                                                             & \multicolumn{1}{l|}{}                                                                             & \multicolumn{1}{l|}{\multirow{3}{*}{$f_{CS}$}} & $\alpha$ = 0   & 0.025 $\pm$ 1.527e-2 & 0.045 & 0.023  & 0.003 & 0 & 0.004 $\pm$ 0.039e-1 \\ \cline{4-10} 
-%\multicolumn{1}{|l|}{}                                                                                             & \multicolumn{1}{l|}{}                                                                             & \multicolumn{1}{l|}{}                          & $\alpha$ = 0.5 & 0.02 $\pm$ 1.603e-2  & 0.061 & 0.015  & 0.002 & 0 & 0.007 $\pm$ 0.063e-1 \\ \cline{4-10} 
-%\multicolumn{1}{|l|}{}                                                                                             & \multicolumn{1}{l|}{}                                                                             & \multicolumn{1}{l|}{}                          & $\alpha$ = 1   & 0.025 $\pm$ 1.948e-2 & 0.047 & 0.036  & 0     & 0 & 0.004 $\pm$ 0.049e-1 \\ \hline
-%\end{tabular}
-%}
-%\caption{Comparison between Pittsburgh and Michigan
-%  approaches, in terms of their validation scores. Validation has been calculated as the accuracy in classifying a test dataset. An $*$ indicates
-%  the  statistically significant best value for $\alpha$.}
-%\label{tab:PvsMvalidation}
-%\end{table*}
 
 To evaluate computation costs of the two approaches, and taking into consideration the infrastructure available for the experiments (see Section\ref{sec:experiments}), we present the execution times in Table \ref{tab:PvsMtime}, detailed by their average value and standard deviation, along with the best, worst, and median values. Time is expressed in hours, for the sake of clarification. In addition, the values for the Michigan approach are not separated by class this time, because in order to have the two rules - one for each class -- the CSO would have to wait for both executions.
 %
