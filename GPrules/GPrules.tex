@@ -540,11 +540,16 @@ approach, justifying this choice.
 % but on which one yields the best solution. Boils down to: don't
 % separate results, compare them, even less so in different
 % subsections.
+% This is still really not addressed - JJ
 
 %\subsection{$F_{Acc}$ vs. $F_{CS}$} 
 \label{subsec:fitnesscomparison}
 
-The aim of this comparison is to conclude which fitness function should be used, discussing the results from the point of view of convergence, and that means finding which one reaches the best value faster. To study this we have displayed the obtained fitness through the iterations for the Pittsburgh approach in Figure \ref{fig:pittsburghItvsF} and for the Michigan approach in Figures \ref{fig:michiganItvsF_allow} and \ref{fig:michiganItvsF_deny}. Figures for GRANTED and STRONGDENY classes are separated because the solution is a single rule instead of a set of rules, and therefore the algorithm has to be executed once per class. With regard to the best fitness obtained for each fitness function, they are similar in the same scope, which means that the different values of $\alpha$ in $f_{CS}$ did not present significant differences in the two approaches separately.
+The aim of this comparison is to conclude which fitness function
+should be used, discussing the results from the point of view of
+convergence, and that means finding which one reaches the best value
+faster. % How does visualizing fitness contribute to that? - JJ
+To study this we have displayed the obtained fitness through the iterations for the Pittsburgh approach in Figure \ref{fig:pittsburghItvsF} and for the Michigan approach in Figures \ref{fig:michiganItvsF_allow} and \ref{fig:michiganItvsF_deny}. Figures for GRANTED and STRONGDENY classes are separated because the solution is a single rule instead of a set of rules, and therefore the algorithm has to be executed once per class. With regard to the best fitness obtained for each fitness function, they are similar in the same scope, which means that the different values of $\alpha$ in $f_{CS}$ did not present significant differences in the two approaches separately.
 
 \begin{figure*}[h!tb]
 \centering
@@ -574,7 +579,7 @@ With respect to the Michigan approach, a higher variability is noticeable in Fig
 \begin{figure*}[h!tb]
 	\centering
 	\includegraphics[width=0.8\textwidth]{img/michiganItvsF_deny.pdf}
-	\caption{Evolution of fitness for the Michigan approach being
+	\caption{Evolution of fitness for the Michigan approach
           and the  STRONGDENY class.}
 	\label{fig:michiganItvsF_deny}
 \end{figure*}
