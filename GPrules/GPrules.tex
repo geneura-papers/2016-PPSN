@@ -179,113 +179,32 @@ suggestions about how to continue our research are given in Section
 \section{Related Work}
 \label{sec:SotA}
 
-Since BYOD policies started to appear in companies' day-to-day policies  a lot
-of research has been done about the advantages and disadvantages of
-this approach \cite{singh2012byod}, as well as about how to properly implement it in order to
-respect privacy while trying to secure the resources \cite{scarfo2012new,ali2015analysis,de2015corporate}.
-These issues can be approached in different ways; Scarfo
-differentiates in \cite{scarfo2012new} two main ones: allowing the
-device to connect via desktop or application virtualisation, meaning
-enough control to avoid employee's devices monitorisation; or allowing
-the company to control devices
-via Mobile Device Management (MDM), which has to be legally agreed
-with the employee. %Mention disadvantages: the company has to provide
-                   %a virtualization platform and pay for cloud
-                   %resources, or the employee has to allow the
-                   %company to control its own device, which
-                   %eventually dispels two of the advantages of BYOD
-                   %policies: low overhead cost and preservation of
-                   %privacy. (something like that). 
- Ali et al. expand from Scarfo's study in
-\cite{ali2015analysis} reviewing both BYOD access control
- and security models. The authors further distinguish
-between MDM and Kernel Modifications inside the security models, and
-conclude with the description of a proposed model which combines most
-of the reviewed solutions, i.e. MDM and Virtual Private Network (VPN)
-access together with an encrypted container for the accessed
-information depending on the level of restriction. However, from all
-the papers in \cite{ali2015analysis} claimed to enforce policies, only
-in \cite{rhee2013high} the authors actually describe how the policies
-are enforced by describing which data is monitored. In any case, none
-of the papers mention the application of GP to the enforcement of the
-security policies, but other techniques such as the implementation of
-blacklists to avoid the installation of forbidden applications, or
-whitelists to allow only certain ones. These techniques can be useful
-with respect to the implementation of already defined security
-policies, but our method allows to discover new security policies,
-which in the case of black and white lists, can evolve them to include
-new and/or malicious applications. 
-
-Research in BYOD has been accompanied by innovation in products released
-to help companies implement or streamline the process of adoption of the BYOD
-concept. In \cite{de2015corporate} there is a description of the
-market solutions that the main manufacturers have developed to such
-purpose. The level of security and privacy preservation offered by
-these applications is different depending on the solution.
-
-% None of the reviewed solutions, but one, seem to offer a dynamic
-% creation of rules in the database used for incident detection. Our work is part of the project called MUSES, as one of its aims is implementing rule inference using GP, among other techniques. In this work we extend the description of the
-% rule inference process through GP, as well as the details of its implementation
-% and the results after applying it to a set of data gathered during the project. 
-% ---- Commented out for anonymity and also because it does not belong
-% here -- 
-
-Previous papers have commented on the issue of using quality data to obtain accurate and valuable extracted knowledge, which is specially difficult when dealing with datasets taken from real world problems, where the sensors cannot work properly at a certain time.
-To avoid this, researchers have advanced the state of the art in the precision of the
-devices. For instance, in \cite{rios2015mobile}, the authors focus on
-the importance of having an accurate measure of the location of the
-devices. Although their approach seems to encroach upon employees'
-privacy, they implemented a mobile information system for BYOD
-adaptation, and tested it in both Android and iOS devices. The authors
-concluded that the efficiency of their system, along with the
-possibilities of the hardware in the devices, results in a location
-error of less than 50 meters with a 95\% confidence level. These
-promising results allow the companies to use the location of their
-employees to apply certain security policies. In our case, an accurate detection of the location could be used to obtain more information about the happening event, and that could increase the classification accuracy. 
-
-%Another barrier to obtain good quality knowledge discovering are datasets that present imbalance, because they normally bias the elaboration of classification rules or trees towards the majority class - the class with higher representation in the dataset - \cite{japkowicz2002class}. In this sense, solutions can be found in literature in order to reduce the bias while performing classification tasks, such as in \cite{chawla2005data} and \cite{sun2009classification}. However, as we have center our proposal in GP, we have studied Bhowan et al.'s work in \cite{bhowan2012developing}, where they present a comparison between many different types of fitness functions, testing on various unbalanced datasets, with different minority-class/majority-class ratios.
-
-Another issue is the adequate way to prepare the extracted data. And even though a lot has been advanced in preprocessing techniques in order to work with quality and accurate data \cite{han2011data}, still there is room for research in the discovery of new rules from real world data. With respect to classification applied to real world data in order to obtain classification rules, Espejo et al. review in \cite{espejo2010survey} three papers which use GP for classification with
-communications data, but mainly for intrusion detection and e-mail
-spamming. Thus, the works they review have applications in
-all fields but not exactly the one we focus on here. In \cite{Tsakonas2004195} the authors also extract rules with \textsc{IF \ldots THEN} structure through GP, although for medical purposes. Futhermore, Alex A. Freitas deeply studied the application of GP to Data Mining (DM) in \cite{freitas2002data}, providing the necessary knowledge and guidelines to design a GP framework for DM applications. Also, in \cite{DeFalco2002257}, a system which discovers
-rules for the PROBEN1 databases via GP is described and a new fitness is introduced. PROBEN1 \cite{prechelt1994proben} is a collection of datasets from real world problems meant as benchmarks for the application of classification techniques. As happened in 
-the survey of Espejo et al., from six of the databases inside PROBEN1 and
-analysed by these authors, none is related to security. However, the
-authors' proposed fitness is indeed of interest for this research, and
-as such we compare the performance or our algorithm using two
-different fitness functions: the more classical approach that measures
-only the correctly classified instances (accuracy); and De Falco's et
+The main issue we face is how to create a set of rules from a series
+of instances that those rules are bound to follow; in principle, what
+we have only is a set of URIs and hand-coded tags that deny access to
+them, or allow it by default.  Espejo et al. review in
+\cite{espejo2010survey} three papers which use GP for classification
+with communications data, but mainly for intrusion detection and
+e-mail spamming. Thus, the works they review have applications in all
+fields but not exactly the one we focus on here. In
+\cite{Tsakonas2004195} the authors also extract rules with \textsc{IF
+\ldots THEN} structure through GP, although for medical
+purposes. Futhermore, Alex A. Freitas deeply studied the application
+of GP to Data Mining (DM) in \cite{freitas2002data}, providing the
+necessary knowledge and guidelines to design a GP framework for DM
+applications. Also, in \cite{DeFalco2002257}, a system which discovers
+rules for the PROBEN1 databases via GP is described and a new fitness
+is introduced. PROBEN1 \cite{prechelt1994proben} is a collection of
+datasets from real world problems meant as benchmarks for the
+application of classification techniques. As happened in the survey of
+Espejo et al., from six of the databases inside PROBEN1 and analysed
+by these authors, none is related to security. However, the authors'
+proposed fitness is indeed of interest for this research, and as such
+we compare the performance or our algorithm using two different
+fitness functions: the more classical approach that measures only the
+correctly classified instances (accuracy); and De Falco's et
 al. \cite{DeFalco2002257} suggestion, also taking into account the
 complexity of the solution.
-
-%Once again, this paragraph does not follow the previous one. Maybe
-%move it one paragraph up, where you are talking about proper training
-%data. 
-% ----------------- Commented out as it should have been from the
-% beginning ------------------------------------------------------
-% Finally, the lack of BYOD-related security databases is a hindrance for the
-% proliferation of research in this field. As seen, there actually exist
-% a number of datasets related to malware, e-mail spamming, or URL
-% requests, but none about the use
-% that people make of their smartphones. This situation clearly exists
-% due to privacy considerations. Miller et al. \cite{Miller201253}
-% firmly state that the issue of privacy is even more important than the
-% security issue, although it does not receive the same
-% attention. Furthermore, when the MDM solution is described in
-% \cite{ali2015analysis}, the authors mention the privacy concerns the
-% employees may have due to the processing that the company makes over
-% all their behavioural data. And even after anonymising the resulting
-% dataset, one can still, in certain cases, identify a user of the
-% company the data comes from by processing the data. If this principle
-% cannot be guaranteed, the data should not be released
-% \cite{boillat2014handbook}.
-% This paragraph is not the state of the art in your methods or
-% problem. You are eventually not releasing data, either. Suggestions:
-% 1. Eliminate it
-% 2. Eliminate it and add a note in the "future work" section saying
-% that future data sets will be released by ourselves.
-% As above, erase when accepted or rejected - JJ
 
 \section{Methodology}
 \label{sec:methodology}
@@ -443,41 +362,19 @@ described as follows \cite{witten2005data}:
 
 \end{itemize}
 
-Table \ref{tab:variables} details the variables, for each type, that have been used in the GP in order to create the rules. In addition, we differentiate between those variables that are BYOD specific, and those that come from the context. A variable that is BYOD specific means that its value strictly depends on the employee owning the device or being provided by the company, such as the device OS, if the device has been rooted, or the password length the user has configured. The same way, a variable that is the same no matter who owns the device, for instance, the user role or the type of the action (event) performed, we say is context specific.
+Te variables used as GP terminals in order to create the rules fall
+into two fields: those that are specific to the BYOD context and those
+that will show up in any environment.\begin{itemize}
+  \item[BYOD-specific]: DeviceHasAccessibility, DeviceHasAntivirus,
+    DeviceHasPassword, DeviceIsRooted, DeviceOS, DeviceOwnedBy,
+    WifiEncryption, DeviceScreenTimeout, PasswordLength
+  \item[General] BluetoothConnected, MailHasAttachment, WifiConnected, WifiEnabled,
+    AssetConfidentialLevel, DeviceType, EventLevel, EventType, UserRole
+  \end{itemize}
 
-\begin{table}
-\begin{center}
-\caption{A list of the variables that have been used to generate the
-  rules. Those variables that are BYOD specific are also specified.}
-	\resizebox{8cm}{!}{
-\begin{tabular}{|l|l|l|l|}
-\hline
-Variable type                & Variable Name          & BYOD & Context \\ \hline
-\multirow{8}{*}{Binary}      & BluetoothConnected     &               & \checkmark       \\ \cline{2-4} 
-                             & DeviceHasAccessibility & \checkmark    &                  \\ \cline{2-4} 
-                             & DeviceHasAntivirus     & \checkmark    &                  \\ \cline{2-4} 
-                             & DeviceHasPassword      & \checkmark    &                  \\ \cline{2-4} 
-                             & DeviceIsRooted         & \checkmark    &                  \\ \cline{2-4} 
-                             & MailHasAttachment      &               & \checkmark       \\ \cline{2-4} 
-                             & WifiConnected          &               & \checkmark       \\ \cline{2-4} 
-                             & WifiEnabled            &               & \checkmark       \\ \hline
-\multirow{8}{*}{Categorical} & AssetConfidentialLevel &               & \checkmark       \\ \cline{2-4} 
-                             & DeviceOS               & \checkmark    &                  \\ \cline{2-4} 
-                             & DeviceOwnedBy          & \checkmark    &                  \\ \cline{2-4} 
-                             & DeviceType             & \checkmark    &                  \\ \cline{2-4} 
-                             & EventLevel             &               & \checkmark       \\ \cline{2-4} 
-                             & EventType              &               & \checkmark       \\ \cline{2-4} 
-                             & UserRole               &               & \checkmark       \\ \cline{2-4} 
-                             & WifiEncryption         & \checkmark    &                  \\ \hline
-\multirow{2}{*}{Numerical}   & DeviceScreenTimeout    & \checkmark    &                  \\ \cline{2-4} 
-                             & PasswordLength         & \checkmark    &                  \\ \hline
-\end{tabular}
-}
-\label{tab:variables}
-\end{center}
-\end{table}
-
-At the end of the process, either as part of a set of rules or just being a single rule, they can be presented as follows:
+  There's no difference, however, on how we deal with the two types of
+  variables; this only shows the inclusivity of the set of terminals
+  that we will be using in this work. At the end of the process, either as part of a set of rules or just being a single rule, they can be presented as follows:
 
 \begin{verbatim}
 device_has_antivirus=false AND
