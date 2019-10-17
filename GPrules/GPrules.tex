@@ -502,7 +502,7 @@ depending on the approach, as previously described. % But this is what you are g
                            % emphasis - JJ
 Then, the chosen fitness is evaluated for a particular rule -- the single rule or each one inside the set -- and over the 90\% of the data.
 For further reliability of the results, it is advised to perform
-10-fold cross-validation \cite{kohavi1995study}, and as such the WEKA %Pablo: it is worth mentioning WEKA here? (well, in fact, I wrote this paragraph, but Paloma decides)
+10-fold cross-validation, and as such the WEKA %Pablo: it is worth mentioning WEKA here? (well, in fact, I wrote this paragraph, but Paloma decides)
 % (Paloma) Uhm, maybe it's not THAT necessary, but it does not bother either... i don't know xD 
 Java Library \cite{HallWEKA09} has been used to generate the 10 folds
 or distributions of data into 90\% training (fitness evaluation) and
@@ -510,13 +510,14 @@ or distributions of data into 90\% training (fitness evaluation) and
 each one with a different distribution of data.
 
 The algorithms have been executed in a cluster node with 16 Intel(R) Xeon(R) CPU E5520
-@2.27GHz processors, 16 GB RAM, CentOS 6.8 and Java Version 1.8.0\_80.
-
-The specific source code of the proposed method is available under a LGPL V3 License 
-at \url{https://github.com/fergunet/GPRuleRefinement}, as a module for 
-the framework OSGiLiath \cite{DBLP:journals/soco/Garcia-SanchezGCAG13} 
-\footnote{The source code of OSGiLiath is available with the same
-  license  as well, at \url{http://www.osgiliath.org}.}.
+@2.27GHz processors, 16 GB RAM, CentOS 6.8 and Java Version
+1.8.0\_80. The specific source code of the proposed method is available under a LGPL V3 License 
+at \url{github.com/anon}
+%\url{https://github.com/fergunet/GPRuleRefinement}
+, as a module for 
+the framework Anonymous
+% OSGiLiath \cite{DBLP:journals/soco/Garcia-SanchezGCAG13}.
+n
 
 \section{Results from Genetic Programming application} 
 \label{sec:gp}
@@ -598,9 +599,11 @@ function has used to evaluate the individuals. Table
 \ref{tab:PvsMvalidation} shows the average, best, median, and worst
 results from the evaluations with $f_{Acc}$ and also $f_{CS}$. 
 
-\begin{table}
+\begin{table}[h!]
 	\centering
-	\caption{Comparison between Pittsburgh and Michigan approaches, in terms of their validation scores. Validation has been calculated as the accuracy in classifying a validation dataset. False positives and false negatives are also indicated, as one of our goals is to reduce the number of false positives. An \textbf{$*$} indicates the  statistically significant best value for $\alpha$, but only in the cases were we found statistically significant differences.}
+	\caption{Validation (accuracy in classification of a new
+          dataset) scores for the Pittsburgh and Michigan approaches. \textbf{$*$} marks
+          statistically significant best values.}
 	\resizebox{13cm}{!}{
 		\begin{tabular}{llll|l|l|l|l|l|l|}
 			\cline{5-10}
@@ -669,10 +672,11 @@ At the same time, and because the distributions for the Michigan approach follow
 %\end{table*}
 
 To evaluate computation costs of the two approaches, and taking into consideration the infrastructure available for the experiments (see Section\ref{sec:experiments}), we present the execution times in Table \ref{tab:PvsMtime}, detailed by their average value and standard deviation, along weith the best, worst, and median values. Time is expressed in hours, for the sake of clarification. In addition, the values for the Michigan approach are not separated by class this time, because in order to have the two rules - one for each class -- the CSO would have to wait for both executions.
-
-\begin{table*}
+%
+\begin{table*}[h!tbp]
 	\centering
-	\caption{Comparison between Pittsburgh and Michigan approaches, in terms of their execution time. For the Michigan approach, times for executing the algorithm once for the GRANTED class and another for the STRONGDENY are presented together. An \textbf{$*$} indicates the  statistically significant best value for $\alpha$, but only in the cases were we found statistically significant differences.}
+	\caption{Execution time, Pittsburgh and Michigan approaches;
+          this one adds times for GRANTED and STRONGDENY. \textbf{$*$} marks  statistically significant best values.}
 	\resizebox{10.5cm}{!}{
 	\begin{tabular}{lll|l|l|l|l|}
 		\cline{4-7}
@@ -693,9 +697,9 @@ To evaluate computation costs of the two approaches, and taking into considerati
 
 In this table we see that best times are obtained when $f_{CS}$ is used. More precisely, in the Pittsburgh approach, the distributions follow the normal and after performing the ANOVA test, we can say that the shorter execution time (the best) is found for $\alpha$ = 0.5 with statistical significance (p-value of 0.008623). In the case of the Michigan approach, we again find statistical differences (p-value of 5.537e-05) between the results, and thus we can say that the best execution time is obtained when we use $f_{CS}$ with an $\alpha$ value of 0. It seems that the time does decrease when $\alpha$ is different than 0, meaning that the depth of the tree is taken into account during the evaluation of the fitness. To study this effect, we have to look at the sizes of the best individuals obtained for each configuration, which are displayed in Table \ref{tab:PvsMsize}.
 
-\begin{table*}
+\begin{table*}[h!tb]
 	\centering
-	\caption{Size of the best individuals for the Pittsburgh approach, where the size is the size of the tree. In the Michigan approach, the size is the length of the list -- number of conditions in the rule -- and always equal to 10. An \textbf{$*$} indicates the  statistically significant best value for $\alpha$.}
+	\caption{Tree size of the best individuals for the Pittsburgh approach. An \textbf{$*$} indicates the  statistically significant best value for $\alpha$.}
 	\resizebox{10.5cm}{!}{
 	\begin{tabular}{lll|l|l|l|l|}
 		\cline{4-7}
@@ -736,7 +740,7 @@ In this table we only show the results for the Pittsburgh approach, given that t
 %\label{tab:PvsMtime}
 %\end{table*}
 
-% -------- Eliminates this to save space ----------------
+
 % \subsection{Examples of the best obtained individuals}
 % \label{subsec:examples}
 
@@ -744,16 +748,13 @@ In this table we only show the results for the Pittsburgh approach, given that t
 
 % As we have executed the experiments performing a 10-fold cross-validation, in order to study the best individuals for each configuration we need to consider the values of the validation accuracies per fold, and then choose the best one. In Figure \ref{fig:bestInd_fCS_a0} we show an example of best individual, in this case obtained when using $f_{CS}$ as the fitness function with an $\alpha$ value of 0. The tree in this figure represents a set of 16 rules, two of them classifying to the STRONGDENY class, whilst the rest classify towards the GRANTED class. The ones that classify to STRONGDENY have been highlighted and presented in string form in the figure.
 
-% \begin{figure*}[h!tb]
-% 	\centering
-% 	\includegraphics[width=\textwidth]{img/bestInd_fCS_a0.pdf}
-% 	\caption{An example of best individual obtained when using
-%           $f_{CS}$ as the fitness function with an $\alpha$ value of
-%           0. This tree represents a set of 16 rules, two of them
-%           classifying to the STRONGDENY class, whilst the rest
-%           classify towards the GRANTED class.} 
-% 	\label{fig:bestInd_fCS_a0}
-% \end{figure*}
+\begin{figure*}[h!tb]
+	\centering
+	\includegraphics[width=\textwidth]{img/bestInd_fCS_a0.pdf}
+	\caption{Example with $f_{CS}$ and $\alpha=0$, with 16 rules, two of them
+          classifying to the STRONGDENY class} 
+	\label{fig:bestInd_fCS_a0}
+\end{figure*}
 
 % The STRONGDENY rules in Figure \ref{fig:bestInd_fCS_a0} imply that the developers are more probably to get a GRANTED in their actions, and this conclusion makes sense because because they are supposed to be more familiar with system security. Also, from the second rule we can infer that the complex events -- not simple -- and the devices owned by the users and not the company may be dangerous. The root condition, which appears in every rule and therefore means is very important, is related to the time that the the device takes to enter into sleep mode (screen turns off). This kind of information can be used by the CSOs to develop new security rules for the system.
 
@@ -791,7 +792,14 @@ validation accuracy rate and the number of false positives and
 negatives.
 
 The results in Section \ref{sec:gp} make a fine proof of concept of a tool that helps the CSO of a company discovering dangerous situations through the presentation of GP generated rules. We obtained promising rates for the number of false positives (around
-7\%), and good coverage over the validation data set is shown in Section \ref{subsec:approachcomparison}. However, since the ideal value for both false positives and negatives is 0, there is room for improvement. In addition, in section \ref{subsec:examples} we show that the individuals are presented in a readable form, but the ratio between rules classifying to one or another class is too much biased towards the GRANTED class. 
+7\%), and good coverage over the validation data set is shown in
+Section \ref{subsec:approachcomparison}. However, since the ideal
+value for both false positives and negatives is 0, there is room for
+improvement. In addition, Figure \ref{fig:bestInd_fCS_a0} shows
+that the individuals are presented in a readable form, but the ratio
+between rules classifying to one or another class is too much biased
+towards the GRANTED class. %We need to get this back, now there's
+                           %space for it.
 
 With regard to the execution time, the solution we propose takes between 16 and 17 hours, in the worst case and taking into account the used infrastructure, to obtain the best individual. Although these times could be acceptable, in the sense that the CSO would have new rules everyday, they can still be reduced.  
                                 % Was it a challenge for GP? In which
