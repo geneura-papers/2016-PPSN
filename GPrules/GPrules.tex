@@ -746,19 +746,32 @@ In this table we only show the results for the Pittsburgh approach, given that t
 % \subsection{Examples of the best obtained individuals}
 % \label{subsec:examples}
 
-% What we also have to determine is which kind of presented solution is better: showing the CSO a set of rules or a single rule for each class. As already discussed in Section \ref{sec:methodology}, each one has their advantages and disadvantages, but now we directly compare some of the best individuals obtained for both implementations, proving their readability and usefulness for the CSOs. In addition, we present the relation between the obtained solutions and the original rules that allowed to classify the dataset we have been working with.
-
-% As we have executed the experiments performing a 10-fold cross-validation, in order to study the best individuals for each configuration we need to consider the values of the validation accuracies per fold, and then choose the best one. In Figure \ref{fig:bestInd_fCS_a0} we show an example of best individual, in this case obtained when using $f_{CS}$ as the fitness function with an $\alpha$ value of 0. The tree in this figure represents a set of 16 rules, two of them classifying to the STRONGDENY class, whilst the rest classify towards the GRANTED class. The ones that classify to STRONGDENY have been highlighted and presented in string form in the figure.
+What we also have to determine is which kind of presented solution is
+better: showing the CSO a set of rules or a single rule for each
+class.
+%
+% As already discussed in Section \ref{sec:methodology}, each one has their advantages and disadvantages, but now we directly compare some of the best individuals obtained for both implementations, proving their readability and usefulness for the CSOs. In addition, we present the relation between the obtained solutions and the original rules that allowed to classify the dataset we have been working with.
+%
+% As we have executed the experiments performing a 10-fold
+% cross-validation, in order to study the best individuals for each
+% configuration we need to consider the values of the validation
+% accuracies per fold, and then choose the best one.
+Figure \ref{fig:bestInd_fCS_a0} shows an example of best individual
+obtained using $f_{CS}$ and $\alpha = 0 $. The tree in this figure represents a set of 16 rules, two of them classifying to the STRONGDENY class, whilst the rest classify towards the GRANTED class. The ones that classify to STRONGDENY have been highlighted and presented in string form in the figure.
 
 \begin{figure*}[h!tb]
 	\centering
 	\includegraphics[width=\textwidth]{img/bestInd_fCS_a0.pdf}
-	\caption{Example with $f_{CS}$ and $\alpha=0$, with 16 rules, two of them
-          classifying to the STRONGDENY class} 
+	\caption{Example with $f_{CS}$ and $\alpha=0$.} 
 	\label{fig:bestInd_fCS_a0}
 \end{figure*}
 
-% The STRONGDENY rules in Figure \ref{fig:bestInd_fCS_a0} imply that the developers are more probably to get a GRANTED in their actions, and this conclusion makes sense because because they are supposed to be more familiar with system security. Also, from the second rule we can infer that the complex events -- not simple -- and the devices owned by the users and not the company may be dangerous. The root condition, which appears in every rule and therefore means is very important, is related to the time that the the device takes to enter into sleep mode (screen turns off). This kind of information can be used by the CSOs to develop new security rules for the system.
+The STRONGDENY rules in Figure \ref{fig:bestInd_fCS_a0} imply that
+the developers are more probably to get a GRANTED in their actions,
+and this conclusion makes sense because because they are supposed to
+be more familiar with system security. Also, from the second rule we
+can infer that the complex events -- not simple -- and the BYOD
+devices imply a certain degree of unsafety. The root, and thus most important, condition, is related to the time that the the device takes to enter into sleep mode (screen turns off). 
 
 % In general, what we have seen in the individuals obtained by the
 % Pittsburgh approach is that most of the rules in the set classify for
