@@ -132,7 +132,7 @@ manually defined rules \cite{ali2015analysis}. One of
 the advantages of GP is that by making the solutions to a problem
 available as trees, they themselves can be seen as decision
 tree classifiers \cite{safavian1990survey} and can be expressed as a
-set of rules.
+set of rules. Moreover, GP can outperform other methods such as SVM or naive-Bayes \cite{Castellanos19Medical}.
 
 To the best of our knowledge, there is no a tool that helps CSOs in
 developing new security rules via GP, even as this method has been
@@ -834,15 +834,17 @@ and FN. Additionally we will try to reduce the execution time by adapting the al
 On the other hand, the imbalance of the dataset should be taken into
 account, given that it affects to the results in terms of obtained
 accuracy in the validation process and the ratio among classes in the
-obtained individuals. Solutions can be found in literature in order to reduce the bias while performing classification
-tasks, such as in \cite{chawla2005data} and \cite{sun2009classification}. Another typical way of approaching this problem is to
-use balancing techniques over the data, such as ``oversampling'' \cite{smote_02}, in
-which synthetic instances of the minority class -- STRONGDENY -- are
-created and introduced in the dataset, until there are approximately
-the same number of instances than in the majority class -- GRANTED
---. Also, in \cite{bhowan2012developing}, the authors present a comparison between many different types of
-fitness functions, testing on various unbalanced datasets, with
-different minority-class/majority-class ratios.
+obtained individuals \cite{Pereira19RuleExtractionProblems}, so different solutions to deal with this issue will be applied. 
+%Solutions can be found in literature in order to reduce the bias while performing classification
+%tasks \cite{sun2009classification}. 
+%Another typical way of approaching this problem is to
+%use balancing techniques over the data, such as ``oversampling'' \cite{smote_02}, in
+%which synthetic instances of the minority class -- STRONGDENY -- are
+%created and introduced in the dataset, until there are approximately
+%the same number of instances than in the majority class -- GRANTED--.
+% Also, in \cite{bhowan2012developing}, the authors present a comparison between many different types of
+%fitness functions, testing on various unbalanced datasets, with
+%different minority-class/majority-class ratios.
 
 For our future work we will implement these solutions to continue
 improving our system. Furthermore, we will extend the approach to other problems where data is available. For example, particularizations of the BYOD problem as it could be Internet navigation during work hours. We will explore network traffic from public data repositories, such as \url{http://www.secrepo.com/#3p\_network}, and try to apply our approach. 
