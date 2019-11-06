@@ -134,7 +134,7 @@ available as trees, they themselves can be seen as decision
 tree classifiers \cite{safavian1990survey} and can be expressed as a
 set of rules. Moreover, GP can outperform other methods such as SVM or naive-Bayes \cite{Castellanos19Medical}.
 
-To the best of our knowledge, there is no a tool that helps CSOs in
+To the best of our knowledge, there is no tool that helps CSOs in
 developing new security rules via GP, even as this method has been
 indeed applied to classification, as described by Espejo et al. in
 \cite{espejo2010survey}. In fact, their survey theoretically supports our
@@ -168,21 +168,19 @@ purposes. Furthermore, Alex A. Freitas deeply studied the application
 of GP to Data Mining (DM) in \cite{freitas2002data}, providing the
 necessary knowledge and guidelines to design a GP framework for DM
 applications. Also, in \cite{DeFalco2002257}, a system which discovers
-rules for the PROBEN1 databases via GP is described and a new fitness
-is introduced. PROBEN1 \cite{prechelt1994proben} is a collection of
-datasets from real world problems meant as benchmarks for the
-application of classification techniques. As happened in the survey of
-Espejo et al., from six of the databases inside PROBEN1 and analyzed
-by these authors, none is related to security. However, the authors'
-proposed fitness is indeed of interest for this research, and as such
-we compare the performance or our algorithm using two different
-fitness functions: the more classical approach that measures only the
+rules for the PROBEN1 databases \cite{prechelt1994proben}, a
+collection of real-world datasets, via GP is described and a new
+fitness function is introduced. As happened in the survey of Espejo et
+al., out of six of the databases inside PROBEN1 and analyzed by these
+authors, none is related to security. However, the authors' proposed
+fitness function is indeed of interest for this research, and as such we
+compare the performance or our algorithm using two different fitness
+ones: the more classical approach that measures only the
 correctly classified instances (accuracy); and De Falco's et
 al. \cite{DeFalco2002257} suggestion, also taking into account the
 complexity of the solution.
 
-
-We demonstrate the utility of our framework so by using it on a
+We thus demonstrate the utility of our framework by using it on a
 real-world dataset, and comparing two 
 ways of coding the individuals -- as a set of rules, or as a single
 rule -- so that we are able to choose the best approach for our
@@ -199,20 +197,7 @@ the complexity of the individuals. Finally, we propose the approach
 with the best performance in terms of best coverage over a validation
 set.
 
-The rest of the paper is organized as follows. Next (Section
-\ref{sec:methodology}) describes the proposed methodology, depicting
-the problem this work tries to solve and describing the available
-dataset and the proposed GP framework. The experimental setup, as
-well as the different set of experiments that have been carried out
-are also described in that section. Section \ref{sec:gp} shows and discusses the
-obtained results from the application of GP to security rules
-extraction and, finally, the conclusions of this work along with some
-suggestions about how to continue our research are given in Section
-\ref{sec:future}.
-
-\section{Methodology}
-\label{sec:methodology}
-
+% Moved this paragraph from methodology to introduction
 As previously highlighted, the main idea behind corporate security
 policies, which are defined by the CSO, is to build a basic, fixed,
 and well defined set of rules, which take the form of \textsc{IF
@@ -234,17 +219,35 @@ by allowing or denying employees' access to non-confidential
  there is an urgent need to develop a system capable of discovering a
  more reliable rule set which should be able to cover every new
  situation that may be a threat. Hence, allowing the company security
- system to go beyond the limited set of known, pre-defined rules.  % This rather belong to the introduction - JJ
- % (Paloma) The whole paragraph?
-% What do you think? - JJ
+ system to go beyond the limited set of known, pre-defined rules. 
+
+The rest of the paper is organized as follows. Next (Section
+\ref{sec:methodology}) describes the proposed methodology, depicting
+the problem this work tries to solve and describing the available
+dataset and the proposed GP framework. The experimental setup, as
+well as the different set of experiments that have been carried out
+are also described in that section. Section \ref{sec:gp} shows and discusses the
+obtained results from the application of GP to security rules
+extraction and, finally, the conclusions of this work along with some
+suggestions about how to continue our research are given in Section
+\ref{sec:future}.
+
+\section{Methodology}
+\label{sec:methodology}
 
 Our proposed solution is based on a novel GP framework dedicated for
-the BYOD context and capable of performing an automatic and wider discovery of classification rules. More precisely, our GP based framework will, first, extract all the possible values of every attribute in the data at hand and then make the GP algorithm evolving. 
+the BYOD context and capable of performing an automatic and wider
+discovery of classification rules. More precisely, our GP based
+framework will, first, extract all the possible values of every
+attribute in the data at hand and then make the GP algorithm evolving.
 Specifically, in this context, we have decided to follow the more
 conventional approach in Genetic Programming, the Pittsburgh approach
 \cite{freitas2002data}, meaning that each individual is seen as a set
 of rules. However, in this work we have also implemented the Michigan
-approach, where every individual is a single rule. The aim of having these two different implementations is to choose the most efficient, in terms of time to find the solution, best fitness, accuracy in the validation phase, and readability.
+approach, where every individual is a single rule. The aim of having
+these two different implementations is to choose the most efficient,
+in terms of time to find the solution, best fitness, accuracy in the
+validation phase, and readability.
 
 The last step would be to present the rules -- solution -- to the CSO of the company and tune the algorithm according to the decision of
 finally including or not the set of rules in the main security
@@ -847,7 +850,7 @@ obtained individuals \cite{Pereira19RuleExtractionProblems}, so different soluti
 %different minority-class/majority-class ratios.
 
 For our future work we will implement these solutions to continue
-improving our system. Furthermore, we will extend the approach to other problems where data is available. For example, particularizations of the BYOD problem as it could be Internet navigation during work hours. We will explore network traffic from public data repositories, such as \url{http://www.secrepo.com/#3p\_network}, and try to apply our approach. 
+improving our system. Furthermore, we will extend the approach to other problems where data is available. For example, particularizations of the BYOD problem as it could be Internet navigation during work hours. We will explore network traffic from public data repositories, such as \url{http://www.secrepo.com/#3p_network}, and try to apply our approach. 
 
 \section{Acknowledgements}
 
