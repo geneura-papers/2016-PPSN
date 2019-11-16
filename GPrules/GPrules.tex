@@ -201,11 +201,11 @@ As previously highlighted, the main idea behind corporate security
 policies, which are defined by the CSO, is to build a basic, fixed,
 and well defined set of rules, which take the form of \textsc{IF
   \ldots THEN} clauses. By applying them, the company system decides if certain conditions are met in order to allow or
-deny access to an asset, whether is from the company or is accessed from it. 
+deny access to an asset, being company owned or not, and wherever it is accessed from. 
 Therefore, these rules can be visualised as the actions, taking place in a precise environment, being classified as
 allowed or denied. In this sense and while facing a security breach
 from a BYOD system, the set of rules will be tested looking for
-matches between the access' characteristics and the rules' premises --
+matches between the access characteristics and the rules premises --
 the conditions expressed in the IF part, also known as the description
 of the rule \cite{DeFalco2002257}. If it matches then the decision can
 be made, by checking the conclusion part of the rule, which comes
@@ -248,28 +248,28 @@ these two different implementations is to choose the most efficient,
 in terms of time to find the solution, best fitness, accuracy in the
 validation phase, and readability.
 
-The last step would be to present the rules -- solution -- to the CSO of the company and tune the algorithm according to the decision of
+The last step would be to present the rules -- solution -- to the CSO of the company and tune up the algorithm according to the decision of
 finally including or not the set of rules in the main security
 policy. The description of the used data and further explicit details
-about our proposed solution are given in what is next.
+about our proposed solution are given next.
 
 %\subsection{Available Data}
 \label{subsec:data}
 
- The set of used data has been gathered from the trials that were performed
-during the development of an FP7 European Project, called Anon
+ The set of used data has been gathered from the evaluations that were performed
+during the development of an FP7 European Project, called Anon.
 % MUSES
 % \cite{DBLP:conf/sac/MoraCGZJEBAH14}.
-In these trials, a group of
- users tested a smartphone and PC application meant for securing a
- BYOD environment. The application generates warnings when the users
+In these evaluations, a group of
+ users tested a smartphone and PC \textit{app} meant for securing a
+ BYOD environment. The app generates warnings when the users
  act in a dangerous way. Technically, these warnings are triggered by
- a set of initial and pre-defined rules, so that when certain
- conditions are met in an ``event'' (an action performed by a user),
+ a set of initial and pre-defined rules. When certain
+ conditions are met in an ``event'' (action performed by a user),
  the corresponding action could be allowed - nothing happened - or
- denied with a warning explaining the rule that the user did not comply with and how to perform the action in a more secure way or environment.
+ denied with a warning explaining the rule that the user did not comply with. Then, the app displays the steps to perform the action in a more secure way or environment.
 
-The dataset contains a set of these ``events'' from which a number of attributes (variables) have been extracted or are given by the application itself. User data has been also extracted but anonymised, in the sense that from all the attributes extracted from the user actions, the username is not included as a variable to build rules with. The attributes can be classified in different ways; one of them is based on whether they are directly read from the application or inferred after processing the read data. Therefore, we distinguish between:
+The dataset contains a collection of these ``events'' from which a number of attributes (variables) have been extracted or were given by the application itself. User data has been also extracted but anonymised, in the sense that from all the attributes extracted from the user actions, those that could lead to identifying the user are not included as variables to build rules with. The attributes can be classified in different ways; one of them is based on whether they are directly read from the application or inferred after processing the data. Therefore, we distinguish between:
 \begin{itemize}
   \item Attributes given by the tested application: these attributes
     are related to the type of the event (action), its timestamp, or
@@ -277,12 +277,12 @@ The dataset contains a set of these ``events'' from which a number of attributes
   \item Attributes inferred from the information in the database: the information given by the aforementioned attributes, along with the rest of information already existing in the database, helps inferring other attributes. These are, for instance: all extra information related to the origin, like the user position in the company or the device Operating System; the configuration of the device, such as WiFi or Bluetooth being enabled; and even lexical properties of the user password, in order to avoid storing the password itself or using it for classification or rule generation.
 \end{itemize}
 
-The trials had a duration of five weeks, and a total of 
-153270 events were registered in the database. We filtered those events that did not imply access to assets, meaning that they were not useful for
+The tests had a duration of five weeks, and a total of 
+153270 events were registered in the database. We discarded those events that did not imply access to assets, meaning that they were not useful for
 knowledge extraction purposes, such as events of \textit{log in},
 \textit{log out}, or \textit{restarting the server}.
 The remaining was a 35\% (53296 instances) of the total, and were considered as \textit{important}
-because they did contain information about user actions such as
+because they contain information about meaningful user actions such as
 opening files or sending emails in a certain connection environment,
 changing security properties, or installing apps. Altogether, there
 are 38 attributes, plus the class, which can take two possible values:
@@ -312,8 +312,8 @@ the whole space of possible combinations among the attribute
 values. The coding of the individual might take two approaches, named \textit{Pittsburgh} and \textit{Michigan}
 \cite{freitas2002data}.
 
-The Pittsburgh uses GP to create an individual tree that
-model a set of different rules, given that the problem can be seen as
+The Pittsburgh approach uses GP to create an individual tree that
+models a set of different rules, given that the problem can be seen as
 a 
 classification one and therefore the model can be a decision tree
 \cite{safavian1990survey}. Then, the generated tree is a binary tree
@@ -352,8 +352,8 @@ all classes, the algorithm has to be executed once for each class; in
 our case, GRANTED, allowed actions, and STRONGDENY, for the denied
 actions. 
 
-Indeed, each approach has its advantages and disadvantages. The Pittsburgh approach allows to directly obtain a set of rules able to classify instances of every existing class, meanwhile Michigan approach's solution is coded as a single rule, so that we obtain as many rules as classes are defined. The possibility of having many rules for every class instead of just one, more general, per class might seem to better help the CSO in detecting specific dangerous situations.
-At the same time, obtaining a set of rules as solution is more
+Indeed, each approach has its advantages and disadvantages. The Pittsburgh approach allows to directly obtain a set of rules able to classify instances of every existing class, meanwhile Michigan approach solution is coded as a single rule, so that we obtain as many rules as classes are defined. The possibility of having many rules for every class instead of just one, more general, per class might seem to better help the CSO in detecting specific dangerous situations.
+At the same time, obtaining a set of rules as a solution is more
 computationally expensive due to the need of longer
 evaluations. Lastly, to evaluate a single rule not taking into account
 how it interacts with what the others cover \cite{freitas2002data}
@@ -370,9 +370,10 @@ described as follows \cite{witten2005data}:
 
 \end{itemize}
 
-Te variables used by the GP expressions in order to create the rules fall
-into two fields: those that are specific to the BYOD context and those
-that will show up in any environment.\begin{itemize}
+We distinguish the variables used by the GP expressions in order to create the rules
+in those that are specific to the BYOD context and those
+that will show up in any environment:
+\begin{itemize}
   \item[BYOD-specific]: DeviceHasAccessibility, DeviceHasAntivirus,
     DeviceHasPassword, DeviceIsRooted, DeviceOS, DeviceOwnedBy,
     WifiEncryption, DeviceScreenTimeout, PasswordLength
@@ -380,7 +381,7 @@ that will show up in any environment.\begin{itemize}
     AssetConfidentialLevel, DeviceType, EventLevel, EventType, UserRole
   \end{itemize}
 
-  There's no difference, however, on how we deal with the two types of
+  There is no difference, however, in how do we deal with the two types of
   variables; this only shows the exhaustiveness of the set of terminals
   that we will be using in this work. At the end of the process, either as part of a set of rules or just being a single rule, they can be presented as follows:
 
@@ -391,7 +392,7 @@ user_role=>Administration OR
 device_is_rooted=true THEN=STRONGDENY
 \end{verbatim}
 
-Rules presented in this way offer good readability which is key to understand the relation between the attributes and how the described situation may, or may not, be dangerous. In the example, the system would have inferred that an action from a device without antivirus, a short password, and rooted or belonging to an administration employee, should be denied.
+Rules presented in this way offer good readability which is key to understand the relationship between attributes and how the described situation might, or might not, be dangerous. In the example, the system would have inferred that an action from a device without antivirus, a short password, and rooted or belonging to an administration employee, should be denied.
 
 %\subsection{Choosing a suitable fitness}
 \label{subsec:chossingfitness}
@@ -403,9 +404,8 @@ ratio of the correctly classified instances among the total of
 instances. Witten et al. use in \cite{witten2005data} the
 concepts of true positive/negative and false positive/negative. The
 first refers to the correctly classified instances, and the latter are
-those instances that should be negative (positive) but are classified
-as positive (negative), therefore they are false positives
-(negatives). Using this nomenclature -- true negative (TN) and true positive (TP) --, a fitness function defined for
+those instances that are classified as the contrary, and consequently they are called false positives
+or false negatives. Using this nomenclature -- true negative (TN) and true positive (TP) --, a fitness function defined for
 accuracy would be expressed as follows: 
 
 \begin{equation}
@@ -426,7 +426,7 @@ To this end, in \cite{witten2005data} the authors define the coverage as:
 C_{ind} = TP + TN - (FP + FN)
 \end{equation}
 Additionally, to take into account the complexity of the individuals,
-either they are a rule or a set of rules, in \cite{witten2005data}
+whether they are a rule or a set of rules, in \cite{witten2005data}
 they introduce a measure of the generated trees or list size by this
 expression: 
 
@@ -445,7 +445,7 @@ Therefore, in our experimental section we are going to compare both
 $f_{Acc}$ and $f_{CS}$, with different  alpha values, to check two statements:
 
 \begin{itemize}
-	\item How they influence in the number of evaluations taken to find the best solution.
+	\item How do they influence in the number of evaluations taken to find the best solution.
 	\item Which fitness function is able to minimise false
           positives and negatives.
 \end{itemize}
@@ -462,14 +462,14 @@ And finally decide which fitness function offers, taking into account these meas
 %\subsection{Experimental Setup}
 \label{sec:experiments}
 
-Once the methods to compare have been explained, the rest of the experimental setup is described.
+Once the methods to compare have been explained, the rest of the experimental setup is now described.
 
 The configurations that will be compared involve two different encoding of individuals (Pittsburgh tree individuals vs. Michigan list individuals), two types of fitness ($f_{CS}$ and $f_{Acc}$), and three different values for $\alpha$ in the case of $f_{Acc}$.
 
 With respect to the GP parameters, different decisions for experimental design have been taken into account. 
 First, sub-tree crossover and 1-node mutation evolutionary operators have
 been used, as indicated by, for instance, \cite{EvoStar2014:GPBot}. In this case, during the
-mutation operation, there is a 50\% of probability to change the complete variable (prefix, name, operator and value) or only the value. A population of 32 individuals and a 2-tournament selector for a pool of
+mutation operation, there is a 50\% of probability to change the complete variable (prefix, name, operator, and value) or only the value. A population of 32 individuals and a 2-tournament selector for a pool of
 16 parents have been used. These parameters have been also previously
 used in, for instance, \cite{EvoStar2014:GPBot}. Table \ref{tab:parameters} summarises all the parameters used.
 %
@@ -500,7 +500,7 @@ $\alpha$ for $f_{CS}$ & 0, 0.5, and 1 \\ \hline
 \end{center}
 \end{table}
 
-During the fitness evaluation, the generated individual is converted
+During the fitness evaluation, the generated individual is transformed
 into a string, which can become a single rule or set of rules
 depending on the approach, as previously described. % But this is what you are going to
                            % compare. You should make a lot of more
