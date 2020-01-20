@@ -21,39 +21,29 @@
 %
 \title{Automatic rule extraction from access rules using Genetic Programming}
 
- \author{A\inst{1}
- \and
- B\inst{1}
- \and
- C\inst{1}
- \and
- D\inst{1}
-}
 
-\institute{%
-   University Z\\
-   \email{an@ema.il}
-}
 
 %
 %\titlerunning{Abbreviated paper title}
 % If the paper title is too long for the running head, you can set
 % an abbreviated paper title here
 %
-% \author{Paloma de las Cuevas\inst{1}\orcidID{0000-0002-5599-3981} \and
-% Pablo Garc\'ia-S\'anchez\inst{2}\orcidID{0000-0003-4644-2894} \and
-% Zaineb Chelly Dagdia\inst{3,4}\orcidID{0000-0002-2551-6586} \and
-% Mar\'ia-Isabel Garc\'{\i}a-Arenas\inst{1}\orcidID{0000-0002-5576-4417} \and
-% Juan Juli\'an Merelo\inst{1}\orcidID{0000-0001-8956-5304}}
+ \author{Paloma de las Cuevas\inst{1}\orcidID{0000-0002-5599-3981} \and
+ Pablo Garc\'ia-S\'anchez\inst{2}\orcidID{0000-0003-4644-2894} \and
+ Zaineb Chelly Dagdia\inst{3,4}\orcidID{0000-0002-2551-6586} \and
+ Mar\'ia-Isabel Garc\'{\i}a-Arenas\inst{1}\orcidID{0000-0002-5576-4417} \and
+ Juan Juli\'an Merelo\inst{1}\orcidID{0000-0001-8956-5304}}
+
+ \authorrunning{Paloma de las Cuevas et al.}
 %
 % First names are abbreviated in the running head.
 % If there are more than two authors, 'et al.' is used.
 %
-% \institute{Department of Computer Architecture and Computer Technology, ETSIIT and CITIC, University of Granada, Granada, Spain \email{\{palomacd,mgarenas,jmerelo\}@ugr.es}\and
-% Department of Computer Engineering, ESI, University of C\'adiz, Spain \email{pablo.garciasanchez@uca.es} \and
-% Universit\'{e} de Lorraine, CNRS, Inria, LORIA, F-54000 Nancy, France \and
-% LARODEC, Institut Sup\'erieur de Gestion de Tunis,  Tunisia \email{chelly.zaineb@gmail.com}
-% }
+ \institute{Department of Computer Architecture and Computer Technology, ETSIIT and CITIC, University of Granada, Granada, Spain \email{\{palomacd,mgarenas,jmerelo\}@ugr.es}\and
+ Department of Computer Engineering, ESI, University of C\'adiz, Spain \email{pablo.garciasanchez@uca.es} \and
+ Universit\'{e} de Lorraine, CNRS, Inria, LORIA, F-54000 Nancy, France \and
+ LARODEC, Institut Sup\'erieur de Gestion de Tunis,  Tunisia \email{chelly.zaineb@gmail.com}
+ }
 %
 \maketitle              % typeset the header of the contribution
 %
@@ -364,8 +354,8 @@ With respect to the variables, both approaches use three different types,
 described as follows \cite{witten2005data}:
 
 \begin{itemize}
-\item {\em Binary Variable}: those with a boolean value, for instance, variables that are related with the device services switched on or off and important features such as the device having or not an antivirus installed. 
-\item {\em Categorical Variable}: the ones with nominal values, where it is defined a list with the possible values it may have, in order to randomly pick up one in the creation of the rules. 
+\item {\em Binary Variable}: those with a boolean value, for instance, variables that are related to the device services switched on or off and important features such as the device having or not an antivirus installed. 
+\item {\em Categorical Variable}: the ones with nominal values, where a list is defined with the possible values it may have, in order to randomly pick up one in the creation of the rules. 
 \item {\em Numerical Variable}: those with a numerical value, for which both maximum and minimum values are specified. 
 
 \end{itemize}
@@ -418,7 +408,7 @@ of $f_{Acc}$ is the whole training dataset, $T_{tr}$. Equation \ref{eq:accuracy}
 advantage of not being computationally expensive, but it does not
 penalise the badly predicted instances (false positives and
 negatives), which in security environments such as this one can be
-very harmful. Furthermore, a false negative would mean that the system denies an event that should be allowed, but the worst case scenario is having a false positive, when a dangerous event is classified as allowed.
+very harmful. Furthermore, a false negative would mean that the system denies an event that should be allowed, but the worst-case scenario is having a false positive, when a dangerous event is classified as allowed.
 To this end, in \cite{witten2005data} the authors define the coverage as:
 
 \begin{equation}
@@ -651,7 +641,7 @@ in the training set of data labelled as STRONGDENY for every 13
 labelled as GRANTED. Thus, the results we have obtained are biased towards the majority
 class \cite{japkowicz2002class}. 
 
-At the same time, and because the distributions for the Michigan approach follow the normal, an ANOVA test has been performed in every class \cite{DerracTests11}, obtaining a p-value of 0.5538 for the GRANTED class, meaning that there are not statistically significant differences in the results. However, in the case of the STRONGDENY class, using $f_{CS}$ significantly (p-value of 0.001736) decreases the accuracy over the validation set. With regard to how many FP and FN are obtained in every approach, we see in Table \ref{tab:PvsMvalidation} that for the Pittsburgh approach we generally obtain low rates or 0 -- ideal -- false negatives, and around 7\% rate of false positives -- almost 400 in average for our validation set --. On the other hand, best rates are found for the Michigan approach, where the rate of FP is, at most, 2.8\% -- around 113 instances in average --. And even if there were FN found, the average for the used validation set is 29 instances out of 5330, which is a very low number and as we explained before, in this BYOD scenario it is less worse to have FN than FP. Also, this imbalance in the FP and FN values is also caused by the imbalance in the dataset.
+At the same time, and because of the distributions for the Michigan approach follow the normal, an ANOVA test has been performed in every class \cite{DerracTests11}, obtaining a p-value of 0.5538 for the GRANTED class, meaning that there are not statistically significant differences in the results. However, in the case of the STRONGDENY class, using $f_{CS}$ significantly (p-value of 0.001736) decreases the accuracy over the validation set. With regard to how many FP and FN are obtained in every approach, we see in Table \ref{tab:PvsMvalidation} that for the Pittsburgh approach we generally obtain low rates or 0 -- ideal -- false negatives, and around 7\% rate of false positives -- almost 400 in average for our validation set --. On the other hand, best rates are found for the Michigan approach, where the rate of FP is, at most, 2.8\% -- around 113 instances in average --. And even if there were FN found, the average for the used validation set is 29 instances out of 5330, which is a very low number and as we explained before, in this BYOD scenario it is less worse to have FN than FP. Also, this imbalance in the FP and FN values is also caused by the imbalance in the dataset.
 
 To evaluate computation costs of the two approaches, and taking into consideration the infrastructure available for the experiments (see Section \ref{sec:experiments}), we present the execution times in Table \ref{tab:PvsMtime}, detailed by their average value and standard deviation, along with the best, worst, and median values. Time is expressed in hours, for the sake of clarification. In addition, the values for the Michigan approach are not separated by class this time, because in order to have the two rules - one for each class -- the CSO would have to wait for both executions.
 %
@@ -686,7 +676,7 @@ Michigan approach, we again find statistical differences (p-value of
 5.537e-05) between the results, and thus we can say that the best
 execution time is obtained when we use $f_{CS}$ with an $\alpha$ value
 of 0. It seems that the time does decrease when $\alpha$ is different
-than 0, meaning that the depth of the tree has an influence on the
+from 0, meaning that the depth of the tree has influence on the
 evaluation of the fitness.
 
 To study this effect, we have to look at
@@ -802,7 +792,7 @@ to enter into sleep mode (screen turns off).
 
 In this work, we wanted to help companies adopting the BYOD philosophy
 by developing a tool that is able to discover rules using a GP
-approach, extracting knowledge from the users behaviour when interacting with their
+approach, extracting knowledge from the users behaviours when interacting with their
 devices, at the time it minimises the false positives, so that a
 dangerous action is never taken as permitted. To this end, in Section \ref{sec:methodology} we have
 presented different ways to implement a methodology based on GP, by two
@@ -823,7 +813,7 @@ between rules classifying to one or another class is too biased
 towards the GRANTED class. %We need to get this back, now there's
                            %space for it.
 
-With regard to the execution time, the solution we propose takes between 16 and 17 hours, in the worst case and taking into account the used infrastructure, to obtain the best individual. Although these times could be acceptable, in the sense that the CSO would have new rules everyday, they can still be reduced.  
+With regard to the execution time, the solution we propose takes between 16 and 17 hours, in the worst case and taking into account the used infrastructure, to obtain the best individual. Although these times could be acceptable, in the sense that the CSO would have new rules every day, they can still be reduced.  
                                 % Was it a challenge for GP? In which
                                 % way?
                                 % (Paloma) Yes? Maybe? Hope so? I don't know :( Pablo what do you think? 
@@ -831,10 +821,10 @@ With regard to the execution time, the solution we propose takes between 16 and 
 A possible way to
 achieve better values for FP and FN is to set up the problem as a
 multiobjective one, so that we try to minimise $f_{CS}$, but also FP
-and FN. Additionally we will try to reduce the execution time by adapting the algorithm parameters, for instance, the number of generations, as has been shown in Section \ref{subsec:fitnesscomparison} that in some cases 50 generations is enough. Other enhancements could be to study every tree individual and not to directly evaluate the fitness for the contradictory rules of each one. 
+and FN. Additionally, we will try to reduce the execution time by adapting the algorithm parameters, for instance, the number of generations, as has been shown in Section \ref{subsec:fitnesscomparison} that in some cases 50 generations is enough. Other enhancements could be to study every tree individual and not to directly evaluate the fitness for the contradictory rules of each one. 
 
 On the other hand, the imbalance of the dataset should be taken into
-account, given that it affects to the results in terms of obtained
+account, given that it affects the results in terms of obtained
 accuracy in the validation process and the ratio among classes in the
 obtained individuals \cite{Pereira19RuleExtractionProblems}, so different solutions to deal with this issue will be applied. 
 %Solutions can be found in literature in order to reduce the bias while performing classification
@@ -853,8 +843,7 @@ improving our system. Furthermore, we will extend the approach to other problems
 
 \section{Acknowledgements}
 
-Acks taking\\
-this much space.
+This work has been partially funded by projects RTI2018-102002-A-I00 (Ministerio de Ciencia, Innovaci\'on y Universidades), TIN2017-85727-C4-2-P (Ministerio espa\~nol de Econom\'ia y Competitividad), and TEC2015-68752 (also funded by FEDER), as well as project B-TIC-402-UGR18 (FEDER y Junta de Andaluc\'ia).
 
 \bibliographystyle{splncs04}      
 \bibliography{GPrules,geneura}   
